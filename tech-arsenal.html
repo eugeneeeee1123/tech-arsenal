@@ -1,0 +1,1611 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TECH ARSENAL | 私人数码鉴藏目录</title>
+    <style>
+:root {
+    --void: #0a0d12;
+    --void-2: #101621;
+    --panel: rgba(17, 23, 34, 0.88);
+    --panel-2: #141b28;
+    --hairline: rgba(160,176,204,0.12);
+    --hairline-strong: rgba(160,176,204,0.24);
+    --gold: #6f86ff;
+    --gold-bright: #91a5ff;
+    --gold-dim: #425bcf;
+    --platinum: #d7dde8;
+    --platinum-bright: #edf2fb;
+    --platinum-dim: #7d899b;
+    --ivory: #edf2fb;
+    --stone: #a2adbf;
+    --stone-dim: #6e7a8d;
+    --ember: #8ea2ff;
+}
+
+* { box-sizing: border-box; }
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+    margin: 0; padding: 0;
+    background-color: var(--void);
+    background-image:
+        radial-gradient(circle at 12% 0%, rgba(111,134,255,0.18) 0%, transparent 24%),
+        radial-gradient(circle at 88% 16%, rgba(111,134,255,0.12) 0%, transparent 20%),
+        linear-gradient(180deg, #090c11 0%, #0a0d12 42%, #0d1118 100%);
+    background-attachment: fixed;
+    color: var(--ivory);
+    font-family: "SF Pro Text", "Avenir Next", "Helvetica Neue", "Segoe UI", sans-serif;
+    min-height: 100vh;
+    position: relative;
+}
+
+body::before {
+    content: '';
+    position: fixed; inset: 0; z-index: 1; pointer-events: none;
+    opacity: 0.22;
+    background-image:
+        linear-gradient(rgba(255,255,255,0.028) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.028) 1px, transparent 1px);
+    background-size: 36px 36px;
+    mask-image: linear-gradient(180deg, rgba(0,0,0,0.84), transparent 86%);
+}
+
+::selection { background: var(--gold-dim); color: var(--void); }
+
+a { color: inherit; }
+
+.font-display { font-family: "Avenir Next", "SF Pro Display", "Helvetica Neue", "Segoe UI", sans-serif; }
+.font-mono { font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace; }
+
+/* ═══ BRASS TICKER BAR ═══ */
+.broadcast-bar {
+    width: 100%;
+    background: rgba(10,13,18,0.82);
+    border-bottom: 1px solid var(--hairline);
+    padding: 11px 24px;
+    display: flex; justify-content: center; align-items: center; gap: 14px;
+    font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+    letter-spacing: 1.5px;
+    position: sticky; top: 0; z-index: 1000;
+    backdrop-filter: blur(18px);
+}
+.signal-icon {
+    width: 7px; height: 7px; background: var(--gold);
+    border-radius: 999px;
+    box-shadow: 0 0 0 6px rgba(111,134,255,0.1);
+    animation: signalPulse 2.6s ease-in-out infinite;
+    flex-shrink: 0;
+}
+@keyframes signalPulse { 0%,100% { opacity: 1; } 50% { opacity: 0.35; } }
+.shoutout-text { color: var(--stone); font-size: 0.68rem; text-transform: uppercase; letter-spacing: 2px; }
+.creator-tag {
+    color: var(--gold-bright); background: rgba(111,134,255,0.11);
+    padding: 4px 10px; font-weight: 600; font-size: 0.74rem; letter-spacing: 1.4px;
+    font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+    border: 1px solid rgba(111,134,255,0.4);
+    text-transform: uppercase;
+}
+
+/* ═══ HEADER ═══ */
+.header { display: flex; flex-direction: column; align-items: center; padding: 40px 50px 12px; position: relative; z-index: 2; text-align: center; }
+.back-btn {
+    position: absolute; left: 50px; top: 60px; color: var(--stone); text-decoration: none;
+    font-size: 0.72rem; text-transform: uppercase; letter-spacing: 2px; font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+    transition: color 0.3s; display: flex; align-items: center; gap: 8px;
+}
+.back-btn:hover { color: var(--gold); }
+.header-eyebrow { font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace; font-size: 0.68rem; letter-spacing: 4px; color: var(--stone); text-transform: uppercase; margin-bottom: 18px; }
+.main-title { font-family: "Avenir Next", "SF Pro Display", "Helvetica Neue", "Segoe UI", sans-serif; font-size: clamp(2.8rem, 6vw, 5.6rem); font-weight: 700; letter-spacing: -0.05em; margin: 0; line-height: 0.92; }
+.main-title .tech { color: var(--ivory); }
+.main-title .arsenal { color: var(--gold-bright); font-style: italic; font-weight: 600; }
+.header-sub { font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace; font-size: 0.72rem; letter-spacing: 3px; color: var(--stone-dim); margin-top: 16px; text-transform: uppercase; }
+
+.page-nav {
+    max-width: 1200px; margin: 26px auto 0; padding: 0 50px;
+    display: flex; flex-wrap: wrap; gap: 10px; position: relative; z-index: 2;
+}
+.page-link {
+    color: var(--stone); text-decoration: none; border: 1px solid var(--hairline-strong);
+    padding: 10px 16px; font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace; font-size: 0.68rem;
+    letter-spacing: 1.4px; text-transform: uppercase; transition: all 0.3s ease;
+    background: rgba(255,255,255,0.01);
+}
+.page-link:hover, .page-link.active {
+    color: var(--ivory); border-color: rgba(111,134,255,0.52); background: rgba(111,134,255,0.09);
+}
+@media (max-width: 700px) { .page-nav { padding: 0 20px; } }
+
+/* ═══ STATS LEDGER ═══ */
+.ledger { max-width: 1200px; margin: 40px auto 0; padding: 0 50px; position: relative; z-index: 2; }
+.ledger-inner {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    border: 1px solid var(--hairline); background: linear-gradient(180deg, rgba(255,255,255,0.03), transparent 28%), var(--panel);
+    box-shadow: 0 24px 70px rgba(2,6,18,0.45);
+}
+.ledger-item { padding: 22px 20px; text-align: center; border-right: 1px solid var(--hairline); position: relative; }
+.ledger-item:last-child { border-right: none; }
+.ledger-val { font-family: "Avenir Next", "SF Pro Display", "Helvetica Neue", "Segoe UI", sans-serif; font-size: 2rem; font-weight: 700; color: var(--ivory); line-height: 1; letter-spacing: -0.04em; }
+.ledger-val.gold { color: var(--gold); }
+.ledger-val.platinum { color: var(--platinum); }
+.ledger-label { font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace; font-size: 0.62rem; letter-spacing: 2px; color: var(--stone); text-transform: uppercase; margin-top: 8px; }
+@media (max-width: 700px) { .ledger-inner { grid-template-columns: repeat(2, 1fr); } .ledger-item:nth-child(2) { border-right: none; } }
+
+/* ═══ HERO ═══ */
+.hero-showcase { max-width: 1300px; margin: 48px auto 20px; padding: 0 50px; position: relative; z-index: 2; }
+.hero-inner {
+    position: relative; border: 1px solid var(--hairline);
+    background: linear-gradient(180deg, rgba(255,255,255,0.03), transparent 30%), var(--panel);
+    overflow: hidden;
+    box-shadow: 0 24px 70px rgba(2,6,18,0.45);
+}
+.hero-lot-tag {
+    position: absolute; top: 26px; left: 26px; z-index: 5;
+    font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace; font-size: 0.68rem; letter-spacing: 3px;
+    color: var(--gold); text-transform: uppercase; display: flex; align-items: center; gap: 10px;
+}
+.hero-lot-tag::before { content: '◆'; font-size: 0.6rem; }
+.hero-grid { display: grid; grid-template-columns: 1.05fr 1fr; min-height: 420px; }
+.hero-vis { display: flex; align-items: center; justify-content: center; padding: 52px 40px; position: relative; border-right: 1px solid var(--hairline); background: radial-gradient(circle at 50% 18%, rgba(111,134,255,0.22), transparent 34%), var(--panel-2); }
+.hero-vis::before {
+    content: ''; position: absolute; width: 460px; height: 460px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(111,134,255,0.18) 0%, transparent 65%);
+}
+.hero-glow-ring { position: absolute; width: 320px; height: 320px; border-radius: 50%; border: 1px solid rgba(111,134,255,0.16); }
+.hero-img { height: 300px; width: auto; object-fit: contain; position: relative; z-index: 2; filter: drop-shadow(0 30px 40px rgba(0,0,0,0.6)); transition: transform 0.6s ease; }
+.hero-vis:hover .hero-img { transform: translateY(-6px) scale(1.02); }
+.hero-info { padding: 56px 52px; display: flex; flex-direction: column; justify-content: center; gap: 16px; }
+.hero-brand { font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace; font-size: 0.68rem; letter-spacing: 3px; color: var(--stone); text-transform: uppercase; }
+.hero-title { font-family: "Avenir Next", "SF Pro Display", "Helvetica Neue", "Segoe UI", sans-serif; font-size: clamp(2.3rem, 4vw, 4.3rem); font-weight: 700; margin: 0; color: var(--ivory); line-height: 0.96; letter-spacing: -0.05em; max-width: 10ch; }
+.hero-tagline { font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace; font-size: 0.64rem; letter-spacing: 2.4px; color: var(--stone-dim); text-transform: uppercase; }
+.hero-why { font-family: "SF Pro Text", "Avenir Next", "Helvetica Neue", "Segoe UI", sans-serif; font-weight: 400; font-size: 1rem; color: #c7d0df; line-height: 1.72; border-left: 2px solid var(--gold); padding-left: 20px; max-width: 460px; }
+.hero-specs-row { display: flex; gap: 30px; margin-top: 10px; flex-wrap: wrap; border-top: 1px solid var(--hairline); padding-top: 18px; }
+.hero-stat { display: flex; flex-direction: column; gap: 5px; }
+.hs-val { font-family: "Avenir Next", "SF Pro Display", "Helvetica Neue", "Segoe UI", sans-serif; font-size: 1rem; font-weight: 600; color: var(--ivory); letter-spacing: -0.02em; }
+.hs-label { font-size: 0.62rem; letter-spacing: 2px; color: var(--stone-dim); text-transform: uppercase; font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace; }
+@media (max-width: 900px) {
+    .hero-grid { grid-template-columns: 1fr; }
+    .hero-vis { border-right: none; border-bottom: 1px solid var(--hairline); min-height: 260px; }
+    .hero-info { padding: 36px 30px; }
+    .hero-showcase { padding: 0 20px; }
+}
+
+/* ═══ FILTER + SEARCH ═══ */
+.control-bar { max-width: 1300px; margin: 46px auto 56px; padding: 0 50px; display: flex; justify-content: space-between; align-items: center; gap: 24px; flex-wrap: wrap; position: relative; z-index: 2; }
+.filter-bar { display: flex; gap: 10px; flex-wrap: wrap; }
+.filter-btn {
+    background: transparent; border: 1px solid var(--hairline-strong); color: var(--stone);
+    padding: 9px 22px; font-size: 0.68rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px;
+    cursor: pointer; transition: all 0.3s ease; font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+}
+.filter-btn:hover { border-color: var(--stone); color: var(--ivory); }
+.filter-btn.active { border-color: rgba(111,134,255,0.52); color: var(--ivory); background: rgba(111,134,255,0.09); }
+.search-wrap { position: relative; }
+.search-input {
+    background: transparent; border: none; border-bottom: 1px solid var(--hairline-strong);
+    color: var(--ivory); padding: 8px 4px 8px 26px; font-size: 0.8rem; font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+    width: 220px; letter-spacing: 0.5px; outline: none; transition: border-color 0.3s;
+}
+.search-input:focus { border-color: var(--gold); }
+.search-input::placeholder { color: var(--stone-dim); }
+.search-icon { position: absolute; left: 2px; top: 9px; color: var(--stone-dim); font-size: 0.8rem; pointer-events: none; }
+@media (max-width: 700px) { .control-bar { padding: 0 20px; } .search-input { width: 100%; } }
+
+/* ═══ SECTIONS / CHAPTERS ═══ */
+.section-wrapper { max-width: 1300px; margin: 0 auto 80px auto; padding: 0 50px; position: relative; z-index: 2; }
+.section-wrapper.hidden { display: none; }
+.chapter-head { margin-bottom: 34px; }
+.chapter-eyebrow { font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace; font-size: 0.64rem; letter-spacing: 3px; color: var(--stone-dim); text-transform: uppercase; display: block; margin-bottom: 12px; }
+.section-title { font-family: "Avenir Next", "SF Pro Display", "Helvetica Neue", "Segoe UI", sans-serif; font-size: clamp(1.8rem, 3vw, 2.9rem); font-weight: 700; margin: 0 0 14px 0; color: var(--ivory); display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; letter-spacing: -0.04em; }
+.section-count { font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace; font-size: 0.68rem; color: var(--stone-dim); font-weight: 400; letter-spacing: 1px; text-transform: uppercase; }
+.chapter-rule { height: 1px; background: linear-gradient(90deg, rgba(111,134,255,0.32), var(--hairline) 40%, transparent); }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(310px, 1fr)); gap: 26px; }
+
+/* ═══ CREATOR PLAQUE ═══ */
+.creator-title { color: var(--platinum); }
+.creator-title .chapter-eyebrow { color: var(--platinum); }
+.creator-desc { color: var(--stone); margin-bottom: 24px; font-size: 0.98rem; line-height: 1.7; max-width: 52ch; }
+.video-card { background: var(--panel); border: 1px solid var(--hairline); overflow: hidden; max-width: 760px; position: relative; box-shadow: 0 24px 70px rgba(2,6,18,0.45); }
+.video-card::before { content: ''; position: absolute; inset: 0; border: 1px solid transparent; pointer-events: none; }
+.video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; background: #000; }
+.video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+.video-info { padding: 20px 24px; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.video-tagpill { font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace; font-size: 0.62rem; letter-spacing: 2px; color: var(--platinum); border: 1px solid var(--hairline-strong); padding: 3px 10px; text-transform: uppercase; }
+.video-title { margin: 0; font-size: 1rem; font-weight: 600; color: var(--ivory); font-family: "Avenir Next", "SF Pro Display", "Helvetica Neue", "Segoe UI", sans-serif; letter-spacing: -0.02em; }
+
+/* ═══ LOT CARDS ═══ */
+.card {
+    background: linear-gradient(180deg, rgba(255,255,255,0.03), transparent 28%), var(--panel); border: 1px solid var(--hairline); overflow: hidden;
+    display: flex; flex-direction: column; cursor: pointer; position: relative;
+    transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease, background 0.35s ease;
+    opacity: 0; transform: translateY(24px);
+    box-shadow: 0 24px 70px rgba(2,6,18,0.34);
+}
+.card.in-view { opacity: 1; transform: translateY(0); }
+.card:hover { transform: translateY(-6px); border-color: rgba(111,134,255,0.34); }
+.card[data-status="owned"]:hover { border-color: rgba(215,221,232,0.34); box-shadow: 0 20px 40px rgba(0,0,0,0.5), 0 0 0 1px rgba(215,221,232,0.08); }
+.card[data-status="wishlist"]:hover { border-color: rgba(111,134,255,0.5); box-shadow: 0 20px 40px rgba(0,0,0,0.5), 0 0 0 1px rgba(111,134,255,0.14); }
+
+.lot-number {
+    position: absolute; top: 14px; left: 14px; z-index: 5;
+    font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace; font-size: 0.62rem; letter-spacing: 1.5px;
+    color: var(--ivory); background: rgba(10,13,18,0.68); backdrop-filter: blur(8px);
+    padding: 4px 9px; border: 1px solid var(--hairline);
+}
+
+.seal { position: absolute; top: 12px; right: 12px; z-index: 5; display: flex; align-items: center; gap: 6px;
+    font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace; font-size: 0.6rem; letter-spacing: 1.5px; text-transform: uppercase;
+    padding: 5px 10px 5px 8px; backdrop-filter: blur(4px);
+}
+.seal .dot { width: 6px; height: 6px; border-radius: 50%; }
+.seal.owned { background: rgba(215,221,232,0.08); border: 1px solid rgba(215,221,232,0.24); color: var(--platinum-bright); }
+.seal.owned .dot { background: var(--platinum); box-shadow: 0 0 6px rgba(167,174,179,0.8); }
+.seal.wishlist { background: rgba(111,134,255,0.1); border: 1px solid rgba(111,134,255,0.36); color: var(--gold-bright); }
+.seal.wishlist .dot { background: var(--gold); box-shadow: 0 0 6px rgba(111,134,255,0.8); }
+
+.img-box { height: 250px; background: var(--void-2); position: relative; overflow: hidden; }
+.img-box img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(10%) saturate(0.86) brightness(0.9); transition: filter 0.5s ease, transform 0.6s ease; }
+.card:hover .img-box img { filter: grayscale(0%) brightness(1); transform: scale(1.04); }
+.img-box::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 58%, rgba(10,13,18,0.72) 100%); pointer-events: none; }
+
+.card-content { padding: 22px 24px 24px; flex-grow: 1; display: flex; flex-direction: column; }
+.hallmark { font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace; font-size: 0.64rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1.8px; margin-bottom: 10px; color: var(--stone); }
+.product-name { font-family: "Avenir Next", "SF Pro Display", "Helvetica Neue", "Segoe UI", sans-serif; font-size: 1.4rem; margin: 0 0 18px 0; font-weight: 700; line-height: 1.12; color: var(--ivory); letter-spacing: -0.03em; }
+.specs { display: flex; flex-direction: column; gap: 10px; margin-top: auto; border-top: 1px solid var(--hairline); padding-top: 14px; }
+.spec-row { display: flex; justify-content: space-between; gap: 10px; font-size: 0.8rem; }
+.spec-label { color: var(--stone-dim); font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.5px; flex-shrink: 0; }
+.spec-val { font-weight: 500; color: var(--ivory); text-align: right; font-family: "SF Pro Text", "Avenir Next", "Helvetica Neue", "Segoe UI", sans-serif; font-size: 0.8rem; }
+
+/* ═══ MODAL - CERTIFICATE VIEW ═══ */
+.tech-modal-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(7,10,18,0.82); backdrop-filter: blur(20px);
+    z-index: 2000; display: none; justify-content: center; align-items: center; padding: 24px;
+}
+.tech-modal-overlay.active { display: flex; }
+.tech-modal-window {
+    width: 1020px; max-width: 100%; max-height: 90vh;
+    background: linear-gradient(180deg, rgba(255,255,255,0.03), transparent 28%), var(--panel); border: 1px solid var(--hairline);
+    display: flex; overflow: hidden; position: relative; flex-direction: row;
+    box-shadow: 0 40px 100px rgba(0,0,0,0.7); transition: border-color 0.3s;
+}
+.corner-mark { position: absolute; width: 22px; height: 22px; border-color: rgba(111,134,255,0.52); z-index: 8; pointer-events: none; opacity: 0.7; }
+.corner-mark.tl { top: 14px; left: 14px; border-top: 1px solid; border-left: 1px solid; }
+.corner-mark.br { bottom: 14px; right: 14px; border-bottom: 1px solid; border-right: 1px solid; }
+
+.tech-modal-vis { flex: 1; background: radial-gradient(circle at 50% 18%, rgba(111,134,255,0.18), transparent 34%), var(--void-2); display: flex; justify-content: center; align-items: center; border-right: 1px solid var(--hairline); padding: 40px; position: relative; }
+.tech-modal-vis::before { content: ''; position: absolute; width: 380px; height: 380px; border-radius: 50%; background: radial-gradient(circle, rgba(111,134,255,0.1) 0%, transparent 65%); }
+.tech-modal-vis img { width: 100%; height: 100%; object-fit: contain; position: relative; z-index: 2; filter: drop-shadow(0 24px 30px rgba(0,0,0,0.5)); }
+.vis-lot-ref { position: absolute; bottom: 20px; left: 24px; font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace; font-size: 0.66rem; letter-spacing: 2px; color: var(--stone); text-transform: uppercase; z-index: 3; }
+
+.tech-modal-info { flex: 1; padding: 44px 44px 36px; overflow-y: auto; display: flex; flex-direction: column; background: linear-gradient(180deg, var(--panel-2), var(--panel)); }
+.tm-brand { font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace; font-size: 0.72rem; font-weight: 600; letter-spacing: 2px; margin-bottom: 14px; text-transform: uppercase; color: var(--stone); }
+.tm-status-tag { display: inline-flex; align-items: center; gap: 6px; padding: 5px 12px; font-size: 0.62rem; font-weight: 600; letter-spacing: 1.5px; margin-bottom: 18px; font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace; text-transform: uppercase; width: fit-content; }
+.tm-status-tag .dot { width: 6px; height: 6px; border-radius: 50%; }
+.tm-status-tag.owned { background: rgba(215,221,232,0.08); color: var(--platinum-bright); border: 1px solid rgba(215,221,232,0.24); }
+.tm-status-tag.owned .dot { background: var(--platinum); }
+.tm-status-tag.wishlist { background: rgba(111,134,255,0.1); color: var(--gold-bright); border: 1px solid rgba(111,134,255,0.36); }
+.tm-status-tag.wishlist .dot { background: var(--gold); }
+.tm-title { font-family: "Avenir Next", "SF Pro Display", "Helvetica Neue", "Segoe UI", sans-serif; font-size: 2.3rem; font-weight: 700; line-height: 0.98; margin: 0 0 18px 0; color: var(--ivory); letter-spacing: -0.04em; }
+.tm-why-block { margin: 0 0 22px 0; padding: 16px 20px; background: rgba(255,255,255,0.02); border-left: 2px solid var(--gold); }
+.tm-why-label { font-size: 0.62rem; text-transform: uppercase; letter-spacing: 2.5px; color: var(--gold); font-weight: 600; margin-bottom: 8px; font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace; }
+.tm-why-text { font-size: 0.98rem; color: #cdd6e3; line-height: 1.68; }
+.tm-desc { color: var(--stone); font-size: 0.9rem; line-height: 1.6; margin-bottom: 26px; border-bottom: 1px solid var(--hairline); padding-bottom: 22px; }
+.tm-specs-grid { display: flex; flex-direction: column; gap: 8px; }
+.tm-spec-row { display: flex; flex-direction: column; padding: 12px 16px; border-left: 2px solid var(--hairline-strong); background: rgba(255,255,255,0.015); transition: border-color 0.3s; }
+.tm-spec-label { font-size: 0.66rem; color: var(--stone-dim); text-transform: uppercase; margin-bottom: 6px; font-weight: 600; letter-spacing: 1.5px; font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace; }
+.tm-spec-val { font-size: 0.87rem; color: var(--ivory); font-weight: 400; line-height: 1.6; }
+
+.tm-close {
+    position: absolute; top: 16px; right: 16px; background: rgba(255,255,255,0.04); border: 1px solid var(--hairline-strong); color: var(--ivory);
+    width: 34px; height: 34px; border-radius: 50%; font-size: 1.1rem; cursor: pointer; transition: 0.3s;
+    display: flex; justify-content: center; align-items: center; z-index: 20;
+}
+.tm-close:hover { background: var(--gold); color: var(--void); border-color: var(--gold); }
+
+@media (max-width: 800px) {
+    .header { padding: 40px 20px 8px; }
+    .back-btn { position: static; margin-bottom: 20px; }
+    .section-wrapper { padding: 0 20px; }
+    .tech-modal-window { flex-direction: column; height: 92vh; }
+    .tech-modal-vis { min-height: 220px; border-right: none; border-bottom: 1px solid var(--hairline); }
+    .tech-modal-info { padding: 28px 24px; }
+}
+
+/* ═══ FOOTER ═══ */
+.site-footer { max-width: 1300px; margin: 0 auto 60px; padding: 30px 50px 0; border-top: 1px solid var(--hairline); text-align: center; position: relative; z-index: 2; }
+.footer-line { font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace; font-size: 0.66rem; letter-spacing: 2px; color: var(--stone-dim); text-transform: uppercase; }
+@media (max-width: 700px) { .site-footer { padding: 30px 20px 0; } }
+
+    </style>
+</head>
+<body>
+
+    <div class="broadcast-bar">
+        <div class="signal-icon"></div>
+        <span class="shoutout-text">template archive</span>
+        <span class="creator-tag">tech arsenal</span>
+        <span class="shoutout-text">reference layout</span>
+    </div>
+
+    <div class="header">
+        <a href="index.html" class="back-btn">&larr; RETURN HOME</a>
+        <span class="header-eyebrow">TEMPLATE PAGE · RAW LOT LIBRARY</span>
+        <h1 class="main-title"><span class="tech">TECH</span> <span class="arsenal">Arsenal</span></h1>
+        <span class="header-sub">template catalogue</span>
+    </div>
+
+    <div class="page-nav">
+        <a href="index.html" class="page-link">home</a>
+        <a href="provenance.html" class="page-link">timeline</a>
+        <a href="field-notes.html" class="page-link">notes</a>
+        <a href="comparison-lab.html" class="page-link">compare</a>
+        <a href="on-the-horizon.html" class="page-link">horizon</a>
+        <a href="tech-arsenal.html" class="page-link active">template</a>
+    </div>
+
+    <div class="ledger">
+        <div class="ledger-inner">
+            <div class="ledger-item"><div class="ledger-val">035</div><div class="ledger-label">Total Catalogued</div></div>
+            <div class="ledger-item"><div class="ledger-val platinum">005</div><div class="ledger-label">In Collection</div></div>
+            <div class="ledger-item"><div class="ledger-val gold">030</div><div class="ledger-label">Pursuing</div></div>
+            <div class="ledger-item"><div class="ledger-val">005</div><div class="ledger-label">Chapters</div></div>
+        </div>
+    </div>
+
+    <div class="hero-showcase" id="sec-hero">
+        <div class="hero-inner">
+            <div class="hero-lot-tag">template highlight / lot 008</div>
+            <div class="hero-grid">
+                <div class="hero-vis">
+                    <div class="hero-glow-ring"></div>
+                    <img src="samsungzfold7.png" alt="Galaxy Z Fold 7" class="hero-img">
+                </div>
+                <div class="hero-info">
+                    <div class="hero-brand">SAMSUNG / GALAXY Z SERIES</div>
+                    <h2 class="hero-title">Galaxy Z Fold 7</h2>
+                    <div class="hero-tagline">template reference / foldable flagship</div>
+                    <div class="hero-why">Titanium frame, thinner body, cleaner hinge story. This hero stays here as a visual reference for how a featured lot can be framed.</div>
+                    <div class="hero-specs-row">
+<div class="hero-stat"><span class="hs-val">7.6&quot;</span><span class="hs-label">Inner AMOLED</span></div>
+<div class="hero-stat"><span class="hs-val">SD 8 Gen 4</span><span class="hs-label">Chipset</span></div>
+<div class="hero-stat"><span class="hs-val">Titanium</span><span class="hs-label">Build</span></div>
+<div class="hero-stat"><span class="hs-val">Zero-Gap</span><span class="hs-label">Hinge</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="control-bar">
+        <div class="filter-bar">
+            <button class="filter-btn active" data-filter="all">ALL GEAR</button>
+            <button class="filter-btn" data-filter="mobile">PHONES</button>
+            <button class="filter-btn" data-filter="tablet">TABLETS</button>
+            <button class="filter-btn" data-filter="laptop">LAPTOPS</button>
+            <button class="filter-btn" data-filter="desktop">DESKTOPS</button>
+            <button class="filter-btn" data-filter="peripheral">PERIPHERALS</button>
+        </div>
+        <div class="search-wrap">
+            <span class="search-icon">&#8981;</span>
+            <input type="text" class="search-input" id="searchInput" placeholder="SEARCH THE CATALOGUE&hellip;">
+        </div>
+    </div>
+
+    <div class="section-wrapper" id="sec-creator">
+        <div class="chapter-head">
+            <span class="chapter-eyebrow">reference source</span>
+            <h2 class="section-title creator-title">Featured Creator / BOJIO 杰哥</h2>
+            <div class="chapter-rule"></div>
+        </div>
+        <div class="creator-desc">这个区块保留为内容来源参考。后续如果你不想在正式站点里放 creator 模块，可以直接删掉，不影响其他页面结构。</div>
+        <div class="video-card">
+            <div class="video-wrapper">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/T4FwjYAWAwI?si=FUs0qRRfZWWGJGwA&amp;start=568" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+            <div class="video-info">
+                <h3 class="video-title">BOJIO 杰哥 - 科技评测精选</h3>
+                <span class="video-tagpill">DEEP DIVE</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-wrapper" id="sec-mobile">
+        <div class="chapter-head">
+            <span class="chapter-eyebrow">phones</span>
+            <h2 class="section-title">SMARTPHONES<span class="section-count">(21 PIECES)</span></h2>
+            <div class="chapter-rule"></div>
+        </div>
+        <div class="grid">
+
+            <div class="card" data-brand="xiaomi" data-status="wishlist" data-cat="mobile" data-lot="001" data-chapter="SMARTPHONES" data-name="mi 10 ultra xiaomi · 10th anniversary 10th anniversary xiaomi">
+                <div class="lot-number">N&deg; 001</div>
+                <div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
+                <div class="img-box">
+                    <img src="Mi10Ultra.png" alt="Mi 10 Ultra">
+                </div>
+                <div class="card-content">
+                    <div class="hallmark">XIAOMI · 10TH ANNIVERSARY</div>
+                    <h3 class="product-name">Mi 10 Ultra</h3>
+                    <div class="specs">
+<div class="spec-row"><span class="spec-label">Display</span><span class="spec-val">6.67&quot; 120Hz 10-bit OLED</span></div>
+<div class="spec-row"><span class="spec-label">Camera</span><span class="spec-val">48MP OV48C + 120x IMX586</span></div>
+<div class="spec-row"><span class="spec-label">Battery</span><span class="spec-val">4500mAh Graphene</span></div>
+<div class="spec-row"><span class="spec-label">Charging</span><span class="spec-val">120W Wired + 50W Wireless</span></div>
+                    </div>
+                </div>
+                <div class="hidden-details" style="display:none;">
+                    <div class="d-brand">XIAOMI // 10TH ANNIVERSARY</div>
+                    <div class="d-title">Mi 10 Ultra</div>
+                    <div class="d-why">120W charging speed is still insane even today. The transparent edition looks absolutely fire - like wearing your internals on your sleeve.</div>
+                    <div class="d-desc">The ultimate 10th-anniversary masterpiece. A camera monster featuring dual 48MP sensors and revolutionary 120W charging technology.</div>
+<div class="d-spec" data-label="SoC">Snapdragon 865 (7nm) | LPDDR5 | UFS 3.1</div>
+<div class="d-spec" data-label="Display">6.67" OLED | 120Hz | 10-bit Color | 1120 nits peak</div>
+<div class="d-spec" data-label="Camera System">[Main] 48MP OmniVision OV48C | 1/1.32" | OIS<br/>
+                        [Periscope] 48MP Sony IMX586 | 5x Optical | 120x Zoom<br/>
+                        [Portrait] 12MP S5K2L7 | 2x Optical | 46mm Equivalent<br/>
+                        [Ultrawide] 20MP Sony IMX350 | 128° FOV | 12mm</div>
+<div class="d-spec" data-label="Battery &amp; Charging">4500mAh Graphene-based | 120W Wired (100% in 23m) | 50W Wireless</div>
+<div class="d-spec" data-label="Build">221.8g | Ceramic Black / Transparent Edition</div>
+                </div>
+            </div>
+            <div class="card" data-brand="samsung" data-status="wishlist" data-cat="mobile" data-lot="002" data-chapter="SMARTPHONES" data-name="galaxy s23 ultra samsung · galaxy ultra galaxy ultra samsung">
+                <div class="lot-number">N&deg; 002</div>
+                <div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
+                <div class="img-box">
+                    <img src="s23ultra.png" alt="Galaxy S23 Ultra">
+                </div>
+                <div class="card-content">
+                    <div class="hallmark">SAMSUNG · GALAXY ULTRA</div>
+                    <h3 class="product-name">Galaxy S23 Ultra</h3>
+                    <div class="specs">
+<div class="spec-row"><span class="spec-label">Chip</span><span class="spec-val">Snapdragon 8 Gen 2</span></div>
+<div class="spec-row"><span class="spec-label">Camera</span><span class="spec-val">200MP + 10x Optical</span></div>
+<div class="spec-row"><span class="spec-label">Feature</span><span class="spec-val">Built-in S-Pen</span></div>
+                    </div>
+                </div>
+                <div class="hidden-details" style="display:none;">
+                    <div class="d-brand">SAMSUNG // GALAXY ULTRA</div>
+                    <div class="d-title">Galaxy S23 Ultra</div>
+                    <div class="d-why">200MP + built-in S-Pen is the combination I keep coming back to. It&#x27;s the phone for people who take notes AND photos seriously.</div>
+                    <div class="d-desc">The ultimate productivity and zoom king. Featuring a custom Snapdragon chip and a 200MP ISOCELL sensor.</div>
+<div class="d-spec" data-label="SoC">Snapdragon 8 Gen 2 For Galaxy (Overclocked)</div>
+<div class="d-spec" data-label="Display">6.8" Dynamic AMOLED 2X | 1-120Hz LTPO | 1750 nits</div>
+<div class="d-spec" data-label="Camera System">[Main] 200MP ISOCELL HP2 | 1/1.3" | Laser AF | OIS<br/>
+                        [Periscope] 10MP | 10x Optical | 100x Space Zoom<br/>
+                        [Telephoto] 10MP | 3x Optical<br/>
+                        [Ultrawide] 12MP | 120° FOV</div>
+<div class="d-spec" data-label="Feature">Built-in S-Pen | IP68 | Armor Aluminum Frame</div>
+<div class="d-spec" data-label="Battery">5000mAh | 45W Fast Charging</div>
+                </div>
+            </div>
+            <div class="card" data-brand="apple" data-status="wishlist" data-cat="mobile" data-lot="003" data-chapter="SMARTPHONES" data-name="iphone 14 pro max apple · pro max apple flagship apple">
+                <div class="lot-number">N&deg; 003</div>
+                <div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
+                <div class="img-box">
+                    <img src="iphone14promax.png" alt="iPhone 14 Pro Max">
+                </div>
+                <div class="card-content">
+                    <div class="hallmark">APPLE · PRO MAX</div>
+                    <h3 class="product-name">iPhone 14 Pro Max</h3>
+                    <div class="specs">
+<div class="spec-row"><span class="spec-label">Chip</span><span class="spec-val">A16 Bionic</span></div>
+<div class="spec-row"><span class="spec-label">Display</span><span class="spec-val">6.7&quot; Super Retina XDR</span></div>
+<div class="spec-row"><span class="spec-label">Feature</span><span class="spec-val">Dynamic Island</span></div>
+                    </div>
+                </div>
+                <div class="hidden-details" style="display:none;">
+                    <div class="d-brand">APPLE // PRO MAX</div>
+                    <div class="d-title">iPhone 14 Pro Max</div>
+                    <div class="d-why">The Dynamic Island was the design move of the decade. Also that A16 chip ages like fine wine.</div>
+                    <div class="d-desc">The dawn of the Dynamic Island. Apple&#x27;s shift to a 48MP main sensor and Always-On Display.</div>
+<div class="d-spec" data-label="SoC">A16 Bionic (4nm) | 6-core CPU | 5-core GPU</div>
+<div class="d-spec" data-label="Display">6.7" Super Retina XDR OLED | ProMotion 120Hz | 2000 nits peak</div>
+<div class="d-spec" data-label="Camera System">[Main] 48MP Sony IMX803 | 1/1.28" | Sensor-shift OIS<br/>
+                        [Telephoto] 12MP | 3x Optical | 77mm equivalent<br/>
+                        [Ultrawide] 12MP | 120° FOV</div>
+<div class="d-spec" data-label="Feature">Dynamic Island | Emergency SOS via Satellite | Crash Detection</div>
+<div class="d-spec" data-label="Build">Surgical-grade Stainless Steel | Ceramic Shield front</div>
+                </div>
+            </div>
+            <div class="card" data-brand="vivo" data-status="wishlist" data-cat="mobile" data-lot="004" data-chapter="SMARTPHONES" data-name="vivo x300 pro vivo · zeiss co-engineered vivo zeiss vivo">
+                <div class="lot-number">N&deg; 004</div>
+                <div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
+                <div class="img-box">
+                    <img src="vivox300pro.png" alt="Vivo X300 Pro">
+                </div>
+                <div class="card-content">
+                    <div class="hallmark">VIVO · ZEISS CO-ENGINEERED</div>
+                    <h3 class="product-name">Vivo X300 Pro</h3>
+                    <div class="specs">
+<div class="spec-row"><span class="spec-label">Optics</span><span class="spec-val">Zeiss APO Telephoto</span></div>
+<div class="spec-row"><span class="spec-label">Chip</span><span class="spec-val">Dimensity 9400</span></div>
+<div class="spec-row"><span class="spec-label">Feature</span><span class="spec-val">V3+ Imaging Chip</span></div>
+                    </div>
+                </div>
+                <div class="hidden-details" style="display:none;">
+                    <div class="d-brand">VIVO // ZEISS CO-ENGINEERED</div>
+                    <div class="d-title">Vivo X300 Pro</div>
+                    <div class="d-why">Zeiss APO glass on a smartphone. The 200MP periscope at this focal length makes absolutely no sense - in the best way.</div>
+                    <div class="d-desc">The pinnacle of mobile portrait photography. Co-engineered with Zeiss for unparalleled optical performance.</div>
+<div class="d-spec" data-label="SoC">MediaTek Dimensity 9400 | Custom V3+ Imaging Chip</div>
+<div class="d-spec" data-label="Display">6.78" 8T LTPO AMOLED | 144Hz | 3000 nits peak</div>
+<div class="d-spec" data-label="Camera System">[Main] 50MP Sony LYT-900 | 1-inch Type | Zeiss T* Coating<br/>
+                        [Periscope] 200MP Zeiss APO | 4.3x Optical | Macro Mode<br/>
+                        [Ultrawide] 50MP | 14mm equivalent</div>
+<div class="d-spec" data-label="Battery">5400mAh BlueVolt Battery | 100W Wired | 50W Wireless</div>
+                </div>
+            </div>
+            <div class="card" data-brand="honor" data-status="wishlist" data-cat="mobile" data-lot="005" data-chapter="SMARTPHONES" data-name="magic 4 至臻版 honor · magic ultimate honor // ultimate honor">
+                <div class="lot-number">N&deg; 005</div>
+                <div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
+                <div class="img-box">
+                    <img src="honormagic4ultimate.png" alt="Magic 4 至臻版">
+                </div>
+                <div class="card-content">
+                    <div class="hallmark">HONOR · MAGIC ULTIMATE</div>
+                    <h3 class="product-name">Magic 4 至臻版</h3>
+                    <div class="specs">
+<div class="spec-row"><span class="spec-label">Display</span><span class="spec-val">6.81&quot; LTPO OLED</span></div>
+<div class="spec-row"><span class="spec-label">Camera</span><span class="spec-val">Custom 1/1.12&quot; 50MP</span></div>
+<div class="spec-row"><span class="spec-label">Feature</span><span class="spec-val">Ceramic / DxO King</span></div>
+                    </div>
+                </div>
+                <div class="hidden-details" style="display:none;">
+                    <div class="d-brand">HONOR // MAGIC ULTIMATE</div>
+                    <div class="d-title">Honor Magic4 Ultimate</div>
+                    <div class="d-why"></div>
+                    <div class="d-desc">A photography monolith. The Ultimate edition features a massive custom 8P lens main sensor and an independent custom image processor, wrapped in premium ceramic.</div>
+<div class="d-spec" data-label="SoC">Snapdragon 8 Gen 1 (4nm) | Custom Image Signal Processor</div>
+<div class="d-spec" data-label="Display">6.81" LTPO OLED | 1-120Hz | 1920Hz PWM Dimming</div>
+<div class="d-spec" data-label="Camera System">[Main] 50MP Custom 1/1.12" | 8P Lens | f/1.6 | OIS<br/>
+                        [Ultrawide] 64MP | 126° FOV | Dual Free-Form Lens<br/>
+                        [Periscope] 64MP | 3.5x Optical | 100x Digital | OIS<br/>
+                        [Spectrum] 50MP Spectrum Enhanced Sensor</div>
+<div class="d-spec" data-label="Battery &amp; Charging">4600mAh | 100W Wired | 50W Wireless</div>
+<div class="d-spec" data-label="Build">Nanocrystal Ceramic | IP68 | 242g</div>
+                </div>
+            </div>
+            <div class="card" data-brand="huawei" data-status="wishlist" data-cat="mobile" data-lot="006" data-chapter="SMARTPHONES" data-name="huawei p40 pro+ huawei · leica optics huawei // leica huawei">
+                <div class="lot-number">N&deg; 006</div>
+                <div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
+                <div class="img-box">
+                    <img src="huaweip40pro+.png" alt="Huawei P40 Pro+">
+                </div>
+                <div class="card-content">
+                    <div class="hallmark">HUAWEI · LEICA OPTICS</div>
+                    <h3 class="product-name">Huawei P40 Pro+</h3>
+                    <div class="specs">
+<div class="spec-row"><span class="spec-label">Chip</span><span class="spec-val">Kirin 990 5G</span></div>
+<div class="spec-row"><span class="spec-label">Camera</span><span class="spec-val">10x Optical Periscope</span></div>
+<div class="spec-row"><span class="spec-label">Build</span><span class="spec-val">Nano-tech Ceramic</span></div>
+                    </div>
+                </div>
+                <div class="hidden-details" style="display:none;">
+                    <div class="d-brand">HUAWEI // LEICA OPTICS</div>
+                    <div class="d-title">Huawei P40 Pro+</div>
+                    <div class="d-why">World&#x27;s first true 10x optical zoom periscope. Still the camera engineering flex of 2020. The ceramic build slaps too.</div>
+                    <div class="d-desc">The absolute peak of zooming technology of its time. The world&#x27;s first smartphone to feature a true 10x optical continuous zoom periscope lens.</div>
+<div class="d-spec" data-label="SoC">Kirin 990 5G (7nm+) | Mali-G76 MC16 GPU</div>
+<div class="d-spec" data-label="Display">6.58" OLED | 90Hz | Quad-Curve Overflow Display</div>
+<div class="d-spec" data-label="Camera System">[Main] 50MP Ultra Vision RYYB | 1/1.28" | OIS<br/>
+                        [Cine Ultrawide] 40MP | 18mm | f/1.8<br/>
+                        [Periscope] 8MP | 10x Optical | 100x Max Zoom | OIS<br/>
+                        [Telephoto] 8MP | 3x Optical | OIS<br/>
+                        [Depth] 3D ToF Sensor</div>
+<div class="d-spec" data-label="Battery">4200mAh | 40W Wired | 40W Wireless Charging</div>
+<div class="d-spec" data-label="Build">Kiln-baked Nano-tech Ceramic | IP68 Water Resistance</div>
+                </div>
+            </div>
+            <div class="card" data-brand="huawei" data-status="wishlist" data-cat="mobile" data-lot="007" data-chapter="SMARTPHONES" data-name="huawei p50 pro huawei · leica optics huawei // leica huawei">
+                <div class="lot-number">N&deg; 007</div>
+                <div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
+                <div class="img-box">
+                    <img src="HuaweiP50Pro.png" alt="Huawei P50 Pro">
+                </div>
+                <div class="card-content">
+                    <div class="hallmark">HUAWEI · LEICA OPTICS</div>
+                    <h3 class="product-name">Huawei P50 Pro</h3>
+                    <div class="specs">
+<div class="spec-row"><span class="spec-label">Design</span><span class="spec-val">Dual-Matrix Camera</span></div>
+<div class="spec-row"><span class="spec-label">Camera</span><span class="spec-val">True-Chroma + Monochrome</span></div>
+<div class="spec-row"><span class="spec-label">Zoom</span><span class="spec-val">200x Digital Range</span></div>
+                    </div>
+                </div>
+                <div class="hidden-details" style="display:none;">
+                    <div class="d-brand">HUAWEI // LEICA OPTICS</div>
+                    <div class="d-title">Huawei P50 Pro</div>
+                    <div class="d-why">That Dual-Matrix camera ring design is iconic. Nobody else has dared to look this different. XD Optics is something else.</div>
+                    <div class="d-desc">The apex of the P50 series. Famous for its iconic Dual-Matrix camera design and the revolutionary XD Optics computational photography.</div>
+<div class="d-spec" data-label="SoC">Kirin 9000 / Snapdragon 888 4G</div>
+<div class="d-spec" data-label="Display">6.6" OLED | 120Hz | 1440Hz PWM Dimming | True-Chroma</div>
+<div class="d-spec" data-label="Camera System">[Main] 50MP True-Chroma | f/1.8 | OIS<br/>
+                        [Monochrome] 40MP True-Chroma | f/1.6<br/>
+                        [Periscope] 64MP | 3.5x Optical | 200x Digital Zoom Range | OIS<br/>
+                        [Ultrawide] 13MP | 13mm Equivalent</div>
+<div class="d-spec" data-label="Imaging Tech">HUAWEI XD Optics | XD Fusion Pro Image Engine</div>
+<div class="d-spec" data-label="Battery">4360mAh | 66W Wired | 50W Wireless Charging</div>
+                </div>
+            </div>
+            <div class="card" data-brand="samsung" data-status="wishlist" data-cat="mobile" data-lot="008" data-chapter="SMARTPHONES" data-name="galaxy z fold 7 samsung · galaxy z series samsung // foldable samsung">
+                <div class="lot-number">N&deg; 008</div>
+                <div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
+                <div class="img-box">
+                    <img src="samsungzfold7.png" alt="Galaxy Z Fold 7">
+                </div>
+                <div class="card-content">
+                    <div class="hallmark">SAMSUNG · GALAXY Z SERIES</div>
+                    <h3 class="product-name">Galaxy Z Fold 7</h3>
+                    <div class="specs">
+<div class="spec-row"><span class="spec-label">Display</span><span class="spec-val">7.6&quot; Foldable AMOLED 3X</span></div>
+<div class="spec-row"><span class="spec-label">Chip</span><span class="spec-val">Snapdragon 8 Gen 4</span></div>
+<div class="spec-row"><span class="spec-label">Feature</span><span class="spec-val">Titanium Armor / S-Pen</span></div>
+                    </div>
+                </div>
+                <div class="hidden-details" style="display:none;">
+                    <div class="d-brand">SAMSUNG // GALAXY Z SERIES</div>
+                    <div class="d-title">Galaxy Z Fold 7</div>
+                    <div class="d-why">Titanium + zero-gap hinge + the thinnest fold yet. The day a phone becomes a tablet without compromise - this is it.</div>
+                    <div class="d-desc">The pinnacle of foldable engineering. Featuring a lighter, ultra-thin titanium frame, zero-gap hinge, and desktop-class multitasking with Snapdragon 8 Gen 4.</div>
+<div class="d-spec" data-label="SoC">Snapdragon 8 Gen 4 For Galaxy | 16GB LPDDR5X RAM</div>
+<div class="d-spec" data-label="Inner Display">7.6" Dynamic AMOLED 3X | 1-120Hz LTPO | 2600 nits peak | UDC</div>
+<div class="d-spec" data-label="Cover Display">6.3" Dynamic AMOLED 2X | 1-120Hz | 21:9 Aspect Ratio</div>
+<div class="d-spec" data-label="Camera System">[Main] 50MP | f/1.8 | Dual Pixel AF | OIS<br/>
+                        [Telephoto] 10MP | 3x Optical Zoom | OIS<br/>
+                        [Ultrawide] 12MP | 123° FOV<br/>
+                        [Under Display] 4MP (Inner) | 10MP (Cover)</div>
+<div class="d-spec" data-label="Build">Titanium Frame | Flex Hinge | IP48 Water/Dust Resistance</div>
+<div class="d-spec" data-label="Battery">4400mAh | 25W Wired | 15W Wireless</div>
+                </div>
+            </div>
+            <div class="card" data-brand="google" data-status="wishlist" data-cat="mobile" data-lot="009" data-chapter="SMARTPHONES" data-name="pixel 9 pro xl google · pixel flagship google // pure android google">
+                <div class="lot-number">N&deg; 009</div>
+                <div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
+                <div class="img-box">
+                    <img src="https://images.unsplash.com/photo-1662957132924-f726715b7461?q=80&amp;w=800&amp;auto=format&amp;fit=crop" alt="Pixel 9 Pro XL">
+                </div>
+                <div class="card-content">
+                    <div class="hallmark">GOOGLE · PIXEL FLAGSHIP</div>
+                    <h3 class="product-name">Pixel 9 Pro XL</h3>
+                    <div class="specs">
+<div class="spec-row"><span class="spec-label">Chip</span><span class="spec-val">Google Tensor G4</span></div>
+<div class="spec-row"><span class="spec-label">Camera</span><span class="spec-val">50MP + Dual 48MP</span></div>
+<div class="spec-row"><span class="spec-label">Feature</span><span class="spec-val">Gemini Nano AI Built-in</span></div>
+                    </div>
+                </div>
+                <div class="hidden-details" style="display:none;">
+                    <div class="d-brand">GOOGLE // PIXEL FLAGSHIP</div>
+                    <div class="d-title">Pixel 9 Pro XL</div>
+                    <div class="d-why">On-device Gemini + that 42MP selfie camera. Google somehow made their best camera AND their best AI phone at the same time.</div>
+                    <div class="d-desc">The smartest smartphone in the room. Combines an ultra-bright Super Actua display with the Tensor G4 chip, delivering deep on-device Gemini AI capabilities.</div>
+<div class="d-spec" data-label="SoC">Google Tensor G4 (4nm) | Titan M2 Security Coprocessor | 16GB RAM</div>
+<div class="d-spec" data-label="Display">6.8" Super Actua LTPO OLED | 1-120Hz | 3000 nits peak</div>
+<div class="d-spec" data-label="Camera System">[Main] 50MP | 1/1.31" | f/1.68 | OIS<br/>
+                        [Periscope] 48MP | 5x Optical | 30x Super Res Zoom | OIS<br/>
+                        [Ultrawide] 48MP | 123° FOV | Macro Focus<br/>
+                        [Selfie] 42MP | Autofocus | 103° FOV</div>
+<div class="d-spec" data-label="AI Features">Gemini Nano | Add Me | Video Boost | Magic Editor | Zoom Enhance</div>
+<div class="d-spec" data-label="Battery">5060mAh | 37W Wired | 23W Wireless</div>
+<div class="d-spec" data-label="Build">Polished Aluminum Frame | Matte Gorilla Glass Victus 2 Back</div>
+                </div>
+            </div>
+            <div class="card" data-brand="xiaomi" data-status="owned" data-cat="mobile" data-lot="010" data-chapter="SMARTPHONES" data-name="mi 9 xiaomi · battle angel xiaomi // battle angel xiaomi">
+                <div class="lot-number">N&deg; 010</div>
+                <div class="seal owned"><span class="dot"></span>OWNED</div>
+                <div class="img-box">
+                    <img src="https://images.unsplash.com/photo-1565849904461-04a58ad377e0?q=80&amp;w=800&amp;auto=format&amp;fit=crop" alt="Mi 9">
+                </div>
+                <div class="card-content">
+                    <div class="hallmark">XIAOMI · BATTLE ANGEL</div>
+                    <h3 class="product-name">Mi 9</h3>
+                    <div class="specs">
+<div class="spec-row"><span class="spec-label">Chip</span><span class="spec-val">Snapdragon 855</span></div>
+<div class="spec-row"><span class="spec-label">Camera</span><span class="spec-val">48MP Triple System</span></div>
+<div class="spec-row"><span class="spec-label">Charging</span><span class="spec-val">20W Fast Wireless</span></div>
+                    </div>
+                </div>
+                <div class="hidden-details" style="display:none;">
+                    <div class="d-brand">XIAOMI // BATTLE ANGEL</div>
+                    <div class="d-title">Mi 9</div>
+                    <div class="d-why">My OG. First phone to hit 20W wireless, Snapdragon 855, holographic back. She&#x27;s been through wars.</div>
+                    <div class="d-desc">Known as the &quot;Battle Angel.&quot; It was one of the first phones to rock the Snapdragon 855 and the world&#x27;s first to feature 20W fast wireless charging, all wrapped in a stunning holographic glass body.</div>
+<div class="d-spec" data-label="SoC">Snapdragon 855 (7nm) | Adreno 640</div>
+<div class="d-spec" data-label="Display">6.39" Super AMOLED | 60Hz | HDR10</div>
+<div class="d-spec" data-label="Camera System">[Main] 48MP Sony IMX586 | 1/2.0" | f/1.75 | Laser AF<br/>
+                        [Telephoto] 12MP Samsung S5K3M5 | 2x Optical Zoom<br/>
+                        [Ultrawide] 16MP Sony IMX481 | 117° FOV | 4cm Macro</div>
+<div class="d-spec" data-label="Battery &amp; Charging">3300mAh | 27W Wired | 20W Fast Wireless (World's First)</div>
+<div class="d-spec" data-label="Build">Holographic Glass Back | Aluminum Frame | Ultra-light 173g</div>
+                </div>
+            </div>
+            <div class="card" data-brand="apple" data-status="wishlist" data-cat="mobile" data-lot="011" data-chapter="SMARTPHONES" data-name="iphone 13 pro max apple · the battery king apple legend apple">
+                <div class="lot-number">N&deg; 011</div>
+                <div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
+                <div class="img-box">
+                    <img src="https://images.unsplash.com/photo-1632661674596-df8be070a5c5?q=80&amp;w=800&amp;auto=format&amp;fit=crop" alt="iPhone 13 Pro Max">
+                </div>
+                <div class="card-content">
+                    <div class="hallmark">APPLE · THE BATTERY KING</div>
+                    <h3 class="product-name">iPhone 13 Pro Max</h3>
+                    <div class="specs">
+<div class="spec-row"><span class="spec-label">Chip</span><span class="spec-val">A15 Bionic</span></div>
+<div class="spec-row"><span class="spec-label">Display</span><span class="spec-val">6.7&quot; 120Hz ProMotion</span></div>
+<div class="spec-row"><span class="spec-label">Feature</span><span class="spec-val">Battery King / Macro</span></div>
+                    </div>
+                </div>
+                <div class="hidden-details" style="display:none;">
+                    <div class="d-brand">APPLE // THE BATTERY KING</div>
+                    <div class="d-title">iPhone 13 Pro Max</div>
+                    <div class="d-why">ProMotion 120Hz finally on an iPhone + that cinematic battery life. The 13 Pro Max era felt like peak iPhone.</div>
+                    <div class="d-desc">An absolute legend in smartphone history. It introduced the 120Hz ProMotion display to the iPhone and delivered unprecedented, record-breaking battery life that remains the gold standard.</div>
+<div class="d-spec" data-label="SoC">A15 Bionic (5nm) | 5-core GPU | 16-core Neural Engine</div>
+<div class="d-spec" data-label="Display">6.7" Super Retina XDR OLED | 120Hz ProMotion | 1200 nits peak</div>
+<div class="d-spec" data-label="Camera System">[Main] 12MP | 1.9µm pixels | f/1.5 | Sensor-shift OIS<br/>
+                        [Telephoto] 12MP | 3x Optical Zoom | 77mm<br/>
+                        [Ultrawide] 12MP | f/1.8 | Autofocus &amp; Macro Photography</div>
+<div class="d-spec" data-label="Battery">4352mAh | The undisputed endurance champion of its era</div>
+<div class="d-spec" data-label="Build">Surgical-grade Stainless Steel | Ceramic Shield | 240g</div>
+                </div>
+            </div>
+            <div class="card" data-brand="samsung" data-status="wishlist" data-cat="mobile" data-lot="012" data-chapter="SMARTPHONES" data-name="galaxy s21 ultra samsung · galaxy classic design icon samsung">
+                <div class="lot-number">N&deg; 012</div>
+                <div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
+                <div class="img-box">
+                    <img src="https://images.unsplash.com/photo-1610945264803-c22b6272aee9?q=80&amp;w=800&amp;auto=format&amp;fit=crop" alt="Galaxy S21 Ultra">
+                </div>
+                <div class="card-content">
+                    <div class="hallmark">SAMSUNG · GALAXY CLASSIC</div>
+                    <h3 class="product-name">Galaxy S21 Ultra</h3>
+                    <div class="specs">
+<div class="spec-row"><span class="spec-label">Camera</span><span class="spec-val">108MP + Dual Telephoto</span></div>
+<div class="spec-row"><span class="spec-label">Display</span><span class="spec-val">6.8&quot; WQHD+ 120Hz</span></div>
+<div class="spec-row"><span class="spec-label">Design</span><span class="spec-val">Contour Cut Housing</span></div>
+                    </div>
+                </div>
+                <div class="hidden-details" style="display:none;">
+                    <div class="d-brand">SAMSUNG // GALAXY CLASSIC</div>
+                    <div class="d-title">Galaxy S21 Ultra</div>
+                    <div class="d-why">The one that introduced 108MP zoom madness to the mainstream. Still holds up as a photography powerhouse.</div>
+                    <div class="d-desc">A masterpiece of industrial design featuring the iconic Contour Cut camera housing. The phone that cemented Samsung&#x27;s zooming supremacy with its dual-telephoto system.</div>
+<div class="d-spec" data-label="SoC">Snapdragon 888 / Exynos 2100 (5nm)</div>
+<div class="d-spec" data-label="Display">6.8" Dynamic AMOLED 2X | WQHD+ | Adaptive 10-120Hz | 1500 nits</div>
+<div class="d-spec" data-label="Camera System">[Main] 108MP ISOCELL HM3 | 1/1.33" | Laser AF | OIS<br/>
+                        [Periscope] 10MP | 10x Optical | 100x Space Zoom<br/>
+                        [Telephoto] 10MP | 3x Optical<br/>
+                        [Ultrawide] 12MP | 120° FOV | Dual Pixel AF</div>
+<div class="d-spec" data-label="Feature">S-Pen Support (First for S-Series) | Phantom Black Matte Finish</div>
+<div class="d-spec" data-label="Battery">5000mAh | 25W Wired | 15W Wireless</div>
+                </div>
+            </div>
+            <div class="card" data-brand="samsung" data-status="wishlist" data-cat="mobile" data-lot="013" data-chapter="SMARTPHONES" data-name="galaxy s25 ultra samsung · 2025/2026 apex ultimate flagship samsung">
+                <div class="lot-number">N&deg; 013</div>
+                <div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
+                <div class="img-box">
+                    <img src="https://images.unsplash.com/photo-1707343843437-caacff5cfa74?q=80&amp;w=800&amp;auto=format&amp;fit=crop" alt="Galaxy S25 Ultra">
+                </div>
+                <div class="card-content">
+                    <div class="hallmark">SAMSUNG · 2025/2026 APEX</div>
+                    <h3 class="product-name">Galaxy S25 Ultra</h3>
+                    <div class="specs">
+<div class="spec-row"><span class="spec-label">Chip</span><span class="spec-val">Snapdragon 8 Gen 4</span></div>
+<div class="spec-row"><span class="spec-label">Camera</span><span class="spec-val">200MP + 50MP 5x</span></div>
+<div class="spec-row"><span class="spec-label">Build</span><span class="spec-val">Titanium Armor</span></div>
+                    </div>
+                </div>
+                <div class="hidden-details" style="display:none;">
+                    <div class="d-brand">SAMSUNG // 2025/2026 APEX</div>
+                    <div class="d-title">Galaxy S25 Ultra</div>
+                    <div class="d-why">Snapdragon 8 Elite + the thinnest Ultra ever. The specs sheet reads like a fever dream. I want it.</div>
+                    <div class="d-desc">The absolute apex predator of the Android world. Features a refined flat display, ultra-tough titanium frame, and the monstrous Snapdragon 8 Gen 4 pushing Galaxy AI to new limits.</div>
+<div class="d-spec" data-label="SoC">Snapdragon 8 Gen 4 For Galaxy | 16GB LPDDR5X RAM</div>
+<div class="d-spec" data-label="Display">6.8" Flat Dynamic AMOLED 2X | 1-120Hz | 2600+ nits | Gorilla Armor (Anti-Reflective)</div>
+<div class="d-spec" data-label="Camera System">[Main] 200MP ISOCELL | 1/1.3" | Laser AF | OIS<br/>
+                        [Periscope] 50MP | 5x Optical | 8K Video | 100x Space Zoom<br/>
+                        [Telephoto] 10MP | 3x Optical<br/>
+                        [Ultrawide] 50MP | Autofocus | Macro</div>
+<div class="d-spec" data-label="Feature">Built-in S-Pen | Advanced Galaxy AI | Titanium Frame</div>
+<div class="d-spec" data-label="Battery">5000mAh | 45W Fast Charging | Wi-Fi 7</div>
+                </div>
+            </div>
+            <div class="card" data-brand="samsung" data-status="wishlist" data-cat="mobile" data-lot="014" data-chapter="SMARTPHONES" data-name="galaxy s25+ samsung · the sweet spot smart choice samsung">
+                <div class="lot-number">N&deg; 014</div>
+                <div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
+                <div class="img-box">
+                    <img src="S25Plus.png" alt="Galaxy S25+">
+                </div>
+                <div class="card-content">
+                    <div class="hallmark">SAMSUNG · THE SWEET SPOT</div>
+                    <h3 class="product-name">Galaxy S25+</h3>
+                    <div class="specs">
+<div class="spec-row"><span class="spec-label">Display</span><span class="spec-val">6.7&quot; WQHD+ Flat</span></div>
+<div class="spec-row"><span class="spec-label">Battery</span><span class="spec-val">4900mAh Endurance</span></div>
+<div class="spec-row"><span class="spec-label">Chip</span><span class="spec-val">Snapdragon 8 Gen 4</span></div>
+                    </div>
+                </div>
+                <div class="hidden-details" style="display:none;">
+                    <div class="d-brand">SAMSUNG // THE SWEET SPOT</div>
+                    <div class="d-title">Galaxy S25+</div>
+                    <div class="d-why">The sweet spot - all the performance, none of the S-Pen bulk. This is what most people actually need.</div>
+                    <div class="d-desc">The most practical flagship. You get the same gorgeous WQHD+ resolution and processing power as the Ultra, packaged in a lighter, more comfortable body with incredible battery life.</div>
+<div class="d-spec" data-label="SoC">Snapdragon 8 Gen 4 For Galaxy | 12GB RAM</div>
+<div class="d-spec" data-label="Display">6.7" Flat Dynamic AMOLED 2X | WQHD+ | 1-120Hz LTPO | 2600 nits peak</div>
+<div class="d-spec" data-label="Camera System">[Main] 50MP | Dual Pixel PDAF | OIS<br/>
+                        [Telephoto] 10MP | 3x Optical Zoom | OIS<br/>
+                        [Ultrawide] 12MP | 120° FOV | Super Steady Video</div>
+<div class="d-spec" data-label="Build">Armor Aluminum Frame | Symmetrical Bezels | 196g</div>
+<div class="d-spec" data-label="Battery">4900mAh | 45W Wired Charging | Unmatched Screen-On Time</div>
+                </div>
+            </div>
+            <div class="card" data-brand="apple" data-status="wishlist" data-cat="mobile" data-lot="015" data-chapter="SMARTPHONES" data-name="iphone 17 apple · next gen standard apple ai flagship apple">
+                <div class="lot-number">N&deg; 015</div>
+                <div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
+                <div class="img-box">
+                    <img src="https://images.unsplash.com/photo-1695048133142-1a20484d2569?q=80&amp;w=800&amp;auto=format&amp;fit=crop" alt="iPhone 17">
+                </div>
+                <div class="card-content">
+                    <div class="hallmark">APPLE · NEXT GEN STANDARD</div>
+                    <h3 class="product-name">iPhone 17</h3>
+                    <div class="specs">
+<div class="spec-row"><span class="spec-label">Chip</span><span class="spec-val">A19 (3nm)</span></div>
+<div class="spec-row"><span class="spec-label">Camera</span><span class="spec-val">48MP + 48MP UW</span></div>
+<div class="spec-row"><span class="spec-label">Feature</span><span class="spec-val">Apple Intelligence</span></div>
+                    </div>
+                </div>
+                <div class="hidden-details" style="display:none;">
+                    <div class="d-brand">APPLE // NEXT GEN STANDARD</div>
+                    <div class="d-title">iPhone 17</div>
+                    <div class="d-why">Aluminum frame design leak had me losing sleep. If they bring proper ProMotion to the base model, it&#x27;s game over.</div>
+                    <div class="d-desc">The new baseline for the AI era. Built from the ground up to run Apple Intelligence natively, featuring a much-requested display upgrade and massive camera bumps.</div>
+<div class="d-spec" data-label="SoC">A19 (3nm process) | 8GB Unified Memory for On-device AI</div>
+<div class="d-spec" data-label="Display">6.3" Super Retina XDR | LTPO 120Hz ProMotion (Finally on base model) | Dynamic Island</div>
+<div class="d-spec" data-label="Camera System">[Main] 48MP | f/1.6 | Sensor-shift OIS | 2x Optical-quality crop<br/>
+                        [Ultrawide] 48MP | Autofocus | Spatial Video Capture<br/>
+                        [Front] 24MP Upgraded Selfie Camera</div>
+<div class="d-spec" data-label="New Features">Action Button | Camera Control | Native Apple Intelligence</div>
+<div class="d-spec" data-label="Build">Aerospace-grade Aluminum | Color-infused Glass</div>
+                </div>
+            </div>
+            <div class="card" data-brand="xiaomi" data-status="wishlist" data-cat="mobile" data-lot="016" data-chapter="SMARTPHONES" data-name="小米 11 ultra xiaomi · imaging pioneer xiaomi // ultra legend xiaomi">
+                <div class="lot-number">N&deg; 016</div>
+                <div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
+                <div class="img-box">
+                    <img src="x" alt="小米 11 Ultra">
+                </div>
+                <div class="card-content">
+                    <div class="hallmark">XIAOMI · IMAGING PIONEER</div>
+                    <h3 class="product-name">小米 11 Ultra</h3>
+                    <div class="specs">
+<div class="spec-row"><span class="spec-label">Sensor</span><span class="spec-val">1/1.12&quot; GN2</span></div>
+<div class="spec-row"><span class="spec-label">Feature</span><span class="spec-val">Rear Tiny Display</span></div>
+<div class="spec-row"><span class="spec-label">Build</span><span class="spec-val">Ceramic Body</span></div>
+                    </div>
+                </div>
+                <div class="hidden-details" style="display:none;">
+                    <div class="d-brand">XIAOMI // IMAGING PIONEER</div>
+                    <div class="d-title">Xiaomi 11 Ultra</div>
+                    <div class="d-why"></div>
+                    <div class="d-desc">The &quot;Light of Android.&quot; It featured one of the largest sensors in mobile history and a unique rear display for selfies with the main camera.</div>
+<div class="d-spec" data-label="SoC">Snapdragon 888 | LPDDR5 | UFS 3.1</div>
+<div class="d-spec" data-label="Display">6.81" 2K AMOLED | 120Hz | 1700 nits | E4 Material</div>
+<div class="d-spec" data-label="Camera System">[Main] 50MP GN2 (1/1.12") | f/1.95 | OIS<br/>
+                        [Periscope] 48MP IMX586 | 5x Optical | 120x Digital | OIS<br/>
+                        [Ultrawide] 48MP IMX586 | 128° FOV</div>
+<div class="d-spec" data-label="Battery">5000mAh Silicon-Oxygen Anode | 67W Wired | 67W Wireless</div>
+                </div>
+            </div>
+            <div class="card" data-brand="xiaomi" data-status="wishlist" data-cat="mobile" data-lot="017" data-chapter="SMARTPHONES" data-name="小米 15 xiaomi · leica optics xiaomi // compact elite xiaomi">
+                <div class="lot-number">N&deg; 017</div>
+                <div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
+                <div class="img-box">
+                    <img src="xiaomi15.png" alt="小米 15">
+                </div>
+                <div class="card-content">
+                    <div class="hallmark">XIAOMI · LEICA OPTICS</div>
+                    <h3 class="product-name">小米 15</h3>
+                    <div class="specs">
+<div class="spec-row"><span class="spec-label">Chip</span><span class="spec-val">Snapdragon 8 Elite</span></div>
+<div class="spec-row"><span class="spec-label">Display</span><span class="spec-val">6.36&quot; LTPO OLED</span></div>
+<div class="spec-row"><span class="spec-label">Lens</span><span class="spec-val">Leica Summilux</span></div>
+                    </div>
+                </div>
+                <div class="hidden-details" style="display:none;">
+                    <div class="d-brand">XIAOMI // LEICA OPTICS</div>
+                    <div class="d-title">Xiaomi 15</div>
+                    <div class="d-why"></div>
+                    <div class="d-desc">The industry&#x27;s leading compact flagship. It proved that a small body can hold immense power and a professional Leica triple-camera setup.</div>
+<div class="d-spec" data-label="SoC">Snapdragon 8 Elite (3nm) | Next-gen AI Engine</div>
+<div class="d-spec" data-label="Display">6.36" LTPO OLED | 1-120Hz | 3200 nits | Ultra-narrow bezel</div>
+<div class="d-spec" data-label="Camera System">[Main] 50MP Hunter 900 | f/1.62 | OIS<br/>
+                        [Telephoto] 50MP Floating Lens | 75mm | OIS<br/>
+                        [Ultrawide] 50MP | 115° FOV</div>
+<div class="d-spec" data-label="Battery">5400mAh High-Density Battery | 90W Wired | 50W Wireless</div>
+                </div>
+            </div>
+            <div class="card" data-brand="xiaomi" data-status="wishlist" data-cat="mobile" data-lot="018" data-chapter="SMARTPHONES" data-name="小米 17 pro max xiaomi · the current king xiaomi // 2026 apex xiaomi">
+                <div class="lot-number">N&deg; 018</div>
+                <div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
+                <div class="img-box">
+                    <img src="xiaomi17promax.png" alt="小米 17 Pro Max">
+                </div>
+                <div class="card-content">
+                    <div class="hallmark">XIAOMI · THE CURRENT KING</div>
+                    <h3 class="product-name">小米 17 Pro Max</h3>
+                    <div class="specs">
+<div class="spec-row"><span class="spec-label">Chip</span><span class="spec-val">Snapdragon 8 Gen 5</span></div>
+<div class="spec-row"><span class="spec-label">Camera</span><span class="spec-val">Leica Quad-1&quot; Apex</span></div>
+<div class="spec-row"><span class="spec-label">Power</span><span class="spec-val">120W / 80W Wireless</span></div>
+                    </div>
+                </div>
+                <div class="hidden-details" style="display:none;">
+                    <div class="d-brand">XIAOMI // THE CURRENT KING</div>
+                    <div class="d-title">Xiaomi 17 Pro Max</div>
+                    <div class="d-why"></div>
+                    <div class="d-desc">Released late 2025, this is the current apex of mobile technology. It features a full-ceramic unibody and the revolutionary Leica Quad-1&quot; camera system.</div>
+<div class="d-spec" data-label="SoC">Snapdragon 8 Gen 5 (2nm) | 24GB LPDDR6 | 1TB UFS 4.1</div>
+<div class="d-spec" data-label="Display">6.73" All-Around Micro-Curved | 2K+ | 240Hz | 4500 nits</div>
+<div class="d-spec" data-label="Leica Apex Quad-Camera">[Main] 50MP 1" Gen 3 | Variable Aperture f/1.2-f/4.0<br/>
+                        [Dual Telephoto] 50MP 3x &amp; 50MP 10x Periscope | Dual OIS<br/>
+                        [Ultrawide] 50MP Ultra-Free-Form</div>
+<div class="d-spec" data-label="Build">Full Nano-tech Ceramic Unibody | Dragon Crystal Glass 3.0</div>
+<div class="d-spec" data-label="Battery">6200mAh Solid-State Battery | 120W Wired | 80W Wireless</div>
+                </div>
+            </div>
+            <div class="card" data-brand="apple" data-status="owned" data-cat="mobile" data-lot="019" data-chapter="SMARTPHONES" data-name="iphone 11 apple · legacy apple classic apple">
+                <div class="lot-number">N&deg; 019</div>
+                <div class="seal owned"><span class="dot"></span>OWNED</div>
+                <div class="img-box">
+                    <img src="https://images.unsplash.com/photo-1574755393849-623942496936?q=80&amp;w=800&amp;auto=format&amp;fit=crop" alt="iPhone 11">
+                </div>
+                <div class="card-content">
+                    <div class="hallmark">APPLE · LEGACY</div>
+                    <h3 class="product-name">iPhone 11</h3>
+                    <div class="specs">
+<div class="spec-row"><span class="spec-label">Chip</span><span class="spec-val">A13 Bionic</span></div>
+<div class="spec-row"><span class="spec-label">Display</span><span class="spec-val">6.1&quot; Liquid Retina</span></div>
+<div class="spec-row"><span class="spec-label">Camera</span><span class="spec-val">12MP Dual System</span></div>
+                    </div>
+                </div>
+                <div class="hidden-details" style="display:none;">
+                    <div class="d-brand">APPLE // LEGACY</div>
+                    <div class="d-title">iPhone 11</div>
+                    <div class="d-why">My first iPhone. Night Mode changed how I shoot after dark. Still running smooth after all these years.</div>
+                    <div class="d-desc">The phone that set the modern standard for battery life and dual-camera systems. A true classic that aged remarkably well.</div>
+<div class="d-spec" data-label="SoC">A13 Bionic (7nm+) | 6-core CPU | 4-core GPU</div>
+<div class="d-spec" data-label="Display">6.1" Liquid Retina IPS LCD | 625 nits | True Tone</div>
+<div class="d-spec" data-label="Camera System">[Main] 12MP | 1/2.55" | f/1.8 | Dual Pixel PDAF | OIS<br/>
+                        [Ultrawide] 12MP | 120° FOV | f/2.4</div>
+<div class="d-spec" data-label="Feature">Face ID | IP68 Water Resistance | Night Mode</div>
+<div class="d-spec" data-label="Battery">3110 mAh | 18W Wired Charging | Qi Wireless</div>
+                </div>
+            </div>
+            <div class="card" data-brand="realme" data-status="wishlist" data-cat="mobile" data-lot="020" data-chapter="SMARTPHONES" data-name="realme 11 pro+ realme · premium mid-range realme design realme">
+                <div class="lot-number">N&deg; 020</div>
+                <div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
+                <div class="img-box">
+                    <img src="https://images.unsplash.com/photo-1685434190841-86cc4eef06ce?q=80&amp;w=800&amp;auto=format&amp;fit=crop" alt="realme 11 Pro+">
+                </div>
+                <div class="card-content">
+                    <div class="hallmark">REALME · PREMIUM MID-RANGE</div>
+                    <h3 class="product-name">realme 11 Pro+</h3>
+                    <div class="specs">
+<div class="spec-row"><span class="spec-label">Display</span><span class="spec-val">6.7&quot; 120Hz Curved AMOLED</span></div>
+<div class="spec-row"><span class="spec-label">Camera</span><span class="spec-val">200MP OIS SuperZoom</span></div>
+<div class="spec-row"><span class="spec-label">Charging</span><span class="spec-val">100W SuperVOOC</span></div>
+                    </div>
+                </div>
+                <div class="hidden-details" style="display:none;">
+                    <div class="d-brand">REALME // PREMIUM MID-RANGE</div>
+                    <div class="d-title">realme 11 Pro+</div>
+                    <div class="d-why">108MP curved OLED at this price point is almost offensive to other manufacturers. Punches way above its class.</div>
+                    <div class="d-desc">Premium vegan leather design co-created with former Gucci designer Matteo Menotto, featuring a massive 200MP sensor.</div>
+<div class="d-spec" data-label="SoC">MediaTek Dimensity 7050 (6nm) | Up to 12GB RAM</div>
+<div class="d-spec" data-label="Display">6.7" Curved AMOLED | 120Hz | 1 Billion Colors | 2160Hz PWM</div>
+<div class="d-spec" data-label="Camera System">[Main] 200MP Samsung ISOCELL HP3 | f/1.69 | OIS | 4x In-sensor Zoom<br/>
+                        [Ultrawide] 8MP | 112° FOV<br/>
+                        [Macro] 2MP</div>
+<div class="d-spec" data-label="Battery &amp; Charging">5000mAh | 100W SuperVOOC (100% in 26 mins)</div>
+<div class="d-spec" data-label="Build">Premium Lychee Vegan Leather | 3D Woven Texture</div>
+                </div>
+            </div>
+            <div class="card" data-brand="samsung" data-status="owned" data-cat="mobile" data-lot="021" data-chapter="SMARTPHONES" data-name="galaxy a51 samsung · best seller galaxy essential samsung">
+                <div class="lot-number">N&deg; 021</div>
+                <div class="seal owned"><span class="dot"></span>OWNED</div>
+                <div class="img-box">
+                    <img src="https://images.unsplash.com/photo-1600087626014-e652e18bbff2?q=80&amp;w=800&amp;auto=format&amp;fit=crop" alt="Galaxy A51">
+                </div>
+                <div class="card-content">
+                    <div class="hallmark">SAMSUNG · BEST SELLER</div>
+                    <h3 class="product-name">Galaxy A51</h3>
+                    <div class="specs">
+<div class="spec-row"><span class="spec-label">Display</span><span class="spec-val">6.5&quot; Super AMOLED</span></div>
+<div class="spec-row"><span class="spec-label">Camera</span><span class="spec-val">48MP Quad System</span></div>
+<div class="spec-row"><span class="spec-label">Battery</span><span class="spec-val">4000 mAh</span></div>
+                    </div>
+                </div>
+                <div class="hidden-details" style="display:none;">
+                    <div class="d-brand">SAMSUNG // BEST SELLER</div>
+                    <div class="d-title">Galaxy A51</div>
+                    <div class="d-why">The phone that introduced me to Samsung&#x27;s ecosystem. Quad camera mid-ranger done right.</div>
+                    <div class="d-desc">One of the world&#x27;s best-selling smartphones of its era. It brought the Infinity-O display and quad-camera versatility to the masses.</div>
+<div class="d-spec" data-label="SoC">Exynos 9611 (10nm) | Mali-G72 MP3</div>
+<div class="d-spec" data-label="Display">6.5" Super AMOLED | 1080x2400 | Corning Gorilla Glass 3</div>
+<div class="d-spec" data-label="Camera System">[Main] 48MP | 1/2.0" | f/2.0 | PDAF<br/>
+                        [Ultrawide] 12MP | 123° FOV<br/>
+                        [Macro] 5MP | f/2.4<br/>
+                        [Depth] 5MP | f/2.2</div>
+<div class="d-spec" data-label="Battery">4000mAh | 15W Fast Charging</div>
+<div class="d-spec" data-label="Feature">Under-display Fingerprint | 3.5mm Headphone Jack</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-wrapper" id="sec-tablet">
+        <div class="chapter-head">
+            <span class="chapter-eyebrow">tablets</span>
+            <h2 class="section-title">TABLETS &amp; SLATES<span class="section-count">(4 PIECES)</span></h2>
+            <div class="chapter-rule"></div>
+        </div>
+        <div class="grid">
+
+            <div class="card" data-brand="apple" data-status="wishlist" data-cat="tablet" data-lot="022" data-chapter="TABLETS &amp; SLATES" data-name="ipad pro 13&quot; apple · creator slate apple pro apple">
+                <div class="lot-number">N&deg; 022</div>
+                <div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
+                <div class="img-box">
+                    <img src="https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?q=80&amp;w=800&amp;auto=format&amp;fit=crop" alt="iPad Pro 13&quot;">
+                </div>
+                <div class="card-content">
+                    <div class="hallmark">APPLE · CREATOR SLATE</div>
+                    <h3 class="product-name">iPad Pro 13&quot;</h3>
+                    <div class="specs">
+<div class="spec-row"><span class="spec-label">Chip</span><span class="spec-val">Apple M4</span></div>
+<div class="spec-row"><span class="spec-label">Display</span><span class="spec-val">Tandem OLED</span></div>
+<div class="spec-row"><span class="spec-label">Accessory</span><span class="spec-val">Apple Pencil Pro</span></div>
+                    </div>
+                </div>
+                <div class="hidden-details" style="display:none;">
+                    <div class="d-brand">APPLE // CREATOR SLATE</div>
+                    <div class="d-title">iPad Pro 13&quot; (M4)</div>
+                    <div class="d-why"></div>
+                    <div class="d-desc">Impossibly thin. Outrageously powerful. The first Apple device to feature the M4 chip and Tandem OLED technology.</div>
+<div class="d-spec" data-label="SoC">Apple M4 | 9/10-Core CPU | 10-Core GPU | Hardware Ray Tracing</div>
+<div class="d-spec" data-label="Display">13" Ultra Retina XDR | Tandem OLED | 1000 nits full | 1600 nits peak</div>
+<div class="d-spec" data-label="Design">5.1mm thickness (Thinnest Apple product ever) | 579g</div>
+<div class="d-spec" data-label="Accessories">Apple Pencil Pro (Squeeze &amp; Barrel Roll) | Magic Keyboard (Aluminum)</div>
+                </div>
+            </div>
+            <div class="card" data-brand="apple" data-status="wishlist" data-cat="tablet" data-lot="023" data-chapter="TABLETS &amp; SLATES" data-name="ipad mini (a17 pro) apple · gaming &amp; reading apple portable apple">
+                <div class="lot-number">N&deg; 023</div>
+                <div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
+                <div class="img-box">
+                    <img src="https://images.unsplash.com/photo-1557825835-70d97c4aa567?q=80&amp;w=800&amp;auto=format&amp;fit=crop" alt="iPad mini (A17 Pro)">
+                </div>
+                <div class="card-content">
+                    <div class="hallmark">APPLE · GAMING &amp; READING</div>
+                    <h3 class="product-name">iPad mini (A17 Pro)</h3>
+                    <div class="specs">
+<div class="spec-row"><span class="spec-label">Chip</span><span class="spec-val">A17 Pro</span></div>
+<div class="spec-row"><span class="spec-label">Display</span><span class="spec-val">8.3&quot; Liquid Retina</span></div>
+<div class="spec-row"><span class="spec-label">Portability</span><span class="spec-val">Ultra-light 293g</span></div>
+                    </div>
+                </div>
+                <div class="hidden-details" style="display:none;">
+                    <div class="d-brand">APPLE // GAMING &amp; READING</div>
+                    <div class="d-title">iPad mini (A17 Pro)</div>
+                    <div class="d-why">A17 Pro chip in the smallest package - this fits in a jacket pocket and benchmarks like a laptop. Unreal.</div>
+                    <div class="d-desc">The ultimate one-handed powerhouse. Upgraded with the A17 Pro chip for console-level gaming on the go.</div>
+<div class="d-spec" data-label="SoC">A17 Pro (3nm) | Hardware-accelerated Ray Tracing</div>
+<div class="d-spec" data-label="Display">8.3" Liquid Retina | True Tone | P3 Wide Color</div>
+<div class="d-spec" data-label="Connectivity">Wi-Fi 6E | USB-C (10Gbps)</div>
+<div class="d-spec" data-label="Compatibility">Supports Apple Pencil Pro</div>
+                </div>
+            </div>
+            <div class="card" data-brand="samsung" data-status="wishlist" data-cat="tablet" data-lot="024" data-chapter="TABLETS &amp; SLATES" data-name="galaxy tab s10 ultra samsung · galaxy tab galaxy ultra samsung">
+                <div class="lot-number">N&deg; 024</div>
+                <div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
+                <div class="img-box">
+                    <img src="https://images.unsplash.com/photo-1589739900266-43b2843f4c12?q=80&amp;w=800&amp;auto=format&amp;fit=crop" alt="Galaxy Tab S10 Ultra">
+                </div>
+                <div class="card-content">
+                    <div class="hallmark">SAMSUNG · GALAXY TAB</div>
+                    <h3 class="product-name">Galaxy Tab S10 Ultra</h3>
+                    <div class="specs">
+<div class="spec-row"><span class="spec-label">Display</span><span class="spec-val">14.6&quot; Dynamic AMOLED</span></div>
+<div class="spec-row"><span class="spec-label">Chip</span><span class="spec-val">Dimensity 9300+</span></div>
+<div class="spec-row"><span class="spec-label">Feature</span><span class="spec-val">IP68 &amp; Built-in S-Pen</span></div>
+                    </div>
+                </div>
+                <div class="hidden-details" style="display:none;">
+                    <div class="d-brand">SAMSUNG // GALAXY TAB</div>
+                    <div class="d-title">Galaxy Tab S10 Ultra</div>
+                    <div class="d-why">That massive 14.6&quot; AMOLED + 16GB RAM is basically a desktop replacement that bends. The S-Pen integration is chef&#x27;s kiss.</div>
+                    <div class="d-desc">A colossal 14.6-inch canvas for creators. The king of Android tablets with IP68 water resistance.</div>
+<div class="d-spec" data-label="SoC">MediaTek Dimensity 9300+ | Advanced AI Processing</div>
+<div class="d-spec" data-label="Display">14.6" Dynamic AMOLED 2X | 120Hz | Anti-Reflection Coating</div>
+<div class="d-spec" data-label="Features">IP68 Water &amp; Dust Resistance | Included S-Pen (IP68)</div>
+<div class="d-spec" data-label="Multitasking">Samsung DeX | Multi-Active Window</div>
+                </div>
+            </div>
+            <div class="card" data-brand="samsung" data-status="wishlist" data-cat="tablet" data-lot="025" data-chapter="TABLETS &amp; SLATES" data-name="galaxy tab s10+ samsung · galaxy tab plus the sweet spot samsung">
+                <div class="lot-number">N&deg; 025</div>
+                <div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
+                <div class="img-box">
+                    <img src="https://images.unsplash.com/photo-1544228800-41fb82eebce3?q=80&amp;w=800&amp;auto=format&amp;fit=crop" alt="Galaxy Tab S10+">
+                </div>
+                <div class="card-content">
+                    <div class="hallmark">SAMSUNG · GALAXY TAB PLUS</div>
+                    <h3 class="product-name">Galaxy Tab S10+</h3>
+                    <div class="specs">
+<div class="spec-row"><span class="spec-label">Display</span><span class="spec-val">12.4&quot; AMOLED 120Hz</span></div>
+<div class="spec-row"><span class="spec-label">Chip</span><span class="spec-val">Dimensity 9300+</span></div>
+<div class="spec-row"><span class="spec-label">Feature</span><span class="spec-val">S-Pen / Anti-Reflective</span></div>
+                    </div>
+                </div>
+                <div class="hidden-details" style="display:none;">
+                    <div class="d-brand">SAMSUNG // GALAXY TAB PLUS</div>
+                    <div class="d-title">Galaxy Tab S10+</div>
+                    <div class="d-why">The balanced one. Just enough screen, just enough power. My ideal couch + coffee setup.</div>
+                    <div class="d-desc">The absolute sweet spot of the Android tablet world. Offers a massive, gorgeous 12.4-inch display without the unwieldy size of the Ultra.</div>
+<div class="d-spec" data-label="SoC">MediaTek Dimensity 9300+ | Advanced AI Processing Engine</div>
+<div class="d-spec" data-label="Display">12.4" Dynamic AMOLED 2X | 120Hz | Anti-Reflection Coating</div>
+<div class="d-spec" data-label="Battery">10,090 mAh | 45W Super Fast Charging</div>
+<div class="d-spec" data-label="Features">IP68 Water/Dust Resistance | Included S-Pen (0.7mm tip, 4096 pressure levels)</div>
+<div class="d-spec" data-label="Audio">Quad Speakers Sound by AKG | Dolby Atmos</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-wrapper" id="sec-laptop">
+        <div class="chapter-head">
+            <span class="chapter-eyebrow">laptops</span>
+            <h2 class="section-title">MOBILE WORKSTATIONS<span class="section-count">(2 PIECES)</span></h2>
+            <div class="chapter-rule"></div>
+        </div>
+        <div class="grid">
+
+            <div class="card" data-brand="apple" data-status="wishlist" data-cat="laptop" data-lot="026" data-chapter="MOBILE WORKSTATIONS" data-name="macbook pro 16&quot; apple · professional apple creator apple">
+                <div class="lot-number">N&deg; 026</div>
+                <div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
+                <div class="img-box">
+                    <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&amp;w=1000&amp;auto=format&amp;fit=crop" alt="MacBook Pro 16&quot;">
+                </div>
+                <div class="card-content">
+                    <div class="hallmark">APPLE · PROFESSIONAL</div>
+                    <h3 class="product-name">MacBook Pro 16&quot;</h3>
+                    <div class="specs">
+<div class="spec-row"><span class="spec-label">Processor</span><span class="spec-val">Apple M4 Max</span></div>
+<div class="spec-row"><span class="spec-label">Memory</span><span class="spec-val">128GB Unified</span></div>
+<div class="spec-row"><span class="spec-label">Storage</span><span class="spec-val">8TB NVMe SSD</span></div>
+                    </div>
+                </div>
+                <div class="hidden-details" style="display:none;">
+                    <div class="d-brand">APPLE // PROFESSIONAL</div>
+                    <div class="d-title">MacBook Pro 16&quot;</div>
+                    <div class="d-why">M4 Pro in a laptop is legitimately terrifying. I want to render video on this and feel nothing.</div>
+                    <div class="d-desc">The absolute peak of Apple Silicon. Unmatched performance-per-watt for 3D rendering and 8K video editing.</div>
+<div class="d-spec" data-label="Processor">Apple M4 Max | 16-Core CPU | 40-Core GPU</div>
+<div class="d-spec" data-label="Memory">128GB Unified Memory | 546GB/s Bandwidth</div>
+<div class="d-spec" data-label="Storage">8TB PCIe Gen 4 NVMe SSD</div>
+<div class="d-spec" data-label="Display">16.2" Liquid Retina XDR | mini-LED | 120Hz ProMotion</div>
+<div class="d-spec" data-label="I/O">3x Thunderbolt 5 | HDMI 2.1 | SDXC | MagSafe 3</div>
+                </div>
+            </div>
+            <div class="card" data-brand="lenovo" data-status="wishlist" data-cat="laptop" data-lot="027" data-chapter="MOBILE WORKSTATIONS" data-name="legion 5 15ahp10 lenovo · legion esports lenovo gaming lenovo">
+                <div class="lot-number">N&deg; 027</div>
+                <div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
+                <div class="img-box">
+                    <img src="https://images.unsplash.com/photo-1603302576837-37561b2e2302?q=80&amp;w=1000&amp;auto=format&amp;fit=crop" alt="Legion 5 15AHP10">
+                </div>
+                <div class="card-content">
+                    <div class="hallmark">LENOVO · LEGION ESPORTS</div>
+                    <h3 class="product-name">Legion 5 15AHP10</h3>
+                    <div class="specs">
+<div class="spec-row"><span class="spec-label">CPU</span><span class="spec-val">AMD Ryzen 9 9945HX</span></div>
+<div class="spec-row"><span class="spec-label">GPU</span><span class="spec-val">NVIDIA RTX 5070</span></div>
+<div class="spec-row"><span class="spec-label">RAM</span><span class="spec-val">32GB DDR5-5600</span></div>
+                    </div>
+                </div>
+                <div class="hidden-details" style="display:none;">
+                    <div class="d-brand">LENOVO // LEGION ESPORTS</div>
+                    <div class="d-title">Legion 5 15AHP10</div>
+                    <div class="d-why">Ryzen 9 + RTX 5070 in a chassis that doesn&#x27;t look like a transformer toy. This is how you build a gaming laptop.</div>
+                    <div class="d-desc">The ultimate sweet-spot gaming laptop. Coldfront cooling system ensures the AMD CPU and RTX 50-series GPU run at max TGP.</div>
+<div class="d-spec" data-label="Processor">AMD Ryzen 9 9945HX | 16 Cores / 32 Threads</div>
+<div class="d-spec" data-label="Graphics">NVIDIA GeForce RTX 5070 Laptop GPU | 140W Max TGP</div>
+<div class="d-spec" data-label="Memory">32GB (2x16GB) SO-DIMM DDR5-5600</div>
+<div class="d-spec" data-label="Display">15.6" WQHD (2560x1440) | 165Hz | 100% sRGB | G-Sync</div>
+<div class="d-spec" data-label="Cooling">Legion Coldfront 5.0 | Liquid Metal Thermal Interface</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-wrapper" id="sec-desktop">
+        <div class="chapter-head">
+            <span class="chapter-eyebrow">desktops</span>
+            <h2 class="section-title">ULTIMATE RIGS<span class="section-count">(3 PIECES)</span></h2>
+            <div class="chapter-rule"></div>
+        </div>
+        <div class="grid">
+
+            <div class="card" data-brand="amd" data-status="wishlist" data-cat="desktop" data-lot="028" data-chapter="ULTIMATE RIGS" data-name="amd titan rig custom build · team red team red supremacy amd">
+                <div class="lot-number">N&deg; 028</div>
+                <div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
+                <div class="img-box">
+                    <img src="https://images.unsplash.com/photo-1587831990711-23ca6441447b?q=80&amp;w=1000&amp;auto=format&amp;fit=crop" alt="AMD Titan Rig">
+                </div>
+                <div class="card-content">
+                    <div class="hallmark">CUSTOM BUILD · TEAM RED</div>
+                    <h3 class="product-name">AMD Titan Rig</h3>
+                    <div class="specs">
+<div class="spec-row"><span class="spec-label">CPU</span><span class="spec-val">Ryzen 9 9950X3D</span></div>
+<div class="spec-row"><span class="spec-label">GPU</span><span class="spec-val">NVIDIA RTX 5090 32GB</span></div>
+<div class="spec-row"><span class="spec-label">RAM</span><span class="spec-val">64GB DDR5-6400</span></div>
+                    </div>
+                </div>
+                <div class="hidden-details" style="display:none;">
+                    <div class="d-brand">CUSTOM BUILD // TEAM RED</div>
+                    <div class="d-title">AMD Titan Rig</div>
+                    <div class="d-why">Team Red all the way. Ryzen X3D cache architecture + RDNA 4 in one build. Overkill is the only way to build.</div>
+                    <div class="d-desc">Built for pure FPS dominance. The massive 3D V-Cache of the 9950X3D eliminates CPU bottlenecks for the mighty RTX 5090.</div>
+<div class="d-spec" data-label="Processor">AMD Ryzen 9 9950X3D | 16 Cores | 128MB L3 Cache</div>
+<div class="d-spec" data-label="Graphics">NVIDIA GeForce RTX 5090 | 32GB GDDR7 | Blackwell Arch</div>
+<div class="d-spec" data-label="Motherboard">ASUS ROG Crosshair X870E Hero</div>
+<div class="d-spec" data-label="Memory">64GB (2x32GB) G.Skill Trident Z5 Neo DDR5-6400 CL30</div>
+<div class="d-spec" data-label="Cooling">NZXT Kraken Elite 360mm AIO Liquid Cooler</div>
+                </div>
+            </div>
+            <div class="card" data-brand="intel" data-status="wishlist" data-cat="desktop" data-lot="029" data-chapter="ULTIMATE RIGS" data-name="intel core rig custom build · team blue team blue flagship intel">
+                <div class="lot-number">N&deg; 029</div>
+                <div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
+                <div class="img-box">
+                    <img src="https://images.unsplash.com/photo-1624701928517-44c8ac49d93c?q=80&amp;w=1000&amp;auto=format&amp;fit=crop" alt="Intel Core Rig">
+                </div>
+                <div class="card-content">
+                    <div class="hallmark">CUSTOM BUILD · TEAM BLUE</div>
+                    <h3 class="product-name">Intel Core Rig</h3>
+                    <div class="specs">
+<div class="spec-row"><span class="spec-label">CPU</span><span class="spec-val">Core Ultra 9 285K</span></div>
+<div class="spec-row"><span class="spec-label">GPU</span><span class="spec-val">NVIDIA RTX 5090 32GB</span></div>
+<div class="spec-row"><span class="spec-label">RAM</span><span class="spec-val">64GB DDR5-6400</span></div>
+                    </div>
+                </div>
+                <div class="hidden-details" style="display:none;">
+                    <div class="d-brand">CUSTOM BUILD // TEAM BLUE</div>
+                    <div class="d-title">Intel Core Rig</div>
+                    <div class="d-why">For when I need the absolute best single-core clock speed. Some workflows just run better on blue.</div>
+                    <div class="d-desc">The king of single-thread and production workflows. Arrow Lake architecture delivers extreme clockspeeds.</div>
+<div class="d-spec" data-label="Processor">Intel Core Ultra 9 285K | 24 Cores (8P+16E) | Up to 5.7GHz</div>
+<div class="d-spec" data-label="Graphics">NVIDIA GeForce RTX 5090 | 32GB GDDR7 | Blackwell Arch</div>
+<div class="d-spec" data-label="Motherboard">MSI ROG Maximus Z890 Apex</div>
+<div class="d-spec" data-label="Memory">64GB (2x32GB) Corsair Dominator Titanium DDR5-6400</div>
+<div class="d-spec" data-label="Power Supply">Corsair AX1600i | 1600W 80+ Titanium</div>
+                </div>
+            </div>
+            <div class="card" data-brand="apple" data-status="wishlist" data-cat="desktop" data-lot="030" data-chapter="ULTIMATE RIGS" data-name="mac studio (m4 ultra) apple · professional desktop apple workstation apple">
+                <div class="lot-number">N&deg; 030</div>
+                <div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
+                <div class="img-box">
+                    <img src="https://images.unsplash.com/photo-1655823528247-490cebf65306?q=80&amp;w=1000&amp;auto=format&amp;fit=crop" alt="Mac Studio (M4 Ultra)">
+                </div>
+                <div class="card-content">
+                    <div class="hallmark">APPLE · PROFESSIONAL DESKTOP</div>
+                    <h3 class="product-name">Mac Studio (M4 Ultra)</h3>
+                    <div class="specs">
+<div class="spec-row"><span class="spec-label">Processor</span><span class="spec-val">Apple M4 Ultra</span></div>
+<div class="spec-row"><span class="spec-label">Memory</span><span class="spec-val">256GB Unified</span></div>
+<div class="spec-row"><span class="spec-label">Storage</span><span class="spec-val">8TB NVMe SSD</span></div>
+                    </div>
+                </div>
+                <div class="hidden-details" style="display:none;">
+                    <div class="d-brand">APPLE // PROFESSIONAL DESKTOP</div>
+                    <div class="d-title">Mac Studio (M4 Ultra)</div>
+                    <div class="d-why">The M4 Ultra chip is borderline mythological. A desktop that fits in a lunchbox and destroys workstations costing 5x more.</div>
+                    <div class="d-desc">An absolute powerhouse for the studio. The M4 Ultra chip bridges two M4 Max dies to deliver unprecedented rendering and simulation performance.</div>
+<div class="d-spec" data-label="Processor">Apple M4 Ultra | 32-Core CPU | 80-Core GPU</div>
+<div class="d-spec" data-label="Memory">256GB Unified Memory | 1.6TB/s Bandwidth</div>
+<div class="d-spec" data-label="Storage">8TB PCIe Gen 4 SSD</div>
+<div class="d-spec" data-label="Connectivity">6x Thunderbolt 5 | 10Gb Ethernet | HDMI 2.1</div>
+<div class="d-spec" data-label="Form Factor">Extruded Aluminum | Advanced Thermal System</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-wrapper" id="sec-peripheral">
+        <div class="chapter-head">
+            <span class="chapter-eyebrow">peripherals</span>
+            <h2 class="section-title">WEAPONS &amp; PERIPHERALS<span class="section-count">(5 PIECES)</span></h2>
+            <div class="chapter-rule"></div>
+        </div>
+        <div class="grid">
+
+            <div class="card" data-brand="razer" data-status="owned" data-cat="peripheral" data-lot="031" data-chapter="WEAPONS &amp; PERIPHERALS" data-name="deathadder v2 pro razer · for gamers. by gamers. esports grade razer">
+                <div class="lot-number">N&deg; 031</div>
+                <div class="seal owned"><span class="dot"></span>OWNED</div>
+                <div class="img-box">
+                    <img src="https://images.unsplash.com/photo-1615663245857-ac1eeb536fcb?q=80&amp;w=1000&amp;auto=format&amp;fit=crop" alt="DeathAdder V2 Pro">
+                </div>
+                <div class="card-content">
+                    <div class="hallmark">RAZER · FOR GAMERS. BY GAMERS.</div>
+                    <h3 class="product-name">DeathAdder V2 Pro</h3>
+                    <div class="specs">
+<div class="spec-row"><span class="spec-label">Sensor</span><span class="spec-val">Focus+ 20K DPI</span></div>
+<div class="spec-row"><span class="spec-label">Connection</span><span class="spec-val">HyperSpeed Wireless</span></div>
+<div class="spec-row"><span class="spec-label">Weight</span><span class="spec-val">Ultra-light 88g</span></div>
+                    </div>
+                </div>
+                <div class="hidden-details" style="display:none;">
+                    <div class="d-brand">RAZER // FOR GAMERS. BY GAMERS.</div>
+                    <div class="d-title">DeathAdder V2 Pro</div>
+                    <div class="d-why">My daily driver. The ergonomics are perfect for my grip style and HyperSpeed wireless is basically wired latency.</div>
+                    <div class="d-desc">Ergonomics without limits. A legendary shape updated with cutting-edge wireless technology.</div>
+<div class="d-spec" data-label="Sensor">Razer Focus+ Optical Sensor | 20,000 DPI | 650 IPS</div>
+<div class="d-spec" data-label="Switches">Razer Optical Mouse Switches Gen-2 | 70 Million Clicks</div>
+<div class="d-spec" data-label="Connectivity">Razer HyperSpeed Wireless (2.4GHz) | Bluetooth | Wired Speedflex Cable</div>
+<div class="d-spec" data-label="Battery Life">Up to 120 hours (Bluetooth) | 70 hours (HyperSpeed)</div>
+<div class="d-spec" data-label="Form Factor">Right-Handed Ergonomic | 88g Weight</div>
+                </div>
+            </div>
+            <div class="card" data-brand="apple" data-status="wishlist" data-cat="peripheral" data-lot="032" data-chapter="WEAPONS &amp; PERIPHERALS" data-name="pro display xdr 2 apple · reference display reference monitor apple">
+                <div class="lot-number">N&deg; 032</div>
+                <div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
+                <div class="img-box">
+                    <img src="https://images.unsplash.com/photo-1616423641400-0e1dc6d00df7?q=80&amp;w=1000&amp;auto=format&amp;fit=crop" alt="Pro Display XDR 2">
+                </div>
+                <div class="card-content">
+                    <div class="hallmark">APPLE · REFERENCE DISPLAY</div>
+                    <h3 class="product-name">Pro Display XDR 2</h3>
+                    <div class="specs">
+<div class="spec-row"><span class="spec-label">Panel</span><span class="spec-val">32&quot; 6K Tandem OLED</span></div>
+<div class="spec-row"><span class="spec-label">Refresh Rate</span><span class="spec-val">120Hz ProMotion</span></div>
+<div class="spec-row"><span class="spec-label">Brightness</span><span class="spec-val">2000 nits Peak</span></div>
+                    </div>
+                </div>
+                <div class="hidden-details" style="display:none;">
+                    <div class="d-brand">APPLE // REFERENCE DISPLAY</div>
+                    <div class="d-title">Pro Display XDR 2</div>
+                    <div class="d-why">6K OLED reference display. I will never need this. I want it so badly it physically hurts.</div>
+                    <div class="d-desc">The ultimate reference monitor gets a major upgrade. Now featuring Tandem OLED technology and ProMotion for flawless HDR grading and buttery-smooth timelines.</div>
+<div class="d-spec" data-label="Display">32-inch Tandem OLED | 6016 x 3384 (6K)</div>
+<div class="d-spec" data-label="Refresh Rate">ProMotion Adaptive Sync up to 120Hz</div>
+<div class="d-spec" data-label="Brightness">1000 nits sustained | 2000 nits peak (HDR)</div>
+<div class="d-spec" data-label="Contrast Ratio">1,000,000:1 | True Blacks</div>
+<div class="d-spec" data-label="Build">Nano-texture glass | Pro Stand (Sold Separately)</div>
+                </div>
+            </div>
+            <div class="card" data-brand="apple" data-status="owned" data-cat="peripheral" data-lot="033" data-chapter="WEAPONS &amp; PERIPHERALS" data-name="earpods apple · retro essential apple audio apple">
+                <div class="lot-number">N&deg; 033</div>
+                <div class="seal owned"><span class="dot"></span>OWNED</div>
+                <div class="img-box">
+                    <img src="https://images.unsplash.com/photo-1528659139886-c466cfa928ba?q=80&amp;w=800&amp;auto=format&amp;fit=crop" alt="EarPods">
+                </div>
+                <div class="card-content">
+                    <div class="hallmark">APPLE · RETRO ESSENTIAL</div>
+                    <h3 class="product-name">EarPods</h3>
+                    <div class="specs">
+<div class="spec-row"><span class="spec-label">Type</span><span class="spec-val">Wired In-Ear</span></div>
+<div class="spec-row"><span class="spec-label">Connection</span><span class="spec-val">USB-C / Lightning / 3.5mm</span></div>
+<div class="spec-row"><span class="spec-label">Feature</span><span class="spec-val">Zero Latency. No Battery.</span></div>
+                    </div>
+                </div>
+                <div class="hidden-details" style="display:none;">
+                    <div class="d-brand">APPLE // RETRO ESSENTIAL</div>
+                    <div class="d-title">EarPods</div>
+                    <div class="d-why">Never left. No ANC, no spatial audio, just crystal clear call quality and zero latency. Underrated forever.</div>
+                    <div class="d-desc">The iconic wired earphones that defined a generation. Engineered to maximize sound output and minimize sound loss. Plug and play, no charging anxiety.</div>
+<div class="d-spec" data-label="Acoustics">Custom tuned drivers | Deeper, richer bass tones</div>
+<div class="d-spec" data-label="Design">Defined by the geometry of the ear for enhanced comfort</div>
+<div class="d-spec" data-label="Controls">Built-in remote | Adjust volume, control playback, answer calls</div>
+<div class="d-spec" data-label="Reliability">Zero latency | Infinite battery life | Greater protection from sweat/water</div>
+                </div>
+            </div>
+            <div class="card" data-brand="samsung" data-status="wishlist" data-cat="peripheral" data-lot="034" data-chapter="WEAPONS &amp; PERIPHERALS" data-name="galaxy buds 2 samsung · tws earbuds galaxy audio samsung">
+                <div class="lot-number">N&deg; 034</div>
+                <div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
+                <div class="img-box">
+                    <img src="https://images.unsplash.com/photo-1631281005856-787db8c08db7?q=80&amp;w=800&amp;auto=format&amp;fit=crop" alt="Galaxy Buds 2">
+                </div>
+                <div class="card-content">
+                    <div class="hallmark">SAMSUNG · TWS EARBUDS</div>
+                    <h3 class="product-name">Galaxy Buds 2</h3>
+                    <div class="specs">
+<div class="spec-row"><span class="spec-label">Type</span><span class="spec-val">TWS In-Ear</span></div>
+<div class="spec-row"><span class="spec-label">Feature</span><span class="spec-val">Active Noise Canceling</span></div>
+<div class="spec-row"><span class="spec-label">Weight</span><span class="spec-val">5.0g per bud</span></div>
+                    </div>
+                </div>
+                <div class="hidden-details" style="display:none;">
+                    <div class="d-brand">SAMSUNG // TWS EARBUDS</div>
+                    <div class="d-title">Galaxy Buds 2</div>
+                    <div class="d-why">Compact, clean ANC, and that galaxy ecosystem lock-in makes it seamless. Simple done right.</div>
+                    <div class="d-desc">Lightweight, comfortable, and featuring solid active noise canceling in a sleek, pebble-like design.</div>
+<div class="d-spec" data-label="Audio">Dynamic 2-way speakers (Woofer + Tweeter) | Sound by AKG</div>
+<div class="d-spec" data-label="ANC">Active Noise Canceling cuts background noise by up to 98%</div>
+<div class="d-spec" data-label="Microphones">3 mics + VPU (Voice Pickup Unit) for clear calls</div>
+<div class="d-spec" data-label="Battery">Up to 20h total playback with ANC on (with charging case)</div>
+<div class="d-spec" data-label="Connectivity">Bluetooth 5.2 | Auto Switch between Galaxy devices</div>
+                </div>
+            </div>
+            <div class="card" data-brand="samsung" data-status="wishlist" data-cat="peripheral" data-lot="035" data-chapter="WEAPONS &amp; PERIPHERALS" data-name="galaxy buds 3 samsung · next-gen audio galaxy ai audio samsung">
+                <div class="lot-number">N&deg; 035</div>
+                <div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
+                <div class="img-box">
+                    <img src="https://images.unsplash.com/photo-1590658268037-6bf12165a8df?q=80&amp;w=800&amp;auto=format&amp;fit=crop" alt="Galaxy Buds 3">
+                </div>
+                <div class="card-content">
+                    <div class="hallmark">SAMSUNG · NEXT-GEN AUDIO</div>
+                    <h3 class="product-name">Galaxy Buds 3</h3>
+                    <div class="specs">
+<div class="spec-row"><span class="spec-label">Design</span><span class="spec-val">Blade Design (Stem)</span></div>
+<div class="spec-row"><span class="spec-label">Audio</span><span class="spec-val">24-bit Hi-Fi Sound</span></div>
+<div class="spec-row"><span class="spec-label">Feature</span><span class="spec-val">Galaxy AI Translate</span></div>
+                    </div>
+                </div>
+                <div class="hidden-details" style="display:none;">
+                    <div class="d-brand">SAMSUNG // NEXT-GEN AUDIO</div>
+                    <div class="d-title">Galaxy Buds 3</div>
+                    <div class="d-why">Blade stem design + Galaxy AI real-time interpreter. If I&#x27;m on calls all day, these are the move.</div>
+                    <div class="d-desc">A radical redesign featuring a new &quot;Blade&quot; stem for better controls and mics, deeply integrated with Galaxy AI for real-time translation.</div>
+<div class="d-spec" data-label="Audio Architecture">11mm Dynamic Driver | 24-bit / 96kHz Hi-Fi Audio (SSC Codec)</div>
+<div class="d-spec" data-label="Design">New Blade Design | Pinch &amp; Swipe Controls | Open-type fit</div>
+<div class="d-spec" data-label="Smart Features">Adaptive EQ | Adaptive ANC | Galaxy AI Real-time Interpreter</div>
+<div class="d-spec" data-label="Durability">IP57 Water &amp; Dust Resistance</div>
+<div class="d-spec" data-label="Connectivity">Bluetooth 5.4 | Auracast Support</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="site-footer">
+        <div class="footer-line">template archive / 035 pieces catalogued / source page only</div>
+    </div>
+
+    <div class="tech-modal-overlay" id="techModal">
+        <div class="tech-modal-window" id="tm-window">
+            <span class="corner-mark tl"></span>
+            <span class="corner-mark br"></span>
+            <button class="tm-close" onclick="closeTechModal()">&times;</button>
+            <div class="tech-modal-vis">
+                <img src="" id="tm-img" alt="Product Image">
+                <div class="vis-lot-ref" id="tm-lotref"></div>
+            </div>
+            <div class="tech-modal-info">
+                <div class="tm-brand" id="tm-brand">BRAND</div>
+                <div class="tm-status-tag" id="tm-status"></div>
+                <h2 class="tm-title" id="tm-title">PRODUCT NAME</h2>
+                <div class="tm-why-block" id="tm-why-block" style="display:none">
+                    <div class="tm-why-label">WHY I WANT THIS</div>
+                    <div class="tm-why-text" id="tm-why-text"></div>
+                </div>
+                <div class="tm-desc" id="tm-desc">Product description goes here.</div>
+                <div class="tm-specs-grid" id="tm-specs-grid"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const fallbackImage = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 900'%3E%3Crect width='1200' height='900' fill='%230b0a08'/%3E%3Crect x='46' y='46' width='1108' height='808' rx='2' fill='none' stroke='%23c9a868' stroke-opacity='.24'/%3E%3Ccircle cx='600' cy='360' r='170' fill='%23c9a868' fill-opacity='.08'/%3E%3Ctext x='600' y='420' text-anchor='middle' fill='%23f3eee2' font-family='IBM Plex Mono, monospace' font-size='34' letter-spacing='6'%3EARCHIVAL IMAGE%3C/text%3E%3Ctext x='600' y='470' text-anchor='middle' fill='%238d8776' font-family='IBM Plex Mono, monospace' font-size='22' letter-spacing='4'%3EPENDING RESTORATION%3C/text%3E%3C/svg%3E";
+        document.querySelectorAll('img').forEach((img) => {
+            img.addEventListener('error', () => {
+                if (img.dataset.fallbackApplied) return;
+                img.dataset.fallbackApplied = 'true';
+                img.src = fallbackImage;
+            });
+        });
+
+        // Filter Logic
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const sections = document.querySelectorAll('.section-wrapper');
+        const searchInput = document.getElementById('searchInput');
+        let activeFilter = 'all';
+
+        function applyFilters() {
+            const q = searchInput.value.trim().toLowerCase();
+            sections.forEach(sec => {
+                if (sec.id === 'sec-creator') return;
+                const matchesCategory = activeFilter === 'all' || sec.id === 'sec-' + activeFilter;
+                if (!matchesCategory) { sec.classList.add('hidden'); return; }
+                sec.classList.remove('hidden');
+                let visibleInSection = 0;
+                sec.querySelectorAll('.card').forEach(card => {
+                    const name = card.getAttribute('data-name') || '';
+                    const show = !q || name.includes(q);
+                    card.style.display = show ? '' : 'none';
+                    if (show) visibleInSection++;
+                });
+                if (q && visibleInSection === 0) sec.classList.add('hidden');
+            });
+        }
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                activeFilter = btn.getAttribute('data-filter');
+                applyFilters();
+            });
+        });
+        searchInput.addEventListener('input', applyFilters);
+
+        // Modal Logic
+        const modal = document.getElementById('techModal');
+        const cards = document.querySelectorAll('.card');
+
+        cards.forEach(card => {
+            card.addEventListener('click', () => {
+                const imgSrc = card.querySelector('.img-box img').src;
+                document.getElementById('tm-img').src = imgSrc;
+                const hiddenBox = card.querySelector('.hidden-details');
+                if(!hiddenBox) return;
+                const brandTag = hiddenBox.querySelector('.d-brand');
+                const titleTag = hiddenBox.querySelector('.d-title');
+                const descTag  = hiddenBox.querySelector('.d-desc');
+                const whyTag   = hiddenBox.querySelector('.d-why');
+                const specTags = hiddenBox.querySelectorAll('.d-spec');
+
+                document.getElementById('tm-brand').innerText = brandTag.innerText;
+
+                const status = card.getAttribute('data-status') || 'wishlist';
+                const statusEl = document.getElementById('tm-status');
+                statusEl.className = 'tm-status-tag ' + status;
+                statusEl.innerHTML = '<span class="dot"></span>' + (status === 'owned' ? 'IN COLLECTION' : 'PURSUING');
+
+                document.getElementById('tm-title').innerText = titleTag.innerText;
+                document.getElementById('tm-desc').innerText = descTag ? descTag.innerText : '';
+
+                const whyBlock = document.getElementById('tm-why-block');
+                if (whyTag && whyTag.innerText.trim()) {
+                    document.getElementById('tm-why-text').innerText = whyTag.innerText;
+                    whyBlock.style.display = 'block';
+                } else { whyBlock.style.display = 'none'; }
+
+                const lot = card.getAttribute('data-lot');
+                const chapter = card.getAttribute('data-chapter');
+                document.getElementById('tm-lotref').innerText = 'N\u00b0 ' + lot + ' \u00b7 ' + chapter;
+
+                const specsContainer = document.getElementById('tm-specs-grid');
+                specsContainer.innerHTML = '';
+                specTags.forEach(spec => {
+                    const label = spec.getAttribute('data-label');
+                    const val = spec.innerHTML;
+                    const row = document.createElement('div');
+                    row.className = 'tm-spec-row';
+                    row.innerHTML = `<span class="tm-spec-label">${label}</span><span class="tm-spec-val">${val}</span>`;
+                    specsContainer.appendChild(row);
+                });
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        function closeTechModal() {
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        modal.addEventListener('click', (e) => { if (e.target === modal) closeTechModal(); });
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeTechModal(); });
+
+        // Card entrance animations
+        const cardObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    const siblings = [...entry.target.parentElement.children];
+                    const idx = siblings.indexOf(entry.target);
+                    entry.target.style.transitionDelay = (idx % 4) * 70 + 'ms';
+                    entry.target.classList.add('in-view');
+                    cardObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.06, rootMargin: '0px 0px -30px 0px' });
+        document.querySelectorAll('.card').forEach(c => cardObserver.observe(c));
+    </script>
+</body>
+</html>

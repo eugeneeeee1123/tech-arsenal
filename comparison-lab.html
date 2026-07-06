@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TECH ARSENAL | Compare</title>
+    <link rel="stylesheet" href="arsenal-pages.css">
+</head>
+<body>
+    <div class="broadcast-bar">
+        <div class="signal-icon"></div>
+        <span class="shoutout-text">decision layer</span>
+        <span class="creator-tag">compare</span>
+        <span class="shoutout-text">shortlist lab</span>
+    </div>
+
+    <main class="shell">
+        <header class="site-header">
+            <div class="top-row">
+                <a class="back-link" href="index.html">return home</a>
+                <nav class="page-nav" aria-label="site">
+                    <a class="page-link" href="index.html">home</a>
+                    <a class="page-link" href="provenance.html">timeline</a>
+                    <a class="page-link" href="field-notes.html">notes</a>
+                    <a class="page-link active" href="comparison-lab.html">compare</a>
+                    <a class="page-link" href="on-the-horizon.html">horizon</a>
+                </nav>
+            </div>
+
+            <div class="hero-head">
+                <div class="eyebrow">comparison lab</div>
+                <div class="title-lockup">
+                    <h1 class="main-title">Turn desire into <span class="accent">clearer tradeoffs</span></h1>
+                    <p class="page-subtitle">主目录里写的是喜欢，这一页写的是取舍。把最容易纠结的旗舰机型拉到一起，比继续堆更多“想买理由”更有价值。</p>
+                </div>
+            </div>
+        </header>
+
+        <section class="hero-panel">
+            <div class="hero-grid">
+                <div class="hero-copy">
+                    <div class="hero-copy-top">
+                        <div class="meta-chip">selection logic</div>
+                        <h2>同样是旗舰，吸引力其实来自完全不同的维度。</h2>
+                        <p>有的靠形态，有的靠影像，有的靠生态，有的靠毫无短板。这个页面就是把差异讲清楚。</p>
+                    </div>
+
+                    <div class="hero-stats">
+                        <div class="hero-stat">
+                            <strong>04</strong>
+                            <span>candidate devices</span>
+                        </div>
+                        <div class="hero-stat">
+                            <strong>03</strong>
+                            <span>live slots</span>
+                        </div>
+                        <div class="hero-stat">
+                            <strong>01</strong>
+                            <span>shared table</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hero-side">
+                    <img src="https://images.unsplash.com/photo-1631281005856-787db8c08db7?q=80&w=1400&auto=format&fit=crop" alt="phones arranged on a table">
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-heading">
+                <h3>点选候选机型，下面的三列会同步切换。</h3>
+                <p>默认保留 Fold、Ultra 和 iPhone。Pixel 作为替换项，负责那条更偏算法和 AI 的路线。</p>
+            </div>
+
+            <div class="compare-choices">
+                <button class="choice-btn active" data-slot="0" data-device="fold7" type="button">
+                    <strong>Galaxy Z Fold 7</strong>
+                    <span>form factor and productivity</span>
+                </button>
+                <button class="choice-btn active" data-slot="1" data-device="s25u" type="button">
+                    <strong>Galaxy S25 Ultra</strong>
+                    <span>all round apex</span>
+                </button>
+                <button class="choice-btn active" data-slot="2" data-device="iphone17" type="button">
+                    <strong>iPhone 17</strong>
+                    <span>ecosystem baseline</span>
+                </button>
+                <button class="choice-btn" data-slot="2" data-device="pixel9" type="button">
+                    <strong>Pixel 9 Pro XL</strong>
+                    <span>camera and native ai</span>
+                </button>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>criteria</th>
+                            <th class="table-head" id="head-0">Galaxy Z Fold 7</th>
+                            <th class="table-head" id="head-1">Galaxy S25 Ultra</th>
+                            <th class="table-head" id="head-2">iPhone 17</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th>role</th>
+                            <td id="role-0"></td>
+                            <td id="role-1"></td>
+                            <td id="role-2"></td>
+                        </tr>
+                        <tr>
+                            <th>display</th>
+                            <td id="display-0"></td>
+                            <td id="display-1"></td>
+                            <td id="display-2"></td>
+                        </tr>
+                        <tr>
+                            <th>camera</th>
+                            <td id="camera-0"></td>
+                            <td id="camera-1"></td>
+                            <td id="camera-2"></td>
+                        </tr>
+                        <tr>
+                            <th>chip and ai</th>
+                            <td id="chip-0"></td>
+                            <td id="chip-1"></td>
+                            <td id="chip-2"></td>
+                        </tr>
+                        <tr>
+                            <th>pull</th>
+                            <td class="table-note" id="note-0"></td>
+                            <td class="table-note" id="note-1"></td>
+                            <td class="table-note" id="note-2"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="spec-grid">
+                <article class="spec-card">
+                    <div class="status-pill">next move</div>
+                    <h4>增加排序模式</h4>
+                    <p>后面可以做只看影像、只看续航、只看便携性。</p>
+                </article>
+                <article class="spec-card">
+                    <div class="status-pill">next move</div>
+                    <h4>高亮差异项</h4>
+                    <p>只标真正不同的项，读起来会更快。</p>
+                </article>
+                <article class="spec-card">
+                    <div class="status-pill">next move</div>
+                    <h4>跳回主目录卡片</h4>
+                    <p>每一列后面都可以继续连回新的设备详情页。</p>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-line">tech arsenal / compare / shortlist as decision support</div>
+    </footer>
+
+    <script>
+        window.compareLabConfig = {
+            slots: ["fold7", "s25u", "iphone17"]
+        };
+    </script>
+    <script src="arsenal-compare.js"></script>
+</body>
+</html>
