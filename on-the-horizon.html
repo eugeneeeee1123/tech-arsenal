@@ -3,21 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TECH ARSENAL | Horizon</title>
+    <title>TECH ARSENAL | 观望清单 / Horizon</title>
     <link rel="stylesheet" href="arsenal-pages.css">
 </head>
 <body>
     <div class="broadcast-bar">
         <div class="signal-icon"></div>
-        <span class="shoutout-text">future candidates</span>
-        <span class="creator-tag">horizon</span>
-        <span class="shoutout-text">watchlist deck</span>
+        <span class="shoutout-text" data-zh="未来候选" data-en="Future candidates">future candidates</span>
+        <span class="creator-tag" data-zh="观望" data-en="Horizon">horizon</span>
+        <span class="shoutout-text" data-zh="观察清单" data-en="Watchlist deck">watchlist deck</span>
     </div>
 
     <main class="shell">
         <header class="site-header">
             <div class="top-row">
-                <a class="back-link" href="index.html">return home</a>
+                <a class="back-link home-mark-link" href="index.html" aria-label="返回首页 / Back to home" title="返回首页 / Back to home"><img src="assets/images/arsenal-spark.png" alt=""></a>
                 <nav class="page-nav" aria-label="site">
                     <a class="page-link" href="index.html">home</a>
                     <a class="page-link" href="provenance.html">timeline</a>
@@ -28,9 +28,9 @@
             </div>
 
             <div class="hero-head">
-                <div class="eyebrow">watchlist deck</div>
+                <div class="eyebrow" data-zh="观察清单" data-en="Watchlist deck">watchlist deck</div>
                 <div class="title-lockup">
-                    <h1 class="main-title">Keep the future <span class="accent">outside the main archive</span></h1>
+                    <h1 class="main-title" data-zh="观望清单" data-en="Horizon">Horizon</h1>
                     <p class="page-subtitle">不是所有感兴趣的东西都应该直接进入主目录。Horizon 页面负责承接那些正在形成中的偏好、传闻线索和还没正式转正的候选设备。</p>
                 </div>
             </div>
@@ -40,7 +40,7 @@
             <div class="hero-grid">
                 <div class="hero-copy">
                     <div class="hero-copy-top">
-                        <div class="meta-chip">future watchlist</div>
+                        <div class="meta-chip" data-zh="未来观察清单" data-en="Future watchlist">future watchlist</div>
                         <h2>让整站从静态收藏册，变成还在继续生长的判断系统。</h2>
                         <p>这个页面的价值不在于写满，而在于区分轻度关注、强关注和接近发布的对象。</p>
                     </div>
@@ -122,7 +122,8 @@
     </main>
 
     <footer class="site-footer">
-        <div class="footer-line">tech arsenal / horizon / future interest outside the core archive</div>
+        <div class="footer-line" data-zh="TECH ARSENAL / 观望 / 把未来兴趣留在主档案之外" data-en="TECH ARSENAL / Horizon / Future interest outside the core archive">tech arsenal / horizon / future interest outside the core archive</div>
     </footer>
+    <script src="arsenal-site.js"></script>
 </body>
 </html>

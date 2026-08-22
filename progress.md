@@ -121,3 +121,34 @@ What the diff changed:
 - Added a `v0.2 / Add Progress Log` entry for commit `7e7291d`.
 - Added this `v0.3 / Expand Diff Details` entry to record the current documentation update.
 
+## 2026-08-23 - v0.4 / Unify the bilingual site and redesign the catalogue
+
+Commit: this update.
+
+Message: `Unify site language and redesign catalogue`
+
+Push: this entry is pushed to `origin/main` after commit.
+
+### Changes
+
+- Unified the shared navigation across every page with the same home mark, fixed-width structure, active-page state, and bilingual Chinese / English labels.
+- Added `arsenal-site.js` to apply shared bilingual pairs, page navigation, home-link behavior, language notes, and translated metadata consistently.
+- Simplified the oversized page titles on Timeline, Field Notes, Compare, and Horizon so each page uses a restrained title lockup instead of a full-screen slogan.
+- Reworked `tech-arsenal.html` into a high-end annual-index catalogue: one lead device per chapter, compact supporting rows, search, category filters, dossier details, and the existing compare/open-record interactions.
+- Refined `arsenal-pages.css` around the blue editorial system, responsive navigation, smaller title scale, quieter rules, consistent controls, and mobile layouts.
+- Replaced the Legion and MacBook product art with regenerated transparent-background assets. WebP is used by the catalogue for loading speed, with PNG siblings retained as fallbacks.
+- Added `PRODUCT.md` to preserve the catalogue’s product purpose, users, design constraints, and redesign principles for future work.
+
+### Diff
+
+Overall diff: `13 files changed` plus two regenerated image pairs; the tracked HTML/CSS changes add `2154 insertions` and remove `572 lines` before the new shared script, product brief, and binary assets are counted.
+
+What the diff changed:
+
+- `arsenal-pages.css` gained the shared bilingual chrome, blue theme overrides, compact navigation, catalogue controls, lead-card hierarchy, dossier panel, responsive breakpoints, and reduced-motion handling.
+- `index.html`, `provenance.html`, `field-notes.html`, `comparison-lab.html`, and `on-the-horizon.html` now share the same bilingual data attributes, restrained English titles, home-mark return link, and `arsenal-site.js` runtime.
+- `tech-arsenal.html` received the catalogue redesign, consistent navigation, bilingual copy, search/filter layout, featured chapter cards, dossier details, and the local transparent product images.
+- `arsenal-site.js` centralizes bilingual rendering and shared page chrome instead of duplicating navigation markup on every page.
+- `PRODUCT.md` documents the site’s purpose, audience, catalogue principles, and constraints.
+- `assets/images/legion-5-15ahp10.webp` / `.png` and `assets/images/macbook-pro-16.webp` / `.png` are the new transparent product assets; WebP sizes are approximately 96 KB and 29 KB respectively.
+
