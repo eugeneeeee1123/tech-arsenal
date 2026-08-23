@@ -4,871 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TECH ARSENAL | 年鉴目录 / Personal collection annual index</title>
-<style>
-
-:root {
-  --paper:#f3efe7; --paper-warm:#e9e1d5; --paper-deep:#dcd1c1;
-  --ink:#20211e; --ink-soft:#4e4d47; --ink-faint:#777269;
-  --rule:#c9c0b2; --rule-strong:#a99e8d; --accent:#984b38;
-  --accent-dark:#6f3328; --accent-wash:#edddd5; --white:#fbfaf6;
-  --serif:"Iowan Old Style","Palatino Linotype","Book Antiqua",Georgia,serif;
-  --sans:"Aptos","Helvetica Neue",Arial,sans-serif;
-  --mono:"SFMono-Regular",Consolas,"Liberation Mono",monospace;
-  --shell:min(1400px,calc(100% - 64px));
-  --soft-shadow:0 22px 58px rgba(47,38,27,.12);
-}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth;background:var(--paper)}
-body{margin:0;min-width:320px;background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.5}
-body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;opacity:.28;background:radial-gradient(circle at 12% 0%,rgba(152,75,56,.08),transparent 33%)}
-::selection{background:var(--accent);color:var(--white)}
-a{color:inherit}button,input{font:inherit}
-button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
-.font-display{font-family:var(--serif)}.font-mono{font-family:var(--mono)}
-.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
-
-.broadcast-bar{background:var(--ink);color:var(--paper);padding:10px 32px;font-family:var(--mono);font-size:.62rem;letter-spacing:.13em;text-transform:uppercase}
-.broadcast-inner{max-width:1400px;margin:0 auto;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
-.signal-icon{width:8px;height:8px;display:inline-block;background:var(--accent);border-radius:50%;flex:0 0 auto}
-.shoutout-text{color:rgba(243,239,231,.68)}.creator-tag{color:var(--paper);font-weight:700;letter-spacing:.16em}
-
-.header{width:var(--shell);margin:0 auto;padding:34px 0 25px}
-.header-top,.masthead,.page-nav{display:flex;align-items:center;justify-content:space-between;gap:22px}
-.header-top{padding-bottom:24px;border-bottom:1px solid var(--rule)}
-.back-btn,.page-link{text-decoration:none;font-family:var(--mono);font-size:.65rem;letter-spacing:.12em;text-transform:uppercase}
-.back-btn{color:var(--ink-soft);display:inline-flex;align-items:center;gap:10px;min-height:42px;padding:0 12px}
-.back-btn::before{content:"";width:9px;height:9px;border-left:1px solid currentColor;border-bottom:1px solid currentColor;transform:rotate(45deg)}
-.back-btn:hover{color:var(--accent)}.header-eyebrow{margin:0;color:var(--ink-faint);font-family:var(--mono);font-size:.63rem;letter-spacing:.12em;text-transform:uppercase}
-.masthead{align-items:flex-end;padding:38px 0 30px}
-.main-title{margin:0;color:var(--ink);font-family:var(--serif);font-size:clamp(2.8rem,5.5vw,5rem);font-weight:500;letter-spacing:-.06em;line-height:.9}
-.main-title .tech{font-weight:700}.main-title .arsenal{color:var(--accent);font-style:italic;font-weight:400}
-.header-sub{max-width:24ch;color:var(--ink-soft);font-family:var(--serif);font-size:clamp(1rem,1.4vw,1.25rem);line-height:1.2;text-align:right}
-.page-nav{justify-content:center;flex:1 1 auto;min-width:0;flex-wrap:wrap;gap:8px 18px;padding:0;border-top:0}
-.page-link{min-height:32px;color:var(--ink-soft);border-bottom:1px solid transparent;display:inline-flex;align-items:center}
-.page-link:hover,.page-link.active{color:var(--accent);border-bottom-color:currentColor}
-
-.collection-ledger{width:var(--shell);margin:0 auto;padding:18px 0;display:flex;align-items:baseline;flex-wrap:wrap;gap:20px 34px;border-top:1px solid var(--rule-strong);border-bottom:1px solid var(--rule);color:var(--ink-soft);font-family:var(--mono);font-size:.64rem;letter-spacing:.1em;text-transform:uppercase}
-.collection-ledger span{display:inline-flex;align-items:baseline;gap:9px}.collection-ledger strong{color:var(--ink);font-family:var(--serif);font-size:1.45rem;font-weight:600;letter-spacing:-.04em}.collection-ledger .owned strong{color:var(--accent-dark)}
-
-.control-bar{width:var(--shell);margin:40px auto 0;padding:22px 0 20px;display:grid;grid-template-columns:minmax(260px,1fr) auto;align-items:end;gap:24px;border-top:1px solid var(--ink);border-bottom:1px solid var(--rule-strong)}
-.search-wrap{position:relative;max-width:580px}.search-label{display:block;margin-bottom:8px;color:var(--ink);font-family:var(--mono);font-size:.63rem;letter-spacing:.12em;text-transform:uppercase}
-.search-input{width:100%;min-height:48px;padding:7px 70px 7px 32px;border:0;border-bottom:2px solid var(--ink);border-radius:0;background:transparent;color:var(--ink);font-size:1.05rem;outline:none}
-.search-input::placeholder{color:var(--ink-faint)}.search-input:focus{border-bottom-color:var(--accent)}
-.search-mark{position:absolute;left:4px;bottom:17px;width:13px;height:13px;border:1.5px solid var(--ink-soft);border-radius:50%;pointer-events:none}.search-mark::after{content:"";position:absolute;width:6px;height:1.5px;right:-5px;bottom:-3px;background:var(--ink-soft);transform:rotate(45deg);transform-origin:left center}
-.search-key{position:absolute;right:6px;bottom:16px;color:var(--ink-faint);font-family:var(--mono);font-size:.61rem;letter-spacing:.08em;text-transform:uppercase}
-.filter-bar{display:flex;justify-content:flex-end;flex-wrap:wrap;gap:8px 18px}.filter-btn{min-height:36px;padding:0 0 6px;border:0;border-bottom:2px solid transparent;background:transparent;color:var(--ink-soft);cursor:pointer;font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;transition:color .2s ease,border-color .2s ease}
-.filter-btn:hover,.filter-btn.active{color:var(--accent);border-bottom-color:currentColor}.filter-btn:active{transform:translateY(1px)}
-.chapter-index{width:var(--shell);margin:18px auto 0;display:flex;align-items:baseline;gap:18px;flex-wrap:wrap;color:var(--ink-faint);font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase}.chapter-index-label{color:var(--ink);font-weight:700}.chapter-index a{color:var(--ink-soft);text-decoration:none;border-bottom:1px solid transparent}.chapter-index a:hover{color:var(--accent);border-bottom-color:currentColor}
-.result-summary{width:var(--shell);margin:12px auto 0;color:var(--ink-faint);font-family:var(--mono);font-size:.63rem;letter-spacing:.08em;text-transform:uppercase}
-
-.dossier{width:var(--shell);margin:28px auto 0;display:grid;grid-template-columns:minmax(240px,.75fr) minmax(0,1.25fr);background:var(--ink);color:var(--paper);box-shadow:var(--soft-shadow)}.dossier[hidden],.empty-state[hidden]{display:none}
-.dossier-visual{min-height:390px;padding:25px;display:flex;align-items:center;justify-content:center;background:var(--paper-deep)}.dossier-visual img{width:100%;height:100%;min-height:340px;object-fit:contain;filter:drop-shadow(0 18px 25px rgba(0,0,0,.22))}
-.dossier-body{padding:32px 36px 28px;display:flex;flex-direction:column;min-width:0}.dossier-topline{display:flex;align-items:center;justify-content:space-between;gap:14px;padding-bottom:15px;border-bottom:1px solid rgba(243,239,231,.28)}
-.dossier-brand,.dossier-status{font-family:var(--mono);font-size:.62rem;letter-spacing:.11em;text-transform:uppercase}.dossier-brand{color:rgba(243,239,231,.66)}.dossier-status{display:inline-flex;align-items:center;gap:7px;color:var(--paper)}.dossier-status::before{content:"";width:7px;height:7px;display:inline-block;border-radius:50%;background:var(--accent)}.dossier-status.owned::before{background:#d6bca7}
-.dossier-title{margin:26px 0 12px;max-width:13ch;font-family:var(--serif);font-size:clamp(2.2rem,5vw,4.9rem);font-weight:500;letter-spacing:-.06em;line-height:.9}.dossier-lot{margin:0;color:rgba(243,239,231,.64);font-family:var(--mono);font-size:.61rem;letter-spacing:.11em;text-transform:uppercase}.dossier-why{margin:25px 0 0;max-width:58ch;color:var(--paper);font-family:var(--serif);font-size:1.15rem;line-height:1.5}.dossier-why:empty{display:none}.dossier-desc{margin:17px 0 0;max-width:68ch;color:rgba(243,239,231,.7);line-height:1.65}
-.dossier-specs{margin-top:26px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border-top:1px solid rgba(243,239,231,.28)}.dossier-spec{padding:13px 16px 13px 0;border-bottom:1px solid rgba(243,239,231,.18)}.dossier-spec:nth-child(odd){padding-right:20px;border-right:1px solid rgba(243,239,231,.18)}.dossier-spec:nth-child(even){padding-left:20px}.dossier-spec-label{display:block;margin-bottom:6px;color:rgba(243,239,231,.55);font-family:var(--mono);font-size:.58rem;letter-spacing:.1em;text-transform:uppercase}.dossier-spec-value{display:block;color:var(--paper);font-size:.86rem;line-height:1.55}
-.dossier-actions{display:flex;align-items:center;flex-wrap:wrap;gap:12px;margin-top:24px}.dossier-action,.dossier-close{min-height:40px;padding:0 15px;border:1px solid rgba(243,239,231,.46);background:transparent;color:var(--paper);cursor:pointer;text-decoration:none;font-family:var(--mono);font-size:.61rem;letter-spacing:.1em;text-transform:uppercase;transition:color .2s ease,background .2s ease,border-color .2s ease}.dossier-action{border-color:var(--paper);background:var(--paper);color:var(--ink)}.dossier-action:hover,.dossier-close:hover{border-color:var(--accent);background:var(--accent);color:var(--white)}
-
-.collection{width:100%;display:flex;flex-direction:column}.section-wrapper{width:var(--shell);margin:74px auto 0;order:1}.section-wrapper.hidden{display:none}#sec-creator{order:10}.chapter-head{margin-bottom:23px}.chapter-eyebrow{display:none}
-.section-title{margin:0;color:var(--ink);display:flex;align-items:baseline;gap:15px;flex-wrap:wrap;font-family:var(--serif);font-size:clamp(2.3rem,5vw,5.2rem);font-weight:500;letter-spacing:-.07em;line-height:.88}.section-count{color:var(--accent);font-family:var(--mono);font-size:.63rem;font-weight:400;letter-spacing:.1em;text-transform:uppercase}.chapter-rule{width:100%;height:1px;margin-top:22px;background:var(--ink)}
-.grid{display:grid;gap:0;border-top:1px solid var(--rule-strong)}
-.card{position:relative;display:grid;grid-template-columns:minmax(210px,.48fr) minmax(0,1fr);min-width:0;border-bottom:1px solid var(--rule-strong);background:transparent;cursor:pointer;transition:background .22s ease}.card:hover,.card:focus-visible{background:var(--accent-wash)}.card.is-lead{grid-template-columns:minmax(350px,1.12fr) minmax(0,.88fr);min-height:465px;background:var(--paper-warm)}.card[hidden]{display:none}
-.lot-number{position:absolute;top:17px;left:20px;z-index:2;color:var(--ink);font-family:var(--mono);font-size:.62rem;letter-spacing:.1em}.card.is-lead .lot-number{top:22px;left:25px}
-.seal{position:absolute;top:17px;right:20px;z-index:2;display:inline-flex;align-items:center;gap:7px;color:var(--ink-soft);font-family:var(--mono);font-size:.59rem;letter-spacing:.1em;text-transform:uppercase}.card.is-lead .seal{top:22px;right:25px}.seal .dot{width:7px;height:7px;display:inline-block;border:1px solid currentColor;border-radius:50%}.seal.owned{color:var(--accent-dark)}.seal.wishlist{color:var(--ink-soft)}
-.img-box{min-width:0;min-height:180px;padding:25px;display:flex;align-items:center;justify-content:center;background:var(--paper-deep);overflow:hidden}.card.is-lead .img-box{min-height:465px;padding:52px}.img-box img{width:100%;height:100%;min-height:130px;object-fit:contain;filter:saturate(.78) contrast(.98);transition:transform .35s ease,filter .35s ease}.card.is-lead .img-box img{min-height:335px}.card:hover .img-box img,.card:focus-visible .img-box img{filter:saturate(1) contrast(1);transform:scale(1.025)}
-.card-content{min-width:0;padding:43px 26px 24px;display:flex;flex-direction:column}.card.is-lead .card-content{justify-content:center;padding:62px 52px 40px}.hallmark{margin-bottom:11px;color:var(--ink-soft);font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase}.product-name{margin:0;color:var(--ink);font-family:var(--serif);font-size:clamp(1.55rem,2.4vw,2.55rem);font-weight:500;letter-spacing:-.055em;line-height:.96}.card.is-lead .product-name{max-width:10ch;font-size:clamp(3rem,6vw,6.7rem);line-height:.84}
-.specs{display:grid;gap:0;margin-top:auto;padding-top:19px;border-top:1px solid var(--rule)}.spec-row{display:grid;grid-template-columns:minmax(78px,.35fr) minmax(0,1fr);gap:15px;padding:10px 0;border-bottom:1px solid rgba(169,158,141,.55)}.spec-label{color:var(--ink-faint);font-family:var(--mono);font-size:.59rem;letter-spacing:.08em;text-transform:uppercase}.spec-val{color:var(--ink-soft);font-size:.8rem;line-height:1.45;text-align:right}.record-action{align-self:flex-start;margin-top:19px;padding:0 0 5px;border:0;border-bottom:1px solid var(--accent);background:transparent;color:var(--accent-dark);cursor:pointer;font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase}.record-action:hover{color:var(--ink)}
-.card:not(.is-lead){grid-template-columns:minmax(140px,.21fr) minmax(0,1fr)}.card:not(.is-lead) .img-box{min-height:150px;padding:21px}.card:not(.is-lead) .card-content{padding:32px 22px 22px;display:grid;grid-template-columns:minmax(150px,.65fr) minmax(220px,1fr) auto;align-items:center;gap:20px}.card:not(.is-lead) .hallmark{grid-column:1;grid-row:1;margin:0 0 5px}.card:not(.is-lead) .product-name{grid-column:1;grid-row:2}.card:not(.is-lead) .specs{grid-column:2;grid-row:1/span 2;margin:0;padding:0 0 0 20px;border-top:0;border-left:1px solid var(--rule)}.card:not(.is-lead) .spec-row{padding:6px 0;border-bottom:0}.card:not(.is-lead) .record-action{grid-column:3;grid-row:1/span 2;align-self:center;white-space:nowrap}
-
-.creator-title{color:var(--ink)}.creator-desc{max-width:60ch;margin:0 0 22px;color:var(--ink-soft);font-family:var(--serif);font-size:1.08rem;line-height:1.6}.video-card{max-width:820px;background:var(--ink);color:var(--paper);box-shadow:var(--soft-shadow)}.video-wrapper{position:relative;height:0;padding-bottom:56.25%;background:#151513}.video-wrapper iframe{position:absolute;inset:0;width:100%;height:100%;border:0}.video-info{padding:17px 22px;display:flex;align-items:center;justify-content:space-between;gap:16px}.video-title{margin:0;font-family:var(--serif);font-size:1.2rem;font-weight:500}.video-tagpill{color:var(--paper);font-family:var(--mono);font-size:.59rem;letter-spacing:.1em;text-transform:uppercase}
-.empty-state{width:var(--shell);margin:50px auto;padding:40px 0 48px;border-top:1px solid var(--ink);border-bottom:1px solid var(--rule-strong)}.empty-state h2{margin:0;color:var(--ink);font-family:var(--serif);font-size:clamp(2rem,5vw,4rem);font-weight:500;letter-spacing:-.06em;line-height:.92}.empty-state p{max-width:48ch;margin:14px 0 0;color:var(--ink-soft)}
-.site-footer{width:var(--shell);margin:90px auto 42px;padding-top:18px;border-top:1px solid var(--ink)}.footer-line{color:var(--ink-faint);font-family:var(--mono);font-size:.61rem;letter-spacing:.1em;text-transform:uppercase}
-
-@media (max-width:1080px){:root{--shell:min(1400px,calc(100% - 42px))}.control-bar{grid-template-columns:1fr;align-items:start}.filter-bar{justify-content:flex-start}.card.is-lead{grid-template-columns:minmax(260px,.9fr) minmax(0,1.1fr)}.card.is-lead .card-content{padding:48px 35px 32px}.card:not(.is-lead) .card-content{grid-template-columns:minmax(140px,.6fr) minmax(180px,1fr) auto;gap:14px}}
-@media (max-width:760px){:root{--shell:calc(100% - 32px)}.broadcast-bar{padding:9px 16px}.header{padding-top:22px}.header-top,.masthead{align-items:flex-start;flex-direction:column}.masthead{gap:22px;padding:31px 0 24px}.header-sub{max-width:32ch;text-align:left}.main-title{font-size:clamp(3.5rem,18vw,6.4rem)}.collection-ledger{gap:13px 20px}.collection-ledger strong{font-size:1.2rem}.control-bar{margin-top:28px}.search-wrap{max-width:none}.filter-bar{gap:5px 14px}.chapter-index{gap:12px 16px}.dossier{grid-template-columns:1fr;margin-top:22px}.dossier-visual{min-height:240px;padding:20px}.dossier-visual img{min-height:220px}.dossier-body{padding:25px 22px 23px}.dossier-title{font-size:clamp(2.8rem,13vw,5rem)}.dossier-specs{grid-template-columns:1fr}.dossier-spec:nth-child(odd){padding-right:0;border-right:0}.dossier-spec:nth-child(even){padding-left:0}.section-wrapper{margin-top:58px}.section-title{font-size:clamp(2.55rem,13vw,5rem)}.card.is-lead{grid-template-columns:1fr;min-height:0}.card.is-lead .img-box{min-height:300px}.card.is-lead .img-box img{min-height:235px}.card.is-lead .card-content{padding:34px 22px 25px}.card.is-lead .product-name{max-width:11ch;font-size:clamp(3rem,15vw,5.8rem)}.card:not(.is-lead){grid-template-columns:94px minmax(0,1fr)}.card:not(.is-lead) .img-box{min-height:134px;padding:13px}.card:not(.is-lead) .card-content{padding:29px 14px 17px;grid-template-columns:1fr auto;gap:8px 12px}.card:not(.is-lead) .hallmark{grid-column:1;grid-row:1;font-size:.55rem}.card:not(.is-lead) .product-name{grid-column:1;grid-row:2;font-size:1.45rem}.card:not(.is-lead) .specs{grid-column:1/span 2;grid-row:3;padding:9px 0 0;border-left:0;border-top:1px solid var(--rule)}.card:not(.is-lead) .spec-row{grid-template-columns:72px minmax(0,1fr);padding:5px 0}.card:not(.is-lead) .spec-val{text-align:left;font-size:.73rem}.card:not(.is-lead) .record-action{grid-column:2;grid-row:1/span 2;align-self:end}.lot-number{top:11px;left:13px;font-size:.55rem}.seal{top:12px;right:13px;font-size:.53rem}.card.is-lead .lot-number{top:17px;left:18px}.card.is-lead .seal{top:18px;right:18px}.creator-desc{font-size:1rem}.video-info{align-items:flex-start;flex-direction:column}.site-footer{margin-top:68px}}
-@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
-
-</style>
-<style id="tech-blue-theme">
-/* Tech Arsenal keeps its annual-index composition, sharing the site's blue instrument palette. */
-:root {
-    --paper: #0a0d12;
-    --paper-warm: #111722;
-    --paper-deep: #0d1420;
-    --ink: #edf2fb;
-    --ink-soft: #aeb9cf;
-    --ink-faint: #77839a;
-    --rule: rgba(160,176,204,.18);
-    --rule-strong: rgba(160,176,204,.34);
-    --accent: #6f86ff;
-    --accent-dark: #91a5ff;
-    --accent-wash: rgba(111,134,255,.12);
-    --white: #edf2fb;
-    --soft-shadow: 0 22px 58px rgba(2,6,18,.45);
-}
-html { background: var(--paper); }
-html, body { max-width: 100%; overflow-x: hidden; }
-body {
-    background:
-        radial-gradient(circle at 12% 0%, rgba(111,134,255,.18), transparent 25%),
-        radial-gradient(circle at 88% 16%, rgba(111,134,255,.12), transparent 20%),
-        linear-gradient(180deg, #090c11 0%, #0a0d12 44%, #0d1118 100%);
-    color: var(--ink);
-}
-body::before { content: none; }
-.broadcast-bar { background: rgba(10,13,18,.86); border-bottom-color: var(--rule); }
-.shoutout-text { color: var(--ink-soft); }
-.creator-tag { color: var(--accent-dark); background: rgba(111,134,255,.12); border-color: rgba(111,134,255,.4); }
-.lang-pair { display: inline-flex; align-items: baseline; gap: .18em; white-space: nowrap; }
-.lang-en { color: var(--ink-soft); font-size: .9em; letter-spacing: .05em; }
-.lang-divider { color: var(--accent-dark); opacity: .72; }
-.main-title .lang-pair { display: flex; flex-direction: column; align-items: flex-start; gap: 0; white-space: normal; }
-.main-title .lang-divider { display: none; }
-.main-title .lang-en { color: var(--accent-dark); font-style: italic; font-weight: 600; }
-.language-note { display: inline-flex; align-items: center; margin-left: auto; color: var(--ink-faint); font-family: var(--mono); font-size: .59rem; letter-spacing: .1em; text-transform: uppercase; }
-.header-top { border-bottom-color: var(--rule); }
-.back-btn, .header-eyebrow, .header-sub, .page-link { color: var(--ink-soft); }
-.page-nav { border-top-color: var(--rule); }
-.page-link:hover, .page-link.active { color: var(--ink); border-color: rgba(111,134,255,.52); background: rgba(111,134,255,.1); }
-.language-note { color: var(--ink-faint); }
-.lang-en { color: var(--ink-soft); }
-.lang-divider { color: var(--accent-dark); }
-.collection-ledger { color: var(--ink-soft); border-top-color: var(--rule-strong); border-bottom-color: var(--rule); }
-.collection-ledger strong { color: var(--ink); }
-.collection-ledger .owned strong, .filter-btn:hover, .filter-btn.active, .chapter-index a:hover, .record-action { color: var(--accent-dark); }
-.control-bar { border-top-color: var(--ink); border-bottom-color: var(--rule-strong); }
-.search-label, .chapter-index-label, .result-summary { color: var(--ink); }
-.search-input { color: var(--ink); border-bottom-color: var(--ink); }
-.search-input::placeholder, .chapter-index, .result-summary { color: var(--ink-faint); }
-.filter-btn { color: var(--ink-soft); }
-.dossier { background: #111722; color: var(--ink); }
-.dossier-visual, .img-box { background: var(--paper-deep); }
-.dossier-topline { border-bottom-color: rgba(237,242,251,.26); }
-.dossier-brand, .dossier-lot, .dossier-status, .dossier-desc, .dossier-spec-label { color: var(--ink-soft); }
-.dossier-status::before { background: var(--accent); }
-.dossier-title, .dossier-why, .dossier-spec-value { color: var(--ink); }
-.dossier-specs { border-top-color: rgba(237,242,251,.26); }
-.dossier-spec { border-bottom-color: rgba(237,242,251,.16); }
-.dossier-spec:nth-child(odd) { border-right-color: rgba(237,242,251,.16); }
-.dossier-action { background: var(--accent); border-color: var(--accent); color: #080b10; }
-.dossier-close { border-color: rgba(237,242,251,.45); color: var(--ink); }
-.dossier-action:hover, .dossier-close:hover { background: var(--accent-dark); border-color: var(--accent-dark); color: #080b10; }
-.section-title, .product-name, .hallmark, .spec-label, .spec-val, .lot-number, .seal, .creator-desc, .empty-state h2, .empty-state p { color: var(--ink); }
-.chapter-rule, .grid, .specs, .spec-row, .empty-state, .site-footer { border-color: var(--rule-strong); }
-.section-count, .hallmark, .spec-label, .seal, .footer-line { color: var(--ink-soft); }
-.card { background: transparent; border-color: var(--rule-strong); }
-.card.is-lead { background: var(--paper-warm); }
-.card:hover, .card:focus-visible { background: var(--accent-wash); }
-.specs { border-top-color: var(--rule); }
-.spec-row { border-bottom-color: var(--rule); }
-.spec-val { color: var(--ink-soft); }
-.seal.owned, .seal.wishlist, .record-action { color: var(--accent-dark); }
-.creator-desc { color: var(--ink-soft); }
-.video-card { background: #111722; color: var(--ink); }
-.video-wrapper { background: #080b10; }
-.video-title, .video-tagpill { color: var(--ink); }
-.empty-state { border-top-color: var(--ink); }
-.header-top, .masthead, .page-nav, .page-link, .control-bar, .search-wrap, .filter-bar,
-.chapter-index, .dossier, .grid, .section-wrapper { min-width: 0; max-width: 100%; }
-.header-top { flex-wrap: nowrap; align-items: center; gap: 16px; }
-.header-top .page-nav { flex: 1 1 auto; justify-content: center; flex-wrap: nowrap; gap: 6px 12px; padding: 0; border-top: 0; }
-.header-top .language-note { flex: 0 0 auto; margin-left: 0; }
-.back-btn.home-mark-link { flex: 0 0 46px; width: 46px; height: 46px; min-height: 46px; padding: 0; border: 0; background: transparent; }
-.back-btn.home-mark-link::before { display: none; }
-.home-mark-link img { width: 34px; height: 34px; object-fit: contain; filter: drop-shadow(0 0 16px rgba(111,134,255,.18)); }
-.page-link { flex: 0 0 auto; min-height: 42px; padding: 0 12px; border: 0; border-bottom: 1px solid transparent; background: transparent; }
-.page-link:hover, .page-link.active { color: var(--ink); border-bottom-color: var(--accent); background: transparent; }
-.main-title { font-size: clamp(2.5rem, 4.3vw, 4.25rem); line-height: .94; letter-spacing: -.045em; }
-.masthead { display: block; padding: 30px 0 22px; }
-.header-sub { width: min(100%, 52ch); max-width: 100%; margin: 14px 0 0; min-width: 0; text-align: left; overflow-wrap: anywhere; }
-.header-sub .lang-pair,
-.search-label .lang-pair,
-.search-key .lang-pair,
-.result-summary .lang-pair {
-    display: inline;
-    line-height: 1.35;
-    white-space: normal;
-}
-.header-sub .lang-en,
-.search-label .lang-en,
-.search-key .lang-en,
-.result-summary .lang-en {
-    color: var(--ink-faint);
-    font-size: .78em;
-    letter-spacing: .03em;
-}
-.search-wrap { max-width: 640px; }
-.search-input { padding-right: 190px; text-overflow: ellipsis; }
-.search-key { right: 16px; max-width: 160px; text-align: right; }
-.header-sub { max-width: 64ch; }
-.control-bar { margin-top: 30px; }
-.collection-ledger { padding-block: 14px; gap: 16px 28px; }
-.collection-ledger .lang-pair { gap: .22em; }
-@media (max-width: 1100px) {
-    .header-top { flex-wrap: wrap; }
-    .header-top .language-note { order: 2; margin-left: auto; }
-    .header-top .page-nav {
-        order: 3;
-        width: 100%;
-        flex: 0 0 100%;
-        justify-content: flex-start;
-        flex-wrap: wrap;
-        padding-top: 14px;
-        border-top: 1px solid var(--rule);
-    }
-}
-@media (max-width: 760px) {
-    .header-top { flex-wrap: wrap; align-items: flex-start; }
-    .header-top .page-nav { width: 100%; flex: 0 0 100%; flex-wrap: wrap; justify-content: flex-start; padding-top: 14px; border-top: 1px solid var(--rule); }
-    .header-top .page-link { min-height: 38px; padding-inline: 11px; }
-    .masthead { padding: 26px 0 18px; }
-    .main-title { font-size: clamp(2.6rem, 12vw, 4rem); }
-    .language-note { margin-left: 0; }
-}
-</style>
-<style id="tech-arsenal-redesign">
-/* A compact editorial catalogue: identity, retrieval, then records. */
-:root {
-    --paper: #0b1019;
-    --paper-warm: #121a28;
-    --paper-deep: #0f1622;
-    --ink: #eff4ff;
-    --ink-soft: #aebbd1;
-    --ink-faint: #71809a;
-    --rule: rgba(174, 187, 209, .17);
-    --rule-strong: rgba(174, 187, 209, .32);
-    --accent: #7790ff;
-    --accent-dark: #aabaff;
-    --accent-wash: rgba(119, 144, 255, .1);
-    --shell: min(1420px, calc(100% - 72px));
-}
-
-body {
-    background: #0b1019;
-}
-
-body::before { content: none; }
-
-.broadcast-bar {
-    padding: 9px 0;
-    background: #080c13;
-}
-
-.broadcast-inner {
-    width: var(--shell);
-    max-width: none;
-    gap: 11px;
-}
-
-.header {
-    padding: 24px 0 0;
-}
-
-.header-top {
-    min-height: 58px;
-    gap: 18px;
-    padding-bottom: 15px;
-}
-
-.header-top .page-nav {
-    gap: 4px 16px;
-}
-
-.page-link {
-    min-height: 36px;
-    padding: 0 8px;
-    color: var(--ink-faint);
-    font-size: .61rem;
-}
-
-.page-link:hover,
-.page-link.active {
-    color: var(--ink);
-    border-bottom-color: var(--accent);
-}
-
-.masthead {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(320px, .46fr);
-    align-items: end;
-    gap: clamp(32px, 7vw, 108px);
-    padding: 48px 0 36px;
-    border-bottom: 1px solid var(--rule-strong);
-}
-
-.masthead-copy {
-    max-width: 760px;
-}
-
-.main-title {
-    font-size: clamp(2.55rem, 4.15vw, 4.25rem);
-    line-height: .96;
-    letter-spacing: -.055em;
-}
-
-.header-sub {
-    max-width: 48ch;
-    margin: 17px 0 0;
-    color: var(--ink-soft);
-    font-family: var(--sans);
-    font-size: .98rem;
-    line-height: 1.6;
-}
-
-.header-sub .lang-pair,
-.search-label .lang-pair,
-.search-key .lang-pair,
-.result-summary .lang-pair {
-    display: inline;
-    white-space: normal;
-}
-
-.header-sub .lang-en {
-    color: var(--ink-faint);
-    font-size: .94em;
-}
-
-.collection-ledger {
-    width: auto;
-    margin: 0;
-    padding: 0;
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    align-self: end;
-    gap: 0;
-    border: 0;
-    border-top: 1px solid var(--rule-strong);
-    border-left: 1px solid var(--rule-strong);
-    font-size: .59rem;
-}
-
-.collection-ledger > span {
-    min-height: 68px;
-    padding: 13px 14px 12px 16px;
-    display: grid;
-    align-content: center;
-    gap: 3px;
-    border-right: 1px solid var(--rule-strong);
-    border-bottom: 1px solid var(--rule-strong);
-}
-
-.collection-ledger strong {
-    font-family: var(--serif);
-    font-size: 1.75rem;
-    font-variant-numeric: tabular-nums;
-    line-height: 1;
-}
-
-.collection-ledger .lang-pair {
-    display: inline;
-    white-space: normal;
-}
-
-.control-bar {
-    width: var(--shell);
-    margin: 30px auto 0;
-    padding: 20px 22px;
-    display: grid;
-    grid-template-columns: minmax(300px, .8fr) minmax(480px, 1.2fr);
-    grid-template-areas:
-        "search filters"
-        "summary summary";
-    align-items: end;
-    gap: 15px 46px;
-    border: 0;
-    background: rgba(18, 26, 40, .62);
-}
-
-.search-wrap {
-    grid-area: search;
-    max-width: none;
-}
-
-.search-label {
-    margin-bottom: 10px;
-    color: var(--ink-soft);
-    font-size: .61rem;
-}
-
-.search-label .lang-en,
-.search-key .lang-en,
-.result-summary .lang-en {
-    color: var(--ink-faint);
-    font-size: .9em;
-}
-
-.search-input {
-    min-height: 46px;
-    padding: 6px 124px 6px 33px;
-    border-bottom-color: var(--ink-soft);
-    font-size: 1rem;
-}
-
-.search-input:focus {
-    border-bottom-color: var(--accent);
-}
-
-.search-key {
-    right: 0;
-    bottom: 15px;
-    max-width: 116px;
-    color: var(--ink-faint);
-    font-size: .55rem;
-    text-align: right;
-}
-
-.filter-bar {
-    grid-area: filters;
-    justify-content: flex-start;
-    gap: 0;
-    border: 0;
-}
-
-.filter-btn {
-    min-height: 34px;
-    padding: 0 11px;
-    border: 0;
-    color: var(--ink-faint);
-    font-size: .58rem;
-}
-
-.filter-btn:hover,
-.filter-btn.active {
-    color: var(--ink);
-    background: rgba(119, 144, 255, .12);
-}
-
-.filter-btn:active {
-    transform: translateY(1px);
-}
-
-.result-summary {
-    grid-area: summary;
-    width: auto;
-    margin: 0;
-    padding: 0;
-    border: 0;
-    color: var(--ink-faint);
-    font-size: .57rem;
-}
-
-.control-bar:not(.has-query) .result-summary {
-    display: none;
-}
-
-.chapter-index {
-    display: none;
-}
-
-.dossier {
-    width: var(--shell);
-    margin: 24px auto 0;
-    grid-template-columns: minmax(250px, .38fr) minmax(0, .62fr);
-    border: 1px solid var(--rule-strong);
-    box-shadow: none;
-}
-
-.dossier-visual,
-.img-box {
-    background: #101827;
-}
-
-.dossier-body {
-    padding: 30px 34px 32px;
-}
-
-.dossier-title {
-    max-width: 16ch;
-    font-size: clamp(2.25rem, 4vw, 4.2rem);
-}
-
-.dossier-actions {
-    display: grid;
-    grid-template-columns: minmax(0, 1.4fr) minmax(220px, 1fr);
-    gap: 20px;
-    margin-top: 28px;
-}
-
-.dossier-action,
-.dossier-close {
-    width: 100%;
-    min-height: 70px;
-    padding: 0 24px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    border: 1px solid rgba(174, 187, 209, .52);
-    font-size: .61rem;
-}
-
-.dossier-action .lang-pair,
-.dossier-close .lang-pair {
-    display: inline-flex;
-    align-items: baseline;
-    gap: .2em;
-    white-space: nowrap;
-}
-
-.dossier-action {
-    border-color: var(--accent-dark);
-    background: var(--accent-dark);
-    color: #111722;
-}
-
-.dossier-action .lang-en {
-    color: rgba(17, 23, 34, .36);
-}
-
-.dossier-close {
-    background: transparent;
-    color: var(--ink);
-}
-
-.dossier-close .lang-en {
-    color: var(--ink-soft);
-}
-
-.dossier-action:hover {
-    border-color: var(--ink);
-    background: var(--ink);
-    color: #0b1019;
-}
-
-.dossier-action:hover .lang-en {
-    color: rgba(11, 16, 25, .52);
-}
-
-.dossier-close:hover {
-    border-color: var(--accent-dark);
-    background: rgba(119, 144, 255, .12);
-    color: var(--ink);
-}
-
-.collection {
-    width: var(--shell);
-    margin: 0 auto;
-}
-
-.section-wrapper {
-    width: 100%;
-    margin: 72px 0 0;
-}
-
-.chapter-head {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
-    align-items: end;
-    gap: 16px;
-    margin-bottom: 17px;
-}
-
-.section-title {
-    min-width: 0;
-    gap: 11px;
-    font-size: clamp(2rem, 3.55vw, 3.45rem);
-    line-height: .95;
-    letter-spacing: -.055em;
-}
-
-.section-title .lang-pair {
-    display: inline-flex;
-    align-items: baseline;
-    gap: .18em;
-    min-width: 0;
-    white-space: normal;
-}
-
-.section-title .lang-en {
-    color: var(--ink-soft);
-    font-size: .68em;
-    font-style: italic;
-    font-weight: 400;
-}
-
-.section-count {
-    padding-bottom: 4px;
-    color: var(--ink-faint);
-    font-size: .58rem;
-    white-space: nowrap;
-}
-
-.chapter-rule {
-    grid-column: 1 / -1;
-    margin-top: 0;
-    background: var(--rule-strong);
-}
-
-.grid {
-    border-top: 0;
-}
-
-.card {
-    grid-template-columns: minmax(220px, .3fr) minmax(0, .7fr);
-    border-bottom-color: var(--rule);
-}
-
-.card.is-lead {
-    grid-template-columns: minmax(330px, .44fr) minmax(0, .56fr);
-    min-height: 390px;
-    margin-bottom: 4px;
-    background: #121b2a;
-}
-
-.img-box {
-    min-height: 156px;
-    padding: 28px;
-    border-right: 1px solid var(--rule);
-}
-
-.card.is-lead .img-box {
-    min-height: 390px;
-    padding: 48px;
-}
-
-.card-content {
-    padding: 29px 30px 25px;
-}
-
-.card.is-lead .card-content {
-    padding: 50px 48px 36px;
-}
-
-.card.is-lead .product-name {
-    max-width: 12ch;
-    font-size: clamp(2.85rem, 4.7vw, 4.9rem);
-    line-height: .88;
-}
-
-.card:not(.is-lead) .card-content {
-    grid-template-columns: minmax(170px, .62fr) minmax(240px, 1fr) auto;
-    gap: 18px;
-    padding: 27px 26px 21px;
-}
-
-.card:not(.is-lead) .specs {
-    padding-left: 18px;
-}
-
-.product-name {
-    color: var(--ink);
-    font-size: clamp(1.45rem, 2.25vw, 2.35rem);
-}
-
-.hallmark,
-.spec-label,
-.spec-val,
-.seal,
-.lot-number {
-    color: var(--ink-soft);
-}
-
-.seal.owned,
-.seal.wishlist,
-.record-action {
-    color: var(--accent-dark);
-}
-
-.record-action {
-    transition: color .2s ease, transform .2s ease;
-}
-
-.record-action:hover {
-    color: var(--ink);
-    transform: translateX(2px);
-}
-
-.img-box.is-missing-image {
-    position: relative;
-    isolation: isolate;
-    overflow: hidden;
-}
-
-.img-box.is-missing-image img {
-    display: none;
-}
-
-.img-box.is-missing-image::before {
-    content: attr(data-fallback);
-    max-width: 10ch;
-    color: var(--ink-soft);
-    font-family: var(--serif);
-    font-size: clamp(1.35rem, 2.4vw, 2.7rem);
-    font-style: italic;
-    letter-spacing: -.04em;
-    line-height: .94;
-    text-align: center;
-}
-
-.img-box.is-missing-image::after {
-    content: "ARCHIVE OBJECT";
-    position: absolute;
-    right: 18px;
-    bottom: 16px;
-    color: var(--accent-dark);
-    font-family: var(--mono);
-    font-size: .52rem;
-    letter-spacing: .13em;
-}
-
-#sec-creator {
-    margin-top: 90px;
-}
-
-.site-footer {
-    width: var(--shell);
-    margin-top: 78px;
-}
-
-@media (max-width: 1040px) {
-    .masthead {
-        grid-template-columns: 1fr;
-        gap: 30px;
-    }
-
-    .collection-ledger {
-        width: min(100%, 560px);
-    }
-
-    .control-bar {
-        grid-template-columns: 1fr;
-        grid-template-areas:
-            "search"
-            "filters"
-            "summary";
-        gap: 16px;
-    }
-
-    .dossier,
-    .card.is-lead {
-        grid-template-columns: minmax(260px, .42fr) minmax(0, .58fr);
-    }
-}
-
-@media (max-width: 760px) {
-    :root { --shell: calc(100% - 36px); }
-
-    .broadcast-inner { width: var(--shell); }
-
-    .masthead {
-        padding: 32px 0 28px;
-    }
-
-    .main-title {
-        font-size: clamp(2.25rem, 10.8vw, 3.05rem);
-    }
-
-    .collection-ledger {
-        width: 100%;
-    }
-
-    .collection-ledger > span {
-        min-height: 62px;
-        padding-left: 13px;
-    }
-
-    .control-bar {
-        margin-top: 22px;
-    }
-
-    .filter-bar {
-        gap: 0;
-        overflow-x: auto;
-        flex-wrap: nowrap;
-        scrollbar-width: none;
-    }
-
-    .filter-bar::-webkit-scrollbar { display: none; }
-
-    .filter-btn {
-        flex: 0 0 auto;
-        padding-inline: 11px;
-    }
-
-    .search-input {
-        padding-right: 32px;
-    }
-
-    .search-key {
-        display: none;
-    }
-
-    .section-wrapper {
-        margin-top: 56px;
-    }
-
-    .chapter-head {
-        grid-template-columns: 1fr;
-        gap: 6px;
-    }
-
-    .section-count {
-        padding-bottom: 0;
-    }
-
-    .dossier,
-    .card,
-    .card.is-lead {
-        grid-template-columns: 1fr;
-    }
-
-    .dossier-visual,
-    .card.is-lead .img-box {
-        min-height: 270px;
-    }
-
-    .img-box {
-        min-height: 190px;
-        border-right: 0;
-        border-bottom: 1px solid var(--rule);
-    }
-
-    .card.is-lead .card-content,
-    .dossier-body {
-        padding: 29px 22px 26px;
-    }
-
-    .dossier-actions {
-        grid-template-columns: 1fr;
-        gap: 10px;
-    }
-
-    .card.is-lead .product-name {
-        font-size: clamp(2.65rem, 13vw, 4.15rem);
-    }
-
-    .card:not(.is-lead) .card-content {
-        grid-template-columns: 1fr auto;
-    }
-
-    .card:not(.is-lead) .specs {
-        padding-left: 0;
-    }
-}
-</style>
+    <link rel="stylesheet" href="arsenal-pages.css">
 </head>
 <body>
 
     <div class="broadcast-bar">
-        <div class="broadcast-inner">
-            <span class="signal-icon" aria-hidden="true"></span>
-            <span class="shoutout-text" data-zh="私人收藏" data-en="Private collection">private collection</span>
-            <span class="creator-tag" data-zh="年鉴目录" data-en="Annual index">annual index</span>
-            <span class="shoutout-text" data-zh="35 条记录 / 5 个章节" data-en="35 records / 5 chapters">35 records / 5 chapters</span>
-        </div>
+        <div class="signal-icon"></div>
+        <span class="shoutout-text" data-zh="私人收藏" data-en="Private collection">私人收藏</span>
+        <span class="creator-tag" data-zh="年鉴目录" data-en="Annual index">年鉴目录</span>
+        <span class="shoutout-text" data-zh="43 条记录 / 5 个章节" data-en="43 records / 5 chapters">43 条记录 / 5 个章节</span>
     </div>
 
-    <header class="header">
-        <div class="header-top">
-            <a href="index.html" class="back-btn home-mark-link" aria-label="返回首页 / Back to home" title="返回首页 / Back to home"><img src="assets/images/arsenal-spark.png" alt=""></a>
-            <nav class="page-nav" aria-label="Primary">
-                <a href="index.html" class="page-link">Home</a>
-                <a href="provenance.html" class="page-link">Timeline</a>
-                <a href="field-notes.html" class="page-link">Notes</a>
-                <a href="comparison-lab.html" class="page-link">Compare</a>
-                <a href="on-the-horizon.html" class="page-link">Horizon</a>
-                <a href="tech-arsenal.html" class="page-link active" aria-current="page">Catalogue</a>
-            </nav>
+    <header class="header site-header">
+        <div class="header-top top-row">
+            <a href="index.html" class="back-link home-mark-link" aria-label="返回首页 / Back to home" title="返回首页 / Back to home"><img src="assets/images/arsenal-spark.png" alt=""></a>
+            <nav class="page-nav" aria-label="site">
+                    <a class="page-link${currentFile === "index.html" ? " active" : ""}" href="index.html">首页</a>
+                    <a class="page-link${currentFile === "topology.html" ? " active" : ""}" href="topology.html">工位与连接</a>
+                    <a class="page-link${currentFile === "decision.html" ? " active" : ""}" href="decision.html">选机算盘</a>
+                    <a class="page-link${currentFile === "provenance.html" ? " active" : ""}" href="provenance.html">时间线</a>
+                    <a class="page-link${currentFile === "field-notes.html" ? " active" : ""}" href="field-notes.html">使用手记</a>
+                    <a class="page-link${currentFile === "comparison-lab.html" ? " active" : ""}" href="comparison-lab.html">对比实验室</a>
+                    <a class="page-link${currentFile === "on-the-horizon.html" ? " active" : ""}" href="on-the-horizon.html">观望清单</a>
+                    <a class="page-link${currentFile === "tech-arsenal.html" ? " active" : ""}" href="tech-arsenal.html">总目录</a>
+                </nav>
         </div>
         <div class="masthead">
             <div class="masthead-copy">
@@ -876,9 +35,9 @@ body::before { content: none; }
                 <p class="header-sub" data-zh="个人设备目录：已入藏、关注与配置。" data-en="Owned gear, future objects, useful configurations.">Owned gear, future objects, useful configurations.</p>
             </div>
             <div class="collection-ledger" aria-label="收藏概览 / Collection summary">
-                <span><strong>035</strong> <span data-zh="已编目" data-en="Catalogued">catalogued</span></span>
+                <span><strong>043</strong> <span data-zh="已编目" data-en="Catalogued">catalogued</span></span>
                 <span class="owned"><strong>005</strong> <span data-zh="已入藏" data-en="In collection">in collection</span></span>
-                <span><strong>030</strong> <span data-zh="关注中" data-en="Pursuing">pursuing</span></span>
+                <span><strong>038</strong> <span data-zh="关注中" data-en="Pursuing">pursuing</span></span>
                 <span><strong>005</strong> <span data-zh="章节" data-en="Chapters">chapters</span></span>
             </div>
         </div>
@@ -899,7 +58,7 @@ body::before { content: none; }
             <button class="filter-btn" type="button" data-filter="desktop" aria-pressed="false" data-zh="台式机" data-en="Desktops">Desktops</button>
             <button class="filter-btn" type="button" data-filter="peripheral" aria-pressed="false" data-zh="外设" data-en="Peripherals">Peripherals</button>
         </div>
-        <p class="result-summary" id="resultSummary" role="status" aria-live="polite" data-zh="显示 35 条记录，分布于 5 个章节" data-en="Showing 35 records across 5 chapters">Showing 35 records across 5 chapters</p>
+        <p class="result-summary" id="resultSummary" role="status" aria-live="polite" data-zh="显示 43 条记录，分布于 5 个章节" data-en="Showing 43 records across 5 chapters">Showing 43 records across 5 chapters</p>
     </section>
 
     <aside class="dossier" id="techDossier" aria-labelledby="dossierTitle" hidden>
@@ -924,28 +83,10 @@ body::before { content: none; }
     </aside>
 
     <main class="collection" id="catalogue-main">
-    <div class="section-wrapper" id="sec-creator">
-        <div class="chapter-head">
-            <span class="chapter-eyebrow">reference source</span>
-            <h2 class="section-title creator-title" data-zh="精选创作者 / BOJIO 杰哥" data-en="Featured creator / BOJIO">Featured Creator / BOJIO 杰哥</h2>
-            <div class="chapter-rule"></div>
-        </div>
-        <div class="creator-desc" data-zh="这个区块保留为内容来源参考。后续如果你不想在正式站点里放创作者模块，可以直接删掉，不影响其他页面结构。" data-en="This section keeps the reference source visible. Remove it later if the published catalogue no longer needs a creator module.">这个区块保留为内容来源参考。后续如果你不想在正式站点里放 creator 模块，可以直接删掉，不影响其他页面结构。</div>
-        <div class="video-card">
-            <div class="video-wrapper">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/T4FwjYAWAwI?si=FUs0qRRfZWWGJGwA&amp;start=568" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            </div>
-            <div class="video-info">
-                <h3 class="video-title" data-zh="BOJIO 杰哥 - 科技评测精选" data-en="BOJIO - Selected technology reviews">BOJIO 杰哥 - 科技评测精选</h3>
-                <span class="video-tagpill">DEEP DIVE</span>
-            </div>
-        </div>
-    </div>
-
     <div class="section-wrapper" id="sec-mobile">
         <div class="chapter-head">
             <span class="chapter-eyebrow">phones</span>
-            <h2 class="section-title"><span class="lang-pair"><span class="lang-zh" lang="zh-CN">手机</span><span class="lang-divider" aria-hidden="true"> / </span><span class="lang-en" lang="en">Smartphones</span></span><span class="section-count">(21 / 21 PIECES)</span></h2>
+            <h2 class="section-title"><span class="lang-pair"><span class="lang-zh" lang="zh-CN">手机</span><span class="lang-divider" aria-hidden="true"> / </span><span class="lang-en" lang="en">Smartphones</span></span><span class="section-count">(22 / 22 PIECES)</span></h2>
             <div class="chapter-rule"></div>
         </div>
         <div class="grid">
@@ -1594,6 +735,33 @@ body::before { content: none; }
 <div class="d-spec" data-label="Feature">Under-display Fingerprint | 3.5mm Headphone Jack</div>
                 </div>
             </div>
+            <div class="card" data-brand="samsung" data-status="wishlist" data-cat="mobile" data-lot="041" data-chapter="SMARTPHONES" data-name="galaxy z fold8 samsung · galaxy z series samsung foldable">
+                <div class="lot-number">N&deg; 041</div>
+                <div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
+                <div class="img-box">
+                    <img src="samsungzfold8.png" alt="Galaxy Z Fold8" onerror="this.onerror=null;this.src='assets/images/arsenal-spark.png';">
+                </div>
+                <div class="card-content">
+                    <div class="hallmark">SAMSUNG · GALAXY Z SERIES</div>
+                    <h3 class="product-name">Galaxy Z Fold8</h3>
+                    <div class="specs">
+<div class="spec-row"><span class="spec-label">SoC</span><span class="spec-val">Snapdragon 8 Elite Gen 5</span></div>
+<div class="spec-row"><span class="spec-label">Display</span><span class="spec-val">7.6&quot; Dynamic AMOLED 2X</span></div>
+<div class="spec-row"><span class="spec-label">Build</span><span class="spec-val">Flex Titanium · IP48</span></div>
+                    </div>
+                </div>
+                <div class="hidden-details" style="display:none;">
+                    <div class="d-brand">SAMSUNG // GALAXY Z SERIES</div>
+                    <div class="d-title">Galaxy Z Fold8</div>
+                    <div class="d-why">A thinner, sharper foldable that turns a pocket device into a real multitasking canvas.</div>
+                    <div class="d-desc">Samsung&#x27;s next Galaxy Z flagship pairs a large inner screen with a more capable camera system and a lighter titanium frame.</div>
+<div class="d-spec" data-label="SoC">Snapdragon 8 Elite Gen 5 for Galaxy | 12GB / 16GB LPDDR5X</div>
+<div class="d-spec" data-label="Inner Display">7.6&quot; Dynamic AMOLED 2X | 1–120Hz | 3000 nits | 4:3</div>
+<div class="d-spec" data-label="Cover Display">5.5&quot; Dynamic AMOLED 2X | 1–120Hz | 3000 nits | 10:16</div>
+<div class="d-spec" data-label="Camera System">50MP GN3 main | 50MP JN3 ultrawide | 10MP cover + 10MP inner selfie | up to 10x digital zoom</div>
+<div class="d-spec" data-label="Build / Battery">Flex Titanium | IP48 | 4800mAh | 45W wired | 20W wireless | 201g</div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -1609,7 +777,7 @@ body::before { content: none; }
                 <div class="lot-number">N&deg; 022</div>
                 <div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
                 <div class="img-box">
-                    <img src="https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?q=80&amp;w=800&amp;auto=format&amp;fit=crop" alt="iPad Pro 13&quot;">
+                    <img src="assets/images/ipad-pro-13-enhanced.png" alt="iPad Pro 13&quot;">
                 </div>
                 <div class="card-content">
                     <div class="hallmark">APPLE · CREATOR SLATE</div>
@@ -1635,7 +803,7 @@ body::before { content: none; }
                 <div class="lot-number">N&deg; 023</div>
                 <div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
                 <div class="img-box">
-                    <img src="https://images.unsplash.com/photo-1557825835-70d97c4aa567?q=80&amp;w=800&amp;auto=format&amp;fit=crop" alt="iPad mini (A17 Pro)">
+                    <img src="assets/images/ipad-mini-enhanced.png" alt="iPad mini (A17 Pro)">
                 </div>
                 <div class="card-content">
                     <div class="hallmark">APPLE · GAMING &amp; READING</div>
@@ -1661,7 +829,7 @@ body::before { content: none; }
                 <div class="lot-number">N&deg; 024</div>
                 <div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
                 <div class="img-box">
-                    <img src="https://images.unsplash.com/photo-1589739900266-43b2843f4c12?q=80&amp;w=800&amp;auto=format&amp;fit=crop" alt="Galaxy Tab S10 Ultra">
+                    <img src="assets/images/galaxy-tab-s11-ultra.png" alt="Galaxy Tab S10 Ultra">
                 </div>
                 <div class="card-content">
                     <div class="hallmark">SAMSUNG · GALAXY TAB</div>
@@ -1687,7 +855,7 @@ body::before { content: none; }
                 <div class="lot-number">N&deg; 025</div>
                 <div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
                 <div class="img-box">
-                    <img src="https://images.unsplash.com/photo-1544228800-41fb82eebce3?q=80&amp;w=800&amp;auto=format&amp;fit=crop" alt="Galaxy Tab S10+">
+                    <img src="assets/images/galaxy-tab-s10-plus.png" alt="Galaxy Tab S10+">
                 </div>
                 <div class="card-content">
                     <div class="hallmark">SAMSUNG · GALAXY TAB PLUS</div>
@@ -1716,36 +884,37 @@ body::before { content: none; }
     <div class="section-wrapper" id="sec-laptop">
         <div class="chapter-head">
             <span class="chapter-eyebrow">laptops</span>
-            <h2 class="section-title"><span class="lang-pair"><span class="lang-zh" lang="zh-CN">移动工作站</span><span class="lang-divider" aria-hidden="true"> / </span><span class="lang-en" lang="en">Mobile workstations</span></span><span class="section-count">(2 / 2 PIECES)</span></h2>
+            <h2 class="section-title"><span class="lang-pair"><span class="lang-zh" lang="zh-CN">移动工作站</span><span class="lang-divider" aria-hidden="true"> / </span><span class="lang-en" lang="en">Mobile workstations</span></span><span class="section-count">(8 / 8 PIECES)</span></h2>
             <div class="chapter-rule"></div>
         </div>
         <div class="grid">
 
-            <div class="card" data-brand="apple" data-status="wishlist" data-cat="laptop" data-lot="026" data-chapter="MOBILE WORKSTATIONS" data-name="macbook pro 16&quot; apple · professional apple creator apple">
+            <div class="card" data-brand="apple" data-status="wishlist" data-cat="laptop" data-lot="026" data-chapter="MOBILE WORKSTATIONS" data-name="macbook pro 16-inch m5 pro m5 max apple · professional apple creator">
                 <div class="lot-number">N&deg; 026</div>
                 <div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
                 <div class="img-box">
                     <img src="assets/images/macbook-pro-16.webp" alt="MacBook Pro 16&quot;">
                 </div>
                 <div class="card-content">
-                    <div class="hallmark">APPLE · PROFESSIONAL</div>
-                    <h3 class="product-name">MacBook Pro 16&quot;</h3>
+                    <div class="hallmark">APPLE · MACBOOK PRO / M5</div>
+                    <h3 class="product-name">MacBook Pro 16-inch</h3>
                     <div class="specs">
-<div class="spec-row"><span class="spec-label">Processor</span><span class="spec-val">Apple M4 Max</span></div>
-<div class="spec-row"><span class="spec-label">Memory</span><span class="spec-val">128GB Unified</span></div>
-<div class="spec-row"><span class="spec-label">Storage</span><span class="spec-val">8TB NVMe SSD</span></div>
+<div class="spec-row"><span class="spec-label">Processor</span><span class="spec-val">Apple M5 Pro / M5 Max</span></div>
+<div class="spec-row"><span class="spec-label">Memory</span><span class="spec-val">Up to 128GB Unified</span></div>
+<div class="spec-row"><span class="spec-label">Display</span><span class="spec-val">16.2&quot; Liquid Retina XDR</span></div>
                     </div>
                 </div>
                 <div class="hidden-details" style="display:none;">
-                    <div class="d-brand">APPLE // PROFESSIONAL</div>
-                    <div class="d-title">MacBook Pro 16&quot;</div>
-                    <div class="d-why">M4 Pro in a laptop is legitimately terrifying. I want to render video on this and feel nothing.</div>
-                    <div class="d-desc">The absolute peak of Apple Silicon. Unmatched performance-per-watt for 3D rendering and 8K video editing.</div>
-<div class="d-spec" data-label="Processor">Apple M4 Max | 16-Core CPU | 40-Core GPU</div>
-<div class="d-spec" data-label="Memory">128GB Unified Memory | 546GB/s Bandwidth</div>
-<div class="d-spec" data-label="Storage">8TB PCIe Gen 4 NVMe SSD</div>
-<div class="d-spec" data-label="Display">16.2" Liquid Retina XDR | mini-LED | 120Hz ProMotion</div>
-<div class="d-spec" data-label="I/O">3x Thunderbolt 5 | HDMI 2.1 | SDXC | MagSafe 3</div>
+                    <div class="d-brand">APPLE // MACBOOK PRO 16-INCH / M5</div>
+                    <div class="d-title">MacBook Pro 16-inch</div>
+                    <div class="d-why">The uncompromising MacBook: M5 Pro or M5 Max power in a 16-inch Liquid Retina XDR studio display.</div>
+                    <div class="d-desc">Apple&#x27;s current 16-inch MacBook Pro is built for demanding creative, development, AI, and production workflows, with up to 24 hours of battery life.</div>
+<div class="d-spec" data-label="Processor">Apple M5 Pro | up to 18-core CPU | up to 20-core GPU; M5 Max | 18-core CPU | up to 40-core GPU</div>
+<div class="d-spec" data-label="Memory">M5 Pro up to 64GB unified memory | M5 Max up to 128GB unified memory</div>
+<div class="d-spec" data-label="Display">16.2&quot; Liquid Retina XDR | 1,600 nits peak HDR | 1,000,000:1 contrast ratio</div>
+<div class="d-spec" data-label="Battery">Up to 24 hours</div>
+<div class="d-spec" data-label="Camera &amp; Audio">12MP Center Stage camera | Three-mic array | Six-speaker system with Spatial Audio and Dolby Atmos</div>
+<div class="d-spec" data-label="I/O">3× Thunderbolt 4 or 5 | HDMI | MagSafe 3 | SDXC | Headphone jack</div>
                 </div>
             </div>
             <div class="card" data-brand="lenovo" data-status="wishlist" data-cat="laptop" data-lot="027" data-chapter="MOBILE WORKSTATIONS" data-name="legion 5 15ahp10 lenovo · legion esports lenovo gaming lenovo">
@@ -1773,6 +942,172 @@ body::before { content: none; }
 <div class="d-spec" data-label="Memory">32GB (2x16GB) SO-DIMM DDR5-5600</div>
 <div class="d-spec" data-label="Display">15.6" WQHD (2560x1440) | 165Hz | 100% sRGB | G-Sync</div>
 <div class="d-spec" data-label="Cooling">Legion Coldfront 5.0 | Liquid Metal Thermal Interface</div>
+                </div>
+            </div>
+            <div class="card" data-brand="asus" data-status="wishlist" data-cat="laptop" data-lot="037" data-chapter="MOBILE WORKSTATIONS" data-name="proart p16 h7607 rtx spark asus · creator workstation asus creator laptop">
+                <div class="lot-number">N&deg; 037</div>
+                <div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
+                <div class="img-box">
+                    <img src="https://dlcdnwebimgs.asus.com/gain/db815677-1e89-4035-bc04-729491f4386e/w800" alt="ASUS ProArt P16 (H7607)">
+                </div>
+                <div class="card-content">
+                    <div class="hallmark">ASUS · PROART P16 / RTX SPARK</div>
+                    <h3 class="product-name">ProArt P16 (H7607)</h3>
+                    <div class="specs">
+<div class="spec-row"><span class="spec-label">Platform</span><span class="spec-val">NVIDIA RTX Spark</span></div>
+<div class="spec-row"><span class="spec-label">AI</span><span class="spec-val">Up to 1 PFLOP FP4</span></div>
+<div class="spec-row"><span class="spec-label">Display</span><span class="spec-val">4K Lumina Pro OLED · 120Hz VRR</span></div>
+                    </div>
+                </div>
+                <div class="hidden-details" style="display:none;">
+                    <div class="d-brand">ASUS // PROART P16 / RTX SPARK</div>
+                    <div class="d-title">ProArt P16 (H7607)</div>
+                    <div class="d-why">The exact RTX Spark creator laptop from ASUS: a portable workstation built for local AI, 3D, and high-resolution creative work.</div>
+                    <div class="d-desc">The ProArt P16 H7607 combines NVIDIA RTX Spark with up to 128GB of unified memory and an ASUS Lumina Pro OLED display.</div>
+<div class="d-spec" data-label="Platform">NVIDIA Blackwell RTX GPU | 6,144 CUDA cores | 20-core NVIDIA Grace CPU</div>
+<div class="d-spec" data-label="AI Performance">Up to 1 petaflop FP4 AI performance | Purpose-built for personal agents</div>
+<div class="d-spec" data-label="Memory">Up to 128GB unified memory</div>
+<div class="d-spec" data-label="Display">4K ASUS Lumina Pro OLED | Delta E &lt; 1 | 120Hz VRR | up to 1,600 nits | anti-reflection</div>
+<div class="d-spec" data-label="Design">12.9mm ultrathin | 1.77kg | Nano Black / Neo White</div>
+<div class="d-spec" data-label="Operating System">Windows 11 Home</div>
+                </div>
+            </div>
+            <div class="card" data-brand="apple" data-status="wishlist" data-cat="laptop" data-lot="038" data-chapter="MOBILE WORKSTATIONS" data-name="macbook air 13 apple · everyday laptop apple macbook">
+                <div class="lot-number">N&deg; 038</div>
+                <div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
+                <div class="img-box">
+                    <img src="assets/images/macbook-air-13-clean.png" alt="MacBook Air 13-inch" onerror="this.onerror=null;this.src='assets/images/arsenal-spark.png';">
+                </div>
+                <div class="card-content">
+                    <div class="hallmark">APPLE · EVERYDAY LAPTOP</div>
+                    <h3 class="product-name">MacBook Air 13-inch</h3>
+                    <div class="specs">
+<div class="spec-row"><span class="spec-label">Processor</span><span class="spec-val">Apple M5</span></div>
+<div class="spec-row"><span class="spec-label">Display</span><span class="spec-val">13.6&quot; Liquid Retina</span></div>
+<div class="spec-row"><span class="spec-label">Battery</span><span class="spec-val">Up to 18h video</span></div>
+                    </div>
+                </div>
+                <div class="hidden-details" style="display:none;">
+                    <div class="d-brand">APPLE // EVERYDAY LAPTOP</div>
+                    <div class="d-title">MacBook Air 13-inch</div>
+                    <div class="d-why">The quiet, light everyday machine: enough power for creative work without the weight of a workstation.</div>
+                    <div class="d-desc">Apple&#x27;s M5 MacBook Air keeps the fanless, portable formula while adding a faster neural engine and modern connectivity.</div>
+<div class="d-spec" data-label="Processor">Apple M5 | 10-core CPU | 8-core GPU | 16-core Neural Engine</div>
+<div class="d-spec" data-label="Memory">16GB Unified Memory | Configurable to 24GB / 32GB | 153GB/s</div>
+<div class="d-spec" data-label="Storage">512GB SSD | Configurable to 1TB / 2TB / 4TB</div>
+<div class="d-spec" data-label="Display">13.6&quot; Liquid Retina | 2560×1664 | 500 nits | P3 | True Tone</div>
+<div class="d-spec" data-label="Battery &amp; I/O">Up to 18h video | MagSafe 3 | 2× Thunderbolt 4 | Wi-Fi 7 | Bluetooth 6</div>
+                </div>
+            </div>
+            <div class="card" data-brand="apple" data-status="wishlist" data-cat="laptop" data-lot="043" data-chapter="MOBILE WORKSTATIONS" data-name="macbook air 15 apple · everyday laptop apple macbook">
+                <div class="lot-number">N&deg; 043</div>
+                <div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
+                <div class="img-box">
+                    <img src="assets/images/macbook-air-15-m5.png" alt="MacBook Air 15-inch" onerror="this.onerror=null;this.src='assets/images/arsenal-spark.png';">
+                </div>
+                <div class="card-content">
+                    <div class="hallmark">APPLE · EVERYDAY LAPTOP</div>
+                    <h3 class="product-name">MacBook Air 15-inch</h3>
+                    <div class="specs">
+<div class="spec-row"><span class="spec-label">Processor</span><span class="spec-val">Apple M5</span></div>
+<div class="spec-row"><span class="spec-label">Display</span><span class="spec-val">15.3&quot; Liquid Retina</span></div>
+<div class="spec-row"><span class="spec-label">Battery</span><span class="spec-val">Up to 18h video</span></div>
+                    </div>
+                </div>
+                <div class="hidden-details" style="display:none;">
+                    <div class="d-brand">APPLE // EVERYDAY LAPTOP</div>
+                    <div class="d-title">MacBook Air 15-inch</div>
+                    <div class="d-why">The larger-screen Air: the same silent, fanless M5 platform with more room for multitasking.</div>
+                    <div class="d-desc">Apple&#x27;s 15.3-inch MacBook Air brings the current M5 performance, Liquid Retina display, and lightweight aluminium design to a bigger portable workspace.</div>
+<div class="d-spec" data-label="Processor">Apple M5 | 10-core CPU | up to 10-core GPU | Neural Accelerators</div>
+<div class="d-spec" data-label="Memory">16GB Unified Memory | Configurable to 24GB / 32GB</div>
+<div class="d-spec" data-label="Storage">512GB SSD | Configurable to 1TB / 2TB / 4TB</div>
+<div class="d-spec" data-label="Display">15.3&quot; Liquid Retina | 2880×1864 | 500 nits | P3 | True Tone</div>
+<div class="d-spec" data-label="Battery &amp; I/O">Up to 18h video | MagSafe 3 | 2× Thunderbolt 4 | Wi-Fi 7 | Bluetooth 6</div>
+                </div>
+            </div>
+            <div class="card" data-brand="msi" data-status="wishlist" data-cat="laptop" data-lot="039" data-chapter="MOBILE WORKSTATIONS" data-name="prestige 16 ai c3m c3mx msi · business productivity msi laptop">
+                <div class="lot-number">N&deg; 039</div>
+                <div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
+                <div class="img-box">
+                    <img src="assets/images/prestige-16-ai-plus-c3m.png" alt="MSI Prestige 16 AI+ C3M">
+                </div>
+                <div class="card-content">
+                    <div class="hallmark">MSI · PRESTIGE 16 AI+ / C3M</div>
+                    <h3 class="product-name">Prestige 16 AI+ C3M</h3>
+                    <div class="specs">
+<div class="spec-row"><span class="spec-label">Processor</span><span class="spec-val">Intel Core Ultra X9 388H</span></div>
+<div class="spec-row"><span class="spec-label">Display</span><span class="spec-val">16&quot; 2.8K OLED · 48–120Hz VRR</span></div>
+<div class="spec-row"><span class="spec-label">Weight</span><span class="spec-val">1.59kg · 11.9–13.9mm</span></div>
+                    </div>
+                </div>
+                <div class="hidden-details" style="display:none;">
+                    <div class="d-brand">MSI // PRESTIGE 16 AI+ / C3M</div>
+                    <div class="d-title">Prestige 16 AI+ C3M</div>
+                    <div class="d-why">A large-screen professional laptop that keeps the executive look, AI headroom, and all-day mobility in balance.</div>
+                    <div class="d-desc">The MSI Prestige 16 AI+ C3M pairs Intel Core Ultra Series 3 with a 16-inch OLED display, a lightweight aluminum chassis, and Copilot+ PC features.</div>
+<div class="d-spec" data-label="Processor">Intel Core Ultra X9 388H | Up to 16 cores | Up to 5.1GHz | 50 NPU TOPS</div>
+<div class="d-spec" data-label="Graphics">Up to Intel Arc GPU B390</div>
+<div class="d-spec" data-label="Memory &amp; Storage">LPDDR5x up to 64GB | 1× M.2 NVMe PCIe Gen4</div>
+<div class="d-spec" data-label="Display">16&quot; 2.8K OLED | 2880×1800 | 48–120Hz VRR | 100% DCI-P3 | DisplayHDR True Black 600</div>
+<div class="d-spec" data-label="Design">Ultra-slim 11.9–13.9mm | 1.59kg aluminum alloy chassis</div>
+<div class="d-spec" data-label="Battery &amp; I/O">81Wh | Up to 24+ hours | 100W PD 3.0 | Thunderbolt 4 | HDMI 2.1 | Wi-Fi 7</div>
+                </div>
+            </div>
+            <div class="card" data-brand="apple" data-status="wishlist" data-cat="laptop" data-lot="040" data-chapter="MOBILE WORKSTATIONS" data-name="macbook neo 13 apple · entry mac apple laptop">
+                <div class="lot-number">N&deg; 040</div>
+                <div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
+                <div class="img-box">
+                    <img src="assets/images/macbook-neo-13-clean.png" alt="MacBook Neo 13-inch" onerror="this.onerror=null;this.src='assets/images/arsenal-spark.png';">
+                </div>
+                <div class="card-content">
+                    <div class="hallmark">APPLE · ENTRY MAC</div>
+                    <h3 class="product-name">MacBook Neo 13-inch</h3>
+                    <div class="specs">
+<div class="spec-row"><span class="spec-label">Processor</span><span class="spec-val">Apple A18 Pro</span></div>
+<div class="spec-row"><span class="spec-label">Display</span><span class="spec-val">13.0&quot; Liquid Retina</span></div>
+<div class="spec-row"><span class="spec-label">Battery</span><span class="spec-val">Up to 16h video</span></div>
+                    </div>
+                </div>
+                <div class="hidden-details" style="display:none;">
+                    <div class="d-brand">APPLE // ENTRY MAC</div>
+                    <div class="d-title">MacBook Neo 13-inch</div>
+                    <div class="d-why">The affordable Mac I keep wishing existed: compact, quiet, and still unmistakably Apple.</div>
+                    <div class="d-desc">MacBook Neo brings Apple&#x27;s A18 Pro platform to a lighter entry notebook with a full-size keyboard and modern wireless connectivity.</div>
+<div class="d-spec" data-label="Processor">Apple A18 Pro | 6-core CPU | 5-core GPU | 16-core Neural Engine</div>
+<div class="d-spec" data-label="Memory &amp; Storage">8GB Unified Memory | 256GB / 512GB SSD</div>
+<div class="d-spec" data-label="Display">13.0&quot; Liquid Retina | 2408×1506 | 500 nits | sRGB</div>
+<div class="d-spec" data-label="Battery">Up to 16h video | 36.5Wh | 20W USB-C Power Adapter</div>
+<div class="d-spec" data-label="I/O &amp; Wireless">USB 3 USB-C + USB 2 USB-C | 3.5mm | Wi-Fi 6E | Bluetooth 6</div>
+                </div>
+            </div>
+            <div class="card" data-brand="acer" data-status="wishlist" data-cat="laptop" data-lot="042" data-chapter="MOBILE WORKSTATIONS" data-name="swift go 14 ai acer · swift go acer 14-inch intel core ultra ai laptop">
+                <div class="lot-number">N&deg; 042</div>
+                <div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
+                <div class="img-box">
+                    <img src="assets/images/swift-go-14-ai.png" alt="Acer Swift Go 14 AI" onerror="this.onerror=null;this.src='assets/images/arsenal-spark.png';">
+                </div>
+                <div class="card-content">
+                    <div class="hallmark">ACER · SWIFT GO / AI</div>
+                    <h3 class="product-name">Swift Go 14 AI</h3>
+                    <div class="specs">
+<div class="spec-row"><span class="spec-label">Processor</span><span class="spec-val">Intel Core Ultra X9 388H</span></div>
+<div class="spec-row"><span class="spec-label">AI</span><span class="spec-val">Up to 180 TOPS</span></div>
+<div class="spec-row"><span class="spec-label">Display</span><span class="spec-val">Up to 3K OLED · 120Hz</span></div>
+                    </div>
+                </div>
+                <div class="hidden-details" style="display:none;">
+                    <div class="d-brand">ACER // SWIFT GO 14 AI</div>
+                    <div class="d-title">Swift Go 14 AI</div>
+                    <div class="d-why">The 14-inch Swift Go is the portable counterpoint to the big workstations: light enough to carry every day, smart enough to keep up.</div>
+                    <div class="d-desc">Acer&#x27;s Swift Go 14 AI combines an ultra-light aluminum design with Intel Core Ultra performance, OLED display options, and Copilot+ PC features.</div>
+<div class="d-spec" data-label="Processor">Up to Intel Core Ultra X9 388H</div>
+<div class="d-spec" data-label="AI Performance">Up to 180 TOPS total platform AI performance</div>
+<div class="d-spec" data-label="Graphics">Up to Intel Arc B390 graphics</div>
+<div class="d-spec" data-label="Display">Up to 3K OLED | Up to 120Hz | Slim bezels</div>
+<div class="d-spec" data-label="Mobility">Starting at 1.12kg | 180° lie-flat hinge | Laser-etched aluminum cover</div>
+<div class="d-spec" data-label="Connectivity">2× Thunderbolt 4 Type-C | HDMI 2.1 up to 8K | Wi-Fi 7 | 5MP IR camera</div>
+<div class="d-spec" data-label="Operating System">Windows 11 Home</div>
                 </div>
             </div>
         </div>
@@ -1873,7 +1208,7 @@ body::before { content: none; }
     <div class="section-wrapper" id="sec-peripheral">
         <div class="chapter-head">
             <span class="chapter-eyebrow">peripherals</span>
-            <h2 class="section-title"><span class="lang-pair"><span class="lang-zh" lang="zh-CN">装备与外设</span><span class="lang-divider" aria-hidden="true"> / </span><span class="lang-en" lang="en">Weapons &amp; peripherals</span></span><span class="section-count">(5 / 5 PIECES)</span></h2>
+            <h2 class="section-title"><span class="lang-pair"><span class="lang-zh" lang="zh-CN">装备与外设</span><span class="lang-divider" aria-hidden="true"> / </span><span class="lang-en" lang="en">Weapons &amp; peripherals</span></span><span class="section-count">(6 / 6 PIECES)</span></h2>
             <div class="chapter-rule"></div>
         </div>
         <div class="grid">
@@ -2012,13 +1347,40 @@ body::before { content: none; }
 <div class="d-spec" data-label="Connectivity">Bluetooth 5.4 | Auracast Support</div>
                 </div>
             </div>
+            <div class="card" data-brand="nothing" data-status="wishlist" data-cat="peripheral" data-lot="036" data-chapter="WEAPONS &amp; PERIPHERALS" data-name="nothing ear a nothing · everyday audio wireless earbuds">
+                <div class="lot-number">N&deg; 036</div>
+                <div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
+                <div class="img-box">
+                    <img src="nothing-ear-a.png" alt="Nothing Ear (a)" onerror="this.onerror=null;this.src='assets/images/arsenal-spark.png';">
+                </div>
+                <div class="card-content">
+                    <div class="hallmark">NOTHING · EVERYDAY AUDIO</div>
+                    <h3 class="product-name">Nothing Ear (a)</h3>
+                    <div class="specs">
+<div class="spec-row"><span class="spec-label">Driver</span><span class="spec-val">11mm Dynamic Driver</span></div>
+<div class="spec-row"><span class="spec-label">ANC</span><span class="spec-val">Adaptive · up to 45dB</span></div>
+<div class="spec-row"><span class="spec-label">Battery</span><span class="spec-val">Up to 42.5h with case</span></div>
+                    </div>
+                </div>
+                <div class="hidden-details" style="display:none;">
+                    <div class="d-brand">NOTHING // EVERYDAY AUDIO</div>
+                    <div class="d-title">Nothing Ear (a)</div>
+                    <div class="d-why">A playful everyday pair that brings proper ANC, good battery life, and a little visual personality to the shortlist.</div>
+                    <div class="d-desc">Nothing Ear (a) balances a light transparent design with adaptive noise cancellation and broad codec support.</div>
+<div class="d-spec" data-label="Audio Architecture">11mm Dynamic Driver | PMI + TPU diaphragm</div>
+<div class="d-spec" data-label="Noise Cancellation">Adaptive ANC | Up to 45dB | Transparency Mode</div>
+<div class="d-spec" data-label="Battery">Up to 9.5h earbuds | 42.5h with case | 10 min = 10h</div>
+<div class="d-spec" data-label="Connectivity">Bluetooth 5.3 | AAC / SBC / LDAC | Dual Connection</div>
+<div class="d-spec" data-label="Protection">IP54 earbuds | IPX2 case | 4.8g per earbud</div>
+                </div>
+            </div>
         </div>
     </div>
 
     </main>
 
     <div class="site-footer">
-        <div class="footer-line" data-zh="TECH ARSENAL / 年鉴目录 / 035 条记录 / 候选清晰后再对比" data-en="TECH ARSENAL / Annual index / 035 pieces catalogued / Compare when the shortlist is clear">tech arsenal / annual index / 035 pieces catalogued / compare when the shortlist is clear</div>
+        <div class="footer-line" data-zh="TECH ARSENAL / 年鉴目录 / 043 条记录 / 候选清晰后再对比" data-en="TECH ARSENAL / Annual index / 043 pieces catalogued / Compare when the shortlist is clear">tech arsenal / annual index / 043 pieces catalogued / compare when the shortlist is clear</div>
     </div>
 
     <div class="empty-state" id="emptyState" hidden>
@@ -2044,11 +1406,11 @@ body::before { content: none; }
         });
 
         const filterButtons = [...document.querySelectorAll(".filter-btn")];
-        const sections = [...document.querySelectorAll(".section-wrapper")].filter((section) => section.id !== "sec-creator");
-            const searchInput = document.getElementById("searchInput");
-            const resultSummary = document.getElementById("resultSummary");
-            const controlBar = document.querySelector(".control-bar");
-            const emptyState = document.getElementById("emptyState");
+        const sections = [...document.querySelectorAll(".section-wrapper")];
+        const searchInput = document.getElementById("searchInput");
+        const resultSummary = document.getElementById("resultSummary");
+        const controlBar = document.querySelector(".control-bar");
+        const emptyState = document.getElementById("emptyState");
         const dossier = document.getElementById("techDossier");
         const dossierImage = document.getElementById("dossierImage");
         const dossierBrand = document.getElementById("dossierBrand");
@@ -2117,8 +1479,6 @@ body::before { content: none; }
                 }
             });
 
-            const creator = document.getElementById("sec-creator");
-            if (creator) creator.hidden = Boolean(query) || activeFilter !== "all";
             if (selectedCard && selectedCard.hidden) closeTechDossier();
 
                 emptyState.hidden = visibleTotal !== 0;

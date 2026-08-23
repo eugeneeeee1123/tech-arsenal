@@ -1,6 +1,8 @@
 (function () {
     const pages = [
         { file: "index.html", zh: "首页", en: "Home", key: "home" },
+        { file: "topology.html", zh: "工位与连接", en: "Setup", key: "topology" },
+        { file: "decision.html", zh: "选机算盘", en: "Decision", key: "decision" },
         { file: "provenance.html", zh: "时间线", en: "Timeline", key: "timeline" },
         { file: "field-notes.html", zh: "使用手记", en: "Field notes", key: "notes" },
         { file: "comparison-lab.html", zh: "对比实验室", en: "Compare", key: "compare" },
@@ -268,16 +270,7 @@
         link.setAttribute("title", "返回首页 / Back to home");
     });
 
-    document.querySelectorAll(".site-header, .header").forEach((header) => {
-        if (header.querySelector(".language-note")) return;
-        const note = document.createElement("span");
-        note.className = "language-note";
-        note.setAttribute("aria-label", "中英文双语 / Chinese and English");
-        note.innerHTML = bilingual("中英双语", "Bilingual");
-        const nav = header.querySelector(".page-nav");
-        const chromeRow = header.querySelector(".top-row, .header-top") || (nav && nav.parentElement);
-        if (chromeRow) chromeRow.appendChild(note);
-    });
+
 
     document.documentElement.dataset.sitePage = current.key;
 })();

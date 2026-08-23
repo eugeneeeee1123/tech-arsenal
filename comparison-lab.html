@@ -19,11 +19,14 @@
             <div class="top-row">
                 <a class="back-link home-mark-link" href="index.html" aria-label="返回首页 / Back to home" title="返回首页 / Back to home"><img src="assets/images/arsenal-spark.png" alt=""></a>
                 <nav class="page-nav" aria-label="site">
-                    <a class="page-link" href="index.html">home</a>
-                    <a class="page-link" href="provenance.html">timeline</a>
-                    <a class="page-link" href="field-notes.html">notes</a>
-                    <a class="page-link active" href="comparison-lab.html">compare</a>
-                    <a class="page-link" href="on-the-horizon.html">horizon</a>
+                    <a class="page-link${currentFile === "index.html" ? " active" : ""}" href="index.html">首页</a>
+                    <a class="page-link${currentFile === "topology.html" ? " active" : ""}" href="topology.html">工位与连接</a>
+                    <a class="page-link${currentFile === "decision.html" ? " active" : ""}" href="decision.html">选机算盘</a>
+                    <a class="page-link${currentFile === "provenance.html" ? " active" : ""}" href="provenance.html">时间线</a>
+                    <a class="page-link${currentFile === "field-notes.html" ? " active" : ""}" href="field-notes.html">使用手记</a>
+                    <a class="page-link${currentFile === "comparison-lab.html" ? " active" : ""}" href="comparison-lab.html">对比实验室</a>
+                    <a class="page-link${currentFile === "on-the-horizon.html" ? " active" : ""}" href="on-the-horizon.html">观望清单</a>
+                    <a class="page-link${currentFile === "tech-arsenal.html" ? " active" : ""}" href="tech-arsenal.html">总目录</a>
                 </nav>
             </div>
 

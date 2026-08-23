@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TECH ARSENAL | 规格</title>
+    <link rel="stylesheet" href="arsenal-pages.css">
+</head>
+<body>
+    <div class="broadcast-bar">
+        <div class="signal-icon"></div>
+        <span class="shoutout-text">设备参数</span>
+        <span class="creator-tag">spec index</span>
+        <span class="shoutout-text">041 records</span>
+    </div>
+
+    <main class="shell">
+        <header class="site-header">
+            <div class="top-row">
+                <a class="back-link home-mark-link" href="index.html" aria-label="返回首页 / Back to home" title="返回首页 / Back to home"><img src="assets/images/arsenal-spark.png" alt=""></a>
+                <nav class="page-nav" aria-label="site">
+                    <a class="page-link${currentFile === "index.html" ? " active" : ""}" href="index.html">首页</a>
+                    <a class="page-link${currentFile === "topology.html" ? " active" : ""}" href="topology.html">工位与连接</a>
+                    <a class="page-link${currentFile === "decision.html" ? " active" : ""}" href="decision.html">选机算盘</a>
+                    <a class="page-link${currentFile === "provenance.html" ? " active" : ""}" href="provenance.html">时间线</a>
+                    <a class="page-link${currentFile === "field-notes.html" ? " active" : ""}" href="field-notes.html">使用手记</a>
+                    <a class="page-link${currentFile === "comparison-lab.html" ? " active" : ""}" href="comparison-lab.html">对比实验室</a>
+                    <a class="page-link${currentFile === "on-the-horizon.html" ? " active" : ""}" href="on-the-horizon.html">观望清单</a>
+                    <a class="page-link${currentFile === "tech-arsenal.html" ? " active" : ""}" href="tech-arsenal.html">总目录</a>
+                </nav>
+            </div>
+
+            <div class="hero-head">
+                <div class="eyebrow">spec index</div>
+                <div class="title-lockup">
+                    <h1 class="main-title">规<span class="accent">格</span></h1>
+                </div>
+            </div>
+        </header>
+
+        <div id="spec-catalog"></div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-line">tech arsenal / 规格</div>
+    </footer>
+
+    <script src="specs-data.js"></script>
+    <script src="arsenal-site.js"></script>
+    <script>
+        const specGroups = [
+            ["mobile", "SMARTPHONES"],
+            ["tablet", "TABLETS & SLATES"],
+            ["laptop", "LAPTOPS"],
+            ["desktop", "DESKTOPS"],
+            ["peripheral", "WEAPONS & PERIPHERALS"]
+        ];
+
+        const escapeHtml = (value) => String(value).replace(/[&<>\"']/g, (character) => ({
+            "&": "&amp;",
+            "<": "&lt;",
+            ">": "&gt;",
+            "\"": "&quot;",
+            "'": "&#039;"
+        }[character]));
+
+        const renderSpecRows = (specs) => {
+            const cameraSystem = specs.find(([label]) => label === "Camera System")?.[1];
+            const cameraSensor = specs.find(([label]) => label === "Camera Sensor")?.[1];
+            const cameraRow = cameraSystem || cameraSensor
+                ? `<div class="spec-camera-row"><dt>Camera System</dt><dd>${cameraSystem ? `<span>${escapeHtml(cameraSystem)}</span>` : ""}${cameraSensor ? `<span class="spec-camera-detail">${escapeHtml(cameraSensor)}</span>` : ""}</dd></div>`
+                : "";
+            const regularRows = specs
+                .filter(([label]) => label !== "Camera System" && label !== "Camera Sensor")
+                .map(([label, value]) => `<div><dt>${escapeHtml(label)}</dt><dd>${escapeHtml(value)}</dd></div>`)
+                .join("");
+            return cameraRow + regularRows;
+        };
+
+        const renderRecord = (item) => `
+            <article class="spec-record" data-status="${escapeHtml(item.status)}">
+                <div class="spec-record-lot">N° ${escapeHtml(item.lot)}</div>
+                <div class="spec-record-identity">
+                    <span class="spec-image-slot" data-image="${escapeHtml(item.image)}" aria-hidden="true"></span>
+                    <div class="spec-record-title">
+                        <span class="spec-record-brand">${escapeHtml(item.brand)}</span>
+                        <h4>${escapeHtml(item.name)}</h4>
+                        <span class="spec-status ${item.status === "owned" ? "owned" : "wishlist"}">${escapeHtml(item.status)}</span>
+                    </div>
+                </div>
+                <dl class="spec-record-data">
+                    ${renderSpecRows(item.specs)}
+                </dl>
+            </article>
+        `;
+
+        document.getElementById("spec-catalog").innerHTML = specGroups.map(([category, label]) => {
+            const items = specsCatalog.filter((item) => item.category === category);
+            return `
+                <section class="section spec-catalog-section">
+                    <div class="section-heading">
+                        <h3>${label} <span class="section-count">(${String(items.length).padStart(2, "0")})</span></h3>
+                    </div>
+                    <div class="spec-catalog-list">${items.map(renderRecord).join("")}</div>
+                </section>
+            `;
+        }).join("");
+    </script>
+</body>
+</html>

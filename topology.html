@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<!-- Hallmark & Humanizer · page: topology · simple prose · no AI fluff -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TECH ARSENAL | 工位与连接 / Rig & Setup</title>
+    <link rel="stylesheet" href="arsenal-pages.css">
+</head>
+<body>
+    <div class="broadcast-bar">
+        <div class="signal-icon"></div>
+        <span class="shoutout-text" data-zh="设备连接" data-en="Connections">设备连接</span>
+        <span class="creator-tag" data-zh="工位设置" data-en="Rig setup">rig setup</span>
+        <span class="shoutout-text" data-zh="供电与同步" data-en="Power & Sync">供电与同步</span>
+    </div>
+
+    <main class="shell">
+        <header class="site-header">
+            <div class="top-row">
+                <a class="back-link home-mark-link" href="index.html" aria-label="返回首页 / Back to home" title="返回首页 / Back to home">
+                    <img src="assets/images/arsenal-spark.png" alt="">
+                </a>
+                <nav class="page-nav" aria-label="site">
+                    <a class="page-link${currentFile === "index.html" ? " active" : ""}" href="index.html">首页</a>
+                    <a class="page-link${currentFile === "topology.html" ? " active" : ""}" href="topology.html">工位与连接</a>
+                    <a class="page-link${currentFile === "decision.html" ? " active" : ""}" href="decision.html">选机算盘</a>
+                    <a class="page-link${currentFile === "provenance.html" ? " active" : ""}" href="provenance.html">时间线</a>
+                    <a class="page-link${currentFile === "field-notes.html" ? " active" : ""}" href="field-notes.html">使用手记</a>
+                    <a class="page-link${currentFile === "comparison-lab.html" ? " active" : ""}" href="comparison-lab.html">对比实验室</a>
+                    <a class="page-link${currentFile === "on-the-horizon.html" ? " active" : ""}" href="on-the-horizon.html">观望清单</a>
+                    <a class="page-link${currentFile === "tech-arsenal.html" ? " active" : ""}" href="tech-arsenal.html">总目录</a>
+                </nav>
+            </div>
+
+            <div class="hero-head">
+                <div class="eyebrow" data-zh="工位与连接" data-en="Rig & Setup">工位与连接</div>
+                <div class="title-lockup">
+                    <h1 class="main-title" data-zh="工位与连接" data-en="Rig & Setup">工位与<span class="accent">连接</span></h1>
+                    <p class="page-subtitle" data-zh="日常用到的几台设备，怎么连屏幕、怎么传文件、怎么供电。" data-en="How my daily devices connect to screens, sync files, and get power.">日常用到的几台设备，怎么连屏幕、怎么传文件、怎么供电。</p>
+                </div>
+            </div>
+        </header>
+
+        <section class="hero-panel">
+            <div class="hero-grid">
+                <div class="hero-copy">
+                    <div class="hero-copy-top">
+                        <div class="meta-chip" data-zh="日常搭配" data-en="Daily Setup">日常搭配</div>
+                        <h2 data-zh="日常主要用 MacBook 和 Legion 两台电脑。" data-en="My daily setup centers on a MacBook and a Legion laptop.">日常主要用 MacBook 和 Legion 两台电脑。</h2>
+                        <p data-zh="MacBook 负责写代码和日常使用，Legion 负责跑本地模型、渲染和打游戏。两台电脑用 Syncthing 自动同步文件夹，不用手动拷数据。" data-en="MacBook handles code and daily tasks; Legion runs local models, rendering, and games. Syncthing keeps project folders in sync automatically.">MacBook 负责写代码和日常使用，Legion 负责跑本地模型、渲染和打游戏。两台电脑用 Syncthing 自动同步文件夹，不用手动拷数据。</p>
+                    </div>
+
+                    <div class="hero-stats">
+                        <div class="hero-stat">
+                            <strong>02</strong>
+                            <span data-zh="主力电脑" data-en="Main PCs">主力电脑</span>
+                        </div>
+                        <div class="hero-stat">
+                            <strong>03</strong>
+                            <span data-zh="常用场景" data-en="Presets">常用场景</span>
+                        </div>
+                        <div class="hero-stat">
+                            <strong>140W</strong>
+                            <span data-zh="桌面充电头" data-en="Desktop Charger">桌面充电头</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hero-side">
+                    <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1000&auto=format&fit=crop" alt="Desk setup and MacBook">
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 1: Station Nodes -->
+        <section class="section">
+            <div class="section-heading">
+                <h3 data-zh="工位与设备" data-en="Workstation & Devices">工位与设备</h3>
+                <p data-zh="点选不同场景，查看设备的分工和接线方式。" data-en="Select a scenario to see device roles and connections.">点选不同场景，查看设备的分工和接线方式。</p>
+            </div>
+
+            <div class="topology-controls">
+                <button class="station-tab active" data-station="dual-desk" type="button">
+                    <span class="tab-indicator"></span>
+                    <span data-zh="双机桌面" data-en="Dual-PC Desk">双机桌面</span>
+                </button>
+                <button class="station-tab" data-station="edc-mobile" type="button">
+                    <span class="tab-indicator"></span>
+                    <span data-zh="出门随身" data-en="On the Go">出门随身</span>
+                </button>
+                <button class="station-tab" data-station="lab-testbed" type="button">
+                    <span class="tab-indicator"></span>
+                    <span data-zh="备用测试" data-en="Testbed">备用测试</span>
+                </button>
+            </div>
+
+            <div class="topology-board">
+                <div class="topology-nodes-grid" id="topology-nodes-container">
+                    <!-- Populated dynamically by JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Data Pipeline -->
+        <section class="section">
+            <div class="section-heading">
+                <h3 data-zh="文件与连接工具" data-en="File Sync & Networking">文件与连接工具</h3>
+                <p data-zh="跨设备传文件和远程连接用的几样工具。" data-en="Tools used for file transfers and remote access across platforms.">跨设备传文件和远程连接用的几样工具。</p>
+            </div>
+
+            <div class="table-wrap">
+                <table class="pipeline-table">
+                    <thead>
+                        <tr>
+                            <th data-zh="工具" data-en="Tool">工具</th>
+                            <th data-zh="连接设备" data-en="Devices">连接设备</th>
+                            <th data-zh="主要用途" data-en="Main Job">主要用途</th>
+                            <th data-zh="特点" data-en="Notes">特点</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="protocol-pill">Syncthing</span></td>
+                            <td>MacBook ⇄ Legion</td>
+                            <td data-zh="自动双向同步代码库和笔记文件夹" data-en="Syncs code repos and note folders automatically">自动双向同步代码库和笔记文件夹</td>
+                            <td class="font-mono" style="font-size:0.75rem; color:var(--muted-2);">局域网直连，不走第三方云端</td>
+                        </tr>
+                        <tr>
+                            <td><span class="protocol-pill">Tailscale</span></td>
+                            <td>手机 / 笔记本 ⇄ 电脑</td>
+                            <td data-zh="出门在外远程连回电脑写代码、调接口" data-en="Remote SSH and coding when away from home">出门在外远程连回电脑写代码、调接口</td>
+                            <td class="font-mono" style="font-size:0.75rem; color:var(--muted-2);">自动组网，不需要公网 IP</td>
+                        </tr>
+                        <tr>
+                            <td><span class="protocol-pill">LocalSend</span></td>
+                            <td>iPhone ⇄ 安卓 / 电脑</td>
+                            <td data-zh="跨平台快速传照片和大文件" data-en="Quick cross-platform photo and file transfer">跨平台快速传照片和大文件</td>
+                            <td class="font-mono" style="font-size:0.75rem; color:var(--muted-2);">局域网免登录，不压画质</td>
+                        </tr>
+                        <tr>
+                            <td><span class="protocol-pill">Barrier</span></td>
+                            <td>Razer 鼠标 ⇄ Mac / Windows</td>
+                            <td data-zh="一套鼠标键盘直接在两台电脑屏幕间滑过去用" data-en="One mouse and keyboard across both screens">一套鼠标键盘直接在两台电脑屏幕间滑过去用</td>
+                            <td class="font-mono" style="font-size:0.75rem; color:var(--muted-2);">延迟低，剪贴板文字直接复制</td>
+                        </tr>
+                        <tr>
+                            <td><span class="protocol-pill">KDE Connect</span></td>
+                            <td>安卓手机 ➔ MacBook</td>
+                            <td data-zh="短信验证码自动显示在电脑屏幕上" data-en="SMS verification codes pop up on Mac">短信验证码自动显示在电脑屏幕上</td>
+                            <td class="font-mono" style="font-size:0.75rem; color:var(--muted-2);">后台省电，省去拿手机看验证码</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Section 3: Power Setup -->
+        <section class="section">
+            <div class="section-heading">
+                <h3 data-zh="供电与充电" data-en="Power & Charging">供电与充电</h3>
+                <p data-zh="桌面和笔记本的实际供电方式。" data-en="How the desk and laptops are powered.">桌面和笔记本的实际供电方式。</p>
+            </div>
+
+            <div class="power-grid-cards">
+                <article class="power-card">
+                    <div class="power-card-head">
+                        <span class="power-card-title" data-zh="桌面 140W 充电头" data-en="140W Desktop Charger">桌面 140W 充电头</span>
+                        <span class="power-card-wattage">140W</span>
+                    </div>
+                    <ul class="power-route-list">
+                        <li class="power-route-item">
+                            <span>C 口 1 (100W)</span>
+                            <span>➔ 充 MacBook Pro 16</span>
+                        </li>
+                        <li class="power-route-item">
+                            <span>C 口 2 (27W)</span>
+                            <span>➔ 充 iPhone 11 或 Mi 9</span>
+                        </li>
+                        <li class="power-route-item">
+                            <span>A 口 (12W)</span>
+                            <span>➔ 鼠标底座供电</span>
+                        </li>
+                    </ul>
+                    <div class="power-note" data-zh="插拔新设备时充电头会短暂重启重新握手，外设底座接 A 口最稳。" data-en="Multi-port chargers restart briefly when new devices are plugged in.">插拔新设备时充电头会短暂重启重新握手，外设底座接 A 口最稳。</div>
+                </article>
+
+                <article class="power-card">
+                    <div class="power-card-head">
+                        <span class="power-card-title" data-zh="Legion 游戏本供电" data-en="Legion Power">Legion 游戏本供电</span>
+                        <span class="power-card-wattage">230W</span>
+                    </div>
+                    <ul class="power-route-list">
+                        <li class="power-route-item">
+                            <span>原装方口电源</span>
+                            <span>➔ 重载渲染与游戏</span>
+                        </li>
+                        <li class="power-route-item">
+                            <span>便携 140W C 口充</span>
+                            <span>➔ 轻办公与外带</span>
+                        </li>
+                        <li class="power-route-item">
+                            <span>普通 65W/100W PD</span>
+                            <span>➔ 待机慢充保电</span>
+                        </li>
+                    </ul>
+                    <div class="power-note" data-zh="独立显卡跑满时功耗高，用普通 PD 充会掉电，重度使用需要用原装电源。" data-en="GPU under full load needs the brick; standard 100W PD will slowly drain under heavy loads.">独立显卡跑满时功耗高，用普通 PD 充会掉电，重度使用需要用原装电源。</div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Section 4: EDC Loadouts -->
+        <section class="section">
+            <div class="section-heading">
+                <h3 data-zh="出门搭配" data-en="Carry Loadouts">出门搭配</h3>
+                <p data-zh="按出门需求整理的三种随身包。" data-en="Three simple carry setups depending on the trip.">按出门需求整理的三种随身包。</p>
+            </div>
+
+            <div class="loadout-grid">
+                <article class="loadout-card">
+                    <div class="loadout-header">
+                        <span class="loadout-tag" data-zh="01 · 轻便出门" data-en="01 · Light Carry">01 · 轻便出门</span>
+                        <span class="loadout-weight">约 400g</span>
+                    </div>
+                    <ul class="loadout-list">
+                        <li>iPhone 11 (主力机)</li>
+                        <li>Apple EarPods (插上就能用，不用充电)</li>
+                        <li>5000mAh 磁吸充电宝</li>
+                        <li>0.5 米充电线</li>
+                    </ul>
+                </article>
+
+                <article class="loadout-card">
+                    <div class="loadout-header">
+                        <span class="loadout-tag" data-zh="02 · 电脑外出" data-en="02 · Laptop Carry">02 · 电脑外出</span>
+                        <span class="loadout-weight">约 2.7kg</span>
+                    </div>
+                    <ul class="loadout-list">
+                        <li>MacBook Pro 16</li>
+                        <li>Razer 鼠标 (蓝牙模式)</li>
+                        <li>65W 氮化镓充电头</li>
+                        <li>2 米 Type-C 充电线</li>
+                        <li>小拓展坞</li>
+                    </ul>
+                </article>
+
+                <article class="loadout-card">
+                    <div class="loadout-header">
+                        <span class="loadout-tag" data-zh="03 · 现场测试" data-en="03 · Lab / Testing">03 · 现场测试</span>
+                        <span class="loadout-weight">约 1.2kg</span>
+                    </div>
+                    <ul class="loadout-list">
+                        <li>Mi 9 (已刷原生系统，测试用)</li>
+                        <li>千兆网卡转接线</li>
+                        <li>45W 充电宝</li>
+                        <li>iPad mini 6 (副屏查看)</li>
+                        <li>便携固态 U 盘</li>
+                    </ul>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-line" data-zh="TECH ARSENAL / 工位与连接" data-en="TECH ARSENAL / Rig & Setup">tech arsenal / 工位与连接</div>
+    </footer>
+
+    <script src="arsenal-site.js"></script>
+    <script>
+        const stationsData = {
+            "dual-desk": [
+                {
+                    type: "PRIMARY LAPTOP",
+                    badge: "MACOS",
+                    title: "MacBook Pro 16-inch",
+                    role: "写代码、做设计和日常主力。常用 VSCode、Obsidian 和 Docker。",
+                    connections: ["Type-C 连 Pro Display XDR 2 (6K 120Hz)", "Syncthing 自动同步代码给 Legion", "Barrier 接收鼠标光标"]
+                },
+                {
+                    type: "GPU COMPUTE",
+                    badge: "WINDOWS 11",
+                    title: "Legion 5 15AHP10",
+                    role: "跑本地模型、Blender 渲染和打游戏。插网线接入局域网。",
+                    connections: ["有线网口直连局域网", "Tailscale 暴露本地模型端口", "插 2.4G 鼠标接收器"]
+                },
+                {
+                    type: "MONITOR",
+                    badge: "32 INCH 6K",
+                    title: "Pro Display XDR 2",
+                    role: "32 寸主屏幕，Type-C 连 Mac，DP 连 Legion。",
+                    connections: ["Type-C 供电并传输画面", "DP 接口直连游戏本"]
+                },
+                {
+                    type: "MOUSE",
+                    badge: "WIRELESS",
+                    title: "DeathAdder V2 Pro",
+                    role: "双模鼠标，2.4G 连 Legion，通过软件在两台电脑之间移动。",
+                    connections: ["2.4G 低延迟模式", "磁吸底座充电"]
+                }
+            ],
+            "edc-mobile": [
+                {
+                    type: "MAIN PHONE",
+                    badge: "IOS",
+                    title: "iPhone 11",
+                    role: "主力手机，主要负责通讯、看消息和拍照记录。",
+                    connections: ["LocalSend 传照片给电脑", "磁吸充电宝供电"]
+                },
+                {
+                    type: "EARPHONES",
+                    badge: "WIRED",
+                    title: "Apple EarPods",
+                    role: "有线耳机，插上就听，不用充电，开会收音清楚。",
+                    connections: ["Type-C / 3.5mm 直插", "线控直接接听"]
+                },
+                {
+                    type: "COMPACT TABLET",
+                    badge: "IPADOS",
+                    title: "iPad mini (A17 Pro)",
+                    role: "随身看书、看 PDF，出门时可作为笔记本无线副屏。",
+                    connections: ["随航无线副屏", "Wi-Fi 6E 联网"]
+                }
+            ],
+            "lab-testbed": [
+                {
+                    type: "TEST PHONE",
+                    badge: "AOSP",
+                    title: "Xiaomi Mi 9",
+                    role: "备用测试机，解锁刷了原生系统，用来抓包和跑自动化脚本。",
+                    connections: ["无线调试 ADB", "20W 无线充电座"]
+                },
+                {
+                    type: "BACKUP PHONE",
+                    badge: "ANDROID",
+                    title: "Galaxy A51",
+                    role: "备用机，日常放着收短信验证码。",
+                    connections: ["KDE Connect 转发短信到电脑", "双卡待命"]
+                }
+            ]
+        };
+
+        function renderTopology(stationId) {
+            const container = document.getElementById("topology-nodes-container");
+            const nodes = stationsData[stationId] || stationsData["dual-desk"];
+
+            container.innerHTML = nodes.map(node => `
+                <article class="node-card">
+                    <div class="node-header">
+                        <span class="node-type">${node.type}</span>
+                        <span class="node-badge">${node.badge}</span>
+                    </div>
+                    <h4 class="node-title">${node.title}</h4>
+                    <p class="node-role">${node.role}</p>
+                    <div class="node-connections">
+                        ${node.connections.map(conn => `
+                            <div class="connection-tag">
+                                <span class="dot"></span>
+                                <span>${conn}</span>
+                            </div>
+                        `).join("")}
+                    </div>
+                </article>
+            `).join("");
+        }
+
+        document.querySelectorAll(".station-tab").forEach(tab => {
+            tab.addEventListener("click", () => {
+                document.querySelectorAll(".station-tab").forEach(t => t.classList.remove("active"));
+                tab.classList.add("active");
+                renderTopology(tab.dataset.station);
+            });
+        });
+
+        renderTopology("dual-desk");
+    </script>
+</body>
+</html>

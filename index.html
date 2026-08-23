@@ -17,15 +17,18 @@
     <main class="shell">
         <header class="site-header">
             <div class="top-row">
-                <div class="site-mark" aria-hidden="true">
+                <a class="back-link home-mark-link" href="index.html" aria-label="返回首页 / Back to home" title="返回首页 / Back to home">
                     <img src="assets/images/arsenal-spark.png" alt="">
-                </div>
+                </a>
                 <nav class="page-nav" aria-label="site">
-                    <a class="page-link active" href="index.html">首页</a>
-                    <a class="page-link" href="provenance.html">时间线</a>
-                    <a class="page-link" href="field-notes.html">使用手记</a>
-                    <a class="page-link" href="comparison-lab.html">对比</a>
-                    <a class="page-link" href="on-the-horizon.html">观望清单</a>
+                    <a class="page-link${currentFile === "index.html" ? " active" : ""}" href="index.html">首页</a>
+                    <a class="page-link${currentFile === "topology.html" ? " active" : ""}" href="topology.html">工位与连接</a>
+                    <a class="page-link${currentFile === "decision.html" ? " active" : ""}" href="decision.html">选机算盘</a>
+                    <a class="page-link${currentFile === "provenance.html" ? " active" : ""}" href="provenance.html">时间线</a>
+                    <a class="page-link${currentFile === "field-notes.html" ? " active" : ""}" href="field-notes.html">使用手记</a>
+                    <a class="page-link${currentFile === "comparison-lab.html" ? " active" : ""}" href="comparison-lab.html">对比实验室</a>
+                    <a class="page-link${currentFile === "on-the-horizon.html" ? " active" : ""}" href="on-the-horizon.html">观望清单</a>
+                    <a class="page-link${currentFile === "tech-arsenal.html" ? " active" : ""}" href="tech-arsenal.html">总目录</a>
                 </nav>
             </div>
 
@@ -198,6 +201,23 @@
                     <strong>先把这套口味说清楚。</strong>
                     <p>看完这里，再去其他页面找细节。</p>
                 </article>
+            </div>
+        </section>
+
+        <section class="section" id="sec-creator">
+            <div class="section-heading">
+                <h3 data-zh="精选创作者 / BOJIO 杰哥" data-en="Featured creator / BOJIO">精选创作者 / BOJIO 杰哥</h3>
+                <p data-zh="科技评测精选与内容来源参考。" data-en="Selected technology reviews and reference source.">科技评测精选与内容来源参考。</p>
+            </div>
+
+            <div class="video-card">
+                <div class="video-wrapper">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/T4FwjYAWAwI?si=FUs0qRRfZWWGJGwA&amp;start=568" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+                <div class="video-info">
+                    <h3 class="video-title" data-zh="BOJIO 杰哥 - 科技评测精选" data-en="BOJIO - Selected technology reviews">BOJIO 杰哥 - 科技评测精选</h3>
+                    <span class="video-tagpill">DEEP DIVE</span>
+                </div>
             </div>
         </section>
 

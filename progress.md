@@ -152,3 +152,34 @@ What the diff changed:
 - `PRODUCT.md` documents the site’s purpose, audience, catalogue principles, and constraints.
 - `assets/images/legion-5-15ahp10.webp` / `.png` and `assets/images/macbook-pro-16.webp` / `.png` are the new transparent product assets; WebP sizes are approximately 96 KB and 29 KB respectively.
 
+## 2026-08-23 - v0.5 / Expand the catalogue and refresh device assets
+
+Commit: this update.
+
+Message: `Expand catalogue and refresh device assets`
+
+Push: this entry is pushed to `origin/main` after commit.
+
+### Changes
+
+- Expanded the shared site navigation with the Setup and Decision pages, and added the new `decision.html`, `topology.html`, and `specs.html` routes.
+- Added `specs-data.js` as the structured product-spec catalogue used by the specification index.
+- Reworked the catalogue cards and dossier content in `tech-arsenal.html`, including the newly added tablet and laptop records.
+- Added a featured creator section to the home page and kept the bilingual page chrome consistent across the site.
+- Added `all-source-code.md` and `site-copy-simplified.md` as project documentation and content references.
+- Added regenerated raster product assets for Galaxy Tab, iPad mini, iPad Pro, MacBook Air, MacBook Neo, MSI Prestige, and Acer Swift; the iPad assets use PNG alpha rather than SVG clipping.
+- Added enhanced iPad Pro and iPad mini PNGs with restored detail and transparent backgrounds, while retaining the earlier source variants.
+
+### Diff
+
+Overall diff: the catalogue, shared styles, shared navigation, new routes, documentation, and device image set were updated together for the current site state.
+
+What the diff changed:
+
+- `arsenal-pages.css` gained the expanded catalogue layout, device-card treatments, navigation states, route layouts, and responsive styling.
+- `arsenal-site.js` registered the new Setup and Decision routes and kept shared bilingual behavior aligned with the expanded navigation.
+- The existing site pages now expose the expanded navigation and shared page structure.
+- `tech-arsenal.html` now references the current local product images and exposes the broader catalogue records.
+- `decision.html`, `topology.html`, and `specs.html` added the decision helper, setup map, and product-spec index experiences.
+- `specs-data.js` added the structured device records and specifications used by the spec index.
+- The new PNG assets are raster product images intended for the catalogue; no SVG cutout workflow was used for these device assets.
