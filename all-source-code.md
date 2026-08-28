@@ -118,7 +118,7 @@
                     <span>ecosystem baseline</span>
                 </button>
                 <button class="choice-btn" data-slot="2" data-device="pixel9" type="button">
-                    <strong>Pixel 9 Pro XL</strong>
+                    <strong>Pixel 11 Pro XL</strong>
                     <span>camera and native ai</span>
                 </button>
             </div>
@@ -362,7 +362,7 @@
                             <th data-zh="比较项目" data-en="Category">比较项目</th>
                             <th>Galaxy S25 Ultra</th>
                             <th>Galaxy Z Fold 7</th>
-                            <th>Pixel 9 Pro XL</th>
+                            <th>Pixel 11 Pro XL</th>
                             <th>iPhone 17</th>
                         </tr>
                     </thead>
@@ -434,7 +434,7 @@
                             <option value="iphone17">iPhone 17 (120Hz 高刷)</option>
                             <option value="s25u">Galaxy S25 Ultra</option>
                             <option value="fold7">Galaxy Z Fold 7</option>
-                            <option value="pixel9">Pixel 9 Pro XL</option>
+                            <option value="pixel9">Pixel 11 Pro XL</option>
                         </select>
                     </div>
                 </div>
@@ -479,7 +479,7 @@
 
                 <article class="budget-card">
                     <div class="budget-header">
-                        <span class="budget-name">Pixel 9 Pro XL</span>
+                        <span class="budget-name">Pixel 11 Pro XL</span>
                         <span class="budget-drop">通常降幅约 35%</span>
                     </div>
                     <div class="price-compare">
@@ -515,7 +515,7 @@
             },
             {
                 id: "pixel9",
-                name: "Pixel 9 Pro XL",
+                name: "Pixel 11 Pro XL",
                 scores: { eye: 75, weight: 58, camera: 95, battery: 75, eco: 80, value: 50 },
                 role: "原生系统与 Google 拍照算法",
                 dealbreaker: "芯片日常重负载发热较明显；部分 AI 功能需对应地区支持"
@@ -1755,47 +1755,42 @@
 <div class="d-spec" data-label="Battery">4360mAh | 66W Wired | 50W Wireless Charging</div>
                 </div>
             </div>
-            <div class="card" data-brand="samsung" data-status="wishlist" data-cat="mobile" data-lot="008" data-chapter="SMARTPHONES" data-name="galaxy z fold 7 samsung · galaxy z series samsung // foldable samsung">
+            <div class="card" data-brand="samsung" data-status="wishlist" data-cat="mobile" data-lot="008" data-chapter="SMARTPHONES" data-name="galaxy z fold8 samsung · galaxy z series samsung foldable">
                 <div class="lot-number">N&deg; 008</div>
                 <div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
                 <div class="img-box">
-                    <img src="samsungzfold7.png" alt="Galaxy Z Fold 7">
+                    <img src="assets/images/samsungzfold8-transparent.png" alt="Galaxy Z Fold8">
                 </div>
                 <div class="card-content">
                     <div class="hallmark">SAMSUNG · GALAXY Z SERIES</div>
-                    <h3 class="product-name">Galaxy Z Fold 7</h3>
+                    <h3 class="product-name">Galaxy Z Fold8</h3>
                     <div class="specs">
-<div class="spec-row"><span class="spec-label">Display</span><span class="spec-val">7.6&quot; Foldable AMOLED 3X</span></div>
-<div class="spec-row"><span class="spec-label">Chip</span><span class="spec-val">Snapdragon 8 Gen 4</span></div>
-<div class="spec-row"><span class="spec-label">Feature</span><span class="spec-val">Titanium Armor / S-Pen</span></div>
+<div class="spec-row"><span class="spec-label">SoC</span><span class="spec-val">Snapdragon 8 Elite Gen 5</span></div>
+<div class="spec-row"><span class="spec-label">Display</span><span class="spec-val">7.6&quot; Dynamic AMOLED 2X</span></div>
+<div class="spec-row"><span class="spec-label">Build</span><span class="spec-val">Flex Titanium · IP48</span></div>
                     </div>
                 </div>
                 <div class="hidden-details" style="display:none;">
                     <div class="d-brand">SAMSUNG // GALAXY Z SERIES</div>
-                    <div class="d-title">Galaxy Z Fold 7</div>
-                    <div class="d-why">Titanium + zero-gap hinge + the thinnest fold yet. The day a phone becomes a tablet without compromise - this is it.</div>
-                    <div class="d-desc">The pinnacle of foldable engineering. Featuring a lighter, ultra-thin titanium frame, zero-gap hinge, and desktop-class multitasking with Snapdragon 8 Gen 4.</div>
-<div class="d-spec" data-label="SoC">Snapdragon 8 Gen 4 For Galaxy | 16GB LPDDR5X RAM</div>
-<div class="d-spec" data-label="Inner Display">7.6" Dynamic AMOLED 3X | 1-120Hz LTPO | 2600 nits peak | UDC</div>
-<div class="d-spec" data-label="Cover Display">6.3" Dynamic AMOLED 2X | 1-120Hz | 21:9 Aspect Ratio</div>
-<div class="d-spec" data-label="Camera System">[Main] 200MP | 24mm | f/1.7 | Dual Pixel AF | OIS<br/>
-                         [Telephoto] 10MP | 3x Optical Zoom | OIS<br/>
-                         [Ultrawide] 12MP | 13mm | 123° FOV<br/>
-                         [Under Display] 4MP (Inner) | 10MP (Cover)</div>
-<div class="d-spec" data-label="Focal Lengths">Native: 13mm / 24mm / 67mm | Sensor crop: 48mm (2× main) | 30× Space Zoom is computational reach</div>
-<div class="d-spec" data-label="Build">Titanium Frame | Flex Hinge | IP48 Water/Dust Resistance</div>
-<div class="d-spec" data-label="Battery">4400mAh | 25W Wired | 15W Wireless</div>
+                    <div class="d-title">Galaxy Z Fold8</div>
+                    <div class="d-why">A thinner, sharper foldable that turns a pocket device into a real multitasking canvas.</div>
+                    <div class="d-desc">Samsung&#x27;s next Galaxy Z flagship pairs a large inner screen with a more capable camera system and a lighter titanium frame.</div>
+<div class="d-spec" data-label="SoC">Snapdragon 8 Elite Gen 5 for Galaxy | 12GB / 16GB LPDDR5X</div>
+<div class="d-spec" data-label="Inner Display">7.6&quot; Dynamic AMOLED 2X | 1–120Hz | 3000 nits | 4:3</div>
+<div class="d-spec" data-label="Cover Display">5.5&quot; Dynamic AMOLED 2X | 1–120Hz | 3000 nits | 10:16</div>
+<div class="d-spec" data-label="Camera System">50MP GN3 main | 50MP JN3 ultrawide | 10MP cover + 10MP inner selfie | up to 10x digital zoom</div>
+<div class="d-spec" data-label="Build / Battery">Flex Titanium | IP48 | 4800mAh | 45W wired | 20W wireless | 201g</div>
                 </div>
             </div>
-            <div class="card" data-brand="google" data-status="wishlist" data-cat="mobile" data-lot="009" data-chapter="SMARTPHONES" data-name="pixel 9 pro xl google · pixel flagship google // pure android google">
+            <div class="card" data-brand="google" data-status="wishlist" data-cat="mobile" data-lot="009" data-chapter="SMARTPHONES" data-name="pixel 11 pro xl google · pixel flagship google // pure android google">
                 <div class="lot-number">N&deg; 009</div>
                 <div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
                 <div class="img-box">
-                    <img src="https://images.unsplash.com/photo-1662957132924-f726715b7461?q=80&amp;w=800&amp;auto=format&amp;fit=crop" alt="Pixel 9 Pro XL">
+                    <img src="assets/images/pixel11proxl-transparent.png" alt="Pixel 11 Pro XL">
                 </div>
                 <div class="card-content">
                     <div class="hallmark">GOOGLE · PIXEL FLAGSHIP</div>
-                    <h3 class="product-name">Pixel 9 Pro XL</h3>
+                    <h3 class="product-name">Pixel 11 Pro XL</h3>
                     <div class="specs">
 <div class="spec-row"><span class="spec-label">Chip</span><span class="spec-val">Google Tensor G4</span></div>
 <div class="spec-row"><span class="spec-label">Camera</span><span class="spec-val">50MP + Dual 48MP</span></div>
@@ -1804,7 +1799,7 @@
                 </div>
                 <div class="hidden-details" style="display:none;">
                     <div class="d-brand">GOOGLE // PIXEL FLAGSHIP</div>
-                    <div class="d-title">Pixel 9 Pro XL</div>
+                    <div class="d-title">Pixel 11 Pro XL</div>
                     <div class="d-why">On-device Gemini + that 42MP selfie camera. Google somehow made their best camera AND their best AI phone at the same time.</div>
                     <div class="d-desc">The smartest smartphone in the room. Combines an ultra-bright Super Actua display with the Tensor G4 chip, delivering deep on-device Gemini AI capabilities.</div>
 <div class="d-spec" data-label="SoC">Google Tensor G4 (4nm) | Titan M2 Security Coprocessor | 16GB RAM</div>
@@ -1853,7 +1848,7 @@
                 <div class="lot-number">N&deg; 011</div>
                 <div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
                 <div class="img-box">
-                    <img src="https://images.unsplash.com/photo-1632661674596-df8be070a5c5?q=80&amp;w=800&amp;auto=format&amp;fit=crop" alt="iPhone 13 Pro Max">
+                    <img src="assets/images/iphone13promax-transparent.png" alt="iPhone 13 Pro Max">
                 </div>
                 <div class="card-content">
                     <div class="hallmark">APPLE · THE BATTERY KING</div>
@@ -1883,7 +1878,7 @@
                 <div class="lot-number">N&deg; 012</div>
                 <div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
                 <div class="img-box">
-                    <img src="https://images.unsplash.com/photo-1610945264803-c22b6272aee9?q=80&amp;w=800&amp;auto=format&amp;fit=crop" alt="Galaxy S21 Ultra">
+                    <img src="assets/images/s21ultra-transparent.png" alt="Galaxy S21 Ultra">
                 </div>
                 <div class="card-content">
                     <div class="hallmark">SAMSUNG · GALAXY CLASSIC</div>
@@ -1975,7 +1970,7 @@
                 <div class="lot-number">N&deg; 015</div>
                 <div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
                 <div class="img-box">
-                    <img src="https://images.unsplash.com/photo-1695048133142-1a20484d2569?q=80&amp;w=800&amp;auto=format&amp;fit=crop" alt="iPhone 17">
+                    <img src="assets/images/iphone17-transparent.png" alt="iPhone 17">
                 </div>
                 <div class="card-content">
                     <div class="hallmark">APPLE · NEXT GEN STANDARD</div>
@@ -2005,7 +2000,7 @@
                 <div class="lot-number">N&deg; 016</div>
                 <div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
                 <div class="img-box">
-                    <img src="x" alt="小米 11 Ultra">
+                    <img src="assets/images/xiaomi11ultra-transparent.png" alt="小米 11 Ultra">
                 </div>
                 <div class="card-content">
                     <div class="hallmark">XIAOMI · IMAGING PIONEER</div>
@@ -2030,40 +2025,42 @@
 <div class="d-spec" data-label="Battery">5000mAh Silicon-Oxygen Anode | 67W Wired | 67W Wireless</div>
                 </div>
             </div>
-            <div class="card" data-brand="xiaomi" data-status="wishlist" data-cat="mobile" data-lot="017" data-chapter="SMARTPHONES" data-name="小米 15 xiaomi · leica optics xiaomi // compact elite xiaomi">
+            <div class="card" data-brand="xiaomi" data-status="wishlist" data-cat="mobile" data-lot="017" data-chapter="SMARTPHONES" data-name="小米 17 xiaomi · leica optics xiaomi // compact flagship xiaomi">
                 <div class="lot-number">N&deg; 017</div>
                 <div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
                 <div class="img-box">
-                    <img src="xiaomi15.png" alt="小米 15">
+                    <img src="assets/images/xiaomi17-transparent.png" alt="小米 17">
                 </div>
                 <div class="card-content">
                     <div class="hallmark">XIAOMI · LEICA OPTICS</div>
-                    <h3 class="product-name">小米 15</h3>
+                    <h3 class="product-name">小米 17</h3>
                     <div class="specs">
-<div class="spec-row"><span class="spec-label">Chip</span><span class="spec-val">Snapdragon 8 Elite</span></div>
 <div class="spec-row"><span class="spec-label">Display</span><span class="spec-val">6.36&quot; LTPO OLED</span></div>
-<div class="spec-row"><span class="spec-label">Lens</span><span class="spec-val">Leica Summilux</span></div>
+<div class="spec-row"><span class="spec-label">Camera</span><span class="spec-val">Leica Triple System</span></div>
+<div class="spec-row"><span class="spec-label">Battery</span><span class="spec-val">5400mAh</span></div>
+<div class="spec-row"><span class="spec-label">Charging</span><span class="spec-val">90W Wired + 50W Wireless</span></div>
                     </div>
                 </div>
                 <div class="hidden-details" style="display:none;">
                     <div class="d-brand">XIAOMI // LEICA OPTICS</div>
-                    <div class="d-title">Xiaomi 15</div>
-                    <div class="d-why"></div>
-                    <div class="d-desc">The industry&#x27;s leading compact flagship. It proved that a small body can hold immense power and a professional Leica triple-camera setup.</div>
-<div class="d-spec" data-label="SoC">Snapdragon 8 Elite (3nm) | Next-gen AI Engine</div>
-<div class="d-spec" data-label="Display">6.36" LTPO OLED | 1-120Hz | 3200 nits | Ultra-narrow bezel</div>
-<div class="d-spec" data-label="Camera System">[Main] 50MP Light Fusion 900 | 23mm | f/1.62 | OIS<br/>
+                    <div class="d-title">Xiaomi 17</div>
+                    <div class="d-why">A compact Leica flagship built around fast performance, a bright LTPO panel, and a versatile triple-camera system.</div>
+                    <div class="d-desc">Xiaomi 17 brings a refined ceramic body, Leica-tuned imaging, and all-day battery life into a compact flagship form.</div>
+<div class="d-spec" data-label="SoC">Snapdragon 8 Elite Gen 5 | 16GB LPDDR5X | UFS 4.1</div>
+<div class="d-spec" data-label="Display">6.36" LTPO OLED | 1-120Hz | 3200 nits</div>
+<div class="d-spec" data-label="Camera System">[Main] 50MP Light Fusion 950 | 23mm | OIS<br/>
                          [Telephoto] 50MP Floating Lens | 60mm | OIS<br/>
                          [Ultrawide] 50MP | 14mm | 115° FOV</div>
-<div class="d-spec" data-label="Focal Lengths">Native: 14mm / 23mm / 60mm | Main-sensor crop modes: 28mm / 35mm / 46mm (2×) | Hybrid portrait preset: 75mm</div>
-<div class="d-spec" data-label="Battery">5400mAh High-Density Battery | 90W Wired | 50W Wireless</div>
+<div class="d-spec" data-label="Focal Lengths">Native: 14mm / 23mm / 60mm | Main-sensor crop modes: 28mm / 35mm / 46mm (2×)</div>
+<div class="d-spec" data-label="Battery &amp; Charging">5400mAh High-Density Battery | 90W Wired | 50W Wireless</div>
+<div class="d-spec" data-label="Build">Ceramic Body | Dragon Crystal Glass</div>
                 </div>
             </div>
             <div class="card" data-brand="xiaomi" data-status="wishlist" data-cat="mobile" data-lot="018" data-chapter="SMARTPHONES" data-name="小米 17 pro max xiaomi · the current king xiaomi // 2026 apex xiaomi">
                 <div class="lot-number">N&deg; 018</div>
                 <div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
                 <div class="img-box">
-                    <img src="xiaomi17promax.png" alt="小米 17 Pro Max">
+                    <img src="assets/images/xiaomi17promax-transparent.png" alt="小米 17 Pro Max">
                 </div>
                 <div class="card-content">
                     <div class="hallmark">XIAOMI · THE CURRENT KING</div>
@@ -2093,7 +2090,7 @@
                 <div class="lot-number">N&deg; 019</div>
                 <div class="seal owned"><span class="dot"></span>OWNED</div>
                 <div class="img-box">
-                    <img src="https://images.unsplash.com/photo-1574755393849-623942496936?q=80&amp;w=800&amp;auto=format&amp;fit=crop" alt="iPhone 11">
+                    <img src="assets/images/iphone11-transparent.png" alt="iPhone 11">
                 </div>
                 <div class="card-content">
                     <div class="hallmark">APPLE · LEGACY</div>
@@ -2122,7 +2119,7 @@
                 <div class="lot-number">N&deg; 020</div>
                 <div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
                 <div class="img-box">
-                    <img src="https://images.unsplash.com/photo-1685434190841-86cc4eef06ce?q=80&amp;w=800&amp;auto=format&amp;fit=crop" alt="realme 11 Pro+">
+                    <img src="assets/images/realme11proplus-transparent.png" alt="realme 11 Pro+">
                 </div>
                 <div class="card-content">
                     <div class="hallmark">REALME · PREMIUM MID-RANGE</div>
@@ -2152,7 +2149,7 @@
                 <div class="lot-number">N&deg; 021</div>
                 <div class="seal owned"><span class="dot"></span>OWNED</div>
                 <div class="img-box">
-                    <img src="https://images.unsplash.com/photo-1600087626014-e652e18bbff2?q=80&amp;w=800&amp;auto=format&amp;fit=crop" alt="Galaxy A51">
+                    <img src="assets/images/samsung-a51-transparent.png" alt="Galaxy A51">
                 </div>
                 <div class="card-content">
                     <div class="hallmark">SAMSUNG · BEST SELLER</div>
@@ -2179,31 +2176,36 @@
 <div class="d-spec" data-label="Feature">Under-display Fingerprint | 3.5mm Headphone Jack</div>
                 </div>
             </div>
-            <div class="card" data-brand="samsung" data-status="wishlist" data-cat="mobile" data-lot="041" data-chapter="SMARTPHONES" data-name="galaxy z fold8 samsung · galaxy z series samsung foldable">
+            <div class="card" data-brand="samsung" data-status="wishlist" data-cat="mobile" data-lot="041" data-chapter="SMARTPHONES" data-name="galaxy z fold 8 ultra samsung · galaxy z ultra samsung // foldable samsung">
                 <div class="lot-number">N&deg; 041</div>
                 <div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
                 <div class="img-box">
-                    <img src="samsungzfold8.png" alt="Galaxy Z Fold8" onerror="this.onerror=null;this.src='assets/images/arsenal-spark.png';">
+                    <img src="assets/images/samsungzfold8ultra-square-transparent.png" alt="Galaxy Z Fold 8 Ultra">
                 </div>
                 <div class="card-content">
-                    <div class="hallmark">SAMSUNG · GALAXY Z SERIES</div>
-                    <h3 class="product-name">Galaxy Z Fold8</h3>
+                    <div class="hallmark">SAMSUNG · GALAXY Z ULTRA</div>
+                    <h3 class="product-name">Galaxy Z Fold 8 Ultra</h3>
                     <div class="specs">
-<div class="spec-row"><span class="spec-label">SoC</span><span class="spec-val">Snapdragon 8 Elite Gen 5</span></div>
-<div class="spec-row"><span class="spec-label">Display</span><span class="spec-val">7.6&quot; Dynamic AMOLED 2X</span></div>
-<div class="spec-row"><span class="spec-label">Build</span><span class="spec-val">Flex Titanium · IP48</span></div>
+<div class="spec-row"><span class="spec-label">Display</span><span class="spec-val">8.0&quot; Dynamic AMOLED 2X</span></div>
+<div class="spec-row"><span class="spec-label">Chip</span><span class="spec-val">Snapdragon 8 Elite Gen 5</span></div>
+<div class="spec-row"><span class="spec-label">Feature</span><span class="spec-val">Flex Titanium / S Pen</span></div>
                     </div>
                 </div>
                 <div class="hidden-details" style="display:none;">
-                    <div class="d-brand">SAMSUNG // GALAXY Z SERIES</div>
-                    <div class="d-title">Galaxy Z Fold8</div>
-                    <div class="d-why">A thinner, sharper foldable that turns a pocket device into a real multitasking canvas.</div>
-                    <div class="d-desc">Samsung&#x27;s next Galaxy Z flagship pairs a large inner screen with a more capable camera system and a lighter titanium frame.</div>
-<div class="d-spec" data-label="SoC">Snapdragon 8 Elite Gen 5 for Galaxy | 12GB / 16GB LPDDR5X</div>
-<div class="d-spec" data-label="Inner Display">7.6&quot; Dynamic AMOLED 2X | 1–120Hz | 3000 nits | 4:3</div>
-<div class="d-spec" data-label="Cover Display">5.5&quot; Dynamic AMOLED 2X | 1–120Hz | 3000 nits | 10:16</div>
-<div class="d-spec" data-label="Camera System">50MP GN3 main | 50MP JN3 ultrawide | 10MP cover + 10MP inner selfie | up to 10x digital zoom</div>
-<div class="d-spec" data-label="Build / Battery">Flex Titanium | IP48 | 4800mAh | 45W wired | 20W wireless | 201g</div>
+                    <div class="d-brand">SAMSUNG // GALAXY Z ULTRA</div>
+                    <div class="d-title">Galaxy Z Fold 8 Ultra</div>
+                    <div class="d-why">A foldable flagship with an 8-inch canvas, thin titanium hardware, and the camera system of an ultra-class phone.</div>
+                    <div class="d-desc">The next ultra foldable is built around a wider, brighter inner display, a strengthened flex hinge, and Snapdragon 8 Elite Gen 5 performance.</div>
+<div class="d-spec" data-label="SoC">Snapdragon 8 Elite Gen 5 For Galaxy | 12GB / 16GB LPDDR5X RAM</div>
+<div class="d-spec" data-label="Inner Display">8.0" Dynamic AMOLED 2X | 1-120Hz LTPO | 3000 nits | Anti-reflection</div>
+<div class="d-spec" data-label="Cover Display">6.5" Dynamic AMOLED 2X | 1-120Hz | 3000 nits</div>
+<div class="d-spec" data-label="Camera System">[Main] 200MP HP2 | 24mm | f/1.7 | Dual Pixel AF | OIS<br/>
+                         [Telephoto] 10MP | 3x Optical Zoom | OIS<br/>
+                         [Ultrawide] 50MP JN3 | 13mm | 123° FOV<br/>
+                         [Selfie] 10MP (Cover) + 10MP (Inner)</div>
+<div class="d-spec" data-label="Focal Lengths">Native: 13mm / 24mm / 67mm | Sensor crop: 48mm (2× main) | 30× Space Zoom is computational reach</div>
+<div class="d-spec" data-label="Build">Flex Titanium | IP48 Water/Dust Resistance</div>
+<div class="d-spec" data-label="Battery">5000mAh | 45W Wired | 20W Wireless</div>
                 </div>
             </div>
         </div>
@@ -2212,7 +2214,7 @@
     <div class="section-wrapper" id="sec-tablet">
         <div class="chapter-head">
             <span class="chapter-eyebrow">tablets</span>
-            <h2 class="section-title"><span class="lang-pair"><span class="lang-zh" lang="zh-CN">平板与薄板设备</span><span class="lang-divider" aria-hidden="true"> / </span><span class="lang-en" lang="en">Tablets &amp; slates</span></span><span class="section-count">(4 / 4 PIECES)</span></h2>
+            <h2 class="section-title"><span class="lang-pair"><span class="lang-zh" lang="zh-CN">平板与薄板设备</span><span class="lang-divider" aria-hidden="true"> / </span><span class="lang-en" lang="en">Tablets &amp; slates</span></span><span class="section-count">(5 / 5 PIECES)</span></h2>
             <div class="chapter-rule"></div>
         </div>
         <div class="grid">
@@ -2320,6 +2322,32 @@
 <div class="d-spec" data-label="Battery">10,090 mAh | 45W Super Fast Charging</div>
 <div class="d-spec" data-label="Features">IP68 Water/Dust Resistance | Included S-Pen (0.7mm tip, 4096 pressure levels)</div>
 <div class="d-spec" data-label="Audio">Quad Speakers Sound by AKG | Dolby Atmos</div>
+                </div>
+            </div>
+            <div class="card" data-brand="apple" data-status="wishlist" data-cat="tablet" data-lot="045" data-chapter="TABLETS &amp; SLATES" data-name="ipad air 11&quot; apple · everyday slate apple portable">
+                <div class="lot-number">N&deg; 045</div>
+                <div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
+                <div class="img-box">
+                    <img src="assets/images/ipad-air-11-transparent.png" alt="iPad Air 11-inch">
+                </div>
+                <div class="card-content">
+                    <div class="hallmark">APPLE · EVERYDAY SLATE</div>
+                    <h3 class="product-name">iPad Air 11-inch</h3>
+                    <div class="specs">
+<div class="spec-row"><span class="spec-label">Chip</span><span class="spec-val">Apple M2</span></div>
+<div class="spec-row"><span class="spec-label">Display</span><span class="spec-val">11&quot; Liquid Retina</span></div>
+<div class="spec-row"><span class="spec-label">Weight</span><span class="spec-val">462g</span></div>
+                    </div>
+                </div>
+                <div class="hidden-details" style="display:none;">
+                    <div class="d-brand">APPLE // EVERYDAY SLATE</div>
+                    <div class="d-title">iPad Air 11-inch (M2)</div>
+                    <div class="d-why">The iPad sweet spot: enough M-series power for creative work without the weight or price of the Pro line.</div>
+                    <div class="d-desc">The 11-inch iPad Air pairs the M2 chip with a bright Liquid Retina display, Apple Pencil Pro support, and a lightweight aluminum design.</div>
+<div class="d-spec" data-label="SoC">Apple M2 | 8-core CPU | 9-core GPU | 16-core Neural Engine</div>
+<div class="d-spec" data-label="Display">11&quot; Liquid Retina | 2360×1640 | 500 nits | P3 | True Tone</div>
+<div class="d-spec" data-label="Design">6.1mm aluminum body | 462g Wi-Fi model</div>
+<div class="d-spec" data-label="Accessories">Apple Pencil Pro | Apple Pencil (USB-C) | Magic Keyboard Folio</div>
                 </div>
             </div>
         </div>
@@ -2623,7 +2651,7 @@
                 <div class="lot-number">N&deg; 030</div>
                 <div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
                 <div class="img-box">
-                    <img src="https://images.unsplash.com/photo-1655823528247-490cebf65306?q=80&amp;w=1000&amp;auto=format&amp;fit=crop" alt="Mac Studio (M4 Ultra)">
+                    <img src="assets/images/macstudio-m4-ultra-transparent.png" alt="Mac Studio (M4 Ultra)">
                 </div>
                 <div class="card-content">
                     <div class="hallmark">APPLE · PROFESSIONAL DESKTOP</div>
@@ -2795,7 +2823,7 @@
                 <div class="lot-number">N&deg; 036</div>
                 <div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
                 <div class="img-box">
-                    <img src="nothing-ear-a.png" alt="Nothing Ear (a)" onerror="this.onerror=null;this.src='assets/images/arsenal-spark.png';">
+                    <img src="assets/images/nothing-ear-a-transparent.png" alt="Nothing Ear (a)" onerror="this.onerror=null;this.src='assets/images/arsenal-spark.png';">
                 </div>
                 <div class="card-content">
                     <div class="hallmark">NOTHING · EVERYDAY AUDIO</div>
@@ -6770,7 +6798,7 @@ const compareDevices = {
         note: "It matters if the regular iPhone finally stops feeling intentionally held back."
     },
     pixel9: {
-        name: "Pixel 9 Pro XL",
+        name: "Pixel 11 Pro XL",
         role: "The software flavored flagship in this group.",
         display: '6.8 inch LTPO OLED with strong brightness and clean Android feel.',
         camera: "Signature Pixel tuning with a more obvious computational identity.",
@@ -7029,6 +7057,7 @@ renderCompareTable();
         "Magic 4 至臻版": ["Magic 4 至臻版", "Magic4 Ultimate"],
         "小米 11 Ultra": ["小米 11 Ultra", "Xiaomi 11 Ultra"],
         "小米 15": ["小米 15", "Xiaomi 15"],
+        "小米 17": ["小米 17", "Xiaomi 17"],
         "小米 17 Pro Max": ["小米 17 Pro Max", "Xiaomi 17 Pro Max"],
         "平板与薄板设备": ["平板与薄板设备", "Tablets & thin slabs"],
         "移动工作站": ["移动工作站", "Mobile workstations"],
@@ -7126,11 +7155,11 @@ const specsCatalog = [
         specs: [["SoC", "Kirin 9000 / Snapdragon 888 4G"], ["Display", "6.6\" OLED | 120Hz | 1440Hz PWM | True-Chroma"], ["Camera Sensor", "Main: Huawei-custom True-Chroma, likely OmniVision OV50A / about 1/1.55\" (inferred; exact part not officially disclosed); monochrome: about 1/1.7\" (likely OmniVision OV40A or Sony IMX600; not confirmed); 3.5x tele: 64MP / 1/1.97\" if Samsung ISOCELL GW3, or 1/2\" if OmniVision OV64B (sensor model not confirmed); ultrawide: about 1/2.75\" (likely OmniVision OV13B10 or Hynix HI1333; not confirmed); front: likely OmniVision OV13870 / 1/2.74\" (inferred; exact part not officially disclosed)"], ["Camera System", "50MP True-Chroma | 40MP monochrome | 64MP 3.5x periscope | 13MP ultrawide"], ["Imaging Tech", "HUAWEI XD Optics | XD Fusion Pro Image Engine"], ["Battery", "4360mAh | 66W wired | 50W wireless"]]
     },
     {
-        lot: "008", category: "mobile", name: "Galaxy Z Fold8 Ultra", brand: "SAMSUNG · GALAXY Z ULTRA", status: "wishlist", image: "samsungzfold8ultra.png",
-        specs: [["SoC", "Snapdragon 8 Elite Gen 5 for Galaxy | 12GB / 16GB LPDDR5X"], ["Inner Display", "8.0\" Dynamic AMOLED 2X | 1–120Hz | 3000 nits | anti-reflection"], ["Cover Display", "6.5\" Dynamic AMOLED 2X | 1–120Hz | 3000 nits"], ["Camera Sensor", "Main: Samsung ISOCELL S5KHP2 (HP2) / 1/1.3\"; 3x tele: Samsung S5K3K1 / 1/3.94\"; ultrawide: Samsung ISOCELL S5KJN3 (JN3) / 1/2.5\"; cover and inner selfie: Sony IMX374 / 1/3.0\""], ["Camera System", "200MP HP2 main | 50MP JN3 ultrawide | 10MP 3x tele | 10MP cover + 10MP inner selfie"], ["Build / Battery", "Flex Titanium | IP48 | 5000mAh | 45W wired | 20W wireless | 215g"]]
+        lot: "008", category: "mobile", name: "Galaxy Z Fold8", brand: "SAMSUNG · GALAXY Z SERIES", status: "wishlist", image: "assets/images/samsungzfold8-transparent.png",
+        specs: [["SoC", "Snapdragon 8 Elite Gen 5 for Galaxy | 12GB / 16GB LPDDR5X"], ["Inner Display", "7.6\" Dynamic AMOLED 2X | 1–120Hz | 3000 nits | 4:3"], ["Cover Display", "5.5\" Dynamic AMOLED 2X | 1–120Hz | 3000 nits | 10:16"], ["Camera Sensor", "Main: Samsung ISOCELL S5KGN3 (GN3) / 1/1.56\"; ultrawide: Samsung ISOCELL S5KJN3 (JN3) / 1/2.5\"; cover and inner selfie: Sony IMX374 / 1/3.0\""], ["Camera System", "50MP GN3 main | 50MP JN3 ultrawide | 10MP cover + 10MP inner selfie | up to 10x digital zoom"], ["Build / Battery", "Flex Titanium | IP48 | 4800mAh | 45W wired | 20W wireless | 201g"]]
     },
     {
-        lot: "009", category: "mobile", name: "Pixel 9 Pro XL", brand: "GOOGLE · PIXEL FLAGSHIP", status: "wishlist", image: "https://images.unsplash.com/photo-1662957132924-f726715b7461?q=80&w=800&auto=format&fit=crop",
+        lot: "009", category: "mobile", name: "Pixel 11 Pro XL", brand: "GOOGLE · PIXEL FLAGSHIP", status: "wishlist", image: "assets/images/pixel11proxl-transparent.png",
         specs: [["SoC", "Google Tensor G4 | Titan M2 | 16GB RAM"], ["Display", "6.8\" Super Actua LTPO OLED | 1–120Hz | 3000 nits"], ["Camera Sensor", "Main: Samsung ISOCELL GNK (S5KGNK) / 1/1.31\"; 5x tele and ultrawide: Sony IMX858 / 1/2.55\"; front: Samsung ISOCELL 3J1 / 1/3.1\""], ["Camera System", "50MP main | 48MP 5x periscope | 48MP ultrawide | 42MP selfie"], ["AI Features", "Gemini Nano | Add Me | Video Boost | Magic Editor | Zoom Enhance"], ["Battery / Build", "5060mAh | 37W wired | 23W wireless | Polished Aluminum"]]
     },
     {
@@ -7138,11 +7167,11 @@ const specsCatalog = [
         specs: [["SoC", "Snapdragon 855 (7nm) | Adreno 640"], ["Display", "6.39\" Super AMOLED | 60Hz | HDR10"], ["Camera Sensor", "Main: Sony IMX586 / 1/2\"; 2x tele: Samsung ISOCELL 3M5 (S5K3M5) / 1/3\"; ultrawide: Sony IMX481 / 1/3\"; front: Samsung ISOCELL 3T1 (S5K3T1) / 1/3\""], ["Camera System", "48MP main | 12MP 2x tele | 16MP ultrawide | 4cm macro"], ["Battery & Charging", "3300mAh | 27W wired | 20W fast wireless"], ["Build", "Holographic Glass Back | Aluminum Frame | 173g"]]
     },
     {
-        lot: "011", category: "mobile", name: "iPhone 13 Pro Max", brand: "APPLE · THE BATTERY KING", status: "wishlist", image: "https://images.unsplash.com/photo-1632661674596-df8be070a5c5?q=80&w=800&auto=format&fit=crop",
+        lot: "011", category: "mobile", name: "iPhone 13 Pro Max", brand: "APPLE · THE BATTERY KING", status: "wishlist", image: "assets/images/iphone13promax-transparent.png",
         specs: [["SoC", "A15 Bionic (5nm) | 5-core GPU | 16-core Neural Engine"], ["Display", "6.7\" Super Retina XDR OLED | 120Hz ProMotion | 1200 nits"], ["Camera Sensor", "Main: Sony IMX703 / about 1/1.65\"; 3x tele: Sony IMX713 / 1/3.4\"; ultrawide: Sony IMX772 / 1/3.4\"; front: Sony IMX514 / 1/3.6\""], ["Camera System", "12MP main | 12MP 3x tele | 12MP ultrawide | macro"], ["Battery", "4352mAh | endurance flagship"], ["Build", "Surgical-grade Stainless Steel | Ceramic Shield | 240g"]]
     },
     {
-        lot: "012", category: "mobile", name: "Galaxy S21 Ultra", brand: "SAMSUNG · GALAXY CLASSIC", status: "wishlist", image: "https://images.unsplash.com/photo-1610945264803-c22b6272aee9?q=80&w=800&auto=format&fit=crop",
+        lot: "012", category: "mobile", name: "Galaxy S21 Ultra", brand: "SAMSUNG · GALAXY CLASSIC", status: "wishlist", image: "assets/images/s21ultra-transparent.png",
         specs: [["SoC", "Snapdragon 888 / Exynos 2100 (5nm)"], ["Display", "6.8\" Dynamic AMOLED 2X | WQHD+ | Adaptive 10–120Hz"], ["Camera Sensor", "Main: Samsung ISOCELL S5KHM3 (HM3) / 1/1.33\"; 3x and 10x tele: Samsung S5K3J1 / about 1/3.24\"; ultrawide: Sony IMX563 / 1/2.55\"; front: Samsung ISOCELL GH1 (S5KGH1) / 1/2.65\""], ["Camera System", "108MP main | 10MP 10x periscope | 10MP 3x tele | 12MP ultrawide"], ["Feature", "S-Pen Support | Contour Cut Housing"], ["Battery", "5000mAh | 25W wired | 15W wireless"]]
     },
     {
@@ -7154,31 +7183,31 @@ const specsCatalog = [
         specs: [["SoC", "Snapdragon 8 Gen 4 For Galaxy | 12GB RAM"], ["Display", "6.7\" Flat Dynamic AMOLED 2X | WQHD+ | 1–120Hz LTPO"], ["Camera Sensor", "Main: Samsung ISOCELL GN3 (S5KGN3) / 1/1.57\"; 3x tele: Samsung ISOCELL 3K1 (S5K3K1) / 1/3.94\"; ultrawide: Sony IMX564 / 1/2.55\"; front: Samsung ISOCELL 3LU (S5K3LU) / 1/3.2\""], ["Camera System", "50MP GN3 main | 10MP 3x S5K3K1 tele | 12MP IMX564 ultrawide"], ["Build", "Armor Aluminum Frame | Symmetrical Bezels | 196g"], ["Battery", "4900mAh | 45W wired"]]
     },
     {
-        lot: "015", category: "mobile", name: "iPhone 17", brand: "APPLE · NEXT GEN STANDARD", status: "wishlist", image: "https://images.unsplash.com/photo-1695048133142-1a20484d2569?q=80&w=800&auto=format&fit=crop",
+        lot: "015", category: "mobile", name: "iPhone 17", brand: "APPLE · NEXT GEN STANDARD", status: "wishlist", image: "assets/images/iphone17-transparent.png",
         specs: [["SoC", "A19 (3nm) | 8GB Unified Memory"], ["Display", "6.3\" Super Retina XDR | LTPO 120Hz ProMotion"], ["Camera Sensor", "Main: Sony IMX904 / 1/1.56\"; ultrawide: Sony IMX972 / 1/2.55\"; front: Sony IMX914 / square active area, optical format not publicly disclosed"], ["Camera System", "48MP main | 48MP ultrawide | 18MP selfie"], ["Features", "Action Button | Camera Control | Apple Intelligence"], ["Build", "Aerospace-grade Aluminum | Color-infused Glass"]]
     },
     {
-        lot: "016", category: "mobile", name: "小米 11 Ultra", brand: "XIAOMI · IMAGING PIONEER", status: "wishlist", image: "x",
+        lot: "016", category: "mobile", name: "小米 11 Ultra", brand: "XIAOMI · IMAGING PIONEER", status: "wishlist", image: "assets/images/xiaomi11ultra-transparent.png",
         specs: [["SoC", "Snapdragon 888 | LPDDR5 | UFS 3.1"], ["Display", "6.81\" 2K AMOLED | 120Hz | 1700 nits | E4"], ["Camera Sensor", "Main: Samsung ISOCELL S5KGN2 (GN2) / 1/1.12\"; 5x periscope: Sony IMX586 / 1/2\"; ultrawide: Sony IMX586 / 1/2\"; front: Samsung ISOCELL 3T2 (S5K3T2) / 1/3.4\""], ["Camera System", "50MP GN2 1/1.12\" main | 48MP 5x periscope | 48MP ultrawide"], ["Feature", "Rear Tiny Display | Ceramic Body"], ["Battery", "5000mAh silicon-oxygen | 67W wired | 67W wireless"]]
     },
     {
-        lot: "017", category: "mobile", name: "小米 15", brand: "XIAOMI · LEICA OPTICS", status: "wishlist", image: "xiaomi15.png",
-        specs: [["SoC", "Snapdragon 8 Elite (3nm) | Next-gen AI Engine"], ["Display", "6.36\" LTPO OLED | 1–120Hz | 3200 nits"], ["Camera Sensor", "Main: Xiaomi Light Fusion 900 (Xiaomi-custom; OVX9000 base) / 1/1.31\"; floating tele: Samsung ISOCELL JN5 / 1/2.76\"; ultrawide: Samsung ISOCELL JN1 / 1/2.76\"; front: OmniVision OV32B40 / 1/3.14\""], ["Camera System", "50MP Light Fusion 900 main | 50MP 60mm floating tele | 50MP JN1 ultrawide"], ["Lens", "Leica Summilux"], ["Battery", "5400mAh | 90W wired | 50W wireless"]]
+        lot: "017", category: "mobile", name: "小米 17", brand: "XIAOMI · LEICA OPTICS", status: "wishlist", image: "assets/images/xiaomi17-transparent.png",
+        specs: [["SoC", "Snapdragon 8 Elite Gen 5 | 16GB LPDDR5X | UFS 4.1"], ["Display", "6.36\" LTPO OLED | 1–120Hz | 3200 nits"], ["Camera Sensor", "Main: Xiaomi Light Fusion 950 / 1/1.28\"; floating tele: Samsung ISOCELL JN5 / 1/2.76\"; ultrawide: Samsung ISOCELL JN1 / 1/2.76\"; front: OmniVision OV32B40 / 1/3.14\""], ["Camera System", "50MP Light Fusion 950 main | 50MP 60mm floating tele | 50MP JN1 ultrawide"], ["Lens", "Leica Summilux"], ["Battery", "5400mAh | 90W wired | 50W wireless"]]
     },
     {
-        lot: "018", category: "mobile", name: "小米 17 Pro Max", brand: "XIAOMI · THE CURRENT KING", status: "wishlist", image: "xiaomi17promax.png",
+        lot: "018", category: "mobile", name: "小米 17 Pro Max", brand: "XIAOMI · THE CURRENT KING", status: "wishlist", image: "assets/images/xiaomi17promax-transparent.png",
         specs: [["SoC", "Snapdragon 8 Gen 5 (2nm) | 24GB LPDDR6 | 1TB UFS 4.1"], ["Display", "6.73\" All-Around Micro-Curved | 2K+ | 240Hz | 4500 nits"], ["Camera Sensor", "Main: Xiaomi Light Fusion 950L / 1/1.28\"; 5x periscope: Samsung ISOCELL GN8 (S5KGN8) / 1/1.95\" (often rounded to 1/2\"); ultrawide: OmniVision OV50M / 1/2.87\"; front: OmniVision OV50M / 1/2.87\""], ["Camera System", "50MP Light Fusion 950L main | 50MP 5x large-bottom periscope | 50MP OV50M ultrawide"], ["Build", "Full Nano-tech Ceramic Unibody"], ["Battery", "6200mAh solid-state | 120W wired | 80W wireless"]]
     },
     {
-        lot: "019", category: "mobile", name: "iPhone 11", brand: "APPLE · LEGACY", status: "owned", image: "https://images.unsplash.com/photo-1574755393849-623942496936?q=80&w=800&auto=format&fit=crop",
+        lot: "019", category: "mobile", name: "iPhone 11", brand: "APPLE · LEGACY", status: "owned", image: "assets/images/iphone11-transparent.png",
         specs: [["SoC", "A13 Bionic (7nm+) | 6-core CPU | 4-core GPU"], ["Display", "6.1\" Liquid Retina IPS LCD | 625 nits | True Tone"], ["Camera Sensor", "Main: Sony IMX503 / 1/2.55\"; ultrawide: Sony IMX372 / 1/3.6\"; front: model not publicly disclosed / 1/3.6\""], ["Camera System", "12MP main | 12MP ultrawide | Night Mode"], ["Feature", "Face ID | IP68"], ["Battery", "3110mAh | 18W wired | Qi wireless"]]
     },
     {
-        lot: "020", category: "mobile", name: "realme 11 Pro+", brand: "REALME · PREMIUM MID-RANGE", status: "wishlist", image: "https://images.unsplash.com/photo-1685434190841-86cc4eef06ce?q=80&w=800&auto=format&fit=crop",
+        lot: "020", category: "mobile", name: "realme 11 Pro+", brand: "REALME · PREMIUM MID-RANGE", status: "wishlist", image: "assets/images/realme11proplus-transparent.png",
         specs: [["SoC", "MediaTek Dimensity 7050 (6nm) | Up to 12GB RAM"], ["Display", "6.7\" Curved AMOLED | 120Hz | 1 Billion Colors"], ["Camera Sensor", "Main: Samsung ISOCELL S5KHP3 (HP3) / 1/1.4\"; ultrawide: Sony IMX355 / 1/4\"; macro: model not publicly disclosed / 1/5\"; front: Sony IMX615 / size not publicly disclosed"], ["Camera System", "200MP Samsung HP3 main | 8MP IMX355 ultrawide | 2MP macro"], ["Battery & Charging", "5000mAh | 100W SuperVOOC"], ["Build", "Premium Lychee Vegan Leather"]]
     },
     {
-        lot: "021", category: "mobile", name: "Galaxy A51", brand: "SAMSUNG · BEST SELLER", status: "owned", image: "https://images.unsplash.com/photo-1600087626014-e652e18bbff2?q=80&w=800&auto=format&fit=crop",
+        lot: "021", category: "mobile", name: "Galaxy A51", brand: "SAMSUNG · BEST SELLER", status: "owned", image: "assets/images/samsung-a51-transparent.png",
         specs: [["SoC", "Exynos 9611 (10nm) | Mali-G72 MP3"], ["Display", "6.5\" Super AMOLED | 1080×2400 | Gorilla Glass 3"], ["Camera Sensor", "Main: Sony IMX582 / 1/2\" (some regional/variant reports differ); ultrawide: Samsung ISOCELL 3L6 (S5K3L6) / 1/3\"; macro and depth: GalaxyCore GC5035 / 1/5\"; front: Samsung ISOCELL GD1 (S5KGD1) / 1/2.8\""], ["Camera System", "48MP main | 12MP ultrawide | 5MP macro | 5MP depth"], ["Battery", "4000mAh | 15W fast charging"], ["Feature", "Under-display Fingerprint | 3.5mm Jack"]]
     },
     {
@@ -7214,7 +7243,7 @@ const specsCatalog = [
         specs: [["Processor", "Intel Core Ultra 9 285K | 24 cores | Up to 5.7GHz"], ["Graphics", "NVIDIA RTX 5090 | 32GB GDDR7"], ["Motherboard", "MSI ROG Maximus Z890 Apex"], ["Memory", "64GB Corsair Dominator Titanium DDR5-6400"], ["Power Supply", "Corsair AX1600i | 1600W 80+ Titanium"]]
     },
     {
-        lot: "030", category: "desktop", name: "Mac Studio (M4 Ultra)", brand: "APPLE · PROFESSIONAL DESKTOP", status: "wishlist", image: "https://images.unsplash.com/photo-1655823528247-490cebf65306?q=80&w=1000&auto=format&fit=crop",
+        lot: "030", category: "desktop", name: "Mac Studio (M4 Ultra)", brand: "APPLE · PROFESSIONAL DESKTOP", status: "wishlist", image: "assets/images/macstudio-m4-ultra-transparent.png",
         specs: [["Processor", "Apple M4 Ultra | 32-core CPU | 80-core GPU"], ["Memory", "256GB Unified Memory | 1.6TB/s"], ["Storage", "8TB PCIe Gen 4 SSD"], ["Connectivity", "6× Thunderbolt 5 | 10Gb Ethernet | HDMI 2.1"], ["Form Factor", "Extruded Aluminum | Advanced Thermal System"]]
     },
     {
@@ -7238,7 +7267,7 @@ const specsCatalog = [
         specs: [["Audio Architecture", "11mm Dynamic Driver | 24-bit / 96kHz Hi-Fi"], ["Design", "Blade Design | Pinch & Swipe | Open fit"], ["Smart Features", "Adaptive EQ | Adaptive ANC | Galaxy AI"], ["Durability", "IP57 Water & Dust Resistance"], ["Connectivity", "Bluetooth 5.4 | Auracast"]]
     },
     {
-        lot: "036", category: "peripheral", name: "Nothing Ear (a)", brand: "NOTHING · EVERYDAY AUDIO", status: "wishlist", image: "nothing-ear-a.png",
+        lot: "036", category: "peripheral", name: "Nothing Ear (a)", brand: "NOTHING · EVERYDAY AUDIO", status: "wishlist", image: "assets/images/nothing-ear-a-transparent.png",
         specs: [["Audio Architecture", "11mm Dynamic Driver | PMI + TPU diaphragm"], ["Noise Cancellation", "Adaptive ANC | Up to 45dB | Transparency Mode"], ["Battery", "Up to 9.5h earbuds | 42.5h with case | 10 min = 10h"], ["Connectivity", "Bluetooth 5.3 | AAC / SBC / LDAC | Dual Connection"], ["Protection", "IP54 earbuds | IPX2 case | 4.8g per earbud"]]
     },
     {
@@ -7266,8 +7295,8 @@ const specsCatalog = [
         specs: [["Processor", "Up to Intel Core Ultra X9 388H"], ["AI Performance", "Up to 180 TOPS total platform AI performance"], ["Graphics", "Up to Intel Arc B390 graphics"], ["Display", "Up to 3K OLED | Up to 120Hz | Slim bezels"], ["Mobility", "Starting at 1.12kg | 180° lie-flat hinge | Laser-etched aluminum cover"], ["Connectivity", "2× Thunderbolt 4 Type-C | HDMI 2.1 up to 8K | Wi-Fi 7 | 5MP IR camera"], ["Operating System", "Windows 11 Home"]]
     },
     {
-        lot: "041", category: "mobile", name: "Galaxy Z Fold8", brand: "SAMSUNG · GALAXY Z SERIES", status: "wishlist", image: "samsungzfold8.png",
-        specs: [["SoC", "Snapdragon 8 Elite Gen 5 for Galaxy | 12GB / 16GB LPDDR5X"], ["Inner Display", "7.6\" Dynamic AMOLED 2X | 1–120Hz | 3000 nits | 4:3"], ["Cover Display", "5.5\" Dynamic AMOLED 2X | 1–120Hz | 3000 nits | 10:16"], ["Camera Sensor", "Main: Samsung ISOCELL S5KGN3 (GN3) / 1/1.56\"; ultrawide: Samsung ISOCELL S5KJN3 (JN3) / 1/2.5\"; cover and inner selfie: Sony IMX374 / 1/3.0\""], ["Camera System", "50MP GN3 main | 50MP JN3 ultrawide | 10MP cover + 10MP inner selfie | up to 10x digital zoom"], ["Build / Battery", "Flex Titanium | IP48 | 4800mAh | 45W wired | 20W wireless | 201g"]]
+        lot: "041", category: "mobile", name: "Galaxy Z Fold 8 Ultra", brand: "SAMSUNG · GALAXY Z ULTRA", status: "wishlist", image: "assets/images/samsungzfold8ultra-square-transparent.png",
+        specs: [["SoC", "Snapdragon 8 Elite Gen 5 for Galaxy | 12GB / 16GB LPDDR5X"], ["Inner Display", "8.0\" Dynamic AMOLED 2X | 1–120Hz | 3000 nits | anti-reflection"], ["Cover Display", "6.5\" Dynamic AMOLED 2X | 1–120Hz | 3000 nits"], ["Camera Sensor", "Main: Samsung ISOCELL S5KHP2 (HP2) / 1/1.3\"; 3x tele: Samsung S5K3K1 / 1/3.94\"; ultrawide: Samsung ISOCELL S5KJN3 (JN3) / 1/2.5\"; cover and inner selfie: Sony IMX374 / 1/3.0\""], ["Camera System", "200MP HP2 main | 50MP JN3 ultrawide | 10MP 3x tele | 10MP cover + 10MP inner selfie"], ["Build / Battery", "Flex Titanium | IP48 | 5000mAh | 45W wired | 20W wireless | 215g"]]
     }
 ];
 ```

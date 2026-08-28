@@ -1908,7 +1908,7 @@ input[type="range"]::-webkit-slider-thumb:hover {
     border: 1px solid var(--line);
     border-radius: 4px;
     padding: 16px;
-    transition: all 0.2s ease;
+    transition: border-color 0.2s ease, background-color 0.2s ease;
 }
 
 .rank-card.top-pick {
@@ -1989,7 +1989,7 @@ input[type="range"]::-webkit-slider-thumb:hover {
     color: var(--muted);
     border-radius: 4px;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
 }
 
 .toggle-btn.active {
@@ -2164,7 +2164,7 @@ select:focus {
     letter-spacing: 0.06em;
     cursor: pointer;
     border-radius: 4px;
-    transition: all 0.2s ease;
+    transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
     display: inline-flex;
     align-items: center;
     gap: 8px;
@@ -2212,7 +2212,7 @@ select:focus {
     border: 1px solid var(--line);
     border-radius: 4px;
     padding: 16px;
-    transition: all 0.2s ease;
+    transition: transform 0.2s ease, border-color 0.2s ease;
 }
 
 .node-card:hover {
@@ -2618,7 +2618,7 @@ select:focus {
 }
 
 .filter-btn {
-    min-height: 36px;
+    min-height: 44px;
     padding: 0 12px;
     border: 1px solid var(--line);
     border-radius: 4px;
@@ -2629,7 +2629,13 @@ select:focus {
     font-size: 0.65rem;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    transition: all 0.2s ease;
+    transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.search-input:focus-visible,
+.filter-btn:focus-visible {
+    outline: 2px solid var(--accent-2);
+    outline-offset: 3px;
 }
 
 .filter-btn:hover {
@@ -2656,34 +2662,73 @@ select:focus {
 
 .dossier {
     position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: min(920px, calc(100% - 32px));
-    max-height: calc(100vh - 48px);
-    margin: 0;
+    inset: 0;
     z-index: 1000;
-    overflow-y: auto;
-    background: var(--panel-solid);
-    border: 1px solid var(--accent);
-    border-radius: 8px;
-    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(160, 176, 204, 0.2);
     display: grid;
-    grid-template-columns: minmax(280px, 0.75fr) minmax(0, 1.25fr);
-}
-
-.dossier::before {
-    content: "";
-    position: fixed;
-    inset: -200vmax;
-    background: rgba(2, 6, 18, 0.75);
-    backdrop-filter: blur(8px);
-    z-index: -1;
-    pointer-events: auto;
-}
-
-body:has(.dossier:not([hidden])) {
+    place-items: center;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    max-height: none;
+    margin: 0;
+    padding-top: max(24px, env(safe-area-inset-top));
+    padding-right: max(24px, env(safe-area-inset-right));
+    padding-bottom: max(24px, env(safe-area-inset-bottom));
+    padding-left: max(24px, env(safe-area-inset-left));
     overflow: hidden;
+    overscroll-behavior: contain;
+    isolation: isolate;
+}
+
+.dossier-backdrop {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background: rgba(2, 6, 18, 0.86);
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.22s ease;
+    touch-action: none;
+}
+
+.dossier-panel {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: minmax(300px, 0.82fr) minmax(0, 1.18fr);
+    grid-template-rows: minmax(0, 1fr);
+    width: min(1040px, 100%);
+    height: min(760px, calc(100vh - 48px));
+    height: min(760px, calc(100dvh - 48px));
+    max-height: 100%;
+    min-height: 0;
+    overflow: hidden;
+    background: var(--panel-solid);
+    border: 1px solid var(--line-strong);
+    border-top-color: var(--accent);
+    border-radius: 10px;
+    box-shadow: 0 26px 68px rgba(0, 0, 0, 0.62);
+    opacity: 0;
+    transform: translateY(14px);
+    transition: transform 0.24s ease, opacity 0.2s ease;
+}
+
+.dossier.is-open .dossier-backdrop {
+    opacity: 1;
+}
+
+.dossier.is-open .dossier-panel {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+html.dossier-open,
+body.dossier-open {
+    overflow: hidden;
+}
+
+body.dossier-open {
+    padding-inline-end: var(--dossier-scrollbar-gap, 0px);
 }
 
 .dossier[hidden] {
@@ -2691,33 +2736,85 @@ body:has(.dossier:not([hidden])) {
 }
 
 .dossier-visual {
-    min-height: 380px;
-    padding: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    position: relative;
+    display: grid;
+    place-items: center;
+    min-width: 0;
+    min-height: 0;
+    height: 100%;
+    padding: 34px;
+    overflow: hidden;
     background: var(--bg-elevated);
     border-right: 1px solid var(--line);
 }
 
+.dossier-visual::before {
+    content: "";
+    position: absolute;
+    inset: 18px;
+    border: 1px solid var(--line);
+    pointer-events: none;
+}
+
 .dossier-visual img {
-    max-height: 320px;
+    position: relative;
+    z-index: 1;
+    width: auto;
+    max-width: 100%;
+    max-height: min(58vh, 420px);
     object-fit: contain;
-    filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.4));
+    filter: drop-shadow(0 16px 30px rgba(0, 0, 0, 0.44));
+}
+
+.dossier-visual.is-missing-image img {
+    width: 64px;
+    height: 64px;
+    max-height: 64px;
+    opacity: 0.35;
+    filter: none;
+}
+
+.dossier-image-note {
+    position: absolute;
+    right: 30px;
+    bottom: 30px;
+    left: 30px;
+    z-index: 1;
+    margin: 0;
+    color: var(--muted-2);
+    font-family: var(--mono);
+    font-size: 0.58rem;
+    letter-spacing: 0.08em;
+    line-height: 1.45;
+    text-align: center;
+    text-transform: uppercase;
+    overflow-wrap: anywhere;
+}
+
+.dossier-image-note[hidden] {
+    display: none;
 }
 
 .dossier-body {
-    padding: 32px 36px;
     display: flex;
     flex-direction: column;
+    min-width: 0;
+    min-height: 0;
+    padding: 28px 34px 30px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    overscroll-behavior: contain;
+    scrollbar-color: var(--line-strong) transparent;
+    scrollbar-width: thin;
 }
 
 .dossier-topline {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 14px;
-    padding-bottom: 12px;
+    gap: 18px;
+    min-width: 0;
+    padding-bottom: 14px;
     border-bottom: 1px solid var(--line);
 }
 
@@ -2725,35 +2822,69 @@ body:has(.dossier:not([hidden])) {
     font-family: var(--mono);
     font-size: 0.65rem;
     letter-spacing: 0.1em;
+    line-height: 1.4;
     text-transform: uppercase;
 }
 
 .dossier-brand {
+    min-width: 0;
     color: var(--muted);
+    overflow-wrap: anywhere;
+}
+
+.dossier-topline-tools {
+    display: flex;
+    flex: 0 1 auto;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+    min-width: 0;
 }
 
 .dossier-status {
     display: inline-flex;
     align-items: center;
-    gap: 6px;
+    gap: 7px;
+    min-height: 30px;
+    padding: 6px 9px;
     color: var(--accent-2);
+    background: var(--panel-soft);
+    border: 1px solid var(--line);
+    border-radius: 2px;
+    white-space: nowrap;
 }
 
 .dossier-status::before {
     content: "";
     width: 6px;
     height: 6px;
+    flex: 0 0 6px;
     border-radius: 50%;
     background: var(--accent);
 }
 
+.dossier-status.owned {
+    color: var(--steel);
+}
+
+.dossier-status.owned::before {
+    background: var(--steel);
+}
+
+.dossier-status.wishlist {
+    color: var(--accent-2);
+}
+
 .dossier-title {
-    margin: 18px 0 6px;
-    font-family: var(--display);
-    font-size: clamp(2rem, 4vw, 3.5rem);
-    font-weight: 600;
+    max-width: 11ch;
+    margin: 26px 0 8px;
     color: var(--text);
-    line-height: 1;
+    font-family: var(--display);
+    font-size: clamp(2.4rem, 4.8vw, 4.6rem);
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    line-height: 0.96;
+    overflow-wrap: anywhere;
 }
 
 .dossier-lot {
@@ -2762,92 +2893,187 @@ body:has(.dossier:not([hidden])) {
     font-family: var(--mono);
     font-size: 0.65rem;
     letter-spacing: 0.1em;
+    line-height: 1.45;
     text-transform: uppercase;
+    overflow-wrap: anywhere;
 }
 
 .dossier-why {
-    margin: 18px 0 0;
+    margin: 24px 0 0;
+    padding-top: 16px;
     color: var(--text);
-    font-size: 1.05rem;
-    line-height: 1.5;
+    border-top: 1px solid var(--line);
+    font-size: 1.02rem;
+    line-height: 1.55;
 }
 
 .dossier-desc {
-    margin: 12px 0 0;
+    margin: 13px 0 0;
     color: var(--muted);
-    font-size: 0.85rem;
+    font-size: 0.86rem;
     line-height: 1.6;
 }
 
 .dossier-specs {
-    margin-top: 22px;
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 12px 20px;
-    padding-top: 18px;
+    margin-top: 26px;
+    padding-top: 2px;
     border-top: 1px solid var(--line);
+}
+
+.dossier-spec {
+    min-width: 0;
+    padding: 14px 16px 14px 0;
+    border-bottom: 1px solid var(--line);
+}
+
+.dossier-spec:nth-child(even) {
+    padding-right: 0;
+    padding-left: 16px;
+    border-left: 1px solid var(--line);
 }
 
 .dossier-spec-label {
     display: block;
-    margin-bottom: 4px;
+    margin-bottom: 5px;
     color: var(--muted-2);
     font-family: var(--mono);
     font-size: 0.6rem;
     letter-spacing: 0.1em;
+    line-height: 1.35;
     text-transform: uppercase;
+    overflow-wrap: anywhere;
 }
 
 .dossier-spec-value {
+    display: block;
     color: var(--text);
-    font-size: 0.85rem;
+    font-size: 0.84rem;
+    line-height: 1.48;
+    overflow-wrap: anywhere;
 }
 
 .dossier-actions {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    display: flex;
+    align-items: center;
     gap: 12px;
     margin-top: 24px;
-    padding-top: 18px;
+    padding-top: 20px;
     border-top: 1px solid var(--line);
 }
 
-.dossier-action, .dossier-close {
-    width: 100%;
-    min-height: 40px;
-    padding: 0 16px;
-    border-radius: 4px;
+.dossier-action,
+.dossier-close {
     cursor: pointer;
     font-family: var(--mono);
     font-size: 0.68rem;
     letter-spacing: 0.08em;
+    line-height: 1.25;
     text-transform: uppercase;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.2s ease;
 }
 
 .dossier-action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 46px;
+    min-width: 0;
+    max-width: 100%;
+    padding: 12px 18px;
+    color: #05070c;
     background: var(--accent);
     border: 1px solid var(--accent);
-    color: #ffffff;
+    border-radius: 2px;
+    transition: transform 0.18s ease, opacity 0.18s ease;
+}
+
+.dossier-action .lang-en {
+    color: inherit;
 }
 
 .dossier-action:hover {
     background: var(--accent-2);
     border-color: var(--accent-2);
+    transform: translateY(-1px);
 }
 
 .dossier-close {
-    background: var(--panel-soft);
-    border: 1px solid var(--line-strong);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-width: 44px;
+    min-height: 44px;
+    max-width: 100%;
+    padding: 8px 10px;
     color: var(--muted);
+    background: transparent;
+    border: 1px solid var(--line-strong);
+    border-radius: 2px;
+    transition: transform 0.18s ease, opacity 0.18s ease;
+}
+
+.dossier-close .lang-pair {
+    white-space: normal;
+    overflow-wrap: anywhere;
+}
+
+.dossier-close-icon {
+    width: 12px;
+    height: 12px;
+    flex: 0 0 12px;
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: square;
+    stroke-width: 1.2;
+    transition: transform 0.18s ease;
 }
 
 .dossier-close:hover {
     color: var(--text);
     border-color: var(--accent);
+    transform: translateY(-1px);
+}
+
+.dossier-close:hover .dossier-close-icon {
+    transform: rotate(90deg);
+}
+
+.dossier-action:focus-visible,
+.dossier-close:focus-visible {
+    outline: 2px solid var(--accent-2);
+    outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .dossier-backdrop,
+    .dossier-panel,
+    .dossier-action,
+    .dossier-close,
+    .dossier-close-icon {
+        transition: none;
+    }
+}
+
+@media (max-width: 900px) {
+    .dossier-topline {
+        align-items: flex-start;
+        gap: 12px;
+        flex-wrap: wrap;
+    }
+
+    .dossier-brand {
+        flex: 1 1 100%;
+    }
+
+    .dossier-topline-tools {
+        flex: 1 1 100%;
+        width: 100%;
+        justify-content: space-between;
+        row-gap: 8px;
+        flex-wrap: wrap;
+    }
 }
 
 .collection {
@@ -2909,8 +3135,320 @@ body:has(.dossier:not([hidden])) {
 
 .grid {
     display: grid;
-    gap: 16px;
-    margin-top: 18px;
+    gap: 12px;
+    margin-top: 16px;
+}
+
+/* --------------------------------------------------------------------------
+   TECH ARSENAL / editorial collection display
+   The catalogue is a reading surface: one lead object, then an index of
+   smaller objects. The existing data, filters and dossier interactions stay
+   intact while the visual rhythm moves away from row-by-row inventory.
+   -------------------------------------------------------------------------- */
+.catalogue-page {
+    color-scheme: dark;
+}
+
+.catalogue-page .collection {
+    gap: 0;
+}
+
+.catalogue-page .section-wrapper {
+    margin-top: 72px;
+    padding-top: 28px;
+    border-top: 1px solid var(--line-strong);
+}
+
+.catalogue-page .chapter-head {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: end;
+    gap: 24px;
+    margin-bottom: 22px;
+}
+
+.catalogue-page .chapter-eyebrow {
+    display: none;
+}
+
+.catalogue-page .section-title {
+    gap: 12px;
+    letter-spacing: -0.025em;
+}
+
+.catalogue-page .section-count {
+    padding-bottom: 3px;
+    color: var(--muted-2);
+}
+
+.catalogue-page .chapter-rule {
+    grid-column: 1 / -1;
+    margin-top: 0;
+    background: var(--accent);
+    opacity: 0.7;
+}
+
+.catalogue-page .grid {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: 1px;
+    margin-top: 0;
+    padding: 1px;
+    background: var(--line-strong);
+    border: 1px solid var(--line-strong);
+}
+
+.catalogue-page .card,
+.catalogue-page .card.is-lead,
+.catalogue-page .card:not(.is-lead) {
+    grid-column: span 4;
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    border: 0;
+    border-radius: 0;
+    background: var(--panel-solid);
+    transform: none;
+    box-shadow: none;
+}
+
+.catalogue-page .card:nth-child(4n + 3):not(.is-lead),
+.catalogue-page .card:nth-child(4n + 4):not(.is-lead) {
+    grid-column: span 6;
+}
+
+.catalogue-page .card:hover,
+.catalogue-page .card:focus-visible {
+    z-index: 2;
+    border: 0;
+    outline: 2px solid var(--accent);
+    outline-offset: -2px;
+    transform: none;
+    box-shadow: 0 14px 34px rgba(0, 0, 0, 0.34);
+}
+
+.catalogue-page .card.is-lead {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: minmax(280px, 0.92fr) minmax(0, 1.08fr);
+    min-height: 430px;
+    background: var(--panel);
+    outline: 1px solid var(--accent);
+    outline-offset: -1px;
+}
+
+.catalogue-page .lot-number {
+    top: 18px;
+    left: 20px;
+    color: var(--text);
+    opacity: 0.72;
+}
+
+.catalogue-page .seal {
+    top: 16px;
+    right: 18px;
+    z-index: 3;
+}
+
+.catalogue-page .img-box,
+.catalogue-page .card.is-lead .img-box,
+.catalogue-page .card:not(.is-lead) .img-box {
+    min-height: 250px;
+    flex: 0 0 auto;
+    padding: 32px;
+    border: 0;
+    border-bottom: 1px solid var(--line);
+    background: var(--bg-elevated);
+}
+
+.catalogue-page .card.is-lead .img-box {
+    min-height: 430px;
+    height: 100%;
+    border-right: 1px solid var(--line);
+    border-bottom: 0;
+}
+
+.catalogue-page .img-box img,
+.catalogue-page .card.is-lead .img-box img {
+    max-height: 230px;
+    transition: transform 280ms ease, filter 280ms ease;
+}
+
+.catalogue-page .card.is-lead .img-box img {
+    max-height: 350px;
+}
+
+.catalogue-page .card:hover .img-box img,
+.catalogue-page .card:focus-visible .img-box img {
+    filter: drop-shadow(0 16px 26px rgba(0, 0, 0, 0.48));
+}
+
+.catalogue-page .card-content,
+.catalogue-page .card.is-lead .card-content,
+.catalogue-page .card:not(.is-lead) .card-content {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    align-items: flex-start;
+    min-width: 0;
+    padding: 20px 22px 22px;
+}
+
+.catalogue-page .card.is-lead .card-content {
+    justify-content: center;
+    padding: 42px 46px;
+}
+
+.catalogue-page .hallmark {
+    margin: 0 0 9px;
+    color: var(--accent-2);
+    font-size: 0.62rem;
+}
+
+.catalogue-page .product-name,
+.catalogue-page .card.is-lead .product-name,
+.catalogue-page .card:not(.is-lead) .product-name {
+    font-size: clamp(1.35rem, 2.1vw, 2.1rem);
+    letter-spacing: -0.025em;
+}
+
+.catalogue-page .card.is-lead .product-name {
+    max-width: 12ch;
+    font-size: clamp(2.6rem, 5vw, 5rem);
+    line-height: 0.96;
+}
+
+.catalogue-page .specs,
+.catalogue-page .card.is-lead .specs,
+.catalogue-page .card:not(.is-lead) .specs {
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0 16px;
+    margin: 20px 0 0;
+    padding: 0;
+    border: 0;
+}
+
+.catalogue-page .card.is-lead .specs {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    max-width: 680px;
+    margin-top: 30px;
+}
+
+.catalogue-page .spec-row {
+    min-width: 0;
+    padding: 11px 0 9px;
+    border-top: 1px solid var(--line);
+}
+
+.catalogue-page .spec-label {
+    font-size: 0.58rem;
+}
+
+.catalogue-page .spec-val {
+    color: var(--text);
+    font-size: 0.76rem;
+    line-height: 1.4;
+}
+
+.catalogue-page .record-action {
+    min-height: 36px;
+    margin-top: auto;
+    padding: 7px 11px;
+    border-color: var(--line-strong);
+}
+
+.catalogue-page .card.is-lead .record-action {
+    margin-top: 28px;
+}
+
+.catalogue-page .empty-state {
+    margin-top: 52px;
+}
+
+@media (max-width: 980px) {
+    .catalogue-page .card,
+    .catalogue-page .card.is-lead,
+    .catalogue-page .card:not(.is-lead) {
+        grid-column: span 6;
+    }
+
+    .catalogue-page .card.is-lead {
+        grid-column: 1 / -1;
+    }
+
+    .catalogue-page .card:nth-child(4n + 3):not(.is-lead),
+    .catalogue-page .card:nth-child(4n + 4):not(.is-lead) {
+        grid-column: span 6;
+    }
+}
+
+@media (max-width: 700px) {
+    .catalogue-page .section-wrapper {
+        margin-top: 48px;
+        padding-top: 22px;
+    }
+
+    .catalogue-page .chapter-head {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+
+    .catalogue-page .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .catalogue-page .card,
+    .catalogue-page .card.is-lead,
+    .catalogue-page .card:not(.is-lead),
+    .catalogue-page .card:nth-child(4n + 3):not(.is-lead),
+    .catalogue-page .card:nth-child(4n + 4):not(.is-lead) {
+        grid-column: 1;
+    }
+
+    .catalogue-page .card.is-lead {
+        display: flex;
+        min-height: 0;
+    }
+
+    .catalogue-page .card.is-lead .img-box {
+        min-height: 300px;
+        height: 300px;
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+    }
+
+    .catalogue-page .card.is-lead .card-content {
+        padding: 28px 22px 24px;
+    }
+
+    .catalogue-page .card.is-lead .product-name {
+        max-width: none;
+        font-size: clamp(2.4rem, 13vw, 4.2rem);
+    }
+
+    .catalogue-page .card.is-lead .specs,
+    .catalogue-page .specs {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .catalogue-page .card:not(.is-lead) .img-box {
+        min-height: 210px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    .catalogue-page .card,
+    .catalogue-page .img-box img,
+    .catalogue-page .filter-btn,
+    .catalogue-page .record-action {
+        transition: none;
+    }
 }
 
 .card {
@@ -2919,10 +3457,10 @@ body:has(.dossier:not([hidden])) {
     border: 1px solid var(--line);
     border-radius: 6px;
     display: grid;
-    grid-template-columns: 200px minmax(0, 1fr);
+    grid-template-columns: 220px minmax(0, 1fr);
     min-width: 0;
     cursor: pointer;
-    transition: all 0.22s ease;
+    transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
     overflow: hidden;
 }
 
@@ -2933,7 +3471,7 @@ body:has(.dossier:not([hidden])) {
 }
 
 .card.is-lead {
-    grid-template-columns: minmax(320px, 0.9fr) minmax(0, 1.1fr);
+    grid-template-columns: minmax(280px, 0.38fr) minmax(0, 0.62fr);
     background: var(--panel);
     border-color: var(--line-strong);
 }
@@ -2995,45 +3533,472 @@ body:has(.dossier:not([hidden])) {
 }
 
 .img-box {
-    min-height: 180px;
-    padding: 24px;
+    min-height: 220px;
+    padding: 22px;
     display: flex;
     align-items: center;
     justify-content: center;
     background: var(--bg-elevated);
     border-right: 1px solid var(--line);
+    overflow: hidden;
 }
 
 .card.is-lead .img-box {
-    min-height: 380px;
-    padding: 40px;
+    min-height: 300px;
+    padding: 24px;
 }
 
 .img-box img {
-    max-height: 150px;
+    max-width: 100%;
+    max-height: 210px;
     object-fit: contain;
     filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3));
     transition: transform 0.3s ease;
+    transform: scale(1.06);
 }
 
 .card.is-lead .img-box img {
     max-height: 280px;
+    transform: scale(1.1);
 }
 
 .card:hover .img-box img {
+    transform: scale(1.1);
+}
+
+.card.is-lead:hover .img-box img {
+    transform: scale(1.14);
+}
+
+/* Local product renders include transparent canvas padding; scale the object,
+   not just its surrounding image rail, so the hardware remains legible. */
+.img-box img:not([src^="http"]) {
+    transform: scale(1.45);
+}
+
+.card.is-lead .img-box img:not([src^="http"]) {
+    transform: scale(1.6);
+}
+
+.card:hover .img-box img:not([src^="http"]) {
+    transform: scale(1.5);
+}
+
+.card.is-lead:hover .img-box img:not([src^="http"]) {
+    transform: scale(1.65);
+}
+
+/* Tall phone cutouts stay contained instead of being enlarged past the rail. */
+.img-box img:not([src^="http"])[src$="mi10ultra-transparent.png"],
+.img-box img:not([src^="http"])[src$="huaweimate40proplus-transparent.png"],
+.img-box img:not([src^="http"])[src$="huaweip50pro-transparent-v2.png"],
+.img-box img:not([src^="http"])[src$="honormagic4ultimate-transparent.png"] {
+    transform: scale(1.08);
+}
+
+.card.is-lead .img-box img:not([src^="http"])[src$="mi10ultra-transparent.png"],
+.card.is-lead .img-box img:not([src^="http"])[src$="huaweimate40proplus-transparent.png"],
+.card.is-lead .img-box img:not([src^="http"])[src$="huaweip50pro-transparent-v2.png"],
+.card.is-lead .img-box img:not([src^="http"])[src$="honormagic4ultimate-transparent.png"] {
+    transform: scale(1.1);
+}
+
+.card:hover .img-box img:not([src^="http"])[src$="mi10ultra-transparent.png"],
+.card:hover .img-box img:not([src^="http"])[src$="huaweimate40proplus-transparent.png"],
+.card:hover .img-box img:not([src^="http"])[src$="huaweip50pro-transparent-v2.png"],
+.card:hover .img-box img:not([src^="http"])[src$="honormagic4ultimate-transparent.png"] {
+    transform: scale(1.1);
+}
+
+.card.is-lead:hover .img-box img:not([src^="http"])[src$="mi10ultra-transparent.png"],
+.card.is-lead:hover .img-box img:not([src^="http"])[src$="huaweimate40proplus-transparent.png"],
+.card.is-lead:hover .img-box img:not([src^="http"])[src$="huaweip50pro-transparent-v2.png"],
+.card.is-lead:hover .img-box img:not([src^="http"])[src$="honormagic4ultimate-transparent.png"] {
+    transform: scale(1.14);
+}
+
+/* iPhone 17's portrait render fills its canvas; keep the complete phone inside the rail. */
+.img-box img:not([src^="http"])[src$="iphone17-transparent.png"] {
+    transform: scale(1);
+}
+
+.card.is-lead .img-box img:not([src^="http"])[src$="iphone17-transparent.png"] {
+    transform: scale(1.02);
+}
+
+.card:hover .img-box img:not([src^="http"])[src$="iphone17-transparent.png"] {
+    transform: scale(1.02);
+}
+
+.card.is-lead:hover .img-box img:not([src^="http"])[src$="iphone17-transparent.png"] {
+    transform: scale(1.04);
+}
+
+/* Edge-to-edge square cutouts stay fully inside the image rail. */
+.img-box img:not([src^="http"])[src$="mi9-transparent.png"],
+.img-box img:not([src^="http"])[src$="pixel11proxl-transparent.png"],
+.img-box img:not([src^="http"])[src$="iphone13promax-transparent.png"],
+.img-box img:not([src^="http"])[src$="macstudio-m4-ultra-transparent.png"],
+.img-box img:not([src^="http"])[src$="s21ultra-transparent.png"],
+.img-box img:not([src^="http"])[src$="samsungzfold8-transparent.png"],
+.img-box img:not([src^="http"])[src$="samsungzfold8ultra-square-transparent.png"] {
+    transform: scale(1);
+}
+
+.card.is-lead .img-box img:not([src^="http"])[src$="mi9-transparent.png"],
+.card.is-lead .img-box img:not([src^="http"])[src$="pixel11proxl-transparent.png"],
+.card.is-lead .img-box img:not([src^="http"])[src$="iphone13promax-transparent.png"],
+.card.is-lead .img-box img:not([src^="http"])[src$="macstudio-m4-ultra-transparent.png"],
+.card.is-lead .img-box img:not([src^="http"])[src$="s21ultra-transparent.png"],
+.card.is-lead .img-box img:not([src^="http"])[src$="samsungzfold8-transparent.png"],
+.card.is-lead .img-box img:not([src^="http"])[src$="samsungzfold8ultra-square-transparent.png"] {
+    transform: scale(1.02);
+}
+
+.card:hover .img-box img:not([src^="http"])[src$="mi9-transparent.png"],
+.card:hover .img-box img:not([src^="http"])[src$="pixel11proxl-transparent.png"],
+.card:hover .img-box img:not([src^="http"])[src$="iphone13promax-transparent.png"],
+.card:hover .img-box img:not([src^="http"])[src$="macstudio-m4-ultra-transparent.png"],
+.card:hover .img-box img:not([src^="http"])[src$="s21ultra-transparent.png"],
+.card:hover .img-box img:not([src^="http"])[src$="samsungzfold8-transparent.png"],
+.card:hover .img-box img:not([src^="http"])[src$="samsungzfold8ultra-square-transparent.png"] {
+    transform: scale(1.02);
+}
+
+.card.is-lead:hover .img-box img:not([src^="http"])[src$="mi9-transparent.png"],
+.card.is-lead:hover .img-box img:not([src^="http"])[src$="pixel11proxl-transparent.png"],
+.card.is-lead:hover .img-box img:not([src^="http"])[src$="iphone13promax-transparent.png"],
+.card.is-lead:hover .img-box img:not([src^="http"])[src$="macstudio-m4-ultra-transparent.png"],
+.card.is-lead:hover .img-box img:not([src^="http"])[src$="s21ultra-transparent.png"],
+.card.is-lead:hover .img-box img:not([src^="http"])[src$="samsungzfold8-transparent.png"],
+.card.is-lead:hover .img-box img:not([src^="http"])[src$="samsungzfold8ultra-square-transparent.png"] {
+    transform: scale(1.04);
+}
+
+/* These newly catalogued Xiaomi and Samsung cutouts already use tight transparent canvases. */
+.img-box img:not([src^="http"])[src$="mi10-pro-transparent.png"],
+.img-box img:not([src^="http"])[src$="mi-note-10-pro-transparent.png"],
+.img-box img:not([src^="http"])[src$="samsung-galaxy-a72-transparent.png"],
+.img-box img:not([src^="http"])[src$="samsung-galaxy-a72-gpt-image-2.png"],
+.img-box img:not([src^="http"])[src$="samsung-galaxy-a72-gpt-image-2-transparent.png"],
+.img-box img:not([src^="http"])[src$="oneplus-9-pro-gpt-image-2-transparent.png"],
+.img-box img:not([src^="http"])[src$="vivo-x70-pro-gpt-image-2-transparent.png"],
+.img-box img:not([src^="http"])[src$="oppo-find-x9-ultra-gpt-image-2-transparent.png"] {
+    transform: scale(1);
+}
+
+.card.is-lead .img-box img:not([src^="http"])[src$="mi10-pro-transparent.png"],
+.card.is-lead .img-box img:not([src^="http"])[src$="mi-note-10-pro-transparent.png"],
+.card.is-lead .img-box img:not([src^="http"])[src$="samsung-galaxy-a72-transparent.png"],
+.card.is-lead .img-box img:not([src^="http"])[src$="samsung-galaxy-a72-gpt-image-2.png"],
+.card.is-lead .img-box img:not([src^="http"])[src$="samsung-galaxy-a72-gpt-image-2-transparent.png"],
+.card.is-lead .img-box img:not([src^="http"])[src$="oneplus-9-pro-gpt-image-2-transparent.png"],
+.card.is-lead .img-box img:not([src^="http"])[src$="vivo-x70-pro-gpt-image-2-transparent.png"],
+.card.is-lead .img-box img:not([src^="http"])[src$="oppo-find-x9-ultra-gpt-image-2-transparent.png"] {
+    transform: scale(1.02);
+}
+
+.card:hover .img-box img:not([src^="http"])[src$="mi10-pro-transparent.png"],
+.card:hover .img-box img:not([src^="http"])[src$="mi-note-10-pro-transparent.png"],
+.card:hover .img-box img:not([src^="http"])[src$="samsung-galaxy-a72-transparent.png"],
+.card:hover .img-box img:not([src^="http"])[src$="samsung-galaxy-a72-gpt-image-2.png"],
+.card:hover .img-box img:not([src^="http"])[src$="samsung-galaxy-a72-gpt-image-2-transparent.png"],
+.card:hover .img-box img:not([src^="http"])[src$="oneplus-9-pro-gpt-image-2-transparent.png"],
+.card:hover .img-box img:not([src^="http"])[src$="vivo-x70-pro-gpt-image-2-transparent.png"],
+.card:hover .img-box img:not([src^="http"])[src$="oppo-find-x9-ultra-gpt-image-2-transparent.png"] {
+    transform: scale(1.02);
+}
+
+.card.is-lead:hover .img-box img:not([src^="http"])[src$="mi10-pro-transparent.png"],
+.card.is-lead:hover .img-box img:not([src^="http"])[src$="mi-note-10-pro-transparent.png"],
+.card.is-lead:hover .img-box img:not([src^="http"])[src$="samsung-galaxy-a72-transparent.png"],
+.card.is-lead:hover .img-box img:not([src^="http"])[src$="samsung-galaxy-a72-gpt-image-2.png"],
+.card.is-lead:hover .img-box img:not([src^="http"])[src$="samsung-galaxy-a72-gpt-image-2-transparent.png"],
+.card.is-lead:hover .img-box img:not([src^="http"])[src$="oneplus-9-pro-gpt-image-2-transparent.png"],
+.card.is-lead:hover .img-box img:not([src^="http"])[src$="vivo-x70-pro-gpt-image-2-transparent.png"],
+.card.is-lead:hover .img-box img:not([src^="http"])[src$="oppo-find-x9-ultra-gpt-image-2-transparent.png"] {
+    transform: scale(1.04);
+}
+
+/* Xiaomi's restored cutout has a wider canvas; keep the hardware large but contained. */
+.img-box img:not([src^="http"])[src$="xiaomi17promax-transparent.png"] {
+    transform: scale(1.4);
+}
+
+.card.is-lead .img-box img:not([src^="http"])[src$="xiaomi17promax-transparent.png"] {
+    transform: scale(1.48);
+}
+
+.card:hover .img-box img:not([src^="http"])[src$="xiaomi17promax-transparent.png"] {
+    transform: scale(1.45);
+}
+
+.card.is-lead:hover .img-box img:not([src^="http"])[src$="xiaomi17promax-transparent.png"] {
+    transform: scale(1.52);
+}
+
+.img-box img:not([src^="http"])[src$="xiaomi17-transparent.png"] {
+    transform: scale(1.4);
+}
+
+.card.is-lead .img-box img:not([src^="http"])[src$="xiaomi17-transparent.png"] {
+    transform: scale(1.48);
+}
+
+.card:hover .img-box img:not([src^="http"])[src$="xiaomi17-transparent.png"] {
+    transform: scale(1.45);
+}
+
+.card.is-lead:hover .img-box img:not([src^="http"])[src$="xiaomi17-transparent.png"] {
+    transform: scale(1.52);
+}
+
+/* Honor's tall cutout fills its canvas; leave a safe edge around the hardware. */
+.img-box img:not([src^="http"])[src$="honormagic4ultimate-transparent.png"] {
+    transform: scale(.96);
+}
+
+.card.is-lead .img-box img:not([src^="http"])[src$="honormagic4ultimate-transparent.png"] {
+    transform: scale(.98);
+}
+
+.card:hover .img-box img:not([src^="http"])[src$="honormagic4ultimate-transparent.png"] {
+    transform: scale(.98);
+}
+
+.card.is-lead:hover .img-box img:not([src^="http"])[src$="honormagic4ultimate-transparent.png"] {
+    transform: scale(1);
+}
+
+/* iPhone 11's restored portrait cutout needs a smaller scale to stay inside the image rail. */
+.img-box img:not([src^="http"])[src$="iphone11-transparent.png"] {
+    transform: scale(1.08);
+}
+
+.card.is-lead .img-box img:not([src^="http"])[src$="iphone11-transparent.png"] {
+    transform: scale(1.1);
+}
+
+.card:hover .img-box img:not([src^="http"])[src$="iphone11-transparent.png"] {
+    transform: scale(1.1);
+}
+
+.card.is-lead:hover .img-box img:not([src^="http"])[src$="iphone11-transparent.png"] {
+    transform: scale(1.14);
+}
+
+/* Galaxy A51's restored portrait cutout needs a smaller scale to stay inside the image rail. */
+.img-box img:not([src^="http"])[src$="samsung-a51-transparent.png"] {
+    transform: scale(1.08);
+}
+
+.card.is-lead .img-box img:not([src^="http"])[src$="samsung-a51-transparent.png"] {
+    transform: scale(1.1);
+}
+
+.card:hover .img-box img:not([src^="http"])[src$="samsung-a51-transparent.png"] {
+    transform: scale(1.1);
+}
+
+.card.is-lead:hover .img-box img:not([src^="http"])[src$="samsung-a51-transparent.png"] {
+    transform: scale(1.14);
+}
+
+/* Realme 11 Pro+'s restored portrait cutout needs a smaller scale to stay inside the image rail. */
+.img-box img:not([src^="http"])[src$="realme11proplus-transparent.png"] {
+    transform: scale(1.08);
+}
+
+.card.is-lead .img-box img:not([src^="http"])[src$="realme11proplus-transparent.png"] {
+    transform: scale(1.1);
+}
+
+.card:hover .img-box img:not([src^="http"])[src$="realme11proplus-transparent.png"] {
+    transform: scale(1.1);
+}
+
+.card.is-lead:hover .img-box img:not([src^="http"])[src$="realme11proplus-transparent.png"] {
+    transform: scale(1.14);
+}
+
+/* Nothing Ear (a)'s restored horizontal case uses a contained scale to keep the full shell visible. */
+.img-box img:not([src^="http"])[src$="nothing-ear-a-transparent.png"] {
+    transform: scale(.96);
+}
+
+.card.is-lead .img-box img:not([src^="http"])[src$="nothing-ear-a-transparent.png"] {
+    transform: scale(.98);
+}
+
+.card:hover .img-box img:not([src^="http"])[src$="nothing-ear-a-transparent.png"] {
+    transform: scale(.98);
+}
+
+.card.is-lead:hover .img-box img:not([src^="http"])[src$="nothing-ear-a-transparent.png"] {
+    transform: scale(1);
+}
+
+/* Laptop renders already fill their source canvas; the shared local-image zoom crops them on narrow cards. */
+.img-box img:not([src^="http"])[src$="macbook-air-15-m5.png"],
+.img-box img:not([src^="http"])[src$="prestige-16-ai-plus-c3m.png"],
+.img-box img:not([src^="http"])[src$="macbook-neo-13-clean.png"] {
+    transform: scale(1);
+}
+
+.card.is-lead .img-box img:not([src^="http"])[src$="macbook-air-15-m5.png"],
+.card.is-lead .img-box img:not([src^="http"])[src$="prestige-16-ai-plus-c3m.png"],
+.card.is-lead .img-box img:not([src^="http"])[src$="macbook-neo-13-clean.png"] {
+    transform: scale(1.02);
+}
+
+.card:hover .img-box img:not([src^="http"])[src$="macbook-air-15-m5.png"],
+.card:hover .img-box img:not([src^="http"])[src$="prestige-16-ai-plus-c3m.png"],
+.card:hover .img-box img:not([src^="http"])[src$="macbook-neo-13-clean.png"] {
+    transform: scale(1.02);
+}
+
+.card.is-lead:hover .img-box img:not([src^="http"])[src$="macbook-air-15-m5.png"],
+.card.is-lead:hover .img-box img:not([src^="http"])[src$="prestige-16-ai-plus-c3m.png"],
+.card.is-lead:hover .img-box img:not([src^="http"])[src$="macbook-neo-13-clean.png"] {
+    transform: scale(1.04);
+}
+
+/* iPad Air 11's restored square cutout already fills its canvas; keep the full tablet visible. */
+.img-box img:not([src^="http"])[src$="ipad-air-11-transparent.png"] {
+    transform: scale(.98);
+}
+
+.card.is-lead .img-box img:not([src^="http"])[src$="ipad-air-11-transparent.png"] {
+    transform: scale(1);
+}
+
+.card:hover .img-box img:not([src^="http"])[src$="ipad-air-11-transparent.png"] {
+    transform: scale(1);
+}
+
+.card.is-lead:hover .img-box img:not([src^="http"])[src$="ipad-air-11-transparent.png"] {
+    transform: scale(1.02);
+}
+
+/* Full-bleed WebP renders already use their canvas; keep them contained. */
+.img-box img:not([src^="http"])[src$=".webp"] {
+    transform: scale(1.06);
+}
+
+.card.is-lead .img-box img:not([src^="http"])[src$=".webp"] {
+    transform: scale(1.1);
+}
+
+.card:hover .img-box img:not([src^="http"])[src$=".webp"] {
+    transform: scale(1.1);
+}
+
+.card.is-lead:hover .img-box img:not([src^="http"])[src$=".webp"] {
+    transform: scale(1.14);
+}
+
+/* These PNGs are also full-frame renders, not transparent cut-outs. */
+.img-box img[src$="ipad-pro-13-enhanced.png"],
+.img-box img[src$="galaxy-tab-s11-ultra.png"],
+.img-box img[src$="galaxy-tab-s10-plus.png"] {
+    transform: scale(1.06);
+}
+
+.card.is-lead .img-box img[src$="ipad-pro-13-enhanced.png"],
+.card.is-lead .img-box img[src$="galaxy-tab-s11-ultra.png"],
+.card.is-lead .img-box img[src$="galaxy-tab-s10-plus.png"] {
+    transform: scale(1.1);
+}
+
+.card:hover .img-box img[src$="ipad-pro-13-enhanced.png"],
+.card:hover .img-box img[src$="galaxy-tab-s11-ultra.png"],
+.card:hover .img-box img[src$="galaxy-tab-s10-plus.png"] {
+    transform: scale(1.1);
+}
+
+.card.is-lead:hover .img-box img[src$="ipad-pro-13-enhanced.png"],
+.card.is-lead:hover .img-box img[src$="galaxy-tab-s11-ultra.png"],
+.card.is-lead:hover .img-box img[src$="galaxy-tab-s10-plus.png"] {
+    transform: scale(1.14);
+}
+
+/* Galaxy Buds 2's restored square cutout already fills its canvas; keep the complete case visible. */
+.img-box img:not([src^="http"])[src$="galaxy-buds-2-transparent.png"] {
+    transform: scale(.98);
+}
+
+.card.is-lead .img-box img:not([src^="http"])[src$="galaxy-buds-2-transparent.png"] {
+    transform: scale(1);
+}
+
+.card:hover .img-box img:not([src^="http"])[src$="galaxy-buds-2-transparent.png"] {
+    transform: scale(1);
+}
+
+.card.is-lead:hover .img-box img:not([src^="http"])[src$="galaxy-buds-2-transparent.png"] {
+    transform: scale(1.02);
+}
+
+/* BuildCores is a complete desk scene rather than a transparent single-object render. */
+.img-box img[src$="buildcores-platform6-setup-v2.png"] {
+    transform: scale(1);
+}
+
+.card.is-lead .img-box img[src$="buildcores-platform6-setup-v2.png"] {
+    transform: scale(1.02);
+}
+
+.card:hover .img-box img[src$="buildcores-platform6-setup-v2.png"] {
+    transform: scale(1.02);
+}
+
+.card.is-lead:hover .img-box img[src$="buildcores-platform6-setup-v2.png"] {
     transform: scale(1.04);
 }
 
 .card-content {
-    padding: 28px 24px 20px;
+    padding: 22px 28px 20px;
     display: flex;
     flex-direction: column;
     min-width: 0;
 }
 
 .card.is-lead .card-content {
-    padding: 44px 36px 30px;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: minmax(170px, 0.72fr) minmax(0, 1.28fr);
+    grid-template-rows: auto auto auto;
+    align-content: center;
+    column-gap: 28px;
+    padding: 28px 32px;
+}
+
+.card.is-lead .hallmark {
+    grid-column: 1;
+    grid-row: 1;
+    margin: 0 0 10px;
+}
+
+.card.is-lead .product-name {
+    grid-column: 1;
+    grid-row: 2;
+    align-self: start;
+}
+
+.card.is-lead .specs {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    align-self: center;
+    margin: 0;
+    padding: 0 0 0 24px;
+    border-top: 0;
+    border-left: 1px solid var(--line);
+}
+
+.card.is-lead .record-action {
+    grid-column: 2;
+    grid-row: 3;
+    align-self: start;
+    margin-top: 16px;
 }
 
 .hallmark {
@@ -3060,17 +4025,21 @@ body:has(.dossier:not([hidden])) {
 
 .specs {
     display: grid;
-    gap: 6px;
-    margin-top: auto;
-    padding-top: 16px;
-    border-top: 1px solid var(--line);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    min-width: 0;
+    gap: 0 16px;
+    margin-top: 18px;
+    padding-top: 0;
+    border-top: 0;
 }
 
 .spec-row {
-    display: grid;
-    grid-template-columns: minmax(70px, 0.35fr) minmax(0, 1fr);
-    gap: 12px;
-    padding: 4px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 0;
+    padding: 10px 0 8px;
+    border-top: 1px solid var(--line);
 }
 
 .spec-label {
@@ -3084,7 +4053,10 @@ body:has(.dossier:not([hidden])) {
 .spec-val {
     color: var(--muted);
     font-size: 0.8rem;
-    text-align: right;
+    line-height: 1.35;
+    text-align: left;
+    min-width: 0;
+    overflow-wrap: anywhere;
 }
 
 .record-action {
@@ -3100,7 +4072,7 @@ body:has(.dossier:not([hidden])) {
     font-size: 0.62rem;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    transition: all 0.2s ease;
+    transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
 }
 
 .record-action:hover {
@@ -3110,15 +4082,15 @@ body:has(.dossier:not([hidden])) {
 }
 
 .card:not(.is-lead) {
-    grid-template-columns: 160px minmax(0, 1fr);
+    grid-template-columns: 240px minmax(0, 1fr);
 }
 
 .card:not(.is-lead) .card-content {
     display: grid;
-    grid-template-columns: minmax(160px, 0.7fr) minmax(200px, 1fr) auto;
+    grid-template-columns: minmax(180px, 0.65fr) minmax(300px, 1.35fr) auto;
     align-items: center;
-    gap: 20px;
-    padding: 20px 22px;
+    gap: 24px;
+    padding: 18px 28px;
 }
 
 .card:not(.is-lead) .hallmark {
@@ -3136,8 +4108,10 @@ body:has(.dossier:not([hidden])) {
 .card:not(.is-lead) .specs {
     grid-column: 2;
     grid-row: 1 / span 2;
+    align-self: stretch;
+    align-content: center;
     margin: 0;
-    padding: 0 0 0 18px;
+    padding: 0 0 0 20px;
     border-top: 0;
     border-left: 1px solid var(--line);
 }
@@ -3257,6 +4231,30 @@ body:has(.dossier:not([hidden])) {
         border-top: 1px solid var(--line);
         padding: 10px 0 0;
     }
+    /* The lead card keeps its image rail at this width, but its content
+       rail is too narrow for a second grid column. Stack the metadata before
+       the nested specs grid can collapse and visibly clip its values. */
+    .card.is-lead .card-content {
+        grid-template-columns: minmax(0, 1fr);
+        grid-template-rows: auto;
+        row-gap: 0;
+        column-gap: 0;
+        padding-inline: 24px;
+    }
+    .card.is-lead .hallmark,
+    .card.is-lead .product-name,
+    .card.is-lead .specs,
+    .card.is-lead .record-action {
+        grid-column: 1;
+        grid-row: auto;
+    }
+    .card.is-lead .specs {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        margin-top: 18px;
+        padding: 12px 0 0;
+        border-top: 1px solid var(--line);
+        border-left: 0;
+    }
 }
 
 @media (max-width: 768px) {
@@ -3282,20 +4280,119 @@ body:has(.dossier:not([hidden])) {
         width: 100%;
     }
     .dossier {
+        place-items: end center;
+        padding-top: max(12px, env(safe-area-inset-top));
+        padding-right: max(12px, env(safe-area-inset-right));
+        padding-bottom: max(12px, env(safe-area-inset-bottom));
+        padding-left: max(12px, env(safe-area-inset-left));
+    }
+    .dossier-panel {
+        width: 100%;
+        height: min(680px, calc(100vh - 24px));
+        height: min(680px, calc(100dvh - 24px));
+        max-height: 100%;
         grid-template-columns: 1fr;
+        grid-template-rows: minmax(170px, 34dvh) minmax(0, 1fr);
+        border-radius: 10px 10px 4px 4px;
     }
     .dossier-visual {
-        min-height: 220px;
+        min-height: 0;
+        padding: 22px;
         border-right: 0;
         border-bottom: 1px solid var(--line);
+    }
+    .dossier-visual::before {
+        inset: 12px;
+    }
+    .dossier-visual img {
+        max-height: 25dvh;
+    }
+    .dossier-image-note {
+        right: 22px;
+        bottom: 16px;
+        left: 22px;
+    }
+    .dossier-body {
+        padding: 22px 18px calc(22px + env(safe-area-inset-bottom));
+    }
+    .dossier-topline {
+        align-items: flex-start;
+        gap: 12px;
+        flex-wrap: wrap;
+    }
+    .dossier-brand {
+        flex: 1 1 100%;
+    }
+    .dossier-topline-tools {
+        flex: 1 1 100%;
+        width: 100%;
+        justify-content: space-between;
+        align-items: center;
+        gap: 8px;
+        row-gap: 8px;
+        flex-wrap: wrap;
+    }
+    .dossier-title {
+        max-width: none;
+        font-size: clamp(2rem, 11vw, 3.6rem);
+    }
+    .dossier-why {
+        font-size: 0.98rem;
+    }
+    .dossier-specs {
+        grid-template-columns: 1fr;
+    }
+    .dossier-spec,
+    .dossier-spec:nth-child(even) {
+        padding: 13px 0;
+        border-left: 0;
+    }
+    .dossier-actions {
+        display: block;
+    }
+    .dossier-action {
+        width: 100%;
     }
     .card, .card.is-lead, .card:not(.is-lead) {
         grid-template-columns: 1fr;
     }
     .img-box, .card.is-lead .img-box, .card:not(.is-lead) .img-box {
-        min-height: 180px;
+        min-height: 230px;
+        padding: 22px;
         border-right: 0;
         border-bottom: 1px solid var(--line);
+    }
+    .card.is-lead .img-box {
+        min-height: 280px;
+    }
+    .img-box img {
+        max-height: 210px;
+    }
+    .card.is-lead .img-box img {
+        max-height: 260px;
+    }
+    .card.is-lead .card-content {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        gap: 0;
+        padding: 22px 18px;
+    }
+    .card.is-lead .hallmark,
+    .card.is-lead .product-name,
+    .card.is-lead .specs,
+    .card.is-lead .record-action {
+        grid-column: 1;
+        grid-row: auto;
+    }
+    .card.is-lead .specs {
+        grid-template-columns: 1fr 1fr;
+        margin-top: 18px;
+        padding: 12px 0 0;
+        border-top: 1px solid var(--line);
+        border-left: 0;
+    }
+    .card.is-lead .record-action {
+        margin-top: 16px;
     }
     .card:not(.is-lead) .card-content {
         grid-template-columns: 1fr;
@@ -3304,10 +4401,305 @@ body:has(.dossier:not([hidden])) {
     .card:not(.is-lead) .specs {
         grid-column: 1;
         grid-row: auto;
+        grid-template-columns: 1fr;
     }
     .card:not(.is-lead) .record-action {
         grid-column: 1;
         grid-row: auto;
         justify-self: flex-start;
+    }
+}
+
+/* Final cascade for the catalogue view. Kept at the end so shared page rules
+   cannot turn the editorial lead back into an inventory row. */
+.catalogue-page .card.is-lead .card-content {
+    display: flex;
+    grid-template-columns: none;
+    grid-template-rows: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 42px 46px;
+}
+
+.catalogue-page .card.is-lead .product-name {
+    max-width: 12ch;
+    font-size: clamp(2.6rem, 5vw, 5rem);
+    line-height: 0.96;
+}
+
+.catalogue-page .card.is-lead .specs {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    width: 100%;
+    max-width: 680px;
+    margin: 30px 0 0;
+    padding: 0;
+    border: 0;
+}
+
+.catalogue-page .card:not(.is-lead) .card-content {
+    display: flex;
+    grid-template-columns: none;
+    grid-template-rows: none;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px 22px 22px;
+}
+
+.catalogue-page .card:not(.is-lead) .specs {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    width: 100%;
+    margin: 20px 0 0;
+    padding: 0;
+    border: 0;
+}
+
+.catalogue-page .card:not(.is-lead) .record-action {
+    align-self: flex-start;
+    margin-top: auto;
+}
+
+@media (max-width: 1080px) {
+    .catalogue-page .card.is-lead .card-content {
+        grid-template-columns: none;
+        padding-inline: 32px;
+    }
+
+    .catalogue-page .card.is-lead .specs {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 760px) {
+    .catalogue-page .card.is-lead .card-content {
+        padding: 28px 22px 24px;
+    }
+
+    .catalogue-page .card.is-lead .product-name {
+        max-width: none;
+        font-size: clamp(2.4rem, 13vw, 4.2rem);
+    }
+
+    .catalogue-page .card.is-lead .specs,
+    .catalogue-page .card:not(.is-lead) .specs {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (min-width: 981px) {
+    .catalogue-page .card:not(.is-lead) {
+        grid-column: span 4;
+    }
+
+    .catalogue-page .card:nth-child(4n + 3):not(.is-lead),
+    .catalogue-page .card:nth-child(4n + 4):not(.is-lead) {
+        grid-column: span 4;
+    }
+
+    /* Pair an expansive index entry with a narrow one, then reset to a
+       three-up row. This keeps the rhythm intentional without stranded gaps. */
+    .catalogue-page .card:nth-child(5n + 2):not(.is-lead) {
+        grid-column: span 8;
+    }
+
+    .catalogue-page .card:nth-child(5n + 3):not(.is-lead) {
+        grid-column: span 4;
+    }
+}
+
+@media (max-width: 980px) {
+    .catalogue-page .card:not(.is-lead) {
+        grid-column: span 6;
+    }
+}
+
+@media (max-width: 760px) {
+    .catalogue-page {
+        overflow-x: hidden;
+    }
+
+    .catalogue-page .top-row .page-nav {
+        display: grid;
+        width: auto;
+        flex: 1 1 auto;
+        min-width: 0;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 6px;
+    }
+
+    .catalogue-page .top-row .page-link {
+        min-width: 0;
+        width: 100%;
+        justify-content: flex-start;
+        padding-inline: 6px;
+        white-space: normal;
+        overflow-wrap: anywhere;
+        line-height: 1.25;
+        font-size: 0.56rem;
+    }
+
+    .catalogue-page .control-bar,
+    .catalogue-page .search-wrap,
+    .catalogue-page .filter-bar {
+        min-width: 0;
+    }
+
+    .catalogue-page .filter-bar {
+        justify-content: flex-start;
+        display: grid;
+        width: 100%;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 6px;
+    }
+
+    .catalogue-page .filter-btn {
+        width: 100%;
+        min-width: 0;
+        padding-inline: 4px;
+        white-space: normal;
+        line-height: 1.2;
+    }
+
+    .catalogue-page .collection-ledger {
+        width: 100%;
+        min-width: 0;
+        overflow: hidden;
+    }
+}
+
+@media (min-width: 761px) {
+    .catalogue-page .header,
+    .catalogue-page .control-bar,
+    .catalogue-page .collection,
+    .catalogue-page .empty-state,
+    .catalogue-page .site-footer {
+        width: calc(100% - 80px);
+    }
+}
+
+.catalogue-page .masthead-copy {
+    width: 100%;
+    min-width: 0;
+}
+
+.catalogue-page .header-sub {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+}
+
+.catalogue-page .header-sub .lang-pair {
+    display: inline;
+}
+
+.catalogue-page .header-sub,
+.catalogue-page .header-sub .lang-pair,
+.catalogue-page .header-sub .lang-zh,
+.catalogue-page .header-sub .lang-en {
+    display: inline;
+    max-width: 100%;
+    white-space: normal !important;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+}
+
+@media (max-width: 760px) {
+    .catalogue-page .masthead {
+        width: 100%;
+    }
+
+    .catalogue-page .header-sub {
+        display: block;
+        width: 100%;
+    }
+
+    .catalogue-page .header-sub .lang-pair {
+        display: block;
+        width: 100%;
+    }
+
+.catalogue-page .header-sub .lang-en {
+        display: block;
+    }
+}
+
+.catalogue-page .img-box.placeholder-image {
+    position: relative;
+    isolation: isolate;
+    flex-direction: column;
+    gap: 14px;
+    color: var(--muted-2);
+}
+
+.catalogue-page .img-box.placeholder-image::after {
+    content: attr(data-placeholder) "  /  IMAGE PENDING";
+    position: relative;
+    z-index: 1;
+    color: var(--muted-2);
+    font-family: var(--mono);
+    font-size: 0.58rem;
+    letter-spacing: 0.1em;
+    text-align: center;
+}
+
+.catalogue-page .img-box.placeholder-image img {
+    width: 42px;
+    height: 42px;
+    max-height: 42px;
+    opacity: 0.28;
+    transform: none !important;
+    filter: none;
+}
+
+.catalogue-page #dossierImage.is-placeholder {
+    width: 64px;
+    height: 64px;
+    opacity: 0.35;
+    filter: none;
+}
+
+@media (max-width: 760px) {
+    .catalogue-page .site-header {
+        padding-top: 16px;
+        padding-bottom: 8px;
+    }
+
+    .catalogue-page .top-row {
+        gap: 8px;
+    }
+
+    .catalogue-page .home-mark-link,
+    .catalogue-page .home-mark-link img {
+        width: 30px;
+        height: 30px;
+    }
+
+    .catalogue-page .top-row .page-link {
+        min-height: 32px;
+        padding-inline: 6px;
+    }
+
+    .catalogue-page .masthead {
+        gap: 12px;
+        padding-top: 16px;
+        padding-bottom: 14px;
+        margin-top: 8px;
+    }
+
+    .catalogue-page .control-bar {
+        margin-top: 20px;
+        padding: 14px;
+    }
+
+    /* Keep the mobile canvas from touching the viewport edge. */
+    .catalogue-page .site-header,
+    .catalogue-page .collection,
+    .catalogue-page .control-bar,
+    .catalogue-page .empty-state,
+    .catalogue-page .site-footer {
+        width: calc(100% - 32px);
+        margin-left: auto;
+        margin-right: auto;
     }
 }

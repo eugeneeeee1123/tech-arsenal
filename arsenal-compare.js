@@ -24,7 +24,7 @@ const compareDevices = {
         note: "It matters if the regular iPhone finally stops feeling intentionally held back."
     },
     pixel9: {
-        name: "Pixel 9 Pro XL",
+        name: "Pixel 11 Pro XL",
         role: "The software flavored flagship in this group.",
         display: '6.8 inch LTPO OLED with strong brightness and clean Android feel.',
         camera: "Signature Pixel tuning with a more obvious computational identity.",

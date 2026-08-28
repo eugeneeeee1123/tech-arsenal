@@ -211,6 +211,7 @@
         "Magic 4 至臻版": ["Magic 4 至臻版", "Magic4 Ultimate"],
         "小米 11 Ultra": ["小米 11 Ultra", "Xiaomi 11 Ultra"],
         "小米 15": ["小米 15", "Xiaomi 15"],
+        "小米 17": ["小米 17", "Xiaomi 17"],
         "小米 17 Pro Max": ["小米 17 Pro Max", "Xiaomi 17 Pro Max"],
         "平板与薄板设备": ["平板与薄板设备", "Tablets & thin slabs"],
         "移动工作站": ["移动工作站", "Mobile workstations"],
