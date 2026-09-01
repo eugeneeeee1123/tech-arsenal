@@ -3720,6 +3720,23 @@ body.dossier-open {
     transform: scale(1.04);
 }
 
+/* Xiaomi 11 Pro is scaled up generously to be prominent while keeping safe margins without overflowing */
+.img-box img:not([src^="http"])[src$="xiaomi11pro.png"] {
+    transform: scale(1.22);
+}
+
+.card.is-lead .img-box img:not([src^="http"])[src$="xiaomi11pro.png"] {
+    transform: scale(1.26);
+}
+
+.card:hover .img-box img:not([src^="http"])[src$="xiaomi11pro.png"] {
+    transform: scale(1.25);
+}
+
+.card.is-lead:hover .img-box img:not([src^="http"])[src$="xiaomi11pro.png"] {
+    transform: scale(1.29);
+}
+
 /* Xiaomi's restored cutout has a wider canvas; keep the hardware large but contained. */
 .img-box img:not([src^="http"])[src$="xiaomi17promax-transparent.png"] {
     transform: scale(1.4);
@@ -4703,3 +4720,87 @@ body.dossier-open {
         margin-right: auto;
     }
 }
+/* Keep the standalone catalogue rails clear of the browser edge before the
+   mobile layout begins. The catalogue is not wrapped by .shell. */
+:root {
+    --catalogue-gutter: 36px;
+}
+
+.header,
+.control-bar,
+.collection {
+    width: min(var(--shell), calc(100% - var(--catalogue-gutter) - var(--catalogue-gutter)));
+}
+
+@media (max-width: 1280px) {
+    :root {
+        --catalogue-gutter: 28px;
+    }
+
+    .control-bar {
+        grid-template-columns: 1fr;
+    }
+
+    .filter-bar {
+        justify-content: flex-start;
+    }
+}
+
+@media (min-width: 1081px) and (max-width: 1280px) {
+    .top-row .page-nav {
+        column-gap: 5px;
+    }
+
+    .top-row .page-nav .page-link {
+        padding-inline: 10px;
+    }
+}
+
+@media (max-width: 760px) {
+    :root {
+        --catalogue-gutter: 18px;
+    }
+}
+
+/* A failed source should become an intentional archive state, not a browser
+   broken-image icon followed by the alt text. */
+.img-box.is-missing-image {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+    background:
+        radial-gradient(circle at 50% 40%, rgba(111, 134, 255, 0.12), transparent 42%),
+        var(--bg-elevated);
+}
+
+.img-box.is-missing-image img {
+    display: none;
+}
+
+.img-box.is-missing-image::before {
+    content: "";
+    display: block;
+    width: 64px;
+    height: 64px;
+    flex: 0 0 auto;
+    background: url("assets/images/arsenal-spark.png") center / contain no-repeat;
+    opacity: 0.72;
+    filter: drop-shadow(0 0 18px rgba(111, 134, 255, 0.22));
+}
+
+.img-box.is-missing-image::after {
+    content: attr(data-fallback) " / IMAGE PENDING";
+    display: block;
+    max-width: 100%;
+    color: var(--muted-2);
+    font-family: var(--mono);
+    font-size: 0.58rem;
+    line-height: 1.45;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    overflow-wrap: anywhere;
+}
+
+.card.is-lead .img-box.is-missing-image::before {
+    width: 92px;
+    height: 92px;

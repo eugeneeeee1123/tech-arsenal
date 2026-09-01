@@ -183,3 +183,21 @@ What the diff changed:
 - `decision.html`, `topology.html`, and `specs.html` added the decision helper, setup map, and product-spec index experiences.
 - `specs-data.js` added the structured device records and specifications used by the spec index.
 - The new PNG assets are raster product images intended for the catalogue; no SVG cutout workflow was used for these device assets.
+
+## 2026-08-25 - v0.6 / Review Git history from 2026-08-19 to 2026-08-25
+
+History window: `2026-08-19` through `2026-08-25`, inclusive.
+
+### Reviewed commits
+
+- `9947047` (`2026-08-23 07:51 +0800`) — `Unify site language and redesign catalogue`: unified the bilingual site chrome, redesigned the annual-index catalogue, added shared navigation/runtime behavior, documented the product direction in `PRODUCT.md`, and replaced the Legion and MacBook product art with transparent assets.
+- `b9a668a` (`2026-08-23 22:30 +0800`) — `feat(catalogue): expand catalogue and refresh device assets`: added the Setup, Decision, and Specs routes, expanded the structured device catalogue, refreshed tablet and laptop records, added source/copy documentation, and added the current raster product asset set.
+- No commits were found on August 19–22 or August 24–25.
+
+### Diff summary
+
+- `9947047`: 14 files changed, with `2,519` insertions and `572` deletions.
+- `b9a668a`: 29 files changed, with `10,394` insertions and `947` deletions.
+- At review time, `main` and `origin/main` both pointed to `b9a668a`.
+
+This entry records the Git history review and is not committed yet.

@@ -64,6 +64,10 @@ const specsCatalog = [
         specs: [["SoC", "Snapdragon 888 | LPDDR5 | UFS 3.1"], ["Display", "6.81\" 2K AMOLED | 120Hz | 1700 nits | E4"], ["Camera Sensor", "Main: Samsung ISOCELL S5KGN2 (GN2) / 1/1.12\"; 5x periscope: Sony IMX586 / 1/2\"; ultrawide: Sony IMX586 / 1/2\"; front: Samsung ISOCELL 3T2 (S5K3T2) / 1/3.4\""], ["Camera System", "50MP GN2 1/1.12\" main | 48MP 5x periscope | 48MP ultrawide"], ["Feature", "Rear Tiny Display | Ceramic Body"], ["Battery", "5000mAh silicon-oxygen | 67W wired | 67W wireless"]]
     },
     {
+        lot: "051", category: "mobile", name: "小米 11 Pro", brand: "XIAOMI · ANDROID KING", status: "wishlist", image: "assets/images/xiaomi11pro.png",
+        specs: [["SoC", "Snapdragon 888 | LPDDR5 6400Mbps | UFS 3.1"], ["Display", "6.81\" Quad-Curved 2K AMOLED | 120Hz | 1700 nits | E4"], ["Camera Sensor", "Main: Samsung ISOCELL S5KGN2 (GN2) / 1/1.12\"; 5x periscope: OmniVision OV08A10 / 1/4.4\"; ultrawide: OmniVision OV13B10 / 1/3.06\"; front: Samsung ISOCELL 3T2 (S5K3T2) / 1/3.4\""], ["Camera System", "50MP GN2 1/1.12\" main | 8MP 5x periscope tele | 13MP 123° ultrawide"], ["Design & Styling", "AG Frosted Quad-Curved Glass | Dream Purple (幻境紫) | IP68 | 208g"], ["Battery", "5000mAh silicon-oxygen | 67W wired | 67W wireless"]]
+    },
+    {
         lot: "017", category: "mobile", name: "小米 17", brand: "XIAOMI · LEICA OPTICS", status: "wishlist", image: "assets/images/xiaomi17-transparent.png",
         specs: [["SoC", "Snapdragon 8 Elite Gen 5 | 16GB LPDDR5X | UFS 4.1"], ["Display", "6.36\" LTPO OLED | 1–120Hz | 3200 nits"], ["Camera Sensor", "Main: Xiaomi Light Fusion 950 / 1/1.28\"; floating tele: Samsung ISOCELL JN5 / 1/2.76\"; ultrawide: Samsung ISOCELL JN1 / 1/2.76\"; front: OmniVision OV32B40 / 1/3.14\""], ["Camera System", "50MP Light Fusion 950 main | 50MP 60mm floating tele | 50MP JN1 ultrawide"], ["Lens", "Leica Summilux"], ["Battery", "5400mAh | 90W wired | 50W wireless"]]
     },
@@ -102,6 +106,10 @@ const specsCatalog = [
     {
         lot: "045", category: "tablet", name: "iPad Air 11\"", brand: "APPLE · EVERYDAY SLATE", status: "wishlist", image: "assets/images/ipad-air-11-transparent.png",
         specs: [["SoC", "Apple M2 | 8-core CPU | 9-core GPU"], ["Display", "11\" Liquid Retina | 2360×1640 | 500 nits"], ["Design", "6.1mm aluminum body | 462g Wi-Fi model"], ["Accessories", "Apple Pencil Pro | Magic Keyboard Folio"]]
+    },
+    {
+        lot: "052", category: "tablet", name: "拯救者 Y700", brand: "LENOVO · COMPACT GAMING SLATE", status: "wishlist", image: "assets/images/legion-y700.png",
+        specs: [["SoC", "Snapdragon 8 Gen 3 (4nm) | LPDDR5X | UFS 4.0"], ["Display", "8.8\" 2.5K IPS LCD | 2560×1600 | 165Hz | 500 nits | 343 PPI"], ["Cooling", "QianKun VC Cooling System | 10,004mm² Vapor Chamber"], ["Gaming Features", "Dual USB-C Ports (side + bottom) | Bypass Charging | Dual X-axis Linear Motors"], ["Build", "CNC Integrated Aluminum | 7.79mm | 340g"], ["Battery", "6550mAh | 68W Super Flash Charge"]]
     },
     {
         lot: "026", category: "laptop", name: "MacBook Pro 16-inch", brand: "APPLE · MACBOOK PRO / M5", status: "wishlist", image: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1000&auto=format&fit=crop",
@@ -173,6 +181,34 @@ const specsCatalog = [
     },
     {
         lot: "044", category: "mobile", name: "Huawei Mate 40 Pro+", brand: "HUAWEI · MATE ULTIMATE", status: "wishlist", image: "assets/images/huaweimate40proplus-transparent.png",
-        specs: [["SoC", "Kirin 9000 5G (5nm) | Mali-G78 GPU"], ["Display", "6.76\" OLED | 90Hz | 2772×1344 | Horizon Display"], ["Camera Sensor", "50MP Ultra Vision RYYB main | 20MP cine ultrawide | 12MP 3x telephoto | 8MP superzoom | 3D ToF"], ["Camera System", "50MP RYYB main | 20MP ultrawide | dual telephoto | 3D depth"], ["Imaging Tech", "HUAWEI XD Fusion Pro | Leica color science"], ["Battery & Charging", "4400mAh | 66W wired | 50W wireless"]]
+        specs: [["SoC", "Kirin 9000 5G (5nm) | Mali-G78 GPU"], ["Display", "6.76\" OLED | 90Hz | 2772×1344 | Horizon Display"], ["Camera Sensor", "Main: Sony IMX700 Ultra Vision RYYB / 1/1.28\" (50MP, 1.22µm, OIS); cine ultrawide: Sony IMX518 / 1/1.54\" (20MP); 3× tele: Sony IMX351 / 1/3.6\" (12MP); 10× periscope: Sony IMX520 / 1/3.6\" (8MP); 3D ToF"], ["Camera System", "50MP RYYB main | 20MP ultrawide | dual telephoto | 3D depth"], ["Imaging Tech", "HUAWEI XD Fusion Pro | Leica color science"], ["Battery & Charging", "4400mAh | 66W wired | 50W wireless"]]
+    },
+    {
+        lot: "045", category: "mobile", name: "Mi 10 Pro", brand: "XIAOMI · MI 10 PRO", status: "wishlist", image: "assets/images/mi10pro-transparent.png",
+        specs: [["Camera Sensor", "Main: Samsung ISOCELL Bright HMX (S5KHMX) / 1/1.33\" (108MP, 0.8µm / 1.6µm, 8P, OIS); 10× hybrid tele: OmniVision OV08A10 / 1/4.4\" (8MP, OIS); 2× portrait: Samsung S5K2L7 / 1/2.56\" (12MP); ultrawide: Sony IMX350 / 1/2.78\" (20MP)"], ["Camera System", "108MP 8P main | 8MP 10× hybrid | 12MP 2× portrait | 20MP ultrawide"], ["SoC", "Snapdragon 865 | LPDDR5 | UFS 3.0"], ["Display", "6.67\" OLED · 90Hz · 1200 nits peak"], ["Battery & Charging", "4500mAh | 50W wired | 30W wireless"]]
+    },
+    {
+        lot: "050", category: "mobile", name: "Mi CC9 Pro", brand: "XIAOMI · MI CC9 PRO", status: "wishlist", image: "assets/images/micc9pro-transparent.png",
+        specs: [["Camera Sensor", "Main: Samsung ISOCELL Bright HMX (S5KHMX) / 1/1.33\" (108MP, 0.8µm / 1.6µm, 4-axis OIS); 5× telephoto: OmniVision OV08A10 / 1/4.4\" (5MP, 4-axis OIS); 2× portrait: Samsung S5K2L7 / 1/2.56\" (12MP); ultrawide: Sony IMX350 / 1/2.8\" (20MP); macro: 2MP / 1/5.0\""], ["Camera System", "108MP penta-camera | 5× optical / 50× digital zoom | dual OIS"], ["SoC", "Snapdragon 730G"], ["Display", "6.47\" curved AMOLED · FHD+"], ["Battery & Charging", "5260mAh | 30W fast flash charge"]]
+    },
+    {
+        lot: "046", category: "mobile", name: "Find X9 Ultra", brand: "OPPO · FIND X9 ULTRA", status: "wishlist", image: "assets/images/findx9ultra-transparent.png",
+        specs: [["Camera Sensor", "Main: Sony LYTIA 900 / 1/1.12\" custom (200MP, 2-axis OIS); 3× portrait tele: Sony / 1/1.28\" (200MP, 2-axis OIS); 10× tele: Sony / 1/2.75\" (50MP, OIS); ultrawide: Sony / 1/1.95\" (50MP)"], ["Camera System", "200MP wide + 200MP 3× tele + 50MP 10× ultra tele + 50MP ultrawide"], ["SoC", "Snapdragon 8 Elite Gen 5"], ["Display", "6.82\" QHD+ 1–120Hz LTPO OLED"], ["Battery & Charging", "6100mAh | 100W SuperVOOC | 50W wireless"]]
+    },
+    {
+        lot: "047", category: "mobile", name: "X70 Pro", brand: "VIVO · X70 PRO", status: "wishlist", image: "assets/images/vivox70pro-transparent.png",
+        specs: [["Camera Sensor", "Main: Sony IMX766V / 1/1.56\" (50MP, Micro-Gimbal OIS, ZEISS T*); portrait: Sony IMX663 / 1/2.93\" (12MP); ultrawide: Samsung S5K3L6 / 1/3.1\" (12MP); 5× periscope: OmniVision OV08A10 / 1/4.4\" (8MP, OIS)"], ["Camera System", "50MP micro-gimbal main | 12MP portrait | 12MP ultrawide | 8MP 5× periscope"], ["SoC", "Dimensity 1200-vivo | V1 Imaging ISP"], ["Display", "6.56\" AMOLED · 120Hz"], ["Battery & Charging", "4450mAh | 44W FlashCharge"]]
+    },
+    {
+        lot: "048", category: "mobile", name: "OnePlus 9 Pro", brand: "ONEPLUS · 9 PRO", status: "wishlist", image: "assets/images/oneplus9pro-transparent.png",
+        specs: [["Camera Sensor", "Main: Sony IMX789 / 1/1.43\" (48MP, 1.12µm, 23mm, OIS); ultrawide: Sony IMX766 / 1/1.56\" (50MP, 14mm, Freeform); 3.3× telephoto: OmniVision OV08A10 / 1/4.4\" (8MP, OIS); monochrome: 2MP / 1/5.0\""], ["Camera System", "Hasselblad camera for mobile | 48MP main | 50MP freeform UW | 8MP tele"], ["SoC", "Snapdragon 888 5G"], ["Display", "6.7\" Fluid AMOLED 2.0 · 120Hz LTPO · 1440p"], ["Battery & Charging", "4500mAh | Warp Charge 65T | 50W Wireless"]]
+    },
+    {
+        lot: "049", category: "mobile", name: "Galaxy A72", brand: "SAMSUNG · GALAXY A72", status: "wishlist", image: "assets/images/galaxya72-transparent.png",
+        specs: [["Camera Sensor", "Main: Sony IMX682 (or Samsung GW1) / 1/1.7\" (64MP, 0.8µm, OIS); 3× telephoto: SK Hynix Hi-847 / 1/4.0\" (8MP, OIS); ultrawide: 1/3.0\" (12MP); macro: 1/5.0\" (5MP)"], ["Camera System", "64MP OIS main | 8MP 3× telephoto | 12MP ultrawide | 5MP macro"], ["SoC", "Snapdragon 720G"], ["Display", "6.7\" Super AMOLED · 90Hz · 800 nits"], ["Battery & Charging", "5000mAh | 25W Fast Charging"]]
+    },
+    {
+        lot: "053", category: "mobile", name: "Pixel 11 Pro Fold", brand: "GOOGLE · FOLDABLE FLAGSHIP", status: "wishlist", image: "assets/images/pixel-11-pro-fold.png",
+        specs: [["Camera Sensor", "Main: Sony IMX787 / 1/2.0\" (48MP, 0.8µm / 1.6µm, OIS); 5× telephoto: Samsung 3J1 / 1/3.2\" (10.8MP, OIS); ultrawide: Samsung 3J1 / 1/3.4\" (10.5MP); outer/inner selfie: Samsung 3K1 / 1/3.94\" (10MP)"], ["Camera System", "48MP Quad PD main | 10.8MP 5× tele | 10.5MP ultrawide | dual 10MP selfie"], ["SoC", "Google Tensor G4 (4nm) | Titan M2 Security | 16GB RAM"], ["Display", "Inner: 8.0\" Super Actua Flex 1–120Hz OLED | Outer: 6.3\" Actua 120Hz OLED"], ["Build & Durability", "10.5mm folded / 5.1mm unfolded | 257g | IPX8 water resistance"], ["Battery & Charging", "4650mAh | 30W USB-PD | Qi Wireless"]]
     }
 ];
