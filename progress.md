@@ -201,3 +201,37 @@ History window: `2026-08-19` through `2026-08-25`, inclusive.
 - At review time, `main` and `origin/main` both pointed to `b9a668a`.
 
 This entry records the Git history review and is not committed yet.
+
+## 2026-09-01 - v0.7 / Xiaomi 11 Pro, Legion Y700, Pixel 11 Pro Fold, and Camera Sensor Metadata
+
+Commit: `87b7a0d` (`87b7a0d31690e28f502900cfc394030074b94267`)
+
+Message: `feat(catalogue): add Xiaomi 11 Pro, Legion Y700, Pixel 11 Pro Fold and complete camera sensor specs`
+
+Push: `main` was pushed from `9e5f702` to `87b7a0d` on `origin/main` at `https://github.com/eugeneeeee1123/tech-arsenal.git`.
+
+### Changes
+
+- Added Xiaomi 11 Pro (`N° 051`, `mobile`) to `tech-arsenal.html` and `specs-data.js` with custom-calibrated 20:9 aspect ratio image asset (`assets/images/xiaomi11pro.png`), 6.81" 2K 120Hz E4 quad-curved AMOLED display, IP68 water resistance, and 1/1.12" Samsung GN2 main camera.
+- Tuned scaling rules for `xiaomi11pro.png` in `arsenal-pages.css` to prevent image overflow while preserving optimal visual prominence in the grid.
+- Added Lenovo Legion Y700 Gen 3 (`N° 052`, `tablet`) compact gaming slate with Snapdragon 8 Gen 3, 8.8" 2.5K 165Hz display, 10,004mm² QianKun VC cooling architecture, dual USB-C ports with bypass charging, and pending image fallback state.
+- Added Google Pixel 11 Pro Fold (`N° 053`, `mobile`) foldable flagship with 8.0" Super Actua Flex 120Hz inner display, 6.3" Actua outer display, aerospace gear hinge, Tensor G4, Gemini Nano AI, and pending image fallback state.
+- Researched, verified, and supplemented optical sensor formats (e.g., 1/1.12", 1/1.28", 1/1.32", 1/1.56", 1/1.7", 1/2.0", 1.0") and specific sensor model names (Sony IMX700 RYYB, IMX766, IMX789, IMX803, IMX858, LYT-900; Samsung GN2, HP2, HM3, GNK, GM5; OmniVision OV48C, OV64B; GalaxyCore GC02M1, etc.) across all 30 smartphone cards.
+- Synchronized structured metadata into `specs-data.js` and added missing records so that `specs.html` displays comprehensive camera sensor breakdowns side-by-side with camera systems.
+- Updated catalogue statistics across `tech-arsenal.html`: 053 catalogued records, 048 pursuing, 31 smartphones, 6 tablets.
+- Added `.gitignore` to prevent OS (`.DS_Store`) and IDE editor cache directories from polluting repository history.
+
+### Diff
+
+Overall diff: `8 files changed, 341 insertions(+), 33 deletions(-)`.
+
+What the diff changed:
+
+- `tech-arsenal.html` added cards `N° 051` (Xiaomi 11 Pro), `N° 052` (Legion Y700), and `N° 053` (Pixel 11 Pro Fold), updated front `.spec-row` values, and added `data-label="Camera Sensors"` across all smartphone cards.
+- `specs-data.js` added `051`, `052`, `053` records, added missing mobile records (`045` Mi 10 Pro, `046` Find X9 Ultra, `047` X70 Pro, `048` OnePlus 9 Pro, `049` Galaxy A72, `050` Mi CC9 Pro), and populated `Camera Sensor` size and model data.
+- `arsenal-pages.css` added image scale transform overrides for Xiaomi 11 Pro and missing image placeholder styling.
+- `arsenal-site.js` added Chinese/English dictionary translations for newly added devices.
+- `assets/images/xiaomi11pro.png` added the calibrated transparent product image asset.
+- `.gitignore` added exclusions for `.DS_Store`, `.impeccable/`, and `.vscode/`.
+- `agents.md` added the agent workflow guidelines.
+
