@@ -3,169 +3,892 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TECH ARSENAL | 对比实验室 / Compare</title>
+    <title>TECH ARSENAL — 对比 / Compare</title>
     <link rel="stylesheet" href="arsenal-pages.css">
+    <style>
+        /* 这页没有独立的产品文案 — 规格全部从 tech-arsenal.html 现读现拿，
+           样式沿用 dossier 的视觉语言（等宽 lot number / seal / spec 行）。*/
+        /* ===== 对比控制台卡座 (3-Slot Deck) ===== */
+        .compare-deck {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin: 24px 0 16px;
+        }
+
+        .compare-slot {
+            background: linear-gradient(180deg, rgba(20, 27, 40, 0.92) 0%, rgba(14, 20, 30, 0.92) 100%);
+            border: 1px solid var(--line-strong, rgba(160, 176, 204, 0.16));
+            border-radius: 8px;
+            padding: 16px 18px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04), 0 4px 16px -2px rgba(0, 0, 0, 0.32);
+            transition: border-color 0.18s ease, box-shadow 0.18s ease;
+        }
+
+        .compare-slot.has-device {
+            border-color: rgba(111, 134, 255, 0.35);
+        }
+
+        .slot-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+        }
+
+        .slot-tag {
+            font-family: var(--mono, monospace);
+            font-size: 0.68rem;
+            letter-spacing: 0.08em;
+            color: var(--accent-2, #91a5ff);
+            background: rgba(111, 134, 255, 0.1);
+            border: 1px solid rgba(111, 134, 255, 0.2);
+            padding: 2px 7px;
+            border-radius: 3px;
+            font-weight: 600;
+        }
+
+        .slot-clear-btn {
+            background: transparent;
+            border: none;
+            color: var(--muted-2, #7f8ca2);
+            font-size: 0.75rem;
+            font-family: var(--mono, monospace);
+            cursor: pointer;
+            padding: 2px 6px;
+            border-radius: 3px;
+            transition: color 0.15s ease, background 0.15s ease;
+        }
+
+        .slot-clear-btn:hover {
+            color: #ff7b7b;
+            background: rgba(255, 123, 123, 0.1);
+        }
+
+        .slot-preview {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(0, 0, 0, 0.22);
+            border: 1px solid var(--line, rgba(160, 176, 204, 0.1));
+            border-radius: 6px;
+            padding: 8px 10px;
+        }
+
+        .slot-thumb {
+            width: 40px;
+            height: 40px;
+            border-radius: 4px;
+            background: rgba(255, 255, 255, 0.025);
+            border: 1px solid var(--line, rgba(160, 176, 204, 0.1));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            overflow: hidden;
+            padding: 2px;
+        }
+
+        .slot-thumb img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            display: block;
+        }
+
+        .slot-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            min-width: 0;
+            flex: 1;
+        }
+
+        .slot-lot {
+            font-family: var(--mono, monospace);
+            font-size: 0.65rem;
+            color: var(--accent-2, #91a5ff);
+        }
+
+        .slot-title {
+            font-size: 0.92rem;
+            font-weight: 600;
+            color: var(--text, #edf2fb);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* 统一的实验室下拉菜单 */
+        .lab-select {
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.32);
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2391a5ff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+            border: 1px solid var(--line, rgba(160, 176, 204, 0.16));
+            border-radius: 6px;
+            color: var(--text, #edf2fb);
+            font-size: 0.85rem;
+            padding: 9px 36px 9px 12px;
+            appearance: none;
+            -webkit-appearance: none;
+            cursor: pointer;
+            transition: border-color 0.18s ease;
+        }
+
+        .lab-select:hover {
+            border-color: rgba(111, 134, 255, 0.3);
+        }
+
+        .lab-select:focus-visible {
+            outline: 2px solid var(--accent, #6f86ff);
+            outline-offset: 2px;
+            border-color: var(--accent, #6f86ff);
+        }
+
+        .lab-select optgroup {
+            background: #131a26;
+            color: var(--accent-2, #91a5ff);
+            font-family: var(--mono, monospace);
+            font-weight: 600;
+            padding: 6px 0;
+        }
+
+        .lab-select option {
+            background: #0d121c;
+            color: #edf2fb;
+            font-family: inherit;
+            padding: 6px 12px;
+        }
+
+        /* ===== 工具栏 ===== */
+        .compare-toolbar {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            margin: 0 0 20px;
+            padding: 10px 14px;
+            background: rgba(16, 22, 33, 0.6);
+            border: 1px solid var(--line, rgba(160, 176, 204, 0.12));
+            border-radius: 6px;
+        }
+
+        .preset-group {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .preset-label {
+            font-family: var(--mono, monospace);
+            font-size: 0.72rem;
+            color: var(--muted-2, #7f8ca2);
+        }
+
+        .preset-chip {
+            background: rgba(111, 134, 255, 0.08);
+            border: 1px solid rgba(111, 134, 255, 0.2);
+            color: var(--accent-2, #91a5ff);
+            font-family: var(--mono, monospace);
+            font-size: 0.72rem;
+            padding: 3px 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.15s ease, border-color 0.15s ease;
+        }
+
+        .preset-chip:hover {
+            background: rgba(111, 134, 255, 0.16);
+            border-color: rgba(111, 134, 255, 0.4);
+        }
+
+        .toolbar-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-left: auto;
+        }
+
+        .diff-toggle-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.78rem;
+            color: var(--muted, #a2adbf);
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .diff-checkbox {
+            accent-color: var(--accent, #6f86ff);
+            cursor: pointer;
+        }
+
+        .toolbar-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--line, rgba(160, 176, 204, 0.16));
+            color: var(--text, #edf2fb);
+            font-size: 0.76rem;
+            padding: 4px 9px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.15s ease, border-color 0.15s ease;
+        }
+
+        .toolbar-btn:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: var(--accent, #6f86ff);
+        }
+
+        /* ===== 空状态 (Empty State) ===== */
+        .compare-empty-card {
+            background: linear-gradient(180deg, rgba(20, 27, 40, 0.8) 0%, rgba(14, 20, 30, 0.8) 100%);
+            border: 1px dashed var(--line-strong, rgba(160, 176, 204, 0.25));
+            border-radius: 8px;
+            padding: 44px 24px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 36px;
+        }
+
+        .empty-icon-box {
+            width: 44px;
+            height: 44px;
+            border-radius: 8px;
+            background: rgba(111, 134, 255, 0.1);
+            border: 1px solid rgba(111, 134, 255, 0.25);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent, #6f86ff);
+        }
+
+        .empty-title {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--text, #edf2fb);
+            margin: 0;
+        }
+
+        .empty-desc {
+            font-size: 0.88rem;
+            color: var(--muted, #a2adbf);
+            max-width: 520px;
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        .empty-presets {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 12px;
+        }
+
+        .empty-preset-card {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--line, rgba(160, 176, 204, 0.16));
+            border-radius: 6px;
+            padding: 10px 14px;
+            color: var(--text, #edf2fb);
+            font-size: 0.82rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: border-color 0.18s ease, background 0.18s ease;
+        }
+
+        .empty-preset-card:hover {
+            border-color: var(--accent, #6f86ff);
+            background: rgba(111, 134, 255, 0.08);
+        }
+
+        .empty-preset-card .arr {
+            color: var(--accent-2, #91a5ff);
+            font-family: var(--mono, monospace);
+        }
+
+        /* ===== 对比数据表格卡片 ===== */
+        .compare-table-card {
+            background: var(--panel-solid, #131a26);
+            border: 1px solid var(--line-strong, rgba(160, 176, 204, 0.2));
+            border-radius: 8px;
+            overflow: clip;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04), 0 8px 24px -4px rgba(0, 0, 0, 0.4);
+            margin-bottom: 40px;
+        }
+
+        .compare-table-scroller {
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .compare-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            font-size: 0.85rem;
+        }
+
+        .compare-table thead th {
+            position: sticky;
+            top: 0;
+            z-index: 5;
+            background: #131a26;
+            border-bottom: 1px solid var(--line-strong, rgba(160, 176, 204, 0.22));
+            padding: 16px 18px;
+            text-align: left;
+            vertical-align: top;
+        }
+
+        .compare-table thead th:first-child {
+            width: 150px;
+            min-width: 130px;
+            border-right: 1px solid var(--line, rgba(160, 176, 204, 0.12));
+            background: #111722;
+        }
+
+        .compare-head-cell {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .compare-head-thumb {
+            width: 46px;
+            height: 46px;
+            border-radius: 6px;
+            background: rgba(255, 255, 255, 0.025);
+            border: 1px solid var(--line, rgba(160, 176, 204, 0.14));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            overflow: hidden;
+            padding: 3px;
+        }
+
+        .compare-head-thumb img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            display: block;
+        }
+
+        .compare-head-meta {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+            min-width: 0;
+        }
+
+        .compare-head-lot {
+            font-family: var(--mono, monospace);
+            font-size: 0.65rem;
+            color: var(--accent-2, #91a5ff);
+        }
+
+        .compare-head-title {
+            font-size: 0.98rem;
+            font-weight: 600;
+            color: var(--text, #edf2fb);
+            margin: 0;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .compare-table tbody th {
+            font-family: var(--mono, monospace);
+            font-size: 0.72rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: var(--accent-2, #91a5ff);
+            background: rgba(0, 0, 0, 0.22);
+            border-right: 1px solid var(--line, rgba(160, 176, 204, 0.12));
+            border-bottom: 1px solid var(--line, rgba(160, 176, 204, 0.1));
+            padding: 12px 16px;
+            text-align: left;
+            vertical-align: middle;
+            white-space: nowrap;
+        }
+
+        .compare-table tbody td {
+            padding: 12px 18px;
+            border-bottom: 1px solid var(--line, rgba(160, 176, 204, 0.1));
+            font-size: 0.85rem;
+            line-height: 1.55;
+            color: var(--text, #edf2fb);
+            font-feature-settings: "tnum";
+            font-variant-numeric: tabular-nums;
+            vertical-align: middle;
+            transition: background 0.15s ease;
+        }
+
+        .compare-table tbody tr:nth-child(even) td {
+            background: rgba(255, 255, 255, 0.015);
+        }
+
+        .compare-table tbody tr:hover td {
+            background: rgba(111, 134, 255, 0.04);
+        }
+
+        /* 差异高亮 */
+        .compare-table.highlight-diff tbody tr.row-diff td {
+            background: rgba(111, 134, 255, 0.05);
+        }
+
+        .compare-table.highlight-diff tbody tr.row-diff th {
+            border-left: 3px solid var(--accent, #6f86ff);
+            color: #fff;
+        }
+
+        .spec-val-empty {
+            color: var(--muted-2, #7f8ca2);
+            opacity: 0.4;
+        }
+
+        /* 无障碍焦点 */
+        a.page-link:focus-visible,
+        a.back-link:focus-visible,
+        .preset-chip:focus-visible,
+        .toolbar-btn:focus-visible,
+        .empty-preset-card:focus-visible {
+            outline: 2px solid var(--accent, #6f86ff);
+            outline-offset: 2px;
+        }
+
+        @media (max-width: 900px) {
+            .compare-deck {
+                grid-template-columns: 1fr;
+            }
+            .compare-toolbar {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .toolbar-actions {
+                margin-left: 0;
+                justify-content: space-between;
+            }
+        }
+    </style>
 </head>
-<body>
-    <main class="shell">
-        <header class="site-header">
-            <div class="top-row">
-                <a class="back-link home-mark-link" href="index.html" aria-label="返回首页 / Back to home" title="返回首页 / Back to home"><img src="assets/images/arsenal-spark.png" alt=""></a>
-                <nav class="page-nav" aria-label="site">
-                    <a class="page-link${currentFile === "index.html" ? " active" : ""}" href="index.html">首页</a>
-                    <a class="page-link${currentFile === "topology.html" ? " active" : ""}" href="topology.html">工位与连接</a>
-                    <a class="page-link${currentFile === "decision.html" ? " active" : ""}" href="decision.html">选机算盘</a>
-                    <a class="page-link${currentFile === "provenance.html" ? " active" : ""}" href="provenance.html">时间线</a>
-                    <a class="page-link${currentFile === "field-notes.html" ? " active" : ""}" href="field-notes.html">使用手记</a>
-                    <a class="page-link${currentFile === "comparison-lab.html" ? " active" : ""}" href="comparison-lab.html">对比实验室</a>
-                    <a class="page-link${currentFile === "on-the-horizon.html" ? " active" : ""}" href="on-the-horizon.html">观望清单</a>
-                    <a class="page-link${currentFile === "tech-arsenal.html" ? " active" : ""}" href="tech-arsenal.html">总目录</a>
-                </nav>
+<body class="catalogue-page">
+    <header class="header site-header">
+        <div class="header-top top-row">
+            <a href="index.html" class="back-link home-mark-link" aria-label="返回首页 / Back to home" title="返回首页 / Back to home"><img src="assets/images/arsenal-spark.png" alt="" width="1000" height="1000" loading="eager" decoding="async"></a>
+            <nav class="page-nav" aria-label="Site navigation / 站点导航">
+                <a class="page-link" href="index.html"><span class="lang-pair"><span class="lang-zh" lang="zh-CN">首页</span><span class="lang-divider" aria-hidden="true"> / </span><span class="lang-en" lang="en">Home</span></span></a>
+                <a class="page-link" href="tech-arsenal.html"><span class="lang-pair"><span class="lang-zh" lang="zh-CN">总目录</span><span class="lang-divider" aria-hidden="true"> / </span><span class="lang-en" lang="en">Catalogue</span></span></a>
+                <a class="page-link active" href="comparison-lab.html" aria-current="page"><span class="lang-pair"><span class="lang-zh" lang="zh-CN">对比</span><span class="lang-divider" aria-hidden="true"> / </span><span class="lang-en" lang="en">Compare</span></span></a>
+                <a class="page-link" href="topology.html"><span class="lang-pair"><span class="lang-zh" lang="zh-CN">工位与连接</span><span class="lang-divider" aria-hidden="true"> / </span><span class="lang-en" lang="en">Setup</span></span></a>
+            </nav>
+        </div>
+        <div class="masthead">
+            <div class="masthead-copy">
+                <h1 class="main-title"><span class="tech">TECH</span> <span class="arsenal">ARSENAL</span></h1>
             </div>
+        </div>
+    </header>
 
-            <div class="hero-head">
-                <div class="title-lockup">
-                    <h1 class="main-title" data-zh="对比实验室" data-en="Compare">Compare</h1>
-                    <p class="page-subtitle">主目录里写的是喜欢，这一页写的是取舍。把最容易纠结的旗舰机型拉到一起，比继续堆更多“想买理由”更有价值。</p>
+    <main class="collection">
+        <!-- 对比卡座 (3-Slot Deck) -->
+        <div class="compare-deck">
+            <!-- SLOT 01 -->
+            <div class="compare-slot" id="slotCardA">
+                <div class="slot-header">
+                    <span class="slot-tag">机位 01 · 基准</span>
+                    <button type="button" class="slot-clear-btn" id="clearA" title="清除当前设备" aria-label="清空当前基准机" hidden>清空</button>
                 </div>
-            </div>
-        </header>
-
-        <section class="hero-panel">
-            <div class="hero-grid">
-                <div class="hero-copy">
-                    <div class="hero-copy-top">
-                        <div class="meta-chip" data-zh="选择逻辑" data-en="Selection logic">selection logic</div>
-                        <h2>同样是旗舰，吸引力其实来自完全不同的维度。</h2>
-                        <p>有的靠形态，有的靠影像，有的靠生态，有的靠毫无短板。这个页面就是把差异讲清楚。</p>
-                    </div>
-
-                    <div class="hero-stats">
-                        <div class="hero-stat">
-                            <strong>04</strong>
-                            <span>candidate devices</span>
-                        </div>
-                        <div class="hero-stat">
-                            <strong>03</strong>
-                            <span>live slots</span>
-                        </div>
-                        <div class="hero-stat">
-                            <strong>01</strong>
-                            <span>shared table</span>
-                        </div>
+                <div class="slot-preview" id="previewA" hidden>
+                    <div class="slot-thumb"><img id="thumbA" src="" alt=""></div>
+                    <div class="slot-info">
+                        <span class="slot-lot" id="lotA"></span>
+                        <span class="slot-title" id="nameA"></span>
                     </div>
                 </div>
+                <select id="pickA" class="lab-select" aria-label="选择第一台基准设备">
+                    <option value="">选一台基准机…</option>
+                </select>
+            </div>
 
-                <div class="hero-side">
-                    <img src="https://images.unsplash.com/photo-1631281005856-787db8c08db7?q=80&w=1400&auto=format&fit=crop" alt="phones arranged on a table">
+            <!-- SLOT 02 -->
+            <div class="compare-slot" id="slotCardB">
+                <div class="slot-header">
+                    <span class="slot-tag">机位 02 · 对照</span>
+                    <button type="button" class="slot-clear-btn" id="clearB" title="清除当前设备" aria-label="清空当前对照机" hidden>清空</button>
                 </div>
+                <div class="slot-preview" id="previewB" hidden>
+                    <div class="slot-thumb"><img id="thumbB" src="" alt=""></div>
+                    <div class="slot-info">
+                        <span class="slot-lot" id="lotB"></span>
+                        <span class="slot-title" id="nameB"></span>
+                    </div>
+                </div>
+                <select id="pickB" class="lab-select" aria-label="选择第二台对照设备">
+                    <option value="">选一台对照机…</option>
+                </select>
             </div>
-        </section>
 
-        <section class="section">
-            <div class="section-heading">
-                <h3>点选候选机型，下面的三列会同步切换。</h3>
-                <p>默认保留 Fold、Ultra 和 iPhone。Pixel 作为替换项，负责那条更偏算法和 AI 的路线。</p>
+            <!-- SLOT 03 -->
+            <div class="compare-slot" id="slotCardC">
+                <div class="slot-header">
+                    <span class="slot-tag">机位 03 · 参考 (可选)</span>
+                    <button type="button" class="slot-clear-btn" id="clearC" title="清除当前设备" aria-label="清空当前参考机" hidden>清空</button>
+                </div>
+                <div class="slot-preview" id="previewC" hidden>
+                    <div class="slot-thumb"><img id="thumbC" src="" alt=""></div>
+                    <div class="slot-info">
+                        <span class="slot-lot" id="lotC"></span>
+                        <span class="slot-title" id="nameC"></span>
+                    </div>
+                </div>
+                <select id="pickC" class="lab-select" aria-label="选择第三台参考设备（可选）">
+                    <option value="">第三台（可选）…</option>
+                </select>
             </div>
+        </div>
 
-            <div class="compare-choices">
-                <button class="choice-btn active" data-slot="0" data-device="fold7" type="button">
-                    <strong>Galaxy Z Fold 7</strong>
-                    <span>form factor and productivity</span>
+        <!-- 实验室工具栏 -->
+        <div class="compare-toolbar">
+            <div class="preset-group">
+                <span class="preset-label">对局速选:</span>
+                <button type="button" class="preset-chip" data-a="003" data-b="013">14 Pro Max vs S25 Ultra</button>
+                <button type="button" class="preset-chip" data-a="030" data-b="026">Mac Studio vs MBP 16"</button>
+                <button type="button" class="preset-chip" data-a="022" data-b="023">iPad Pro vs iPad mini</button>
+                <button type="button" class="preset-chip" data-a="027" data-b="026">Legion 5 vs MBP 16"</button>
+            </div>
+            <div class="toolbar-actions">
+                <label class="diff-toggle-label" title="高亮所有存在参数差异的对比行">
+                    <input type="checkbox" id="toggleDiff" class="diff-checkbox">
+                    <span>高亮参数差异</span>
+                </label>
+                <button type="button" class="toolbar-btn" id="btnSwap" title="交换 A 和 B 位置" aria-label="交换机位 A 与机位 B 设备">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m16 3 4 4-4 4"/><path d="M20 7H4"/><path d="m8 21-4-4 4-4"/><path d="M4 17h16"/></svg>
+                    <span>对调 A/B</span>
                 </button>
-                <button class="choice-btn active" data-slot="1" data-device="s25u" type="button">
-                    <strong>Galaxy S25 Ultra</strong>
-                    <span>all round apex</span>
-                </button>
-                <button class="choice-btn active" data-slot="2" data-device="iphone17" type="button">
-                    <strong>iPhone 17</strong>
-                    <span>ecosystem baseline</span>
-                </button>
-                <button class="choice-btn" data-slot="2" data-device="pixel9" type="button">
-                    <strong>Pixel 11 Pro XL</strong>
-                    <span>camera and native ai</span>
+                <button type="button" class="toolbar-btn" id="btnReset" title="重置对比" aria-label="重置并清空所有对比机位">
+                    <span>清空</span>
                 </button>
             </div>
-        </section>
+        </div>
 
-        <section class="section">
-            <div class="table-wrap">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>criteria</th>
-                            <th class="table-head" id="head-0">Galaxy Z Fold 7</th>
-                            <th class="table-head" id="head-1">Galaxy S25 Ultra</th>
-                            <th class="table-head" id="head-2">iPhone 17</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th>role</th>
-                            <td id="role-0"></td>
-                            <td id="role-1"></td>
-                            <td id="role-2"></td>
-                        </tr>
-                        <tr>
-                            <th>display</th>
-                            <td id="display-0"></td>
-                            <td id="display-1"></td>
-                            <td id="display-2"></td>
-                        </tr>
-                        <tr>
-                            <th>camera</th>
-                            <td id="camera-0"></td>
-                            <td id="camera-1"></td>
-                            <td id="camera-2"></td>
-                        </tr>
-                        <tr>
-                            <th>chip and ai</th>
-                            <td id="chip-0"></td>
-                            <td id="chip-1"></td>
-                            <td id="chip-2"></td>
-                        </tr>
-                        <tr>
-                            <th>pull</th>
-                            <td class="table-note" id="note-0"></td>
-                            <td class="table-note" id="note-1"></td>
-                            <td class="table-note" id="note-2"></td>
-                        </tr>
-                    </tbody>
+        <!-- 空状态卡片 -->
+        <div id="compareEmpty" class="compare-empty-card">
+            <div class="empty-icon-box" aria-hidden="true">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="M7 21h10"/><path d="M12 3v18"/><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"/></svg>
+            </div>
+            <h2 class="empty-title">待选机位</h2>
+            <p class="empty-desc">单看参数都不差。在上方选两三台设备，比一比屏幕、重量、芯片和影像；或者直接看下方的对局组合。</p>
+            <div class="empty-presets">
+                <button type="button" class="empty-preset-card" data-a="003" data-b="013">
+                    <span>iPhone 14 Pro Max vs Galaxy S25 Ultra</span>
+                    <span class="arr" aria-hidden="true">→</span>
+                </button>
+                <button type="button" class="empty-preset-card" data-a="030" data-b="026">
+                    <span>Mac Studio (M4 Ultra) vs MacBook Pro 16"</span>
+                    <span class="arr" aria-hidden="true">→</span>
+                </button>
+                <button type="button" class="empty-preset-card" data-a="022" data-b="023">
+                    <span>iPad Pro 13" vs iPad mini (A17 Pro)</span>
+                    <span class="arr" aria-hidden="true">→</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- 对比表格 -->
+        <div id="compareCard" class="compare-table-card" hidden>
+            <div class="compare-table-scroller">
+                <table id="compareTable" class="compare-table">
+                    <thead><tr id="compareHeadRow"></tr></thead>
+                    <tbody id="compareBody"></tbody>
                 </table>
             </div>
-        </section>
-
-        <section class="section">
-            <div class="spec-grid">
-                <article class="spec-card">
-                    <div class="status-pill">next move</div>
-                    <h4>增加排序模式</h4>
-                    <p>后面可以做只看影像、只看续航、只看便携性。</p>
-                </article>
-                <article class="spec-card">
-                    <div class="status-pill">next move</div>
-                    <h4>高亮差异项</h4>
-                    <p>只标真正不同的项，读起来会更快。</p>
-                </article>
-                <article class="spec-card">
-                    <div class="status-pill">next move</div>
-                    <h4>跳回主目录卡片</h4>
-                    <p>每一列后面都可以继续连回新的设备详情页。</p>
-                </article>
-            </div>
-        </section>
+        </div>
     </main>
 
     <footer class="site-footer">
-        <div class="footer-line" data-zh="TECH ARSENAL / 对比 / 用候选清单辅助决策" data-en="TECH ARSENAL / Compare / Shortlist as decision support">tech arsenal / compare / shortlist as decision support</div>
+        <div class="footer-line" data-zh="TECH ARSENAL / 对比" data-en="TECH ARSENAL / Compare">tech arsenal / 对比</div>
     </footer>
 
     <script>
-        window.compareLabConfig = {
-            slots: ["fold7", "s25u", "iphone17"]
+        // 这页不维护自己的产品数据。所有规格从 tech-arsenal.html 现读现解析，
+        // 避免总目录和对比页各自一份数据、互相对不上。
+        let devices = [];
+
+        async function loadDevices() {
+            const res = await fetch("tech-arsenal.html");
+            const html = await res.text();
+            const doc = new DOMParser().parseFromString(html, "text/html");
+            devices = [...doc.querySelectorAll(".card")].map((card) => {
+                const details = card.querySelector(".hidden-details");
+                const img = card.querySelector(".img-box img");
+                return {
+                    lot: card.dataset.lot,
+                    cat: card.dataset.cat || "",
+                    chapter: card.dataset.chapter || "SMARTPHONES",
+                    title: details?.querySelector(".d-title")?.textContent.trim() || "",
+                    img: img?.getAttribute("src") || "",
+                    specs: [...(details?.querySelectorAll(".d-spec") || [])].map((s) => ({
+                        label: s.dataset.label || "",
+                        value: s.innerHTML,
+                    })),
+                };
+            }).filter((d) => d.title);
+        }
+
+        const CATEGORY_NAMES = {
+            "mobile": "手机 / SMARTPHONES",
+            "tablet": "平板 / TABLETS",
+            "laptop": "笔记本 / LAPTOPS",
+            "desktop": "台机与显示 / DESKTOPS & RIGS",
+            "audio": "音频与外设 / AUDIO & PERIPHERALS",
+            "peripheral": "音频与外设 / AUDIO & PERIPHERALS"
         };
+
+        function populateSelects() {
+            // Group by category
+            const groups = {};
+            devices.forEach((d) => {
+                const catKey = d.cat || "mobile";
+                if (!groups[catKey]) groups[catKey] = [];
+                groups[catKey].push(d);
+            });
+
+            // Sort within each group
+            Object.values(groups).forEach(arr => arr.sort((a, b) => a.title.localeCompare(b.title)));
+
+            const catOrder = ["mobile", "tablet", "laptop", "desktop", "peripheral", "audio"];
+
+            [pickA, pickB, pickC].forEach((select) => {
+                // Keep the first default option
+                select.innerHTML = select.options[0].outerHTML;
+
+                catOrder.forEach((catKey) => {
+                    const list = groups[catKey];
+                    if (!list || list.length === 0) return;
+
+                    const groupEl = document.createElement("optgroup");
+                    groupEl.label = `—— ${CATEGORY_NAMES[catKey] || catKey.toUpperCase()} ——`;
+
+                    list.forEach((d) => {
+                        const opt = document.createElement("option");
+                        opt.value = d.lot;
+                        opt.textContent = `N° ${d.lot} · ${d.title}`;
+                        groupEl.appendChild(opt);
+                    });
+
+                    select.appendChild(groupEl);
+                });
+            });
+        }
+
+        function updateSlotVisual(slotPrefix, pickSelect) {
+            const lot = pickSelect.value;
+            const slotCard = document.getElementById(`slotCard${slotPrefix}`);
+            const preview = document.getElementById(`preview${slotPrefix}`);
+            const clearBtn = document.getElementById(`clear${slotPrefix}`);
+            const thumb = document.getElementById(`thumb${slotPrefix}`);
+            const lotEl = document.getElementById(`lot${slotPrefix}`);
+            const nameEl = document.getElementById(`name${slotPrefix}`);
+
+            if (lot) {
+                const d = devices.find((item) => item.lot === lot);
+                if (d) {
+                    slotCard.classList.add("has-device");
+                    preview.hidden = false;
+                    clearBtn.hidden = false;
+                    thumb.src = d.img;
+                    thumb.alt = d.title;
+                    lotEl.textContent = `N° ${d.lot}`;
+                    nameEl.textContent = d.title;
+                    return;
+                }
+            }
+            slotCard.classList.remove("has-device");
+            preview.hidden = true;
+            clearBtn.hidden = true;
+        }
+
+        function currentSelection() {
+            return [pickA.value, pickB.value, pickC.value]
+                .filter(Boolean)
+                .map((lot) => devices.find((d) => d.lot === lot))
+                .filter(Boolean);
+        }
+
+        function render() {
+            updateSlotVisual("A", pickA);
+            updateSlotVisual("B", pickB);
+            updateSlotVisual("C", pickC);
+
+            const chosen = currentSelection();
+            const empty = document.getElementById("compareEmpty");
+            const card = document.getElementById("compareCard");
+            const table = document.getElementById("compareTable");
+            const isDiffHighlight = document.getElementById("toggleDiff")?.checked;
+
+            if (chosen.length < 2) {
+                empty.hidden = false;
+                card.hidden = true;
+                return;
+            }
+            empty.hidden = true;
+            card.hidden = false;
+
+            if (isDiffHighlight) {
+                table.classList.add("highlight-diff");
+            } else {
+                table.classList.remove("highlight-diff");
+            }
+
+            const headRow = document.getElementById("compareHeadRow");
+            headRow.innerHTML = "<th>参数项 / SPEC</th>" + chosen.map((d) =>
+                `<th>
+                    <div class="compare-head-cell">
+                        <div class="compare-head-thumb"><img src="${d.img}" alt="${d.title}" width="46" height="46" loading="lazy" decoding="async"></div>
+                        <div class="compare-head-meta">
+                            <span class="compare-head-lot">N° ${d.lot}</span>
+                            <h3 class="compare-head-title">${d.title}</h3>
+                        </div>
+                    </div>
+                </th>`
+            ).join("");
+
+            // 标准参数项分类映射表，确保不同品类设备横向对比时对齐同一参数行
+            const CANONICAL_TAXONOMY = [
+                { label: "PROCESSOR / SOC", aliases: ["soc", "processor", "platform", "cpu"] },
+                { label: "GRAPHICS / GPU", aliases: ["graphics", "gpu"] },
+                { label: "MEMORY", aliases: ["memory", "ram", "memory & storage"] },
+                { label: "STORAGE", aliases: ["storage", "ssd", "rom", "memory & storage"] },
+                { label: "DISPLAY", aliases: ["display", "screen", "display panel"] },
+                { label: "INNER DISPLAY", aliases: ["inner display"] },
+                { label: "COVER DISPLAY", aliases: ["cover display"] },
+                { label: "CAMERA SYSTEM", aliases: ["camera system", "imaging tech"] },
+                { label: "CAMERA SENSORS", aliases: ["camera sensors"] },
+                { label: "FOCAL LENGTHS", aliases: ["focal lengths"] },
+                { label: "BATTERY & POWER", aliases: ["battery", "battery & charging", "battery & power", "battery life", "battery & i/o"] },
+                { label: "CONNECTIVITY & I/O", aliases: ["connectivity", "i/o", "i/o & connectivity", "i/o & wireless", "ports & gaming features", "battery & i/o"] },
+                { label: "BUILD & DESIGN", aliases: ["build", "build / battery", "build & weight", "build & durability", "build & audio", "design", "design & styling", "form factor"] },
+                { label: "AUDIO & SOUND", aliases: ["audio", "acoustics", "audio architecture", "camera & audio", "build & audio", "audio & haptics"] },
+                { label: "NOISE CANCELLATION (ANC)", aliases: ["anc", "noise cancellation"] },
+                { label: "FEATURES & AI", aliases: ["feature", "features", "ai features", "new features", "smart features", "multitasking", "ai performance"] },
+                { label: "THERMAL & COOLING", aliases: ["cooling", "thermal architecture"] },
+                { label: "ACCESSORIES & SUPPORT", aliases: ["accessories", "compatibility"] },
+                { label: "SENSOR & INPUT", aliases: ["sensor", "switches", "controls"] },
+                { label: "OPERATING SYSTEM", aliases: ["operating system"] },
+            ];
+
+            const renderedRows = [];
+            const matchedSpecs = new Set();
+
+            // 1. 遍历标准参数体系
+            CANONICAL_TAXONOMY.forEach((canon) => {
+                const aliases = canon.aliases;
+                const hasAny = chosen.some((d) => d.specs.some((s) => aliases.includes(s.label.toLowerCase())));
+                if (!hasAny) return;
+
+                const values = chosen.map((d) => {
+                    const match = d.specs.find((s) => aliases.includes(s.label.toLowerCase()));
+                    if (match) {
+                        matchedSpecs.add(`${d.lot}:${match.label.toLowerCase()}`);
+                        return match.value;
+                    }
+                    return "";
+                });
+
+                renderedRows.push({ label: canon.label, values });
+            });
+
+            // 2. 补齐任何未归入标准分类的个性化规格行
+            chosen.forEach((d) => {
+                d.specs.forEach((s) => {
+                    const specKey = `${d.lot}:${s.label.toLowerCase()}`;
+                    if (!matchedSpecs.has(specKey)) {
+                        const existing = renderedRows.find((r) => r.label.toLowerCase() === s.label.toLowerCase());
+                        if (!existing) {
+                            const values = chosen.map((item) => {
+                                const m = item.specs.find((x) => x.label.toLowerCase() === s.label.toLowerCase());
+                                return m ? m.value : "";
+                            });
+                            renderedRows.push({ label: s.label.toUpperCase(), values });
+                        }
+                    }
+                });
+            });
+
+            const body = document.getElementById("compareBody");
+            body.innerHTML = renderedRows.map(({ label, values }) => {
+                // Check if values differ across chosen devices (only when at least two devices have a non-empty value)
+                const validValues = values.filter(v => v && v.trim() !== "");
+                const isDiffering = validValues.length >= 2 && new Set(validValues.map(v => v.trim().toLowerCase())).size > 1;
+
+                const cells = values.map((val) => {
+                    return `<td>${val ? val : '<span class="spec-val-empty">—</span>'}</td>`;
+                }).join("");
+
+                return `<tr class="${isDiffering ? 'row-diff' : ''}"><th>${label}</th>${cells}</tr>`;
+            }).join("");
+        }
+
+        const pickA = document.getElementById("pickA");
+        const pickB = document.getElementById("pickB");
+        const pickC = document.getElementById("pickC");
+        const toggleDiff = document.getElementById("toggleDiff");
+
+        [pickA, pickB, pickC].forEach((select) => select.addEventListener("change", render));
+        toggleDiff?.addEventListener("change", render);
+
+        document.getElementById("clearA").addEventListener("click", () => { pickA.value = ""; render(); });
+        document.getElementById("clearB").addEventListener("click", () => { pickB.value = ""; render(); });
+        document.getElementById("clearC").addEventListener("click", () => { pickC.value = ""; render(); });
+
+        document.getElementById("btnReset").addEventListener("click", () => {
+            pickA.value = "";
+            pickB.value = "";
+            pickC.value = "";
+            render();
+        });
+
+        document.getElementById("btnSwap").addEventListener("click", () => {
+            const temp = pickA.value;
+            pickA.value = pickB.value;
+            pickB.value = temp;
+            render();
+        });
+
+        function applyPreset(lotA, lotB) {
+            pickA.value = lotA;
+            pickB.value = lotB;
+            pickC.value = "";
+            render();
+            document.getElementById("compareCard")?.scrollIntoView({ behavior: "smooth", block: "nearest" });
+        }
+
+        document.querySelectorAll("[data-a][data-b]").forEach((btn) => {
+            btn.addEventListener("click", () => {
+                applyPreset(btn.dataset.a, btn.dataset.b);
+            });
+        });
+
+        loadDevices().then(populateSelects).then(render);
     </script>
-    <script src="arsenal-compare.js"></script>
     <script src="arsenal-site.js"></script>
 </body>
 </html>

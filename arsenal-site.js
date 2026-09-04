@@ -1,13 +1,9 @@
 (function () {
     const pages = [
         { file: "index.html", zh: "首页", en: "Home", key: "home" },
-        { file: "topology.html", zh: "工位与连接", en: "Setup", key: "topology" },
-        { file: "decision.html", zh: "选机算盘", en: "Decision", key: "decision" },
-        { file: "provenance.html", zh: "时间线", en: "Timeline", key: "timeline" },
-        { file: "field-notes.html", zh: "使用手记", en: "Field notes", key: "notes" },
-        { file: "comparison-lab.html", zh: "对比实验室", en: "Compare", key: "compare" },
-        { file: "on-the-horizon.html", zh: "观望清单", en: "Horizon", key: "horizon" },
-        { file: "tech-arsenal.html", zh: "总目录", en: "Catalogue", key: "catalogue" }
+        { file: "tech-arsenal.html", zh: "总目录", en: "Catalogue", key: "catalogue" },
+        { file: "comparison-lab.html", zh: "对比", en: "Compare", key: "compare" },
+        { file: "topology.html", zh: "工位与连接", en: "Setup", key: "topology" }
     ];
 
     const currentFile = (window.location.pathname.split("/").pop() || "index.html").toLowerCase();

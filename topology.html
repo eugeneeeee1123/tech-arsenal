@@ -1,369 +1,655 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-<!-- Hallmark & Humanizer · page: topology · simple prose · no AI fluff -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TECH ARSENAL | 工位与连接 / Rig & Setup</title>
+    <title>TECH ARSENAL — 工位与连接 / Setup</title>
     <link rel="stylesheet" href="arsenal-pages.css">
+    <style>
+        .setup-intro {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: var(--muted, #a2adbf);
+            margin: 24px 0 28px;
+            max-width: 820px;
+            text-wrap: pretty;
+        }
+
+        /* ===== 空间分区标题 ===== */
+        .zone-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 36px 0 16px;
+        }
+
+        .zone-header:first-of-type {
+            margin-top: 12px;
+        }
+
+        .zone-num {
+            font-family: var(--mono, monospace);
+            font-size: 0.68rem;
+            letter-spacing: 0.1em;
+            color: var(--accent, #6f86ff);
+            background: rgba(111, 134, 255, 0.1);
+            border: 1px solid rgba(111, 134, 255, 0.22);
+            padding: 2px 8px;
+            border-radius: 3px;
+            font-weight: 600;
+        }
+
+        .zone-title {
+            font-size: 0.92rem;
+            font-weight: 600;
+            color: var(--text, #edf2fb);
+            letter-spacing: -0.01em;
+        }
+
+        .zone-line {
+            flex: 1;
+            height: 1px;
+            background: var(--line, rgba(160, 176, 204, 0.12));
+        }
+
+        /* ===== 3列对称网格系统 ===== */
+        .zone-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        /* ===== 通用卡片规范 ===== */
+        .ring-card {
+            background: linear-gradient(180deg, rgba(20, 27, 40, 0.92) 0%, rgba(14, 20, 30, 0.92) 100%);
+            border: 1px solid var(--line-strong, rgba(160, 176, 204, 0.16));
+            border-radius: 8px;
+            padding: 18px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04), 0 4px 16px -2px rgba(0, 0, 0, 0.32);
+            transition: border-color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
+            position: relative;
+        }
+
+        .ring-card:hover {
+            border-color: rgba(111, 134, 255, 0.36);
+            transform: translateY(-2px);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), 0 8px 24px -4px rgba(0, 0, 0, 0.45);
+        }
+
+        .ring-card:active {
+            transform: translateY(0);
+        }
+
+        .ring-card-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .ring-img-box {
+            width: 52px;
+            height: 52px;
+            border-radius: 6px;
+            background: rgba(255, 255, 255, 0.025);
+            border: 1px solid var(--line, rgba(160, 176, 204, 0.12));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            overflow: hidden;
+            padding: 4px;
+        }
+
+        .ring-img-box img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            display: block;
+        }
+
+        .ring-header-info {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            min-width: 0;
+            flex: 1;
+        }
+
+        .ring-title-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+        }
+
+        .ring-device-title {
+            font-size: 1.02rem;
+            font-weight: 600;
+            color: var(--text, #edf2fb);
+            margin: 0;
+            letter-spacing: -0.01em;
+            font-feature-settings: "tnum";
+            font-variant-numeric: tabular-nums;
+            text-wrap: balance;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .ring-role-badge {
+            font-family: var(--mono, monospace);
+            font-size: 0.65rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--accent-2, #91a5ff);
+            background: rgba(111, 134, 255, 0.1);
+            border: 1px solid rgba(111, 134, 255, 0.2);
+            padding: 2px 7px;
+            border-radius: 3px;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .ring-device-duty {
+            font-size: 0.85rem;
+            color: var(--muted, #a2adbf);
+            line-height: 1.55;
+            margin: 0;
+            text-wrap: pretty;
+        }
+
+        .ring-connect-pill {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            margin-top: auto;
+            padding-top: 10px;
+            border-top: 1px solid var(--line, rgba(160, 176, 204, 0.1));
+            font-family: var(--mono, monospace);
+            font-size: 0.72rem;
+            font-variant-numeric: tabular-nums;
+            color: var(--muted-2, #7f8ca2);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* 静态指示圆点，无呼吸灯 */
+        .ring-connect-dot {
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: var(--accent, #6f86ff);
+            flex-shrink: 0;
+        }
+
+        /* ===== ZONE 01: 桌面联动核心大卡 (Mac Studio + XDR 2) ===== */
+        .desk-core-card {
+            grid-column: span 2;
+            background: linear-gradient(180deg, rgba(22, 30, 44, 0.94) 0%, rgba(15, 21, 31, 0.94) 100%);
+            border: 1px solid var(--line-strong, rgba(160, 176, 204, 0.24));
+            border-radius: 8px;
+            padding: 20px 22px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05), 0 4px 20px -2px rgba(0, 0, 0, 0.38);
+            transition: border-color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
+        }
+
+        .desk-core-card:hover {
+            border-color: rgba(111, 134, 255, 0.42);
+            transform: translateY(-2px);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.07), 0 10px 28px -4px rgba(0, 0, 0, 0.5);
+        }
+
+        .desk-core-card:active {
+            transform: translateY(0);
+        }
+
+        .desk-core-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .desk-core-label {
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--text, #edf2fb);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .desk-core-icon {
+            color: var(--accent, #6f86ff);
+            display: flex;
+            align-items: center;
+        }
+
+        .desk-core-status {
+            font-family: var(--mono, monospace);
+            font-size: 0.68rem;
+            letter-spacing: 0.04em;
+            color: var(--accent-2, #91a5ff);
+            background: rgba(111, 134, 255, 0.08);
+            border: 1px solid rgba(111, 134, 255, 0.2);
+            padding: 2px 8px;
+            border-radius: 3px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .status-dot-static {
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: var(--accent, #6f86ff);
+            flex-shrink: 0;
+        }
+
+        .duo-container {
+            display: grid;
+            grid-template-columns: 1fr auto 1.35fr;
+            gap: 16px;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.26);
+            border: 1px solid var(--line, rgba(160, 176, 204, 0.1));
+            border-radius: 6px;
+            padding: 16px 18px;
+        }
+
+        .duo-unit {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .duo-unit-top {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .duo-unit-title {
+            font-size: 1.02rem;
+            font-weight: 600;
+            color: var(--text, #edf2fb);
+            margin: 0;
+            font-feature-settings: "tnum";
+            font-variant-numeric: tabular-nums;
+        }
+
+        .duo-unit-badge {
+            font-family: var(--mono, monospace);
+            font-size: 0.62rem;
+            letter-spacing: 0.05em;
+            color: var(--accent-2, #91a5ff);
+            background: rgba(111, 134, 255, 0.1);
+            border: 1px solid rgba(111, 134, 255, 0.18);
+            padding: 2px 6px;
+            border-radius: 3px;
+            white-space: nowrap;
+        }
+
+        .duo-unit-duty {
+            font-size: 0.83rem;
+            color: var(--muted, #a2adbf);
+            line-height: 1.5;
+            margin: 0;
+            text-wrap: pretty;
+        }
+
+        .duo-bridge {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            padding: 0 4px;
+        }
+
+        .duo-bridge-pill {
+            font-family: var(--mono, monospace);
+            font-size: 0.65rem;
+            letter-spacing: 0.04em;
+            font-variant-numeric: tabular-nums;
+            color: var(--accent-2, #91a5ff);
+            background: rgba(111, 134, 255, 0.1);
+            border: 1px solid rgba(111, 134, 255, 0.24);
+            border-radius: 12px;
+            padding: 3px 9px;
+            white-space: nowrap;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .duo-bridge-pill svg {
+            color: var(--accent, #6f86ff);
+        }
+
+        .duo-bridge-line {
+            width: 44px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(111, 134, 255, 0.4), transparent);
+        }
+
+        .desk-core-footer {
+            font-family: var(--mono, monospace);
+            font-size: 0.72rem;
+            font-variant-numeric: tabular-nums;
+            color: var(--muted-2, #7f8ca2);
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            padding-top: 6px;
+            border-top: 1px solid var(--line, rgba(160, 176, 204, 0.1));
+        }
+
+        .setup-outro {
+            color: var(--muted-2, #7f8ca2);
+            font-size: 0.88rem;
+            line-height: 1.7;
+            margin: 16px 0 48px;
+            padding-left: 14px;
+            border-left: 2px solid var(--accent, #6f86ff);
+            text-wrap: pretty;
+        }
+
+        /* 键盘聚焦支持 (Accessibility a11y) */
+        a.page-link:focus-visible,
+        a.back-link:focus-visible {
+            outline: 2px solid var(--accent, #6f86ff);
+            outline-offset: 3px;
+        }
+
+        /* 响应式适配 */
+        @media (max-width: 1024px) {
+            .zone-grid {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            }
+            .desk-core-card {
+                grid-column: span 1;
+            }
+            .duo-container {
+                grid-template-columns: 1fr;
+                gap: 14px;
+            }
+            .duo-bridge {
+                flex-direction: row;
+                justify-content: center;
+                padding: 4px 0;
+            }
+            .duo-bridge-line {
+                width: 32px;
+            }
+        }
+
+        /* 遵循系统无动画偏好 */
+        @media (prefers-reduced-motion: reduce) {
+            .ring-card, .desk-core-card {
+                transition: none;
+                transform: none !important;
+            }
+        }
+    </style>
 </head>
-<body>
-    <main class="shell">
-        <header class="site-header">
-            <div class="top-row">
-                <a class="back-link home-mark-link" href="index.html" aria-label="返回首页 / Back to home" title="返回首页 / Back to home">
-                    <img src="assets/images/arsenal-spark.png" alt="">
-                </a>
-                <nav class="page-nav" aria-label="site">
-                    <a class="page-link${currentFile === "index.html" ? " active" : ""}" href="index.html">首页</a>
-                    <a class="page-link${currentFile === "topology.html" ? " active" : ""}" href="topology.html">工位与连接</a>
-                    <a class="page-link${currentFile === "decision.html" ? " active" : ""}" href="decision.html">选机算盘</a>
-                    <a class="page-link${currentFile === "provenance.html" ? " active" : ""}" href="provenance.html">时间线</a>
-                    <a class="page-link${currentFile === "field-notes.html" ? " active" : ""}" href="field-notes.html">使用手记</a>
-                    <a class="page-link${currentFile === "comparison-lab.html" ? " active" : ""}" href="comparison-lab.html">对比实验室</a>
-                    <a class="page-link${currentFile === "on-the-horizon.html" ? " active" : ""}" href="on-the-horizon.html">观望清单</a>
-                    <a class="page-link${currentFile === "tech-arsenal.html" ? " active" : ""}" href="tech-arsenal.html">总目录</a>
-                </nav>
+<body class="catalogue-page">
+    <header class="header site-header">
+        <div class="header-top top-row">
+            <a href="index.html" class="back-link home-mark-link" aria-label="返回首页 / Back to home" title="返回首页 / Back to home"><img src="assets/images/arsenal-spark.png" alt="" width="1000" height="1000" loading="eager" decoding="async"></a>
+            <nav class="page-nav" aria-label="Site navigation / 站点导航">
+                <a class="page-link" href="index.html"><span class="lang-pair"><span class="lang-zh" lang="zh-CN">首页</span><span class="lang-divider" aria-hidden="true"> / </span><span class="lang-en" lang="en">Home</span></span></a>
+                <a class="page-link" href="tech-arsenal.html"><span class="lang-pair"><span class="lang-zh" lang="zh-CN">总目录</span><span class="lang-divider" aria-hidden="true"> / </span><span class="lang-en" lang="en">Catalogue</span></span></a>
+                <a class="page-link" href="comparison-lab.html"><span class="lang-pair"><span class="lang-zh" lang="zh-CN">对比</span><span class="lang-divider" aria-hidden="true"> / </span><span class="lang-en" lang="en">Compare</span></span></a>
+                <a class="page-link active" href="topology.html" aria-current="page"><span class="lang-pair"><span class="lang-zh" lang="zh-CN">工位与连接</span><span class="lang-divider" aria-hidden="true"> / </span><span class="lang-en" lang="en">Setup</span></span></a>
+            </nav>
+        </div>
+        <div class="masthead">
+            <div class="masthead-copy">
+                <h1 class="main-title"><span class="tech">TECH</span> <span class="arsenal">ARSENAL</span></h1>
             </div>
+        </div>
+    </header>
 
-            <div class="hero-head">
-                <div class="title-lockup">
-                    <h1 class="main-title" data-zh="工位与连接" data-en="Rig & Setup">工位与<span class="accent">连接</span></h1>
-                    <p class="page-subtitle" data-zh="日常用到的几台设备，怎么连屏幕、怎么传文件、怎么供电。" data-en="How my daily devices connect to screens, sync files, and get power.">日常用到的几台设备，怎么连屏幕、怎么传文件、怎么供电。</p>
-                </div>
-            </div>
-        </header>
+    <main class="collection">
+        <p class="setup-intro">家里固定摆的是 Mac Studio 加 Pro Display XDR，当主力工作台；出门就换成 14 寸 MacBook Pro；Legion 5 常年待在桌边，专门用来打游戏。三台机器各管一块，没人越界，也没多出一根线。</p>
 
-        <section class="hero-panel">
-            <div class="hero-grid">
-                <div class="hero-copy">
-                    <div class="hero-copy-top">
-                        <div class="meta-chip" data-zh="日常搭配" data-en="Daily Setup">日常搭配</div>
-                        <h2 data-zh="日常主要用 MacBook 和 Legion 两台电脑。" data-en="My daily setup centers on a MacBook and a Legion laptop.">日常主要用 MacBook 和 Legion 两台电脑。</h2>
-                        <p data-zh="MacBook 负责写代码和日常使用，Legion 负责跑本地模型、渲染和打游戏。两台电脑用 Syncthing 自动同步文件夹，不用手动拷数据。" data-en="MacBook handles code and daily tasks; Legion runs local models, rendering, and games. Syncthing keeps project folders in sync automatically.">MacBook 负责写代码和日常使用，Legion 负责跑本地模型、渲染和打游戏。两台电脑用 Syncthing 自动同步文件夹，不用手动拷数据。</p>
+        <!-- ZONE 01: 家里主工位 -->
+        <div class="zone-header">
+            <span class="zone-num">ZONE 01</span>
+            <span class="zone-title">家里主工位 · Home Workstation</span>
+            <span class="zone-line"></span>
+        </div>
+
+        <div class="zone-grid">
+            <!-- 桌面联动核心大卡 (Mac Studio + XDR 2) 占 2 列 -->
+            <article class="desk-core-card">
+                <div class="desk-core-header">
+                    <div class="desk-core-label">
+                        <span class="desk-core-icon" aria-hidden="true">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="3" rx="2"/><line x1="8" x2="16" y1="21" y2="21"/><line x1="12" x2="12" y1="17" y2="21"/></svg>
+                        </span>
+                        <span>桌面生产力核心 · WORKSTATION CORE</span>
                     </div>
+                    <div class="desk-core-status">
+                        <span class="status-dot-static" aria-hidden="true"></span>
+                        <span>常驻工位 · LIVE DOCKED</span>
+                    </div>
+                </div>
 
-                    <div class="hero-stats">
-                        <div class="hero-stat">
-                            <strong>02</strong>
-                            <span data-zh="主力电脑" data-en="Main PCs">主力电脑</span>
+                <div class="duo-container">
+                    <!-- Mac Studio -->
+                    <div class="duo-unit">
+                        <div class="duo-unit-top">
+                            <div class="ring-img-box">
+                                <img src="assets/images/macstudio-m4-ultra-transparent.png" alt="Mac Studio" width="1254" height="1254" loading="eager" decoding="async">
+                            </div>
+                            <div>
+                                <h3 class="duo-unit-title">Mac Studio</h3>
+                                <span class="duo-unit-badge">主力台机</span>
+                            </div>
                         </div>
-                        <div class="hero-stat">
-                            <strong>03</strong>
-                            <span data-zh="常用场景" data-en="Presets">常用场景</span>
+                        <p class="duo-unit-duty">全天开机连大屏，写代码、跑本地模型服务。</p>
+                    </div>
+
+                    <!-- 连线桥梁 -->
+                    <div class="duo-bridge">
+                        <span class="duo-bridge-line" aria-hidden="true"></span>
+                        <span class="duo-bridge-pill">
+                            <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                            <span>雷电 4 一线直连 · 6K 120Hz</span>
+                        </span>
+                        <span class="duo-bridge-line" aria-hidden="true"></span>
+                    </div>
+
+                    <!-- Pro Display XDR 2 -->
+                    <div class="duo-unit">
+                        <div class="duo-unit-top">
+                            <div class="ring-img-box">
+                                <img src="assets/images/pro-display-xdr-2-transparent.png" alt="Pro Display XDR 2" width="1736" height="906" loading="eager" decoding="async">
+                            </div>
+                            <div>
+                                <h3 class="duo-unit-title">Pro Display XDR 2</h3>
+                                <span class="duo-unit-badge">主力屏幕</span>
+                            </div>
                         </div>
-                        <div class="hero-stat">
-                            <strong>140W</strong>
-                            <span data-zh="桌面充电头" data-en="Desktop Charger">桌面充电头</span>
+                        <p class="duo-unit-duty">32 寸 6K 视网膜屏，左边代码右边预览，分屏用一整天。</p>
+                    </div>
+                </div>
+
+                <div class="desk-core-footer">
+                    <span class="ring-connect-dot" aria-hidden="true"></span>
+                    <span>单根雷电 4 线缆，扛 6K 信号和数据，桌面没有多余走线。</span>
+                </div>
+            </article>
+
+            <!-- Legion 5 拯救者 占 1 列 -->
+            <article class="ring-card">
+                <div class="ring-card-header">
+                    <div class="ring-img-box">
+                        <img src="assets/images/legion-5-15ahp10.png" alt="Legion 5 拯救者" width="1254" height="1254" loading="lazy" decoding="async">
+                    </div>
+                    <div class="ring-header-info">
+                        <div class="ring-title-row">
+                            <h2 class="ring-device-title">Legion 5 拯救者</h2>
+                            <span class="ring-role-badge">桌边游戏机</span>
                         </div>
                     </div>
                 </div>
-
-                <div class="hero-side">
-                    <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1000&auto=format&fit=crop" alt="Desk setup and MacBook">
+                <p class="ring-device-duty">常年放桌边，只打游戏和跑 Windows 独占的工具。走独立网线，不占主屏视野。</p>
+                <div class="ring-connect-pill">
+                    <span class="ring-connect-dot" aria-hidden="true"></span>
+                    <span>有线网络单独接，跟主工位物理隔开。</span>
                 </div>
-            </div>
-        </section>
+            </article>
+        </div>
 
-        <!-- Section 1: Station Nodes -->
-        <section class="section">
-            <div class="section-heading">
-                <h3 data-zh="工位与设备" data-en="Workstation & Devices">工位与设备</h3>
-                <p data-zh="点选不同场景，查看设备的分工和接线方式。" data-en="Select a scenario to see device roles and connections.">点选不同场景，查看设备的分工和接线方式。</p>
-            </div>
+        <!-- ZONE 02: 外出随身生态 -->
+        <div class="zone-header">
+            <span class="zone-num">ZONE 02</span>
+            <span class="zone-title">外出随身生态 · On-the-Go &amp; EDC</span>
+            <span class="zone-line"></span>
+        </div>
 
-            <div class="topology-controls">
-                <button class="station-tab active" data-station="dual-desk" type="button">
-                    <span class="tab-indicator"></span>
-                    <span data-zh="双机桌面" data-en="Dual-PC Desk">双机桌面</span>
-                </button>
-                <button class="station-tab" data-station="edc-mobile" type="button">
-                    <span class="tab-indicator"></span>
-                    <span data-zh="出门随身" data-en="On the Go">出门随身</span>
-                </button>
-                <button class="station-tab" data-station="lab-testbed" type="button">
-                    <span class="tab-indicator"></span>
-                    <span data-zh="备用测试" data-en="Testbed">备用测试</span>
-                </button>
-            </div>
-
-            <div class="topology-board">
-                <div class="topology-nodes-grid" id="topology-nodes-container">
-                    <!-- Populated dynamically by JS -->
+        <div class="zone-grid">
+            <article class="ring-card">
+                <div class="ring-card-header">
+                    <div class="ring-img-box">
+                        <img src="assets/images/macbook-pro-16.webp" alt="MacBook Pro 14&quot;" width="1436" height="1096" loading="lazy" decoding="async">
+                    </div>
+                    <div class="ring-header-info">
+                        <div class="ring-title-row">
+                            <h2 class="ring-device-title">MacBook Pro 14"</h2>
+                            <span class="ring-role-badge">外出主力</span>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </section>
+                <p class="ring-device-duty">出门主力机，咖啡馆、差旅随身带，轻。</p>
+                <div class="ring-connect-pill">
+                    <span class="ring-connect-dot" aria-hidden="true"></span>
+                    <span>移动办公，回家自动同步。</span>
+                </div>
+            </article>
 
-        <!-- Section 2: Data Pipeline -->
-        <section class="section">
-            <div class="section-heading">
-                <h3 data-zh="文件与连接工具" data-en="File Sync & Networking">文件与连接工具</h3>
-                <p data-zh="跨设备传文件和远程连接用的几样工具。" data-en="Tools used for file transfers and remote access across platforms.">跨设备传文件和远程连接用的几样工具。</p>
-            </div>
-
-            <div class="table-wrap">
-                <table class="pipeline-table">
-                    <thead>
-                        <tr>
-                            <th data-zh="工具" data-en="Tool">工具</th>
-                            <th data-zh="连接设备" data-en="Devices">连接设备</th>
-                            <th data-zh="主要用途" data-en="Main Job">主要用途</th>
-                            <th data-zh="特点" data-en="Notes">特点</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><span class="protocol-pill">Syncthing</span></td>
-                            <td>MacBook ⇄ Legion</td>
-                            <td data-zh="自动双向同步代码库和笔记文件夹" data-en="Syncs code repos and note folders automatically">自动双向同步代码库和笔记文件夹</td>
-                            <td class="font-mono" style="font-size:0.75rem; color:var(--muted-2);">局域网直连，不走第三方云端</td>
-                        </tr>
-                        <tr>
-                            <td><span class="protocol-pill">Tailscale</span></td>
-                            <td>手机 / 笔记本 ⇄ 电脑</td>
-                            <td data-zh="出门在外远程连回电脑写代码、调接口" data-en="Remote SSH and coding when away from home">出门在外远程连回电脑写代码、调接口</td>
-                            <td class="font-mono" style="font-size:0.75rem; color:var(--muted-2);">自动组网，不需要公网 IP</td>
-                        </tr>
-                        <tr>
-                            <td><span class="protocol-pill">LocalSend</span></td>
-                            <td>iPhone ⇄ 安卓 / 电脑</td>
-                            <td data-zh="跨平台快速传照片和大文件" data-en="Quick cross-platform photo and file transfer">跨平台快速传照片和大文件</td>
-                            <td class="font-mono" style="font-size:0.75rem; color:var(--muted-2);">局域网免登录，不压画质</td>
-                        </tr>
-                        <tr>
-                            <td><span class="protocol-pill">Barrier</span></td>
-                            <td>Razer 鼠标 ⇄ Mac / Windows</td>
-                            <td data-zh="一套鼠标键盘直接在两台电脑屏幕间滑过去用" data-en="One mouse and keyboard across both screens">一套鼠标键盘直接在两台电脑屏幕间滑过去用</td>
-                            <td class="font-mono" style="font-size:0.75rem; color:var(--muted-2);">延迟低，剪贴板文字直接复制</td>
-                        </tr>
-                        <tr>
-                            <td><span class="protocol-pill">KDE Connect</span></td>
-                            <td>安卓手机 ➔ MacBook</td>
-                            <td data-zh="短信验证码自动显示在电脑屏幕上" data-en="SMS verification codes pop up on Mac">短信验证码自动显示在电脑屏幕上</td>
-                            <td class="font-mono" style="font-size:0.75rem; color:var(--muted-2);">后台省电，省去拿手机看验证码</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </section>
-
-        <!-- Section 3: Power Setup -->
-        <section class="section">
-            <div class="section-heading">
-                <h3 data-zh="供电与充电" data-en="Power & Charging">供电与充电</h3>
-                <p data-zh="桌面和笔记本的实际供电方式。" data-en="How the desk and laptops are powered.">桌面和笔记本的实际供电方式。</p>
-            </div>
-
-            <div class="power-grid-cards">
-                <article class="power-card">
-                    <div class="power-card-head">
-                        <span class="power-card-title" data-zh="桌面 140W 充电头" data-en="140W Desktop Charger">桌面 140W 充电头</span>
-                        <span class="power-card-wattage">140W</span>
+            <article class="ring-card">
+                <div class="ring-card-header">
+                    <div class="ring-img-box">
+                        <img src="assets/images/ipad-mini-enhanced.png" alt="iPad mini" width="2250" height="1688" loading="lazy" decoding="async">
                     </div>
-                    <ul class="power-route-list">
-                        <li class="power-route-item">
-                            <span>C 口 1 (100W)</span>
-                            <span>➔ 充 MacBook Pro 16</span>
-                        </li>
-                        <li class="power-route-item">
-                            <span>C 口 2 (27W)</span>
-                            <span>➔ 充 iPhone 11 或 Mi 9</span>
-                        </li>
-                        <li class="power-route-item">
-                            <span>A 口 (12W)</span>
-                            <span>➔ 鼠标底座供电</span>
-                        </li>
-                    </ul>
-                    <div class="power-note" data-zh="插拔新设备时充电头会短暂重启重新握手，外设底座接 A 口最稳。" data-en="Multi-port chargers restart briefly when new devices are plugged in.">插拔新设备时充电头会短暂重启重新握手，外设底座接 A 口最稳。</div>
-                </article>
-
-                <article class="power-card">
-                    <div class="power-card-head">
-                        <span class="power-card-title" data-zh="Legion 游戏本供电" data-en="Legion Power">Legion 游戏本供电</span>
-                        <span class="power-card-wattage">230W</span>
+                    <div class="ring-header-info">
+                        <div class="ring-title-row">
+                            <h2 class="ring-device-title">iPad mini (A17 Pro)</h2>
+                            <span class="ring-role-badge">便携平板</span>
+                        </div>
                     </div>
-                    <ul class="power-route-list">
-                        <li class="power-route-item">
-                            <span>原装方口电源</span>
-                            <span>➔ 重载渲染与游戏</span>
-                        </li>
-                        <li class="power-route-item">
-                            <span>便携 140W C 口充</span>
-                            <span>➔ 轻办公与外带</span>
-                        </li>
-                        <li class="power-route-item">
-                            <span>普通 65W/100W PD</span>
-                            <span>➔ 待机慢充保电</span>
-                        </li>
-                    </ul>
-                    <div class="power-note" data-zh="独立显卡跑满时功耗高，用普通 PD 充会掉电，重度使用需要用原装电源。" data-en="GPU under full load needs the brick; standard 100W PD will slowly drain under heavy loads.">独立显卡跑满时功耗高，用普通 PD 充会掉电，重度使用需要用原装电源。</div>
-                </article>
-            </div>
-        </section>
+                </div>
+                <p class="ring-device-duty">外出看书、翻 PDF；回工位当 Sidecar 副屏，多摊一块地方看参考文档。</p>
+                <div class="ring-connect-pill">
+                    <span class="ring-connect-dot" aria-hidden="true"></span>
+                    <span>无线接 Sidecar 副屏。</span>
+                </div>
+            </article>
 
-        <!-- Section 4: EDC Loadouts -->
-        <section class="section">
-            <div class="section-heading">
-                <h3 data-zh="出门搭配" data-en="Carry Loadouts">出门搭配</h3>
-                <p data-zh="按出门需求整理的三种随身包。" data-en="Three simple carry setups depending on the trip.">按出门需求整理的三种随身包。</p>
-            </div>
-
-            <div class="loadout-grid">
-                <article class="loadout-card">
-                    <div class="loadout-header">
-                        <span class="loadout-tag" data-zh="01 · 轻便出门" data-en="01 · Light Carry">01 · 轻便出门</span>
-                        <span class="loadout-weight">约 400g</span>
+            <article class="ring-card">
+                <div class="ring-card-header">
+                    <div class="ring-img-box">
+                        <img src="assets/images/iphone11-transparent.png" alt="iPhone 11" width="1254" height="1254" loading="lazy" decoding="async">
                     </div>
-                    <ul class="loadout-list">
-                        <li>iPhone 11 (主力机)</li>
-                        <li>Apple EarPods (插上就能用，不用充电)</li>
-                        <li>5000mAh 磁吸充电宝</li>
-                        <li>0.5 米充电线</li>
-                    </ul>
-                </article>
-
-                <article class="loadout-card">
-                    <div class="loadout-header">
-                        <span class="loadout-tag" data-zh="02 · 电脑外出" data-en="02 · Laptop Carry">02 · 电脑外出</span>
-                        <span class="loadout-weight">约 2.7kg</span>
+                    <div class="ring-header-info">
+                        <div class="ring-title-row">
+                            <h2 class="ring-device-title">iPhone 11</h2>
+                            <span class="ring-role-badge">随身手机</span>
+                        </div>
                     </div>
-                    <ul class="loadout-list">
-                        <li>MacBook Pro 16</li>
-                        <li>Razer 鼠标 (蓝牙模式)</li>
-                        <li>65W 氮化镓充电头</li>
-                        <li>2 米 Type-C 充电线</li>
-                        <li>小拓展坞</li>
-                    </ul>
-                </article>
+                </div>
+                <p class="ring-device-duty">天天带的手机，微信、刷消息，拍完照 AirDrop 扔给电脑。</p>
+                <div class="ring-connect-pill">
+                    <span class="ring-connect-dot" aria-hidden="true"></span>
+                    <span>AirDrop 隔空传。</span>
+                </div>
+            </article>
+        </div>
 
-                <article class="loadout-card">
-                    <div class="loadout-header">
-                        <span class="loadout-tag" data-zh="03 · 现场测试" data-en="03 · Lab / Testing">03 · 现场测试</span>
-                        <span class="loadout-weight">约 1.2kg</span>
+        <!-- ZONE 03: 辅助与实验留存 -->
+        <div class="zone-header">
+            <span class="zone-num">ZONE 03</span>
+            <span class="zone-title">外设与实验留存 · Peripherals &amp; Archive</span>
+            <span class="zone-line"></span>
+        </div>
+
+        <div class="zone-grid">
+            <article class="ring-card">
+                <div class="ring-card-header">
+                    <div class="ring-img-box">
+                        <img src="assets/images/earpods-transparent.png" alt="EarPods" width="1254" height="1254" loading="lazy" decoding="async">
                     </div>
-                    <ul class="loadout-list">
-                        <li>Mi 9 (已刷原生系统，测试用)</li>
-                        <li>千兆网卡转接线</li>
-                        <li>45W 充电宝</li>
-                        <li>iPad mini 6 (副屏查看)</li>
-                        <li>便携固态 U 盘</li>
-                    </ul>
-                </article>
-            </div>
-        </section>
+                    <div class="ring-header-info">
+                        <div class="ring-title-row">
+                            <h2 class="ring-device-title">EarPods</h2>
+                            <span class="ring-role-badge">有线耳机</span>
+                        </div>
+                    </div>
+                </div>
+                <p class="ring-device-duty">有线，免充电，开会收音稳，没有蓝牙延迟这回事。</p>
+                <div class="ring-connect-pill">
+                    <span class="ring-connect-dot" aria-hidden="true"></span>
+                    <span>3.5mm / Type-C，插上就用。</span>
+                </div>
+            </article>
+
+            <article class="ring-card">
+                <div class="ring-card-header">
+                    <div class="ring-img-box">
+                        <img src="assets/images/samsung-a51-transparent.png" alt="Galaxy A51" width="1254" height="1254" loading="lazy" decoding="async">
+                    </div>
+                    <div class="ring-header-info">
+                        <div class="ring-title-row">
+                            <h2 class="ring-device-title">Galaxy A51</h2>
+                            <span class="ring-role-badge">测试副机</span>
+                        </div>
+                    </div>
+                </div>
+                <p class="ring-device-duty">插第二张卡收验证码。偶尔拿来装 APK，看 Android 上跑起来什么样。</p>
+                <div class="ring-connect-pill">
+                    <span class="ring-connect-dot" aria-hidden="true"></span>
+                    <span>USB-C 接电脑，ADB 调试。</span>
+                </div>
+            </article>
+
+            <article class="ring-card">
+                <div class="ring-card-header">
+                    <div class="ring-img-box">
+                        <img src="assets/images/mi9-transparent.png" alt="Mi 9" width="1254" height="1254" loading="lazy" decoding="async">
+                    </div>
+                    <div class="ring-header-info">
+                        <div class="ring-title-row">
+                            <h2 class="ring-device-title">Mi 9</h2>
+                            <span class="ring-role-badge">退役留存</span>
+                        </div>
+                    </div>
+                </div>
+                <p class="ring-device-duty">以前的主力机，现在退役摆架子，偶尔开机翻老照片。</p>
+                <div class="ring-connect-pill">
+                    <span class="ring-connect-dot" aria-hidden="true"></span>
+                    <span>独立摆放，不用常驻接线。</span>
+                </div>
+            </article>
+        </div>
+
+        <div class="setup-outro">照片手机拍完直接传，代码走局域网同步，桌面没有多余的线。</div>
     </main>
 
     <footer class="site-footer">
-        <div class="footer-line" data-zh="TECH ARSENAL / 工位与连接" data-en="TECH ARSENAL / Rig & Setup">tech arsenal / 工位与连接</div>
+        <div class="footer-line" data-zh="TECH ARSENAL / 工位与连接" data-en="TECH ARSENAL / Setup">tech arsenal / 工位与连接</div>
     </footer>
-
     <script src="arsenal-site.js"></script>
-    <script>
-        const stationsData = {
-            "dual-desk": [
-                {
-                    type: "PRIMARY LAPTOP",
-                    badge: "MACOS",
-                    title: "MacBook Pro 16-inch",
-                    role: "写代码、做设计和日常主力。常用 VSCode、Obsidian 和 Docker。",
-                    connections: ["Type-C 连 Pro Display XDR 2 (6K 120Hz)", "Syncthing 自动同步代码给 Legion", "Barrier 接收鼠标光标"]
-                },
-                {
-                    type: "GPU COMPUTE",
-                    badge: "WINDOWS 11",
-                    title: "Legion 5 15AHP10",
-                    role: "跑本地模型、Blender 渲染和打游戏。插网线接入局域网。",
-                    connections: ["有线网口直连局域网", "Tailscale 暴露本地模型端口", "插 2.4G 鼠标接收器"]
-                },
-                {
-                    type: "MONITOR",
-                    badge: "32 INCH 6K",
-                    title: "Pro Display XDR 2",
-                    role: "32 寸主屏幕，Type-C 连 Mac，DP 连 Legion。",
-                    connections: ["Type-C 供电并传输画面", "DP 接口直连游戏本"]
-                },
-                {
-                    type: "MOUSE",
-                    badge: "WIRELESS",
-                    title: "DeathAdder V2 Pro",
-                    role: "双模鼠标，2.4G 连 Legion，通过软件在两台电脑之间移动。",
-                    connections: ["2.4G 低延迟模式", "磁吸底座充电"]
-                }
-            ],
-            "edc-mobile": [
-                {
-                    type: "MAIN PHONE",
-                    badge: "IOS",
-                    title: "iPhone 11",
-                    role: "主力手机，主要负责通讯、看消息和拍照记录。",
-                    connections: ["LocalSend 传照片给电脑", "磁吸充电宝供电"]
-                },
-                {
-                    type: "EARPHONES",
-                    badge: "WIRED",
-                    title: "Apple EarPods",
-                    role: "有线耳机，插上就听，不用充电，开会收音清楚。",
-                    connections: ["Type-C / 3.5mm 直插", "线控直接接听"]
-                },
-                {
-                    type: "COMPACT TABLET",
-                    badge: "IPADOS",
-                    title: "iPad mini (A17 Pro)",
-                    role: "随身看书、看 PDF，出门时可作为笔记本无线副屏。",
-                    connections: ["随航无线副屏", "Wi-Fi 6E 联网"]
-                }
-            ],
-            "lab-testbed": [
-                {
-                    type: "TEST PHONE",
-                    badge: "AOSP",
-                    title: "Xiaomi Mi 9",
-                    role: "备用测试机，解锁刷了原生系统，用来抓包和跑自动化脚本。",
-                    connections: ["无线调试 ADB", "20W 无线充电座"]
-                },
-                {
-                    type: "BACKUP PHONE",
-                    badge: "ANDROID",
-                    title: "Galaxy A51",
-                    role: "备用机，日常放着收短信验证码。",
-                    connections: ["KDE Connect 转发短信到电脑", "双卡待命"]
-                }
-            ]
-        };
-
-        function renderTopology(stationId) {
-            const container = document.getElementById("topology-nodes-container");
-            const nodes = stationsData[stationId] || stationsData["dual-desk"];
-
-            container.innerHTML = nodes.map(node => `
-                <article class="node-card">
-                    <div class="node-header">
-                        <span class="node-type">${node.type}</span>
-                        <span class="node-badge">${node.badge}</span>
-                    </div>
-                    <h4 class="node-title">${node.title}</h4>
-                    <p class="node-role">${node.role}</p>
-                    <div class="node-connections">
-                        ${node.connections.map(conn => `
-                            <div class="connection-tag">
-                                <span class="dot"></span>
-                                <span>${conn}</span>
-                            </div>
-                        `).join("")}
-                    </div>
-                </article>
-            `).join("");
-        }
-
-        document.querySelectorAll(".station-tab").forEach(tab => {
-            tab.addEventListener("click", () => {
-                document.querySelectorAll(".station-tab").forEach(t => t.classList.remove("active"));
-                tab.classList.add("active");
-                renderTopology(tab.dataset.station);
-            });
-        });
-
-        renderTopology("dual-desk");
-    </script>
 </body>
 </html>

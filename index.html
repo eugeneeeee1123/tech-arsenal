@@ -3,194 +3,229 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TECH ARSENAL | 机器留痕 / Machine traces</title>
+    <title>TECH ARSENAL</title>
     <link rel="stylesheet" href="arsenal-pages.css">
+    <style>
+        /* ===== 方案 A：馆藏统计指标模块 (Hero Stats Ledger) ===== */
+        .hero-stats-inline {
+            display: inline-flex;
+            align-items: stretch;
+            gap: 0;
+            margin-bottom: 32px;
+            padding: 16px 20px;
+            background: var(--panel-solid, #131a26);
+            border: 1px solid var(--line-strong, rgba(160, 176, 204, 0.28));
+            border-radius: 6px;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04), 0 8px 24px -4px rgba(0, 0, 0, 0.35);
+        }
+
+        .hero-stat-item {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            padding: 0 22px;
+        }
+
+        .hero-stat-item:first-child {
+            padding-left: 2px;
+        }
+
+        .hero-stat-item:last-child {
+            padding-right: 2px;
+        }
+
+        .hero-stat-item + .hero-stat-item {
+            border-left: 1px solid var(--line, rgba(160, 176, 204, 0.14));
+        }
+
+        .hero-stat-item strong {
+            font-size: 2.1rem;
+            letter-spacing: -0.02em;
+            font-family: var(--display);
+            color: var(--text);
+            line-height: 1;
+            font-variant-numeric: tabular-nums;
+            font-feature-settings: "tnum";
+        }
+
+        .hero-stat-item.owned strong {
+            color: var(--accent-2, #91a5ff);
+        }
+
+        .hero-stat-label {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .hero-stat-label .lang-pair {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        /* 隐藏落单孤悬的斜杠，中英文以年鉴层级整饬排印 */
+        .hero-stat-label .lang-divider {
+            display: none !important;
+        }
+
+        .hero-stat-label .lang-zh {
+            font-size: 0.76rem;
+            font-weight: 500;
+            color: var(--text);
+            line-height: 1.2;
+            letter-spacing: 0.04em;
+        }
+
+        .hero-stat-label .lang-en {
+            font-family: var(--mono);
+            font-size: 0.58rem;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--muted-2);
+            line-height: 1.2;
+        }
+
+        /* ===== 极简主屏 Bento 卡片 (Minimalist Hero Bento) ===== */
+        .home-hero-card {
+            display: grid;
+            grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr);
+            background: var(--panel-solid, #131a26);
+            border: 1px solid var(--line-strong, rgba(160, 176, 204, 0.28));
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 48px;
+        }
+
+        .home-hero-content {
+            padding: 36px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 24px;
+        }
+
+        .home-hero-preview {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 36px;
+            background: rgba(255, 255, 255, 0.012);
+            border-left: 1px solid var(--line, rgba(160, 176, 204, 0.14));
+        }
+
+        .home-hero-preview img {
+            max-width: 82%;
+            max-height: 240px;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.45));
+            user-select: none;
+            pointer-events: none;
+        }
+
+        .home-preview-badge {
+            position: absolute;
+            bottom: 16px;
+            right: 20px;
+            font-family: var(--mono, monospace);
+            font-size: 0.6rem;
+            letter-spacing: 0.12em;
+            color: var(--muted-2, #7f8ca2);
+            text-transform: uppercase;
+        }
+
+        @media (max-width: 900px) {
+            .home-hero-card {
+                grid-template-columns: 1fr;
+            }
+            .home-hero-preview {
+                border-left: 0;
+                border-top: 1px solid var(--line, rgba(160, 176, 204, 0.14));
+                padding: 28px;
+            }
+            .home-hero-content {
+                padding: 24px 20px;
+            }
+            .hero-stats-inline {
+                padding: 12px 14px;
+                margin-bottom: 20px;
+                width: 100%;
+                justify-content: space-between;
+            }
+            .hero-stat-item {
+                padding: 0 10px;
+            }
+            .hero-stat-item strong {
+                font-size: 1.5rem;
+            }
+            .hero-stat-label .lang-zh {
+                font-size: 0.68rem;
+            }
+            .hero-stat-label .lang-en {
+                font-size: 0.52rem;
+            }
+        }
+    </style>
 </head>
-<body>
-    <main class="shell">
-        <header class="site-header">
-            <div class="top-row">
-                <a class="back-link home-mark-link" href="index.html" aria-label="返回首页 / Back to home" title="返回首页 / Back to home">
-                    <img src="assets/images/arsenal-spark.png" alt="">
-                </a>
-                <nav class="page-nav" aria-label="site">
-                    <a class="page-link${currentFile === "index.html" ? " active" : ""}" href="index.html">首页</a>
-                    <a class="page-link${currentFile === "topology.html" ? " active" : ""}" href="topology.html">工位与连接</a>
-                    <a class="page-link${currentFile === "decision.html" ? " active" : ""}" href="decision.html">选机算盘</a>
-                    <a class="page-link${currentFile === "provenance.html" ? " active" : ""}" href="provenance.html">时间线</a>
-                    <a class="page-link${currentFile === "field-notes.html" ? " active" : ""}" href="field-notes.html">使用手记</a>
-                    <a class="page-link${currentFile === "comparison-lab.html" ? " active" : ""}" href="comparison-lab.html">对比实验室</a>
-                    <a class="page-link${currentFile === "on-the-horizon.html" ? " active" : ""}" href="on-the-horizon.html">观望清单</a>
-                    <a class="page-link${currentFile === "tech-arsenal.html" ? " active" : ""}" href="tech-arsenal.html">总目录</a>
-                </nav>
-            </div>
+<body class="catalogue-page">
+    <header class="header site-header">
+        <div class="header-top top-row">
+            <a class="back-link home-mark-link" href="index.html" aria-label="返回首页 / Back to home" title="返回首页 / Back to home">
+                <img src="assets/images/arsenal-spark.png" alt="Tech Arsenal spark mark" width="1000" height="1000" loading="eager" decoding="async">
+            </a>
+            <nav class="page-nav" aria-label="Site navigation / 站点导航">
+                <a class="page-link active" href="index.html" aria-current="page"><span class="lang-pair"><span class="lang-zh" lang="zh-CN">首页</span><span class="lang-divider" aria-hidden="true"> / </span><span class="lang-en" lang="en">Home</span></span></a>
+                <a class="page-link" href="tech-arsenal.html"><span class="lang-pair"><span class="lang-zh" lang="zh-CN">总目录</span><span class="lang-divider" aria-hidden="true"> / </span><span class="lang-en" lang="en">Catalogue</span></span></a>
+                <a class="page-link" href="comparison-lab.html"><span class="lang-pair"><span class="lang-zh" lang="zh-CN">对比</span><span class="lang-divider" aria-hidden="true"> / </span><span class="lang-en" lang="en">Compare</span></span></a>
+                <a class="page-link" href="topology.html"><span class="lang-pair"><span class="lang-zh" lang="zh-CN">工位与连接</span><span class="lang-divider" aria-hidden="true"> / </span><span class="lang-en" lang="en">Setup</span></span></a>
+            </nav>
+        </div>
 
-            <div class="hero-head">
-                <div class="title-lockup">
-                    <h1 class="main-title" data-zh="机器留痕" data-en="Machine traces">机器<span class="accent">留痕</span></h1>
-                    <p class="page-subtitle" data-zh="一份关于设备、手感，以及时间如何改变判断的私人档案。" data-en="A private archive of devices, tactility, and how time changes a judgment。">一份关于设备、手感，以及时间如何改变判断的私人档案。</p>
-                </div>
+        <div class="masthead">
+            <div class="masthead-copy">
+                <h1 class="main-title"><span class="tech">TECH</span> <span class="arsenal">ARSENAL</span></h1>
             </div>
-        </header>
+        </div>
+    </header>
 
-        <section class="hero-panel">
-            <div class="hero-grid">
-                <div class="hero-copy">
-                    <div class="hero-copy-top">
-                        <div class="meta-chip" data-zh="选物标准" data-en="Selection standard">选物标准</div>
-                        <h2>从 Mi 9 到 Fold、Ultra 和 iPad mini，我更在意一台设备留下的理由。</h2>
-                        <p>这里不追求把参数抄全。我要记下的是：第一次为什么会心动，用久了哪里顺手，热度退掉以后还愿不愿意拿起来。</p>
+    <main class="collection">
+        <section class="home-hero-card">
+            <div class="home-hero-content">
+                <div class="hero-stats-inline" aria-label="馆藏数据概览 / Collection statistics">
+                    <div class="hero-stat-item">
+                        <strong class="stat-num">053</strong>
+                        <span class="hero-stat-label" data-zh="已编目" data-en="catalogued">catalogued</span>
                     </div>
-
-                    <div>
-                        <div class="hero-actions">
-                            <a class="button-primary" href="provenance.html" data-zh="看时间线" data-en="View timeline">看时间线</a>
-                            <a class="button-secondary" href="field-notes.html" data-zh="读使用手记" data-en="Read field notes">读使用手记</a>
-                        </div>
-                        <div class="hero-stats">
-                            <div class="hero-stat">
-                                <strong>35</strong>
-                                <span>已记录的品目</span>
-                            </div>
-                            <div class="hero-stat">
-                                <strong>05</strong>
-                                <span>正在更新的页面</span>
-                            </div>
-                            <div class="hero-stat">
-                                <strong>01</strong>
-                                <span>贯穿全站的口味</span>
-                            </div>
-                        </div>
+                    <div class="hero-stat-item owned">
+                        <strong class="stat-num">005</strong>
+                        <span class="hero-stat-label" data-zh="已入藏" data-en="in collection">in collection</span>
+                    </div>
+                    <div class="hero-stat-item">
+                        <strong class="stat-num">048</strong>
+                        <span class="hero-stat-label" data-zh="关注中" data-en="pursuing">pursuing</span>
                     </div>
                 </div>
-
-                <div class="hero-side">
-                    <img src="https://images.unsplash.com/photo-1496171367470-9ed9a91ea931?q=80&w=1400&auto=format&fit=crop" alt="devices arranged on a desk">
+                <div class="hero-actions">
+                    <a class="button-primary" href="tech-arsenal.html" data-zh="打开总目录" data-en="Open the catalogue">打开总目录</a>
+                    <a class="button-secondary" href="comparison-lab.html" data-zh="进入对比实验室" data-en="Open comparison lab">进入对比实验室</a>
                 </div>
             </div>
-        </section>
 
-        <section class="section">
-            <div class="section-heading">
-                <h3>我留下设备，先看三件事</h3>
-                <p>跑分和镜头当然会影响选择，但真正让一台设备待得久的，往往是每天都能感觉到的小地方。</p>
-            </div>
-
-            <div class="summary-grid">
-                <article class="summary-card">
-                    <strong>外形</strong>
-                    <p>它有没有清楚的时代感。轻薄直板、折叠屏，或小尺寸旗舰，都应该一眼能认出来。</p>
-                </article>
-                <article class="summary-card">
-                    <strong>手感</strong>
-                    <p>用久了还顺不顺手，系统会不会打断节奏，重量和续航会不会让人慢慢放下它。</p>
-                </article>
-                <article class="summary-card">
-                    <strong>余味</strong>
-                    <p>过几年再回头，它还能不能把我带回某个具体时期，想起当时为什么喜欢它。</p>
-                </article>
-            </div>
-        </section>
-
-        <section class="section">
-            <div class="section-panel duo-panel">
-                <div class="duo-visual">
-                    <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1400&auto=format&fit=crop" alt="close view of devices and keyboard">
-                </div>
-                <div class="duo-copy">
-                    <h4>买过只是经历，留下才算判断。</h4>
-                    <p>有些机器到手以后越用越喜欢，有些只在开箱那几天让人兴奋。首页想留下的是前一种。它可以不新，但今天看仍然有意思。</p>
-                    <div class="bullet-grid">
-                        <div class="bullet-card">
-                            <strong>初见</strong>
-                            <span>第一次让我停下来的地方。</span>
-                        </div>
-                        <div class="bullet-card">
-                            <strong>拿到手</strong>
-                            <span>真正进入日常后，优缺点变成了什么。</span>
-                        </div>
-                        <div class="bullet-card">
-                            <strong>用久以后</strong>
-                            <span>热度退掉，依然愿意留下的部分。</span>
-                        </div>
-                        <div class="bullet-card">
-                            <strong>归档</strong>
-                            <span>它适合进主目录，还是继续放在观望区。</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="section">
-            <div class="section-heading">
-                <h3>这几类设备，最能说明我的口味</h3>
-                <p>它们先把收藏的轮廓勾出来。其他型号以后再补，不急着一次写完。</p>
-            </div>
-
-            <div class="spec-grid">
-                <article class="spec-card">
-                    <h4>Mi 9</h4>
-                    <p>已拥有。2019 年买的，用到现在还记得当时多喜欢它。</p>
-                </article>
-
-                <article class="spec-card">
-                    <h4>iPhone 11 · Galaxy A51</h4>
-                    <p>已拥有。日常在用的两台，图的是稳定。</p>
-                </article>
-
-                <article class="spec-card">
-                    <h4>Galaxy Z Fold 7 · S25 Ultra · iPad mini</h4>
-                    <p>观望中，还没入手，一直在看。</p>
-                </article>
-            </div>
-        </section>
-
-        <section class="section">
-            <div class="section-heading">
-                <h3>往哪里走</h3>
-            </div>
-
-            <div class="route-grid home-route-grid">
-                <article class="route-card wide">
-                    <div class="card-meta">时间线</div>
-                    <strong>时间线，记录它们怎样进来。</strong>
-                    <p>按顺序走，能看到偏好是怎么慢慢收窄的。</p>
-                    <div class="route-meta">
-                        <div class="meta-cell"><span>重点</span><strong>来源和阶段</strong></div>
-                        <div class="meta-cell"><span>打开</span><strong><a href="provenance.html">provenance.html</a></strong></div>
-                    </div>
-                </article>
-
-                <article class="route-card wide">
-                    <div class="card-meta">使用手记</div>
-                    <strong>使用手记，把“想买”写到“用过以后”。</strong>
-                    <p>很多判断都要上手后才会改变，这里留下的是实际使用的感觉。</p>
-                    <div class="route-meta">
-                        <div class="meta-cell"><span>重点</span><strong>使用后的判断</strong></div>
-                        <div class="meta-cell"><span>打开</span><strong><a href="field-notes.html">field-notes.html</a></strong></div>
-                    </div>
-                </article>
-
-                <article class="route-card narrow">
-                    <div class="card-meta">对比</div>
-                    <strong>把几台纠结的机型放一起看。</strong>
-                    <p>适合处理那些会来回权衡的选择。</p>
-                </article>
-
-                <article class="route-card narrow">
-                    <div class="card-meta">观望</div>
-                    <strong>收好还没决定的对象。</strong>
-                    <p>先持续关注，不急着把它们写进主目录。</p>
-                </article>
-
+            <div class="home-hero-preview">
+                <img src="assets/images/macstudio-m4-ultra-transparent.png" alt="Mac Studio M4 Ultra" width="1254" height="1254" loading="eager" decoding="async">
+                <span class="home-preview-badge">FLAGSHIP · MAC STUDIO</span>
             </div>
         </section>
 
         <section class="section" id="sec-creator">
-            <div class="section-heading">
-                <h3 data-zh="精选创作者 / BOJIO 杰哥" data-en="Featured creator / BOJIO">精选创作者 / BOJIO 杰哥</h3>
-                <p data-zh="科技评测精选与内容来源参考。" data-en="Selected technology reviews and reference source.">科技评测精选与内容来源参考。</p>
+            <div class="chapter-head">
+                <span class="chapter-eyebrow">REFERENCE</span>
+                <h2 class="section-title"><span class="lang-pair"><span class="lang-zh" lang="zh-CN">精选评测参考</span><span class="lang-divider" aria-hidden="true"> / </span><span class="lang-en" lang="en">BOJIO 杰哥</span></span></h2>
+                <div class="chapter-rule"></div>
             </div>
 
             <div class="video-card">
@@ -198,25 +233,15 @@
                     <iframe width="560" height="315" src="https://www.youtube.com/embed/T4FwjYAWAwI?si=FUs0qRRfZWWGJGwA&amp;start=568" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                 </div>
                 <div class="video-info">
-                    <h3 class="video-title" data-zh="BOJIO 杰哥 - 科技评测精选" data-en="BOJIO - Selected technology reviews">BOJIO 杰哥 - 科技评测精选</h3>
+                    <h4 class="video-title" data-zh="BOJIO 杰哥 - 科技评测精选" data-en="BOJIO - Selected technology reviews">BOJIO 杰哥 - 科技评测精选</h4>
                     <span class="video-tagpill">DEEP DIVE</span>
-                </div>
-            </div>
-        </section>
-
-        <section class="section">
-            <div class="section-panel closing-panel">
-                <h4>值得收藏的设备，应该过几年再看，仍然说得出喜欢它的理由。</h4>
-                <div class="hero-actions">
-                    <a class="button-primary" href="field-notes.html" data-zh="读使用手记" data-en="Read field notes">读使用手记</a>
-                    <a class="button-secondary" href="comparison-lab.html" data-zh="去看对比" data-en="Open compare">去看对比</a>
                 </div>
             </div>
         </section>
     </main>
 
     <footer class="site-footer">
-        <div class="footer-line" data-zh="TECH ARSENAL / 首页 / 一份还在更新的个人档案" data-en="TECH ARSENAL / Home / A personal archive in progress">tech arsenal / 首页 / 一份还在更新的个人档案</div>
+        <div class="footer-line" data-zh="TECH ARSENAL / 首页" data-en="TECH ARSENAL / Home">tech arsenal / 首页</div>
     </footer>
     <script src="arsenal-site.js"></script>
 </body>
