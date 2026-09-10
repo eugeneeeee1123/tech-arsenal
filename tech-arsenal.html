@@ -301,13 +301,13 @@
 <div class="control-subbar">
 <p aria-live="polite" class="result-summary" data-en="Showing 53 records across 5 chapters" data-zh="显示 53 条记录，分布于 5 个章节" id="resultSummary" role="status">Showing 53 records across 5 chapters</p>
 <div aria-label="切换显示方式 / Switch view" class="view-toggle" role="group">
-<button aria-pressed="true" class="view-btn active" data-view="gallery" type="button">
+<button aria-pressed="false" class="view-btn" data-view="gallery" type="button">
 <svg aria-hidden="true" class="view-icon" fill="currentColor" viewbox="0 0 16 16">
 <path d="M1.5 2A1.5 1.5 0 0 0 0 3.5v3A1.5 1.5 0 0 0 1.5 8h3A1.5 1.5 0 0 0 6 6.5v-3A1.5 1.5 0 0 0 4.5 2h-3zm8 0A1.5 1.5 0 0 0 8 3.5v3A1.5 1.5 0 0 0 9.5 8h3A1.5 1.5 0 0 0 14 6.5v-3A1.5 1.5 0 0 0 12.5 2h-3zm-8 8A1.5 1.5 0 0 0 0 11.5v3A1.5 1.5 0 0 0 1.5 16h3A1.5 1.5 0 0 0 6 14.5v-3A1.5 1.5 0 0 0 4.5 10h-3zm8 0a1.5 1.5 0 0 0-1.5 1.5v3a1.5 1.5 0 0 0 1.5 1.5h3a1.5 1.5 0 0 0 1.5-1.5v-3a1.5 1.5 0 0 0-1.5-1.5h-3z"></path>
 </svg>
 <span data-en="Gallery" data-zh="图册">图册 / Gallery</span>
 </button>
-<button aria-pressed="false" class="view-btn" data-view="list" type="button">
+<button aria-pressed="true" class="view-btn active" data-view="list" type="button">
 <svg aria-hidden="true" class="view-icon" fill="currentColor" viewbox="0 0 16 16">
 <path d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" fill-rule="evenodd"></path>
 </svg>
@@ -345,7 +345,7 @@
 </div>
 </div>
 </aside>
-<main class="collection" id="catalogue-main">
+<main class="collection is-list" id="catalogue-main">
 <div class="section-wrapper" id="sec-mobile">
 <div class="chapter-head">
 <span class="chapter-eyebrow">phones</span>
@@ -627,8 +627,8 @@
 <div class="card" data-brand="google" data-cat="mobile" data-chapter="SMARTPHONES" data-lot="053" data-name="pixel 9 pro fold" data-status="wishlist">
 <div class="lot-number">N° 053</div>
 <div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
-<div class="img-box is-missing-image" data-fallback="Pixel 11 Pro Fold">
-<img alt="Pixel 11 Pro Fold" data-placeholder-image="true" decoding="async" height="1254" loading="lazy" src="assets/images/pixel-11-pro-fold.png" width="1254"/>
+<div class="img-box">
+<img alt="Pixel 11 Pro Fold" decoding="async" height="1024" loading="lazy" src="assets/images/pixel-11-pro-fold.png" width="1536"/>
 </div>
 <div class="card-content">
 <div class="hallmark">GOOGLE · FOLDABLE FLAGSHIP</div>
@@ -1416,8 +1416,8 @@
 <div class="card" data-brand="lenovo" data-cat="tablet" data-chapter="TABLETS &amp; SLATES" data-lot="052" data-name="拯救者 y700 lenovo legion y700 联想 拯救者 y700 平板 lenovo · compact gaming slate lenovo gaming tablet" data-status="wishlist">
 <div class="lot-number">N° 052</div>
 <div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
-<div class="img-box is-missing-image" data-fallback="Legion Y700">
-<img alt="拯救者 Y700" data-placeholder-image="true" decoding="async" height="1254" loading="lazy" src="assets/images/legion-y700.png" width="1254"/>
+<div class="img-box">
+<img alt="拯救者 Y700" decoding="async" height="1024" loading="lazy" src="assets/images/legion-y700.png" width="1536"/>
 </div>
 <div class="card-content">
 <div class="hallmark">LENOVO · COMPACT GAMING SLATE</div>
@@ -2158,11 +2158,14 @@
             btn.addEventListener("click", () => applyView(btn.dataset.view));
         });
 
+        let initialView = "list";
         try {
-            // 清理旧缓存，确保页面加载时 100% 默认展示完整大图画廊卡片
-            localStorage.removeItem(VIEW_KEY);
-        } catch (e) { /* ignore */ }
-        applyView("gallery");
+            const savedView = localStorage.getItem(VIEW_KEY);
+            if (savedView === "list" || savedView === "gallery") {
+                initialView = savedView;
+            }
+        } catch (e) { /* storage blocked, ignore */ }
+        applyView(initialView);
     </script>
 </body>
 </html>

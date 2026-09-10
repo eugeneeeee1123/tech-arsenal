@@ -632,25 +632,50 @@
         // 避免总目录和对比页各自一份数据、互相对不上。
         let devices = [];
 
+        const escapeHtml = (str) => String(str ?? "").replace(/[&<>"']/g, (s) => ({
+            "&": "&amp;",
+            "<": "&lt;",
+            ">": "&gt;",
+            "\"": "&quot;",
+            "'": "&#039;"
+        }[s]));
+
         async function loadDevices() {
-            const res = await fetch("tech-arsenal.html");
-            const html = await res.text();
-            const doc = new DOMParser().parseFromString(html, "text/html");
-            devices = [...doc.querySelectorAll(".card")].map((card) => {
-                const details = card.querySelector(".hidden-details");
-                const img = card.querySelector(".img-box img");
-                return {
-                    lot: card.dataset.lot,
-                    cat: card.dataset.cat || "",
-                    chapter: card.dataset.chapter || "SMARTPHONES",
-                    title: details?.querySelector(".d-title")?.textContent.trim() || "",
-                    img: img?.getAttribute("src") || "",
-                    specs: [...(details?.querySelectorAll(".d-spec") || [])].map((s) => ({
-                        label: s.dataset.label || "",
-                        value: s.innerHTML,
-                    })),
-                };
-            }).filter((d) => d.title);
+            try {
+                const res = await fetch("tech-arsenal.html");
+                if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                const html = await res.text();
+                const doc = new DOMParser().parseFromString(html, "text/html");
+                devices = [...doc.querySelectorAll(".card")].map((card) => {
+                    const details = card.querySelector(".hidden-details");
+                    const img = card.querySelector(".img-box img");
+                    return {
+                        lot: card.dataset.lot,
+                        cat: card.dataset.cat || "",
+                        chapter: card.dataset.chapter || "SMARTPHONES",
+                        title: details?.querySelector(".d-title")?.textContent.trim() || "",
+                        img: img?.getAttribute("src") || "",
+                        specs: [...(details?.querySelectorAll(".d-spec") || [])].map((s) => ({
+                            label: s.dataset.label || "",
+                            value: s.innerHTML,
+                        })),
+                    };
+                }).filter((d) => d.title);
+            } catch (err) {
+                console.warn("无法直接通过 fetch 读取 tech-arsenal.html（若通过本地 file:// 协议打开，受浏览器同源策略限制）：", err);
+                showLoadError();
+            }
+        }
+
+        function showLoadError() {
+            const emptyNotice = document.getElementById("compareEmpty");
+            if (emptyNotice && !emptyNotice.querySelector(".compare-notice-banner")) {
+                const notice = document.createElement("div");
+                notice.className = "compare-notice-banner";
+                notice.style.cssText = "margin-top: 18px; padding: 14px 18px; background: rgba(255, 123, 123, 0.08); border: 1px solid rgba(255, 123, 123, 0.28); border-radius: 6px; text-align: left; font-size: 0.85rem; line-height: 1.6; color: #ffb4b4;";
+                notice.innerHTML = '<strong>提示 / Notice:</strong> 检测到当前可能通过本地直接双击打开（<code>file://</code> 协议），受现代浏览器安全策略限制，页面无法直接读取 <code>tech-arsenal.html</code> 目录数据。建议通过本地服务器打开本页面（例如在 VSCode 中使用 <em>Live Server</em> 插件，或在项目根目录终端运行 <code>npx serve</code>）。<br><span style="font-size: 0.76rem; opacity: 0.85;">Direct file:// browsing prevents fetching sibling HTML data due to CORS policy. Please view via a local server (e.g., Live Server or <code>npx serve</code>).</span>';
+                emptyNotice.appendChild(notice);
+            }
         }
 
         const CATEGORY_NAMES = {
@@ -762,10 +787,10 @@
             headRow.innerHTML = "<th>参数项 / SPEC</th>" + chosen.map((d) =>
                 `<th>
                     <div class="compare-head-cell">
-                        <div class="compare-head-thumb"><img src="${d.img}" alt="${d.title}" width="46" height="46" loading="lazy" decoding="async"></div>
+                        <div class="compare-head-thumb"><img src="${escapeHtml(d.img)}" alt="${escapeHtml(d.title)}" width="46" height="46" loading="lazy" decoding="async"></div>
                         <div class="compare-head-meta">
-                            <span class="compare-head-lot">N° ${d.lot}</span>
-                            <h3 class="compare-head-title">${d.title}</h3>
+                            <span class="compare-head-lot">N° ${escapeHtml(d.lot)}</span>
+                            <h3 class="compare-head-title">${escapeHtml(d.title)}</h3>
                         </div>
                     </div>
                 </th>`
@@ -843,7 +868,7 @@
                     return `<td>${val ? val : '<span class="spec-val-empty">—</span>'}</td>`;
                 }).join("");
 
-                return `<tr class="${isDiffering ? 'row-diff' : ''}"><th>${label}</th>${cells}</tr>`;
+                return `<tr class="${isDiffering ? 'row-diff' : ''}"><th>${escapeHtml(label)}</th>${cells}</tr>`;
             }).join("");
         }
 
@@ -887,7 +912,10 @@
             });
         });
 
-        loadDevices().then(populateSelects).then(render);
+        loadDevices().then(populateSelects).then(render).catch((err) => {
+            console.error("Initialization error:", err);
+            showLoadError();
+        });
     </script>
     <script src="arsenal-site.js"></script>
 </body>

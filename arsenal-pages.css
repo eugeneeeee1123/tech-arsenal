@@ -1064,8 +1064,6 @@ body {
 
 /* Annual index world: the shared pages use the same blue catalogue language as tech-arsenal. */
 :root {
-    --display: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
-    --body: "Avenir Next", "Helvetica Neue", "Segoe UI", sans-serif;
     --annual-rule: rgba(160, 176, 204, .28);
     --annual-rule-soft: rgba(160, 176, 204, .16);
     --annual-blue-wash: rgba(111, 134, 255, .09);
@@ -4683,37 +4681,9 @@ body.dossier-open {
         width: 100%;
     }
 
-.catalogue-page .header-sub .lang-en {
+    .catalogue-page .header-sub .lang-en {
         display: block;
     }
-}
-
-.catalogue-page .img-box.placeholder-image {
-    position: relative;
-    isolation: isolate;
-    flex-direction: column;
-    gap: 14px;
-    color: var(--muted-2);
-}
-
-.catalogue-page .img-box.placeholder-image::after {
-    content: attr(data-placeholder) "  /  IMAGE PENDING";
-    position: relative;
-    z-index: 1;
-    color: var(--muted-2);
-    font-family: var(--mono);
-    font-size: 0.58rem;
-    letter-spacing: 0.1em;
-    text-align: center;
-}
-
-.catalogue-page .img-box.placeholder-image img {
-    width: 42px;
-    height: 42px;
-    max-height: 42px;
-    opacity: 0.28;
-    transform: none !important;
-    filter: none;
 }
 
 .catalogue-page #dossierImage.is-placeholder {
@@ -4851,3 +4821,4 @@ body.dossier-open {
 .card.is-lead .img-box.is-missing-image::before {
     width: 92px;
     height: 92px;
+}

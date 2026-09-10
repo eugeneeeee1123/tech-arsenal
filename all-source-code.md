@@ -6,12 +6,7 @@
 
 ### HTML
 - `comparison-lab.html`
-- `decision.html`
-- `field-notes.html`
 - `index.html`
-- `on-the-horizon.html`
-- `provenance.html`
-- `specs.html`
 - `tech-arsenal.html`
 - `topology.html`
 
@@ -19,11 +14,10 @@
 - `arsenal-pages.css`
 
 ### JavaScript
-- `arsenal-compare.js`
 - `arsenal-site.js`
-- `specs-data.js`
 
 ## HTML 源码
+
 ### `comparison-lab.html`
 ```html
 <!DOCTYPE html>
@@ -31,766 +25,920 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TECH ARSENAL | 对比实验室 / Compare</title>
+    <title>TECH ARSENAL — 对比 / Compare</title>
     <link rel="stylesheet" href="arsenal-pages.css">
-</head>
-<body>
-    <div class="broadcast-bar">
-        <div class="signal-icon"></div>
-        <span class="shoutout-text" data-zh="决策层" data-en="Decision layer">decision layer</span>
-        <span class="creator-tag" data-zh="对比" data-en="Compare">compare</span>
-        <span class="shoutout-text" data-zh="候选实验室" data-en="Shortlist lab">shortlist lab</span>
-    </div>
+    <style>
+        /* 这页没有独立的产品文案 — 规格全部从 tech-arsenal.html 现读现拿，
+           样式沿用 dossier 的视觉语言（等宽 lot number / seal / spec 行）。*/
+        /* ===== 对比控制台卡座 (3-Slot Deck) ===== */
+        .compare-deck {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin: 24px 0 16px;
+        }
 
-    <main class="shell">
-        <header class="site-header">
-            <div class="top-row">
-                <a class="back-link home-mark-link" href="index.html" aria-label="返回首页 / Back to home" title="返回首页 / Back to home"><img src="assets/images/arsenal-spark.png" alt=""></a>
-                <nav class="page-nav" aria-label="site">
-                    <a class="page-link${currentFile === "index.html" ? " active" : ""}" href="index.html">首页</a>
-                    <a class="page-link${currentFile === "topology.html" ? " active" : ""}" href="topology.html">工位与连接</a>
-                    <a class="page-link${currentFile === "decision.html" ? " active" : ""}" href="decision.html">选机算盘</a>
-                    <a class="page-link${currentFile === "provenance.html" ? " active" : ""}" href="provenance.html">时间线</a>
-                    <a class="page-link${currentFile === "field-notes.html" ? " active" : ""}" href="field-notes.html">使用手记</a>
-                    <a class="page-link${currentFile === "comparison-lab.html" ? " active" : ""}" href="comparison-lab.html">对比实验室</a>
-                    <a class="page-link${currentFile === "on-the-horizon.html" ? " active" : ""}" href="on-the-horizon.html">观望清单</a>
-                    <a class="page-link${currentFile === "tech-arsenal.html" ? " active" : ""}" href="tech-arsenal.html">总目录</a>
-                </nav>
-            </div>
+        .compare-slot {
+            background: linear-gradient(180deg, rgba(20, 27, 40, 0.92) 0%, rgba(14, 20, 30, 0.92) 100%);
+            border: 1px solid var(--line-strong, rgba(160, 176, 204, 0.16));
+            border-radius: 8px;
+            padding: 16px 18px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04), 0 4px 16px -2px rgba(0, 0, 0, 0.32);
+            transition: border-color 0.18s ease, box-shadow 0.18s ease;
+        }
 
-            <div class="hero-head">
-                <div class="eyebrow" data-zh="对比实验室" data-en="Comparison lab">comparison lab</div>
-                <div class="title-lockup">
-                    <h1 class="main-title" data-zh="对比实验室" data-en="Compare">Compare</h1>
-                    <p class="page-subtitle">主目录里写的是喜欢，这一页写的是取舍。把最容易纠结的旗舰机型拉到一起，比继续堆更多“想买理由”更有价值。</p>
-                </div>
-            </div>
-        </header>
+        .compare-slot.has-device {
+            border-color: rgba(111, 134, 255, 0.35);
+        }
 
-        <section class="hero-panel">
-            <div class="hero-grid">
-                <div class="hero-copy">
-                    <div class="hero-copy-top">
-                        <div class="meta-chip" data-zh="选择逻辑" data-en="Selection logic">selection logic</div>
-                        <h2>同样是旗舰，吸引力其实来自完全不同的维度。</h2>
-                        <p>有的靠形态，有的靠影像，有的靠生态，有的靠毫无短板。这个页面就是把差异讲清楚。</p>
-                    </div>
+        .slot-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+        }
 
-                    <div class="hero-stats">
-                        <div class="hero-stat">
-                            <strong>04</strong>
-                            <span>candidate devices</span>
-                        </div>
-                        <div class="hero-stat">
-                            <strong>03</strong>
-                            <span>live slots</span>
-                        </div>
-                        <div class="hero-stat">
-                            <strong>01</strong>
-                            <span>shared table</span>
-                        </div>
-                    </div>
-                </div>
+        .slot-tag {
+            font-family: var(--mono, monospace);
+            font-size: 0.68rem;
+            letter-spacing: 0.08em;
+            color: var(--accent-2, #91a5ff);
+            background: rgba(111, 134, 255, 0.1);
+            border: 1px solid rgba(111, 134, 255, 0.2);
+            padding: 2px 7px;
+            border-radius: 3px;
+            font-weight: 600;
+        }
 
-                <div class="hero-side">
-                    <img src="https://images.unsplash.com/photo-1631281005856-787db8c08db7?q=80&w=1400&auto=format&fit=crop" alt="phones arranged on a table">
-                </div>
-            </div>
-        </section>
+        .slot-clear-btn {
+            background: transparent;
+            border: none;
+            color: var(--muted-2, #7f8ca2);
+            font-size: 0.75rem;
+            font-family: var(--mono, monospace);
+            cursor: pointer;
+            padding: 2px 6px;
+            border-radius: 3px;
+            transition: color 0.15s ease, background 0.15s ease;
+        }
 
-        <section class="section">
-            <div class="section-heading">
-                <h3>点选候选机型，下面的三列会同步切换。</h3>
-                <p>默认保留 Fold、Ultra 和 iPhone。Pixel 作为替换项，负责那条更偏算法和 AI 的路线。</p>
-            </div>
+        .slot-clear-btn:hover {
+            color: #ff7b7b;
+            background: rgba(255, 123, 123, 0.1);
+        }
 
-            <div class="compare-choices">
-                <button class="choice-btn active" data-slot="0" data-device="fold7" type="button">
-                    <strong>Galaxy Z Fold 7</strong>
-                    <span>form factor and productivity</span>
-                </button>
-                <button class="choice-btn active" data-slot="1" data-device="s25u" type="button">
-                    <strong>Galaxy S25 Ultra</strong>
-                    <span>all round apex</span>
-                </button>
-                <button class="choice-btn active" data-slot="2" data-device="iphone17" type="button">
-                    <strong>iPhone 17</strong>
-                    <span>ecosystem baseline</span>
-                </button>
-                <button class="choice-btn" data-slot="2" data-device="pixel9" type="button">
-                    <strong>Pixel 11 Pro XL</strong>
-                    <span>camera and native ai</span>
-                </button>
-            </div>
-        </section>
+        .slot-preview {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(0, 0, 0, 0.22);
+            border: 1px solid var(--line, rgba(160, 176, 204, 0.1));
+            border-radius: 6px;
+            padding: 8px 10px;
+        }
 
-        <section class="section">
-            <div class="table-wrap">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>criteria</th>
-                            <th class="table-head" id="head-0">Galaxy Z Fold 7</th>
-                            <th class="table-head" id="head-1">Galaxy S25 Ultra</th>
-                            <th class="table-head" id="head-2">iPhone 17</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th>role</th>
-                            <td id="role-0"></td>
-                            <td id="role-1"></td>
-                            <td id="role-2"></td>
-                        </tr>
-                        <tr>
-                            <th>display</th>
-                            <td id="display-0"></td>
-                            <td id="display-1"></td>
-                            <td id="display-2"></td>
-                        </tr>
-                        <tr>
-                            <th>camera</th>
-                            <td id="camera-0"></td>
-                            <td id="camera-1"></td>
-                            <td id="camera-2"></td>
-                        </tr>
-                        <tr>
-                            <th>chip and ai</th>
-                            <td id="chip-0"></td>
-                            <td id="chip-1"></td>
-                            <td id="chip-2"></td>
-                        </tr>
-                        <tr>
-                            <th>pull</th>
-                            <td class="table-note" id="note-0"></td>
-                            <td class="table-note" id="note-1"></td>
-                            <td class="table-note" id="note-2"></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </section>
+        .slot-thumb {
+            width: 40px;
+            height: 40px;
+            border-radius: 4px;
+            background: rgba(255, 255, 255, 0.025);
+            border: 1px solid var(--line, rgba(160, 176, 204, 0.1));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            overflow: hidden;
+            padding: 2px;
+        }
 
-        <section class="section">
-            <div class="spec-grid">
-                <article class="spec-card">
-                    <div class="status-pill">next move</div>
-                    <h4>增加排序模式</h4>
-                    <p>后面可以做只看影像、只看续航、只看便携性。</p>
-                </article>
-                <article class="spec-card">
-                    <div class="status-pill">next move</div>
-                    <h4>高亮差异项</h4>
-                    <p>只标真正不同的项，读起来会更快。</p>
-                </article>
-                <article class="spec-card">
-                    <div class="status-pill">next move</div>
-                    <h4>跳回主目录卡片</h4>
-                    <p>每一列后面都可以继续连回新的设备详情页。</p>
-                </article>
-            </div>
-        </section>
-    </main>
+        .slot-thumb img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            display: block;
+        }
 
-    <footer class="site-footer">
-        <div class="footer-line" data-zh="TECH ARSENAL / 对比 / 用候选清单辅助决策" data-en="TECH ARSENAL / Compare / Shortlist as decision support">tech arsenal / compare / shortlist as decision support</div>
-    </footer>
+        .slot-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            min-width: 0;
+            flex: 1;
+        }
 
-    <script>
-        window.compareLabConfig = {
-            slots: ["fold7", "s25u", "iphone17"]
-        };
-    </script>
-    <script src="arsenal-compare.js"></script>
-    <script src="arsenal-site.js"></script>
-</body>
-</html>
-```
+        .slot-lot {
+            font-family: var(--mono, monospace);
+            font-size: 0.65rem;
+            color: var(--accent-2, #91a5ff);
+        }
 
-### `decision.html`
-```html
-<!DOCTYPE html>
-<html lang="zh-CN">
-<!-- Hallmark & Humanizer · page: decision · simple prose · no AI fluff -->
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TECH ARSENAL | 选机算盘 / Decision helper</title>
-    <link rel="stylesheet" href="arsenal-pages.css">
-</head>
-<body>
-    <div class="broadcast-bar">
-        <div class="signal-icon"></div>
-        <span class="shoutout-text" data-zh="选机参考" data-en="Comparison">选机参考</span>
-        <span class="creator-tag" data-zh="加权算盘" data-en="Decision helper">decision helper</span>
-        <span class="shoutout-text" data-zh="按需打分" data-en="Weighted score">按需打分</span>
-    </div>
+        .slot-title {
+            font-size: 0.92rem;
+            font-weight: 600;
+            color: var(--text, #edf2fb);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
 
-    <main class="shell">
-        <header class="site-header">
-            <div class="top-row">
-                <a class="back-link home-mark-link" href="index.html" aria-label="返回首页 / Back to home" title="返回首页 / Back to home">
-                    <img src="assets/images/arsenal-spark.png" alt="">
-                </a>
-                <nav class="page-nav" aria-label="site">
-                    <a class="page-link${currentFile === "index.html" ? " active" : ""}" href="index.html">首页</a>
-                    <a class="page-link${currentFile === "topology.html" ? " active" : ""}" href="topology.html">工位与连接</a>
-                    <a class="page-link${currentFile === "decision.html" ? " active" : ""}" href="decision.html">选机算盘</a>
-                    <a class="page-link${currentFile === "provenance.html" ? " active" : ""}" href="provenance.html">时间线</a>
-                    <a class="page-link${currentFile === "field-notes.html" ? " active" : ""}" href="field-notes.html">使用手记</a>
-                    <a class="page-link${currentFile === "comparison-lab.html" ? " active" : ""}" href="comparison-lab.html">对比实验室</a>
-                    <a class="page-link${currentFile === "on-the-horizon.html" ? " active" : ""}" href="on-the-horizon.html">观望清单</a>
-                    <a class="page-link${currentFile === "tech-arsenal.html" ? " active" : ""}" href="tech-arsenal.html">总目录</a>
-                </nav>
-            </div>
+        /* 统一的实验室下拉菜单 */
+        .lab-select {
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.32);
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2391a5ff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+            border: 1px solid var(--line, rgba(160, 176, 204, 0.16));
+            border-radius: 6px;
+            color: var(--text, #edf2fb);
+            font-size: 0.85rem;
+            padding: 9px 36px 9px 12px;
+            appearance: none;
+            -webkit-appearance: none;
+            cursor: pointer;
+            transition: border-color 0.18s ease;
+        }
 
-            <div class="hero-head">
-                <div class="eyebrow" data-zh="选机算盘" data-en="Decision Helper">选机算盘</div>
-                <div class="title-lockup">
-                    <h1 class="main-title" data-zh="选机算盘" data-en="Decision Helper">选机<span class="accent">算盘</span></h1>
-                    <p class="page-subtitle" data-zh="几台在看的手机，按自己在意的维度调一下权重，算算哪台更合适。" data-en="Set weights for what you care about to see which phone fits best.">几台在看的手机，按自己在意的维度调一下权重，算算哪台更合适。</p>
-                </div>
-            </div>
-        </header>
+        .lab-select:hover {
+            border-color: rgba(111, 134, 255, 0.3);
+        }
 
-        <section class="hero-panel">
-            <div class="hero-grid">
-                <div class="hero-copy">
-                    <div class="hero-copy-top">
-                        <div class="meta-chip" data-zh="选机逻辑" data-en="Scoring Logic">选机逻辑</div>
-                        <h2 data-zh="买手机前把在意的点拉出来算个分。" data-en="Score the options before making a decision.">买手机前把在意的点拉出来算个分。</h2>
-                        <p data-zh="调整下方权重，直接看每台手机的综合得分。" data-en="Adjust the weights below to see how each phone scores.">调整下方权重，直接看每台手机的综合得分。</p>
-                    </div>
+        .lab-select:focus-visible {
+            outline: 2px solid var(--accent, #6f86ff);
+            outline-offset: 2px;
+            border-color: var(--accent, #6f86ff);
+        }
 
-                    <div class="hero-stats">
-                        <div class="hero-stat">
-                            <strong>04</strong>
-                            <span data-zh="候选手机" data-en="Candidate Phones">候选手机</span>
-                        </div>
-                        <div class="hero-stat">
-                            <strong>06</strong>
-                            <span data-zh="考量维度" data-en="Dimensions">考量维度</span>
-                        </div>
-                        <div class="hero-stat">
-                            <strong>01</strong>
-                            <span data-zh="打分引擎" data-en="Scorer">打分引擎</span>
-                        </div>
-                    </div>
-                </div>
+        .lab-select optgroup {
+            background: #131a26;
+            color: var(--accent-2, #91a5ff);
+            font-family: var(--mono, monospace);
+            font-weight: 600;
+            padding: 6px 0;
+        }
 
-                <div class="hero-side">
-                    <img src="https://images.unsplash.com/photo-1631281005856-787db8c08db7?q=80&w=1400&auto=format&fit=crop" alt="Phones on a table">
-                </div>
-            </div>
-        </section>
+        .lab-select option {
+            background: #0d121c;
+            color: #edf2fb;
+            font-family: inherit;
+            padding: 6px 12px;
+        }
 
-        <!-- Section 1: Weighted Scorer -->
-        <section class="section">
-            <div class="section-heading">
-                <h3 data-zh="权重打分" data-en="Weighted Scoring">权重打分</h3>
-                <p data-zh="拖动滑块调整在意程度，下方会自动算出排名。" data-en="Drag the sliders to adjust your weights; scores update automatically.">拖动滑块调整在意程度，下方会自动算出排名。</p>
-            </div>
+        /* ===== 工具栏 ===== */
+        .compare-toolbar {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            margin: 0 0 20px;
+            padding: 10px 14px;
+            background: rgba(16, 22, 33, 0.6);
+            border: 1px solid var(--line, rgba(160, 176, 204, 0.12));
+            border-radius: 6px;
+        }
 
-            <div class="scorer-panel">
-                <div class="sliders-grid">
-                    <div class="slider-group">
-                        <div class="slider-label-row">
-                            <span class="slider-name" data-zh="屏幕护眼 (频闪/PWM)" data-en="Eye Comfort (PWM)">屏幕护眼 (频闪/PWM)</span>
-                            <span class="slider-val" id="val-eye">20%</span>
-                        </div>
-                        <input type="range" id="slider-eye" min="0" max="50" value="20">
-                    </div>
+        .preset-group {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
 
-                    <div class="slider-group">
-                        <div class="slider-label-row">
-                            <span class="slider-name" data-zh="机身轻便与手感" data-en="Weight & Hand Feel">机身轻便与手感</span>
-                            <span class="slider-val" id="val-weight">25%</span>
-                        </div>
-                        <input type="range" id="slider-weight" min="0" max="50" value="25">
-                    </div>
+        .preset-label {
+            font-family: var(--mono, monospace);
+            font-size: 0.72rem;
+            color: var(--muted-2, #7f8ca2);
+        }
 
-                    <div class="slider-group">
-                        <div class="slider-label-row">
-                            <span class="slider-name" data-zh="长焦与拍照" data-en="Telephoto & Camera">长焦与拍照</span>
-                            <span class="slider-val" id="val-camera">20%</span>
-                        </div>
-                        <input type="range" id="slider-camera" min="0" max="50" value="20">
-                    </div>
+        .preset-chip {
+            background: rgba(111, 134, 255, 0.08);
+            border: 1px solid rgba(111, 134, 255, 0.2);
+            color: var(--accent-2, #91a5ff);
+            font-family: var(--mono, monospace);
+            font-size: 0.72rem;
+            padding: 3px 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.15s ease, border-color 0.15s ease;
+        }
 
-                    <div class="slider-group">
-                        <div class="slider-label-row">
-                            <span class="slider-name" data-zh="续航与快充" data-en="Battery & Charging">续航与快充</span>
-                            <span class="slider-val" id="val-battery">15%</span>
-                        </div>
-                        <input type="range" id="slider-battery" min="0" max="50" value="15">
-                    </div>
+        .preset-chip:hover {
+            background: rgba(111, 134, 255, 0.16);
+            border-color: rgba(111, 134, 255, 0.4);
+        }
 
-                    <div class="slider-group">
-                        <div class="slider-label-row">
-                            <span class="slider-name" data-zh="系统与软件生态" data-en="OS & Ecosystem">系统与软件生态</span>
-                            <span class="slider-val" id="val-eco">10%</span>
-                        </div>
-                        <input type="range" id="slider-eco" min="0" max="50" value="10">
-                    </div>
+        .toolbar-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-left: auto;
+        }
 
-                    <div class="slider-group">
-                        <div class="slider-label-row">
-                            <span class="slider-name" data-zh="二手保值率" data-en="Resale Value">二手保值率</span>
-                            <span class="slider-val" id="val-value">10%</span>
-                        </div>
-                        <input type="range" id="slider-value" min="0" max="50" value="10">
-                    </div>
-                </div>
+        .diff-toggle-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.78rem;
+            color: var(--muted, #a2adbf);
+            cursor: pointer;
+            user-select: none;
+        }
 
-                <div class="results-rank-grid" id="rank-cards-container">
-                    <!-- Populated dynamically by JS -->
-                </div>
-            </div>
-        </section>
+        .diff-checkbox {
+            accent-color: var(--accent, #6f86ff);
+            cursor: pointer;
+        }
 
-        <!-- Section 2: Comparison Table -->
-        <section class="section">
-            <div class="section-heading">
-                <h3 data-zh="关键参数差异" data-en="Key Differences">关键参数差异</h3>
-                <p data-zh="几台手机在日常使用中最容易感觉到的区别。" data-en="The most noticeable differences in daily use.">几台手机在日常使用中最容易感觉到的区别。</p>
-            </div>
+        .toolbar-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--line, rgba(160, 176, 204, 0.16));
+            color: var(--text, #edf2fb);
+            font-size: 0.76rem;
+            padding: 4px 9px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.15s ease, border-color 0.15s ease;
+        }
 
-            <div class="table-wrap">
-                <table class="diff-table">
-                    <thead>
-                        <tr>
-                            <th data-zh="比较项目" data-en="Category">比较项目</th>
-                            <th>Galaxy S25 Ultra</th>
-                            <th>Galaxy Z Fold 7</th>
-                            <th>Pixel 11 Pro XL</th>
-                            <th>iPhone 17</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td data-zh="机身重量" data-en="Weight"><strong>机身重量</strong></td>
-                            <td class="font-mono">219g (略沉)</td>
-                            <td class="font-mono">215g (折叠偏厚)</td>
-                            <td class="font-mono">221g (略沉)</td>
-                            <td class="font-mono" style="color:var(--accent-2);">170g (轻)</td>
-                        </tr>
-                        <tr>
-                            <td data-zh="屏幕调光" data-en="Dimming"><strong>屏幕调光</strong></td>
-                            <td>492Hz 低频 PWM</td>
-                            <td>492Hz 低频 PWM</td>
-                            <td>240Hz+混合调光</td>
-                            <td>480Hz 低频 PWM</td>
-                        </tr>
-                        <tr>
-                            <td data-zh="长焦镜头" data-en="Telephoto"><strong>长焦镜头</strong></td>
-                            <td>5 倍潜望镜头</td>
-                            <td>3 倍直立镜头</td>
-                            <td>5 倍潜望镜头</td>
-                            <td>无独立长焦</td>
-                        </tr>
-                        <tr>
-                            <td data-zh="充满时间" data-en="Charging"><strong>充满时间</strong></td>
-                            <td class="font-mono">45W (约 1 小时)</td>
-                            <td class="font-mono">25W (约 1.5 小时)</td>
-                            <td class="font-mono">37W (约 1.2 小时)</td>
-                            <td class="font-mono">27W (约 1.1 小时)</td>
-                        </tr>
-                        <tr>
-                            <td data-zh="系统特点" data-en="OS Features"><strong>系统特点</strong></td>
-                            <td>One UI，功能全</td>
-                            <td>One UI，大屏多任务</td>
-                            <td>原生 Android，AI 功能多</td>
-                            <td>iOS，简单稳定</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </section>
+        .toolbar-btn:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: var(--accent, #6f86ff);
+        }
 
-        <!-- Section 3: Upgrade Advisor -->
-        <section class="section">
-            <div class="section-heading">
-                <h3 data-zh="换机参考" data-en="Upgrade Notes">换机参考</h3>
-                <p data-zh="从旧手机换到新手机，主要能提升什么、需要妥协什么。" data-en="What you gain and what you give up when switching phones.">从旧手机换到新手机，主要能提升什么、需要妥协什么。</p>
-            </div>
+        /* ===== 空状态 (Empty State) ===== */
+        .compare-empty-card {
+            background: linear-gradient(180deg, rgba(20, 27, 40, 0.8) 0%, rgba(14, 20, 30, 0.8) 100%);
+            border: 1px dashed var(--line-strong, rgba(160, 176, 204, 0.25));
+            border-radius: 8px;
+            padding: 44px 24px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 36px;
+        }
 
-            <div class="advisor-card">
-                <div class="advisor-select-row">
-                    <div class="select-box">
-                        <label data-zh="正在用的手机" data-en="Current Phone">正在用的手机</label>
-                        <select id="select-current">
-                            <option value="iphone11">iPhone 11 (LCD 屏 / A13)</option>
-                            <option value="mi9">Xiaomi Mi 9 (轻薄 / 电池小)</option>
-                            <option value="a51">Galaxy A51 (日常备用)</option>
-                            <option value="s23u">Galaxy S23 Ultra</option>
-                        </select>
-                    </div>
+        .empty-icon-box {
+            width: 44px;
+            height: 44px;
+            border-radius: 8px;
+            background: rgba(111, 134, 255, 0.1);
+            border: 1px solid rgba(111, 134, 255, 0.25);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent, #6f86ff);
+        }
 
-                    <div class="advisor-arrow">➔</div>
+        .empty-title {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--text, #edf2fb);
+            margin: 0;
+        }
 
-                    <div class="select-box">
-                        <label data-zh="想换的目标" data-en="Target Phone">想换的目标</label>
-                        <select id="select-target">
-                            <option value="iphone17">iPhone 17 (120Hz 高刷)</option>
-                            <option value="s25u">Galaxy S25 Ultra</option>
-                            <option value="fold7">Galaxy Z Fold 7</option>
-                            <option value="pixel9">Pixel 11 Pro XL</option>
-                        </select>
-                    </div>
-                </div>
+        .empty-desc {
+            font-size: 0.88rem;
+            color: var(--muted, #a2adbf);
+            max-width: 520px;
+            margin: 0;
+            line-height: 1.6;
+        }
 
-                <div class="advisor-verdict" id="advisor-verdict-box">
-                    <!-- Populated dynamically by JS -->
-                </div>
-            </div>
-        </section>
+        .empty-presets {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 12px;
+        }
 
-        <!-- Section 4: Pricing Notes -->
-        <section class="section">
-            <div class="section-heading">
-                <h3 data-zh="价格与入手时机" data-en="Price & Timing">价格与入手时机</h3>
-                <p data-zh="几款手机的日常降价规律。" data-en="Typical discount patterns for each brand.">几款手机的日常降价规律。</p>
-            </div>
+        .empty-preset-card {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--line, rgba(160, 176, 204, 0.16));
+            border-radius: 6px;
+            padding: 10px 14px;
+            color: var(--text, #edf2fb);
+            font-size: 0.82rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: border-color 0.18s ease, background 0.18s ease;
+        }
 
-            <div class="budget-grid">
-                <article class="budget-card">
-                    <div class="budget-header">
-                        <span class="budget-name">Galaxy S25 Ultra</span>
-                        <span class="budget-drop">通常降幅约 30%</span>
-                    </div>
-                    <div class="price-compare">
-                        <span class="price-retail">发售价约 $1,299</span>
-                        <span class="price-target">建议入手价约 $899</span>
-                    </div>
-                    <p style="font-size:0.78rem; color:var(--muted); margin:0;" data-zh="发售半年左右电商大促（如 Shopee / Lazada）降价较多，不建议首发原价买。" data-en="Discounts usually pick up 4-6 months after release during major regional sales.">发售半年左右电商大促（如 Shopee / Lazada）降价较多，不建议首发原价买。</p>
-                </article>
+        .empty-preset-card:hover {
+            border-color: var(--accent, #6f86ff);
+            background: rgba(111, 134, 255, 0.08);
+        }
 
-                <article class="budget-card">
-                    <div class="budget-header">
-                        <span class="budget-name">iPhone 17 (基础款)</span>
-                        <span class="budget-drop">通常降幅约 15%</span>
-                    </div>
-                    <div class="price-compare">
-                        <span class="price-retail">发售价约 $799</span>
-                        <span class="price-target">建议入手价约 $680</span>
-                    </div>
-                    <p style="font-size:0.78rem; color:var(--muted); margin:0;" data-zh="基础款在年底大促或运营商活动时会有折扣，保值率相对较好。" data-en="Base iPhones discount during year-end sales and hold resale value well.">基础款在年底大促或运营商活动时会有折扣，保值率相对较好。</p>
-                </article>
+        .empty-preset-card .arr {
+            color: var(--accent-2, #91a5ff);
+            font-family: var(--mono, monospace);
+        }
 
-                <article class="budget-card">
-                    <div class="budget-header">
-                        <span class="budget-name">Pixel 11 Pro XL</span>
-                        <span class="budget-drop">通常降幅约 35%</span>
-                    </div>
-                    <div class="price-compare">
-                        <span class="price-retail">发售价约 $1,099</span>
-                        <span class="price-target">建议入手价约 $699</span>
-                    </div>
-                    <p style="font-size:0.78rem; color:var(--muted); margin:0;" data-zh="二手市场（如 Carousell）降价较快，适合淘成色好的二手机。" data-en="Secondhand platforms (e.g. Carousell) drop quickly; great value on used units.">二手市场（如 Carousell）降价较快，适合淘成色好的二手机。</p>
-                </article>
-            </div>
-        </section>
-    </main>
+        /* ===== 对比数据表格卡片 ===== */
+        .compare-table-card {
+            background: var(--panel-solid, #131a26);
+            border: 1px solid var(--line-strong, rgba(160, 176, 204, 0.2));
+            border-radius: 8px;
+            overflow: clip;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04), 0 8px 24px -4px rgba(0, 0, 0, 0.4);
+            margin-bottom: 40px;
+        }
 
-    <footer class="site-footer">
-        <div class="footer-line" data-zh="TECH ARSENAL / 选机算盘" data-en="TECH ARSENAL / Decision Helper">tech arsenal / 选机算盘</div>
-    </footer>
+        .compare-table-scroller {
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
 
-    <script src="arsenal-site.js"></script>
-    <script>
-        const candidates = [
-            {
-                id: "s25u",
-                name: "Galaxy S25 Ultra",
-                scores: { eye: 55, weight: 60, camera: 95, battery: 90, eco: 85, value: 70 },
-                role: "屏幕大、长焦强、带手写笔",
-                dealbreaker: "219g 偏重；低频调光夜间看久了容易累眼"
-            },
-            {
-                id: "fold7",
-                name: "Galaxy Z Fold 7",
-                scores: { eye: 55, weight: 45, camera: 75, battery: 70, eco: 90, value: 60 },
-                role: "展开是大屏，适合看文档与多任务",
-                dealbreaker: "折叠后偏厚；25W 充电慢；内屏折痕"
-            },
-            {
-                id: "pixel9",
-                name: "Pixel 11 Pro XL",
-                scores: { eye: 75, weight: 58, camera: 95, battery: 75, eco: 80, value: 50 },
-                role: "原生系统与 Google 拍照算法",
-                dealbreaker: "芯片日常重负载发热较明显；部分 AI 功能需对应地区支持"
-            },
-            {
-                id: "iphone17",
-                name: "iPhone 17",
-                scores: { eye: 60, weight: 95, camera: 70, battery: 80, eco: 95, value: 90 },
-                role: "170g 较轻，支持 120Hz 高刷",
-                dealbreaker: "没有独立长焦镜头；充电功率一般"
+        .compare-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            font-size: 0.85rem;
+        }
+
+        .compare-table thead th {
+            position: sticky;
+            top: 0;
+            z-index: 5;
+            background: #131a26;
+            border-bottom: 1px solid var(--line-strong, rgba(160, 176, 204, 0.22));
+            padding: 16px 18px;
+            text-align: left;
+            vertical-align: top;
+        }
+
+        .compare-table thead th:first-child {
+            width: 150px;
+            min-width: 130px;
+            border-right: 1px solid var(--line, rgba(160, 176, 204, 0.12));
+            background: #111722;
+        }
+
+        .compare-head-cell {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .compare-head-thumb {
+            width: 46px;
+            height: 46px;
+            border-radius: 6px;
+            background: rgba(255, 255, 255, 0.025);
+            border: 1px solid var(--line, rgba(160, 176, 204, 0.14));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            overflow: hidden;
+            padding: 3px;
+        }
+
+        .compare-head-thumb img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            display: block;
+        }
+
+        .compare-head-meta {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+            min-width: 0;
+        }
+
+        .compare-head-lot {
+            font-family: var(--mono, monospace);
+            font-size: 0.65rem;
+            color: var(--accent-2, #91a5ff);
+        }
+
+        .compare-head-title {
+            font-size: 0.98rem;
+            font-weight: 600;
+            color: var(--text, #edf2fb);
+            margin: 0;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .compare-table tbody th {
+            font-family: var(--mono, monospace);
+            font-size: 0.72rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: var(--accent-2, #91a5ff);
+            background: rgba(0, 0, 0, 0.22);
+            border-right: 1px solid var(--line, rgba(160, 176, 204, 0.12));
+            border-bottom: 1px solid var(--line, rgba(160, 176, 204, 0.1));
+            padding: 12px 16px;
+            text-align: left;
+            vertical-align: middle;
+            white-space: nowrap;
+        }
+
+        .compare-table tbody td {
+            padding: 12px 18px;
+            border-bottom: 1px solid var(--line, rgba(160, 176, 204, 0.1));
+            font-size: 0.85rem;
+            line-height: 1.55;
+            color: var(--text, #edf2fb);
+            font-feature-settings: "tnum";
+            font-variant-numeric: tabular-nums;
+            vertical-align: middle;
+            transition: background 0.15s ease;
+        }
+
+        .compare-table tbody tr:nth-child(even) td {
+            background: rgba(255, 255, 255, 0.015);
+        }
+
+        .compare-table tbody tr:hover td {
+            background: rgba(111, 134, 255, 0.04);
+        }
+
+        /* 差异高亮 */
+        .compare-table.highlight-diff tbody tr.row-diff td {
+            background: rgba(111, 134, 255, 0.05);
+        }
+
+        .compare-table.highlight-diff tbody tr.row-diff th {
+            border-left: 3px solid var(--accent, #6f86ff);
+            color: #fff;
+        }
+
+        .spec-val-empty {
+            color: var(--muted-2, #7f8ca2);
+            opacity: 0.4;
+        }
+
+        /* 无障碍焦点 */
+        a.page-link:focus-visible,
+        a.back-link:focus-visible,
+        .preset-chip:focus-visible,
+        .toolbar-btn:focus-visible,
+        .empty-preset-card:focus-visible {
+            outline: 2px solid var(--accent, #6f86ff);
+            outline-offset: 2px;
+        }
+
+        @media (max-width: 900px) {
+            .compare-deck {
+                grid-template-columns: 1fr;
             }
-        ];
-
-        function getNormalizedWeights() {
-            const eye = parseFloat(document.getElementById("slider-eye").value);
-            const weight = parseFloat(document.getElementById("slider-weight").value);
-            const camera = parseFloat(document.getElementById("slider-camera").value);
-            const battery = parseFloat(document.getElementById("slider-battery").value);
-            const eco = parseFloat(document.getElementById("slider-eco").value);
-            const value = parseFloat(document.getElementById("slider-value").value);
-
-            const total = eye + weight + camera + battery + eco + value || 1;
-            return {
-                eye: eye / total,
-                weight: weight / total,
-                camera: camera / total,
-                battery: battery / total,
-                eco: eco / total,
-                value: value / total
-            };
+            .compare-toolbar {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .toolbar-actions {
+                margin-left: 0;
+                justify-content: space-between;
+            }
         }
+    </style>
+</head>
+<body class="catalogue-page">
+    <header class="header site-header">
+        <div class="header-top top-row">
+            <a href="index.html" class="back-link home-mark-link" aria-label="返回首页 / Back to home" title="返回首页 / Back to home"><img src="assets/images/arsenal-spark.png" alt="" width="1000" height="1000" loading="eager" decoding="async"></a>
+            <nav class="page-nav" aria-label="Site navigation / 站点导航">
+                <a class="page-link" href="index.html"><span class="lang-pair"><span class="lang-zh" lang="zh-CN">首页</span><span class="lang-divider" aria-hidden="true"> / </span><span class="lang-en" lang="en">Home</span></span></a>
+                <a class="page-link" href="tech-arsenal.html"><span class="lang-pair"><span class="lang-zh" lang="zh-CN">总目录</span><span class="lang-divider" aria-hidden="true"> / </span><span class="lang-en" lang="en">Catalogue</span></span></a>
+                <a class="page-link active" href="comparison-lab.html" aria-current="page"><span class="lang-pair"><span class="lang-zh" lang="zh-CN">对比</span><span class="lang-divider" aria-hidden="true"> / </span><span class="lang-en" lang="en">Compare</span></span></a>
+                <a class="page-link" href="topology.html"><span class="lang-pair"><span class="lang-zh" lang="zh-CN">工位与连接</span><span class="lang-divider" aria-hidden="true"> / </span><span class="lang-en" lang="en">Setup</span></span></a>
+            </nav>
+        </div>
+        <div class="masthead">
+            <div class="masthead-copy">
+                <h1 class="main-title"><span class="tech">TECH</span> <span class="arsenal">ARSENAL</span></h1>
+            </div>
+        </div>
+    </header>
 
-        function calculateRankings() {
-            const weights = getNormalizedWeights();
-
-            document.getElementById("val-eye").textContent = document.getElementById("slider-eye").value + "%";
-            document.getElementById("val-weight").textContent = document.getElementById("slider-weight").value + "%";
-            document.getElementById("val-camera").textContent = document.getElementById("slider-camera").value + "%";
-            document.getElementById("val-battery").textContent = document.getElementById("slider-battery").value + "%";
-            document.getElementById("val-eco").textContent = document.getElementById("slider-eco").value + "%";
-            document.getElementById("val-value").textContent = document.getElementById("slider-value").value + "%";
-
-            const calculated = candidates.map(c => {
-                const totalScore = (
-                    c.scores.eye * weights.eye +
-                    c.scores.weight * weights.weight +
-                    c.scores.camera * weights.camera +
-                    c.scores.battery * weights.battery +
-                    c.scores.eco * weights.eco +
-                    c.scores.value * weights.value
-                );
-                return {
-                    ...c,
-                    finalScore: totalScore.toFixed(1)
-                };
-            }).sort((a, b) => b.finalScore - a.finalScore);
-
-            const container = document.getElementById("rank-cards-container");
-            container.innerHTML = calculated.map((item, index) => `
-                <article class="rank-card ${index === 0 ? 'top-pick' : ''}">
-                    <div class="rank-badge">${index === 0 ? '#1 推荐' : '#' + (index + 1)}</div>
-                    <h4 class="rank-title">${item.name}</h4>
-                    <div class="rank-score">${item.finalScore} <span>/ 100</span></div>
-                    <div class="score-bar-bg">
-                        <div class="score-bar-fill" style="width: ${item.finalScore}%;"></div>
+    <main class="collection">
+        <!-- 对比卡座 (3-Slot Deck) -->
+        <div class="compare-deck">
+            <!-- SLOT 01 -->
+            <div class="compare-slot" id="slotCardA">
+                <div class="slot-header">
+                    <span class="slot-tag">机位 01 · 基准</span>
+                    <button type="button" class="slot-clear-btn" id="clearA" title="清除当前设备" aria-label="清空当前基准机" hidden>清空</button>
+                </div>
+                <div class="slot-preview" id="previewA" hidden>
+                    <div class="slot-thumb"><img id="thumbA" src="" alt=""></div>
+                    <div class="slot-info">
+                        <span class="slot-lot" id="lotA"></span>
+                        <span class="slot-title" id="nameA"></span>
                     </div>
-                    <p style="font-size:0.78rem; color:var(--muted); margin:0 0 6px;">${item.role}</p>
-                    <div class="dealbreaker-tag">注意点: ${item.dealbreaker}</div>
-                </article>
-            `).join("");
+                </div>
+                <select id="pickA" class="lab-select" aria-label="选择第一台基准设备">
+                    <option value="">选一台基准机…</option>
+                </select>
+            </div>
+
+            <!-- SLOT 02 -->
+            <div class="compare-slot" id="slotCardB">
+                <div class="slot-header">
+                    <span class="slot-tag">机位 02 · 对照</span>
+                    <button type="button" class="slot-clear-btn" id="clearB" title="清除当前设备" aria-label="清空当前对照机" hidden>清空</button>
+                </div>
+                <div class="slot-preview" id="previewB" hidden>
+                    <div class="slot-thumb"><img id="thumbB" src="" alt=""></div>
+                    <div class="slot-info">
+                        <span class="slot-lot" id="lotB"></span>
+                        <span class="slot-title" id="nameB"></span>
+                    </div>
+                </div>
+                <select id="pickB" class="lab-select" aria-label="选择第二台对照设备">
+                    <option value="">选一台对照机…</option>
+                </select>
+            </div>
+
+            <!-- SLOT 03 -->
+            <div class="compare-slot" id="slotCardC">
+                <div class="slot-header">
+                    <span class="slot-tag">机位 03 · 参考 (可选)</span>
+                    <button type="button" class="slot-clear-btn" id="clearC" title="清除当前设备" aria-label="清空当前参考机" hidden>清空</button>
+                </div>
+                <div class="slot-preview" id="previewC" hidden>
+                    <div class="slot-thumb"><img id="thumbC" src="" alt=""></div>
+                    <div class="slot-info">
+                        <span class="slot-lot" id="lotC"></span>
+                        <span class="slot-title" id="nameC"></span>
+                    </div>
+                </div>
+                <select id="pickC" class="lab-select" aria-label="选择第三台参考设备（可选）">
+                    <option value="">第三台（可选）…</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- 实验室工具栏 -->
+        <div class="compare-toolbar">
+            <div class="preset-group">
+                <span class="preset-label">对局速选:</span>
+                <button type="button" class="preset-chip" data-a="003" data-b="013">14 Pro Max vs S25 Ultra</button>
+                <button type="button" class="preset-chip" data-a="030" data-b="026">Mac Studio vs MBP 16"</button>
+                <button type="button" class="preset-chip" data-a="022" data-b="023">iPad Pro vs iPad mini</button>
+                <button type="button" class="preset-chip" data-a="027" data-b="026">Legion 5 vs MBP 16"</button>
+            </div>
+            <div class="toolbar-actions">
+                <label class="diff-toggle-label" title="高亮所有存在参数差异的对比行">
+                    <input type="checkbox" id="toggleDiff" class="diff-checkbox">
+                    <span>高亮参数差异</span>
+                </label>
+                <button type="button" class="toolbar-btn" id="btnSwap" title="交换 A 和 B 位置" aria-label="交换机位 A 与机位 B 设备">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m16 3 4 4-4 4"/><path d="M20 7H4"/><path d="m8 21-4-4 4-4"/><path d="M4 17h16"/></svg>
+                    <span>对调 A/B</span>
+                </button>
+                <button type="button" class="toolbar-btn" id="btnReset" title="重置对比" aria-label="重置并清空所有对比机位">
+                    <span>清空</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- 空状态卡片 -->
+        <div id="compareEmpty" class="compare-empty-card">
+            <div class="empty-icon-box" aria-hidden="true">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="M7 21h10"/><path d="M12 3v18"/><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"/></svg>
+            </div>
+            <h2 class="empty-title">待选机位</h2>
+            <p class="empty-desc">单看参数都不差。在上方选两三台设备，比一比屏幕、重量、芯片和影像；或者直接看下方的对局组合。</p>
+            <div class="empty-presets">
+                <button type="button" class="empty-preset-card" data-a="003" data-b="013">
+                    <span>iPhone 14 Pro Max vs Galaxy S25 Ultra</span>
+                    <span class="arr" aria-hidden="true">→</span>
+                </button>
+                <button type="button" class="empty-preset-card" data-a="030" data-b="026">
+                    <span>Mac Studio (M4 Ultra) vs MacBook Pro 16"</span>
+                    <span class="arr" aria-hidden="true">→</span>
+                </button>
+                <button type="button" class="empty-preset-card" data-a="022" data-b="023">
+                    <span>iPad Pro 13" vs iPad mini (A17 Pro)</span>
+                    <span class="arr" aria-hidden="true">→</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- 对比表格 -->
+        <div id="compareCard" class="compare-table-card" hidden>
+            <div class="compare-table-scroller">
+                <table id="compareTable" class="compare-table">
+                    <thead><tr id="compareHeadRow"></tr></thead>
+                    <tbody id="compareBody"></tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-line" data-zh="TECH ARSENAL / 对比" data-en="TECH ARSENAL / Compare">tech arsenal / 对比</div>
+    </footer>
+
+    <script>
+        // 这页不维护自己的产品数据。所有规格从 tech-arsenal.html 现读现解析，
+        // 避免总目录和对比页各自一份数据、互相对不上。
+        let devices = [];
+
+        const escapeHtml = (str) => String(str ?? "").replace(/[&<>"']/g, (s) => ({
+            "&": "&amp;",
+            "<": "&lt;",
+            ">": "&gt;",
+            "\"": "&quot;",
+            "'": "&#039;"
+        }[s]));
+
+        async function loadDevices() {
+            try {
+                const res = await fetch("tech-arsenal.html");
+                if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                const html = await res.text();
+                const doc = new DOMParser().parseFromString(html, "text/html");
+                devices = [...doc.querySelectorAll(".card")].map((card) => {
+                    const details = card.querySelector(".hidden-details");
+                    const img = card.querySelector(".img-box img");
+                    return {
+                        lot: card.dataset.lot,
+                        cat: card.dataset.cat || "",
+                        chapter: card.dataset.chapter || "SMARTPHONES",
+                        title: details?.querySelector(".d-title")?.textContent.trim() || "",
+                        img: img?.getAttribute("src") || "",
+                        specs: [...(details?.querySelectorAll(".d-spec") || [])].map((s) => ({
+                            label: s.dataset.label || "",
+                            value: s.innerHTML,
+                        })),
+                    };
+                }).filter((d) => d.title);
+            } catch (err) {
+                console.warn("无法直接通过 fetch 读取 tech-arsenal.html（若通过本地 file:// 协议打开，受浏览器同源策略限制）：", err);
+                showLoadError();
+            }
         }
 
-        ["slider-eye", "slider-weight", "slider-camera", "slider-battery", "slider-eco", "slider-value"].forEach(id => {
-            document.getElementById(id).addEventListener("input", calculateRankings);
+        function showLoadError() {
+            const emptyNotice = document.getElementById("compareEmpty");
+            if (emptyNotice && !emptyNotice.querySelector(".compare-notice-banner")) {
+                const notice = document.createElement("div");
+                notice.className = "compare-notice-banner";
+                notice.style.cssText = "margin-top: 18px; padding: 14px 18px; background: rgba(255, 123, 123, 0.08); border: 1px solid rgba(255, 123, 123, 0.28); border-radius: 6px; text-align: left; font-size: 0.85rem; line-height: 1.6; color: #ffb4b4;";
+                notice.innerHTML = '<strong>提示 / Notice:</strong> 检测到当前可能通过本地直接双击打开（<code>file://</code> 协议），受现代浏览器安全策略限制，页面无法直接读取 <code>tech-arsenal.html</code> 目录数据。建议通过本地服务器打开本页面（例如在 VSCode 中使用 <em>Live Server</em> 插件，或在项目根目录终端运行 <code>npx serve</code>）。<br><span style="font-size: 0.76rem; opacity: 0.85;">Direct file:// browsing prevents fetching sibling HTML data due to CORS policy. Please view via a local server (e.g., Live Server or <code>npx serve</code>).</span>';
+                emptyNotice.appendChild(notice);
+            }
+        }
+
+        const CATEGORY_NAMES = {
+            "mobile": "手机 / SMARTPHONES",
+            "tablet": "平板 / TABLETS",
+            "laptop": "笔记本 / LAPTOPS",
+            "desktop": "台机与显示 / DESKTOPS & RIGS",
+            "audio": "音频与外设 / AUDIO & PERIPHERALS",
+            "peripheral": "音频与外设 / AUDIO & PERIPHERALS"
+        };
+
+        function populateSelects() {
+            // Group by category
+            const groups = {};
+            devices.forEach((d) => {
+                const catKey = d.cat || "mobile";
+                if (!groups[catKey]) groups[catKey] = [];
+                groups[catKey].push(d);
+            });
+
+            // Sort within each group
+            Object.values(groups).forEach(arr => arr.sort((a, b) => a.title.localeCompare(b.title)));
+
+            const catOrder = ["mobile", "tablet", "laptop", "desktop", "peripheral", "audio"];
+
+            [pickA, pickB, pickC].forEach((select) => {
+                // Keep the first default option
+                select.innerHTML = select.options[0].outerHTML;
+
+                catOrder.forEach((catKey) => {
+                    const list = groups[catKey];
+                    if (!list || list.length === 0) return;
+
+                    const groupEl = document.createElement("optgroup");
+                    groupEl.label = `—— ${CATEGORY_NAMES[catKey] || catKey.toUpperCase()} ——`;
+
+                    list.forEach((d) => {
+                        const opt = document.createElement("option");
+                        opt.value = d.lot;
+                        opt.textContent = `N° ${d.lot} · ${d.title}`;
+                        groupEl.appendChild(opt);
+                    });
+
+                    select.appendChild(groupEl);
+                });
+            });
+        }
+
+        function updateSlotVisual(slotPrefix, pickSelect) {
+            const lot = pickSelect.value;
+            const slotCard = document.getElementById(`slotCard${slotPrefix}`);
+            const preview = document.getElementById(`preview${slotPrefix}`);
+            const clearBtn = document.getElementById(`clear${slotPrefix}`);
+            const thumb = document.getElementById(`thumb${slotPrefix}`);
+            const lotEl = document.getElementById(`lot${slotPrefix}`);
+            const nameEl = document.getElementById(`name${slotPrefix}`);
+
+            if (lot) {
+                const d = devices.find((item) => item.lot === lot);
+                if (d) {
+                    slotCard.classList.add("has-device");
+                    preview.hidden = false;
+                    clearBtn.hidden = false;
+                    thumb.src = d.img;
+                    thumb.alt = d.title;
+                    lotEl.textContent = `N° ${d.lot}`;
+                    nameEl.textContent = d.title;
+                    return;
+                }
+            }
+            slotCard.classList.remove("has-device");
+            preview.hidden = true;
+            clearBtn.hidden = true;
+        }
+
+        function currentSelection() {
+            return [pickA.value, pickB.value, pickC.value]
+                .filter(Boolean)
+                .map((lot) => devices.find((d) => d.lot === lot))
+                .filter(Boolean);
+        }
+
+        function render() {
+            updateSlotVisual("A", pickA);
+            updateSlotVisual("B", pickB);
+            updateSlotVisual("C", pickC);
+
+            const chosen = currentSelection();
+            const empty = document.getElementById("compareEmpty");
+            const card = document.getElementById("compareCard");
+            const table = document.getElementById("compareTable");
+            const isDiffHighlight = document.getElementById("toggleDiff")?.checked;
+
+            if (chosen.length < 2) {
+                empty.hidden = false;
+                card.hidden = true;
+                return;
+            }
+            empty.hidden = true;
+            card.hidden = false;
+
+            if (isDiffHighlight) {
+                table.classList.add("highlight-diff");
+            } else {
+                table.classList.remove("highlight-diff");
+            }
+
+            const headRow = document.getElementById("compareHeadRow");
+            headRow.innerHTML = "<th>参数项 / SPEC</th>" + chosen.map((d) =>
+                `<th>
+                    <div class="compare-head-cell">
+                        <div class="compare-head-thumb"><img src="${escapeHtml(d.img)}" alt="${escapeHtml(d.title)}" width="46" height="46" loading="lazy" decoding="async"></div>
+                        <div class="compare-head-meta">
+                            <span class="compare-head-lot">N° ${escapeHtml(d.lot)}</span>
+                            <h3 class="compare-head-title">${escapeHtml(d.title)}</h3>
+                        </div>
+                    </div>
+                </th>`
+            ).join("");
+
+            // 标准参数项分类映射表，确保不同品类设备横向对比时对齐同一参数行
+            const CANONICAL_TAXONOMY = [
+                { label: "PROCESSOR / SOC", aliases: ["soc", "processor", "platform", "cpu"] },
+                { label: "GRAPHICS / GPU", aliases: ["graphics", "gpu"] },
+                { label: "MEMORY", aliases: ["memory", "ram", "memory & storage"] },
+                { label: "STORAGE", aliases: ["storage", "ssd", "rom", "memory & storage"] },
+                { label: "DISPLAY", aliases: ["display", "screen", "display panel"] },
+                { label: "INNER DISPLAY", aliases: ["inner display"] },
+                { label: "COVER DISPLAY", aliases: ["cover display"] },
+                { label: "CAMERA SYSTEM", aliases: ["camera system", "imaging tech"] },
+                { label: "CAMERA SENSORS", aliases: ["camera sensors"] },
+                { label: "FOCAL LENGTHS", aliases: ["focal lengths"] },
+                { label: "BATTERY & POWER", aliases: ["battery", "battery & charging", "battery & power", "battery life", "battery & i/o"] },
+                { label: "CONNECTIVITY & I/O", aliases: ["connectivity", "i/o", "i/o & connectivity", "i/o & wireless", "ports & gaming features", "battery & i/o"] },
+                { label: "BUILD & DESIGN", aliases: ["build", "build / battery", "build & weight", "build & durability", "build & audio", "design", "design & styling", "form factor"] },
+                { label: "AUDIO & SOUND", aliases: ["audio", "acoustics", "audio architecture", "camera & audio", "build & audio", "audio & haptics"] },
+                { label: "NOISE CANCELLATION (ANC)", aliases: ["anc", "noise cancellation"] },
+                { label: "FEATURES & AI", aliases: ["feature", "features", "ai features", "new features", "smart features", "multitasking", "ai performance"] },
+                { label: "THERMAL & COOLING", aliases: ["cooling", "thermal architecture"] },
+                { label: "ACCESSORIES & SUPPORT", aliases: ["accessories", "compatibility"] },
+                { label: "SENSOR & INPUT", aliases: ["sensor", "switches", "controls"] },
+                { label: "OPERATING SYSTEM", aliases: ["operating system"] },
+            ];
+
+            const renderedRows = [];
+            const matchedSpecs = new Set();
+
+            // 1. 遍历标准参数体系
+            CANONICAL_TAXONOMY.forEach((canon) => {
+                const aliases = canon.aliases;
+                const hasAny = chosen.some((d) => d.specs.some((s) => aliases.includes(s.label.toLowerCase())));
+                if (!hasAny) return;
+
+                const values = chosen.map((d) => {
+                    const match = d.specs.find((s) => aliases.includes(s.label.toLowerCase()));
+                    if (match) {
+                        matchedSpecs.add(`${d.lot}:${match.label.toLowerCase()}`);
+                        return match.value;
+                    }
+                    return "";
+                });
+
+                renderedRows.push({ label: canon.label, values });
+            });
+
+            // 2. 补齐任何未归入标准分类的个性化规格行
+            chosen.forEach((d) => {
+                d.specs.forEach((s) => {
+                    const specKey = `${d.lot}:${s.label.toLowerCase()}`;
+                    if (!matchedSpecs.has(specKey)) {
+                        const existing = renderedRows.find((r) => r.label.toLowerCase() === s.label.toLowerCase());
+                        if (!existing) {
+                            const values = chosen.map((item) => {
+                                const m = item.specs.find((x) => x.label.toLowerCase() === s.label.toLowerCase());
+                                return m ? m.value : "";
+                            });
+                            renderedRows.push({ label: s.label.toUpperCase(), values });
+                        }
+                    }
+                });
+            });
+
+            const body = document.getElementById("compareBody");
+            body.innerHTML = renderedRows.map(({ label, values }) => {
+                // Check if values differ across chosen devices (only when at least two devices have a non-empty value)
+                const validValues = values.filter(v => v && v.trim() !== "");
+                const isDiffering = validValues.length >= 2 && new Set(validValues.map(v => v.trim().toLowerCase())).size > 1;
+
+                const cells = values.map((val) => {
+                    return `<td>${val ? val : '<span class="spec-val-empty">—</span>'}</td>`;
+                }).join("");
+
+                return `<tr class="${isDiffering ? 'row-diff' : ''}"><th>${escapeHtml(label)}</th>${cells}</tr>`;
+            }).join("");
+        }
+
+        const pickA = document.getElementById("pickA");
+        const pickB = document.getElementById("pickB");
+        const pickC = document.getElementById("pickC");
+        const toggleDiff = document.getElementById("toggleDiff");
+
+        [pickA, pickB, pickC].forEach((select) => select.addEventListener("change", render));
+        toggleDiff?.addEventListener("change", render);
+
+        document.getElementById("clearA").addEventListener("click", () => { pickA.value = ""; render(); });
+        document.getElementById("clearB").addEventListener("click", () => { pickB.value = ""; render(); });
+        document.getElementById("clearC").addEventListener("click", () => { pickC.value = ""; render(); });
+
+        document.getElementById("btnReset").addEventListener("click", () => {
+            pickA.value = "";
+            pickB.value = "";
+            pickC.value = "";
+            render();
         });
 
-        const upgradeKnowledge = {
-            "iphone11-iphone17": {
-                badge: "提升明显",
-                gains: "屏幕升级到 120Hz 高刷，接口换成 Type-C，性能和日常拍照提升明显。",
-                risks: "没有独立长焦镜头；从圆润边框变成了直角边框。"
-            },
-            "iphone11-s25u": {
-                badge: "跨系统升级",
-                gains: "获得高倍长焦、手写笔和大屏幕，文件管理更自由。",
-                risks: "机身比 iPhone 11 重约 25g；需要适应安卓系统。"
-            },
-            "mi9-s25u": {
-                badge: "大跨度升级",
-                gains: "续航大幅提升，屏幕亮度和长焦拍照全面升级。",
-                risks: "机身比 Mi 9 重很多，拿在手里更压手。"
-            },
-            "mi9-pixel9": {
-                badge: "换原生系统",
-                gains: "拍照算法好，Google 原生系统干净，持续更新时间长。",
-                risks: "充电速度一般，玩重度游戏发热较明显。"
-            },
-            "a51-fold7": {
-                badge: "换折叠形态",
-                gains: "屏幕变大，适合看文档和多任务分屏。",
-                risks: "折叠后偏厚，平时使用要多注意保护内屏。"
-            },
-            "s23u-s25u": {
-                badge: "常规升级",
-                gains: "换成直屏边缘防误触更好，芯片性能更强。",
-                risks: "日常使用感知差距较小，不用急着换。"
-            }
-        };
+        document.getElementById("btnSwap").addEventListener("click", () => {
+            const temp = pickA.value;
+            pickA.value = pickB.value;
+            pickB.value = temp;
+            render();
+        });
 
-        function updateAdvisor() {
-            const current = document.getElementById("select-current").value;
-            const target = document.getElementById("select-target").value;
-            const key = `${current}-${target}`;
-            const info = upgradeKnowledge[key] || {
-                badge: "常规换代",
-                gains: "屏幕刷新率、核心性能与拍照均有代际提升。",
-                risks: "注意机身重量变化与充电头兼容性。"
-            };
-
-            document.getElementById("advisor-verdict-box").innerHTML = `
-                <div class="verdict-header">
-                    <span class="verdict-badge">${info.badge}</span>
-                </div>
-                <div style="margin-bottom: 8px;">
-                    <strong style="color:var(--text); font-size:0.8rem;">主要提升：</strong>
-                    <p style="font-size:0.8rem; color:var(--muted); margin:3px 0 0;">${info.gains}</p>
-                </div>
-                <div>
-                    <strong style="color:var(--muted-2); font-size:0.8rem;">注意点：</strong>
-                    <p style="font-size:0.8rem; color:var(--muted); margin:3px 0 0;">${info.risks}</p>
-                </div>
-            `;
+        function applyPreset(lotA, lotB) {
+            pickA.value = lotA;
+            pickB.value = lotB;
+            pickC.value = "";
+            render();
+            document.getElementById("compareCard")?.scrollIntoView({ behavior: "smooth", block: "nearest" });
         }
 
-        document.getElementById("select-current").addEventListener("change", updateAdvisor);
-        document.getElementById("select-target").addEventListener("change", updateAdvisor);
+        document.querySelectorAll("[data-a][data-b]").forEach((btn) => {
+            btn.addEventListener("click", () => {
+                applyPreset(btn.dataset.a, btn.dataset.b);
+            });
+        });
 
-        calculateRankings();
-        updateAdvisor();
+        loadDevices().then(populateSelects).then(render).catch((err) => {
+            console.error("Initialization error:", err);
+            showLoadError();
+        });
     </script>
-</body>
-</html>
-```
-
-### `field-notes.html`
-```html
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TECH ARSENAL | 使用手记 / Field notes</title>
-    <link rel="stylesheet" href="arsenal-pages.css">
-</head>
-<body>
-    <div class="broadcast-bar">
-        <div class="signal-icon"></div>
-        <span class="shoutout-text" data-zh="入藏后记" data-en="Post-ownership notes">post ownership notes</span>
-        <span class="creator-tag" data-zh="使用手记" data-en="Field notes">field notes</span>
-        <span class="shoutout-text" data-zh="使用之后" data-en="After-use layer">after use layer</span>
-    </div>
-
-    <main class="shell">
-        <header class="site-header">
-            <div class="top-row">
-                <a class="back-link home-mark-link" href="index.html" aria-label="返回首页 / Back to home" title="返回首页 / Back to home"><img src="assets/images/arsenal-spark.png" alt=""></a>
-                <nav class="page-nav" aria-label="site">
-                    <a class="page-link${currentFile === "index.html" ? " active" : ""}" href="index.html">首页</a>
-                    <a class="page-link${currentFile === "topology.html" ? " active" : ""}" href="topology.html">工位与连接</a>
-                    <a class="page-link${currentFile === "decision.html" ? " active" : ""}" href="decision.html">选机算盘</a>
-                    <a class="page-link${currentFile === "provenance.html" ? " active" : ""}" href="provenance.html">时间线</a>
-                    <a class="page-link${currentFile === "field-notes.html" ? " active" : ""}" href="field-notes.html">使用手记</a>
-                    <a class="page-link${currentFile === "comparison-lab.html" ? " active" : ""}" href="comparison-lab.html">对比实验室</a>
-                    <a class="page-link${currentFile === "on-the-horizon.html" ? " active" : ""}" href="on-the-horizon.html">观望清单</a>
-                    <a class="page-link${currentFile === "tech-arsenal.html" ? " active" : ""}" href="tech-arsenal.html">总目录</a>
-                </nav>
-            </div>
-
-            <div class="hero-head">
-                <div class="eyebrow" data-zh="入藏后记" data-en="After-ownership notes">after ownership notes</div>
-                <div class="title-lockup">
-                    <h1 class="main-title" data-zh="使用手记" data-en="Field notes">Field notes</h1>
-                    <p class="page-subtitle">这页专门写“到手以后”的内容。它和时间线不一样，时间线讲阶段，这里讲使用后的判断有没有改变，哪些设备是真正留下来的。</p>
-                </div>
-            </div>
-        </header>
-
-        <section class="hero-panel">
-            <div class="hero-grid">
-                <div class="hero-copy">
-                    <div class="hero-copy-top">
-                        <div class="meta-chip" data-zh="手记模式" data-en="Notes mode">notes mode</div>
-                        <h2>高级感不来自想买多少，而来自你能不能说清用了以后是什么感觉。</h2>
-                        <p>所以这页写的不是参数，也不是梦想配置，而是设备到手之后，哪些点真的兑现了，哪些只是发布期的激情。</p>
-                    </div>
-
-                    <div class="hero-stats">
-                        <div class="hero-stat">
-                            <strong>03</strong>
-                            <span>note clusters</span>
-                        </div>
-                        <div class="hero-stat">
-                            <strong>05</strong>
-                            <span>owned anchors</span>
-                        </div>
-                        <div class="hero-stat">
-                            <strong>01</strong>
-                            <span>after use page</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="hero-side">
-                    <img src="https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?q=80&w=1400&auto=format&fit=crop" alt="phone and accessories on a desk">
-                </div>
-            </div>
-        </section>
-
-        <section class="section">
-            <div class="section-heading">
-                <h3>先把最值得写后记的三类设备挑出来。</h3>
-                <p>不是每一件设备都需要长评，但总有一些会代表一整个时期的偏好。先从这些写起最划算。</p>
-            </div>
-
-            <div class="spec-grid">
-                <article class="spec-card">
-                    <div class="status-pill">mi 9</div>
-                    <h4>从惊艳感变成怀旧感</h4>
-                    <p>当年觉得轻薄、快、外观有攻击性。现在回头看，它更像一个时代的起点，而不是一台绝对无敌的机器。</p>
-                </article>
-
-                <article class="spec-card">
-                    <div class="status-pill">iphone 11</div>
-                    <h4>稳定性比“是否最强”更长久</h4>
-                    <p>很多设备一开始靠规格抓人，但留下来的往往是顺手、续航和不出戏的体验。</p>
-                </article>
-
-                <article class="spec-card">
-                    <div class="status-pill">earpods</div>
-                    <h4>越不花哨，越容易进入日常</h4>
-                    <p>EarPods 这种东西很适合拿来写“为什么它还在桌上”，因为它的价值恰恰来自不需要被夸张描述。</p>
-                </article>
-            </div>
-        </section>
-
-        <section class="section">
-            <div class="section-heading">
-                <h3>这页的内容格式可以固定下来</h3>
-                <p>一旦格式稳定，后面每加一件设备的后记都会很轻松。</p>
-            </div>
-
-            <div class="route-grid">
-                <article class="route-card wide">
-                    <div class="card-meta">note format</div>
-                    <strong>每条后记建议都回答同样四个问题。</strong>
-                    <div class="route-meta">
-                        <div class="meta-cell"><span>before</span><strong>买之前最期待什么</strong></div>
-                        <div class="meta-cell"><span>after</span><strong>实际到手后最常感受到什么</strong></div>
-                        <div class="meta-cell"><span>still good</span><strong>今天回头看仍然成立的优点</strong></div>
-                        <div class="meta-cell"><span>status</span><strong>还在用、备用、纪念保留、已退役</strong></div>
-                    </div>
-                </article>
-
-                <article class="route-card wide">
-                    <div class="card-meta">why this page matters</div>
-                    <strong>这页会让整站从“会列设备”变成“真的有判断”。</strong>
-                    <p>因为只有当你开始写后记，别人才能看出你的收藏不是堆规格，而是有持续修正和筛选过程的。</p>
-                </article>
-            </div>
-        </section>
-    </main>
-
-    <footer class="site-footer">
-        <div class="footer-line" data-zh="TECH ARSENAL / 使用手记 / 入藏后的真实反思" data-en="TECH ARSENAL / Field notes / Post-ownership reflections">tech arsenal / field notes / post ownership reflections</div>
-    </footer>
     <script src="arsenal-site.js"></script>
 </body>
 </html>
@@ -803,211 +951,229 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TECH ARSENAL | 机器留痕 / Machine traces</title>
+    <title>TECH ARSENAL</title>
     <link rel="stylesheet" href="arsenal-pages.css">
+    <style>
+        /* ===== 方案 A：馆藏统计指标模块 (Hero Stats Ledger) ===== */
+        .hero-stats-inline {
+            display: inline-flex;
+            align-items: stretch;
+            gap: 0;
+            margin-bottom: 32px;
+            padding: 16px 20px;
+            background: var(--panel-solid, #131a26);
+            border: 1px solid var(--line-strong, rgba(160, 176, 204, 0.28));
+            border-radius: 6px;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04), 0 8px 24px -4px rgba(0, 0, 0, 0.35);
+        }
+
+        .hero-stat-item {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            padding: 0 22px;
+        }
+
+        .hero-stat-item:first-child {
+            padding-left: 2px;
+        }
+
+        .hero-stat-item:last-child {
+            padding-right: 2px;
+        }
+
+        .hero-stat-item + .hero-stat-item {
+            border-left: 1px solid var(--line, rgba(160, 176, 204, 0.14));
+        }
+
+        .hero-stat-item strong {
+            font-size: 2.1rem;
+            letter-spacing: -0.02em;
+            font-family: var(--display);
+            color: var(--text);
+            line-height: 1;
+            font-variant-numeric: tabular-nums;
+            font-feature-settings: "tnum";
+        }
+
+        .hero-stat-item.owned strong {
+            color: var(--accent-2, #91a5ff);
+        }
+
+        .hero-stat-label {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .hero-stat-label .lang-pair {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        /* 隐藏落单孤悬的斜杠，中英文以年鉴层级整饬排印 */
+        .hero-stat-label .lang-divider {
+            display: none !important;
+        }
+
+        .hero-stat-label .lang-zh {
+            font-size: 0.76rem;
+            font-weight: 500;
+            color: var(--text);
+            line-height: 1.2;
+            letter-spacing: 0.04em;
+        }
+
+        .hero-stat-label .lang-en {
+            font-family: var(--mono);
+            font-size: 0.58rem;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--muted-2);
+            line-height: 1.2;
+        }
+
+        /* ===== 极简主屏 Bento 卡片 (Minimalist Hero Bento) ===== */
+        .home-hero-card {
+            display: grid;
+            grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr);
+            background: var(--panel-solid, #131a26);
+            border: 1px solid var(--line-strong, rgba(160, 176, 204, 0.28));
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 48px;
+        }
+
+        .home-hero-content {
+            padding: 36px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 24px;
+        }
+
+        .home-hero-preview {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 36px;
+            background: rgba(255, 255, 255, 0.012);
+            border-left: 1px solid var(--line, rgba(160, 176, 204, 0.14));
+        }
+
+        .home-hero-preview img {
+            max-width: 82%;
+            max-height: 240px;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.45));
+            user-select: none;
+            pointer-events: none;
+        }
+
+        .home-preview-badge {
+            position: absolute;
+            bottom: 16px;
+            right: 20px;
+            font-family: var(--mono, monospace);
+            font-size: 0.6rem;
+            letter-spacing: 0.12em;
+            color: var(--muted-2, #7f8ca2);
+            text-transform: uppercase;
+        }
+
+        @media (max-width: 900px) {
+            .home-hero-card {
+                grid-template-columns: 1fr;
+            }
+            .home-hero-preview {
+                border-left: 0;
+                border-top: 1px solid var(--line, rgba(160, 176, 204, 0.14));
+                padding: 28px;
+            }
+            .home-hero-content {
+                padding: 24px 20px;
+            }
+            .hero-stats-inline {
+                padding: 12px 14px;
+                margin-bottom: 20px;
+                width: 100%;
+                justify-content: space-between;
+            }
+            .hero-stat-item {
+                padding: 0 10px;
+            }
+            .hero-stat-item strong {
+                font-size: 1.5rem;
+            }
+            .hero-stat-label .lang-zh {
+                font-size: 0.68rem;
+            }
+            .hero-stat-label .lang-en {
+                font-size: 0.52rem;
+            }
+        }
+    </style>
 </head>
-<body>
-    <div class="broadcast-bar">
-        <div class="signal-icon"></div>
-        <span class="shoutout-text" data-zh="个人档案" data-en="Personal archive">个人档案</span>
-        <span class="creator-tag" data-zh="技术兵器" data-en="Tech arsenal">tech arsenal</span>
-        <span class="shoutout-text" data-zh="留下有理由的设备" data-en="Devices worth keeping">留下有理由的设备</span>
-    </div>
+<body class="catalogue-page">
+    <header class="header site-header">
+        <div class="header-top top-row">
+            <a class="back-link home-mark-link" href="index.html" aria-label="返回首页 / Back to home" title="返回首页 / Back to home">
+                <img src="assets/images/arsenal-spark.png" alt="Tech Arsenal spark mark" width="1000" height="1000" loading="eager" decoding="async">
+            </a>
+            <nav class="page-nav" aria-label="Site navigation / 站点导航">
+                <a class="page-link active" href="index.html" aria-current="page"><span class="lang-pair"><span class="lang-zh" lang="zh-CN">首页</span><span class="lang-divider" aria-hidden="true"> / </span><span class="lang-en" lang="en">Home</span></span></a>
+                <a class="page-link" href="tech-arsenal.html"><span class="lang-pair"><span class="lang-zh" lang="zh-CN">总目录</span><span class="lang-divider" aria-hidden="true"> / </span><span class="lang-en" lang="en">Catalogue</span></span></a>
+                <a class="page-link" href="comparison-lab.html"><span class="lang-pair"><span class="lang-zh" lang="zh-CN">对比</span><span class="lang-divider" aria-hidden="true"> / </span><span class="lang-en" lang="en">Compare</span></span></a>
+                <a class="page-link" href="topology.html"><span class="lang-pair"><span class="lang-zh" lang="zh-CN">工位与连接</span><span class="lang-divider" aria-hidden="true"> / </span><span class="lang-en" lang="en">Setup</span></span></a>
+            </nav>
+        </div>
 
-    <main class="shell">
-        <header class="site-header">
-            <div class="top-row">
-                <a class="back-link home-mark-link" href="index.html" aria-label="返回首页 / Back to home" title="返回首页 / Back to home">
-                    <img src="assets/images/arsenal-spark.png" alt="">
-                </a>
-                <nav class="page-nav" aria-label="site">
-                    <a class="page-link${currentFile === "index.html" ? " active" : ""}" href="index.html">首页</a>
-                    <a class="page-link${currentFile === "topology.html" ? " active" : ""}" href="topology.html">工位与连接</a>
-                    <a class="page-link${currentFile === "decision.html" ? " active" : ""}" href="decision.html">选机算盘</a>
-                    <a class="page-link${currentFile === "provenance.html" ? " active" : ""}" href="provenance.html">时间线</a>
-                    <a class="page-link${currentFile === "field-notes.html" ? " active" : ""}" href="field-notes.html">使用手记</a>
-                    <a class="page-link${currentFile === "comparison-lab.html" ? " active" : ""}" href="comparison-lab.html">对比实验室</a>
-                    <a class="page-link${currentFile === "on-the-horizon.html" ? " active" : ""}" href="on-the-horizon.html">观望清单</a>
-                    <a class="page-link${currentFile === "tech-arsenal.html" ? " active" : ""}" href="tech-arsenal.html">总目录</a>
-                </nav>
+        <div class="masthead">
+            <div class="masthead-copy">
+                <h1 class="main-title"><span class="tech">TECH</span> <span class="arsenal">ARSENAL</span></h1>
             </div>
+        </div>
+    </header>
 
-            <div class="hero-head">
-                <div class="eyebrow" data-zh="个人首页" data-en="Personal archive">个人首页</div>
-                <div class="title-lockup">
-                    <h1 class="main-title" data-zh="机器留痕" data-en="Machine traces">机器<span class="accent">留痕</span></h1>
-                    <p class="page-subtitle" data-zh="一份关于设备、手感，以及时间如何改变判断的私人档案。" data-en="A private archive of devices, tactility, and how time changes a judgment。">一份关于设备、手感，以及时间如何改变判断的私人档案。</p>
-                </div>
-            </div>
-        </header>
-
-        <section class="hero-panel">
-            <div class="hero-grid">
-                <div class="hero-copy">
-                    <div class="hero-copy-top">
-                        <div class="meta-chip" data-zh="选物标准" data-en="Selection standard">选物标准</div>
-                        <h2>从 Mi 9 到 Fold、Ultra 和 iPad mini，我更在意一台设备留下的理由。</h2>
-                        <p>这里不追求把参数抄全。我要记下的是：第一次为什么会心动，用久了哪里顺手，热度退掉以后还愿不愿意拿起来。</p>
+    <main class="collection">
+        <section class="home-hero-card">
+            <div class="home-hero-content">
+                <div class="hero-stats-inline" aria-label="馆藏数据概览 / Collection statistics">
+                    <div class="hero-stat-item">
+                        <strong class="stat-num">053</strong>
+                        <span class="hero-stat-label" data-zh="已编目" data-en="catalogued">catalogued</span>
                     </div>
-
-                    <div>
-                        <div class="hero-actions">
-                            <a class="button-primary" href="provenance.html" data-zh="看时间线" data-en="View timeline">看时间线</a>
-                            <a class="button-secondary" href="field-notes.html" data-zh="读使用手记" data-en="Read field notes">读使用手记</a>
-                        </div>
-                        <div class="hero-stats">
-                            <div class="hero-stat">
-                                <strong>35</strong>
-                                <span>已记录的品目</span>
-                            </div>
-                            <div class="hero-stat">
-                                <strong>05</strong>
-                                <span>正在更新的页面</span>
-                            </div>
-                            <div class="hero-stat">
-                                <strong>01</strong>
-                                <span>贯穿全站的口味</span>
-                            </div>
-                        </div>
+                    <div class="hero-stat-item owned">
+                        <strong class="stat-num">005</strong>
+                        <span class="hero-stat-label" data-zh="已入藏" data-en="in collection">in collection</span>
+                    </div>
+                    <div class="hero-stat-item">
+                        <strong class="stat-num">048</strong>
+                        <span class="hero-stat-label" data-zh="关注中" data-en="pursuing">pursuing</span>
                     </div>
                 </div>
-
-                <div class="hero-side">
-                    <img src="https://images.unsplash.com/photo-1496171367470-9ed9a91ea931?q=80&w=1400&auto=format&fit=crop" alt="devices arranged on a desk">
+                <div class="hero-actions">
+                    <a class="button-primary" href="tech-arsenal.html" data-zh="打开总目录" data-en="Open the catalogue">打开总目录</a>
+                    <a class="button-secondary" href="comparison-lab.html" data-zh="进入对比实验室" data-en="Open comparison lab">进入对比实验室</a>
                 </div>
             </div>
-        </section>
 
-        <section class="section">
-            <div class="section-heading">
-                <h3>我留下设备，先看三件事</h3>
-                <p>跑分和镜头当然会影响选择，但真正让一台设备待得久的，往往是每天都能感觉到的小地方。</p>
-            </div>
-
-            <div class="summary-grid">
-                <article class="summary-card">
-                    <strong>外形</strong>
-                    <p>它有没有清楚的时代感。轻薄直板、折叠屏，或小尺寸旗舰，都应该一眼能认出来。</p>
-                </article>
-                <article class="summary-card">
-                    <strong>手感</strong>
-                    <p>用久了还顺不顺手，系统会不会打断节奏，重量和续航会不会让人慢慢放下它。</p>
-                </article>
-                <article class="summary-card">
-                    <strong>余味</strong>
-                    <p>过几年再回头，它还能不能把我带回某个具体时期，想起当时为什么喜欢它。</p>
-                </article>
-            </div>
-        </section>
-
-        <section class="section">
-            <div class="section-panel duo-panel">
-                <div class="duo-visual">
-                    <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1400&auto=format&fit=crop" alt="close view of devices and keyboard">
-                </div>
-                <div class="duo-copy">
-                    <h4>买过只是经历，留下才算判断。</h4>
-                    <p>有些机器到手以后越用越喜欢，有些只在开箱那几天让人兴奋。首页想留下的是前一种。它可以不新，但今天看仍然有意思。</p>
-                    <div class="bullet-grid">
-                        <div class="bullet-card">
-                            <strong>初见</strong>
-                            <span>第一次让我停下来的地方。</span>
-                        </div>
-                        <div class="bullet-card">
-                            <strong>拿到手</strong>
-                            <span>真正进入日常后，优缺点变成了什么。</span>
-                        </div>
-                        <div class="bullet-card">
-                            <strong>用久以后</strong>
-                            <span>热度退掉，依然愿意留下的部分。</span>
-                        </div>
-                        <div class="bullet-card">
-                            <strong>归档</strong>
-                            <span>它适合进主目录，还是继续放在观望区。</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="section">
-            <div class="section-heading">
-                <h3>这几类设备，最能说明我的口味</h3>
-                <p>它们先把收藏的轮廓勾出来。其他型号以后再补，不急着一次写完。</p>
-            </div>
-
-            <div class="spec-grid">
-                <article class="spec-card">
-                    <div class="status-pill">起点</div>
-                    <h4>Mi 9：当时一眼就喜欢上的机器</h4>
-                    <p>它未必是后来最强的，却像很多偏好的起点：轻薄、快，还有一点不怕张扬的外形。</p>
-                </article>
-
-                <article class="spec-card">
-                    <div class="status-pill">日常</div>
-                    <h4>iPhone 11 和 Galaxy A51：真的用得久</h4>
-                    <p>它们提醒我，稳定、顺手、不用反复折腾，有时比短暂的新鲜感更能留住人。</p>
-                </article>
-
-                <article class="spec-card">
-                    <div class="status-pill">想收</div>
-                    <h4>Fold、Ultra、iPad mini：总会再看一眼</h4>
-                    <p>有人被形态吸引，有人看重影像和生态，也有人只是觉得尺寸刚好。它们决定我接下来还会追哪些方向。</p>
-                </article>
-            </div>
-        </section>
-
-        <section class="section">
-            <div class="section-heading">
-                <h3>站内四个入口，各自只做一件事</h3>
-                <p>首页先交代口味，具体内容分到其他页面。这样每一页都有自己的重点。</p>
-            </div>
-
-            <div class="route-grid home-route-grid">
-                <article class="route-card wide">
-                    <div class="card-meta">时间线</div>
-                    <strong>时间线，记录它们怎样进来。</strong>
-                    <p>从最早真正喜欢上的型号，到后来慢慢成形的偏好，按顺序看会更清楚。</p>
-                    <div class="route-meta">
-                        <div class="meta-cell"><span>重点</span><strong>来源和阶段</strong></div>
-                        <div class="meta-cell"><span>打开</span><strong><a href="provenance.html">provenance.html</a></strong></div>
-                    </div>
-                </article>
-
-                <article class="route-card wide">
-                    <div class="card-meta">使用手记</div>
-                    <strong>使用手记，把“想买”写到“用过以后”。</strong>
-                    <p>很多判断都要上手后才会改变，这里留下的是实际使用的感觉。</p>
-                    <div class="route-meta">
-                        <div class="meta-cell"><span>重点</span><strong>使用后的判断</strong></div>
-                        <div class="meta-cell"><span>打开</span><strong><a href="field-notes.html">field-notes.html</a></strong></div>
-                    </div>
-                </article>
-
-                <article class="route-card narrow">
-                    <div class="card-meta">对比</div>
-                    <strong>把几台纠结的机型放一起看。</strong>
-                    <p>适合处理那些会来回权衡的选择。</p>
-                </article>
-
-                <article class="route-card narrow">
-                    <div class="card-meta">观望</div>
-                    <strong>收好还没决定的对象。</strong>
-                    <p>先持续关注，不急着把它们写进主目录。</p>
-                </article>
-
-                <article class="route-card narrow">
-                    <div class="card-meta">首页</div>
-                    <strong>先把这套口味说清楚。</strong>
-                    <p>看完这里，再去其他页面找细节。</p>
-                </article>
+            <div class="home-hero-preview">
+                <img src="assets/images/macstudio-m4-ultra-transparent.png" alt="Mac Studio M4 Ultra" width="1254" height="1254" loading="eager" decoding="async">
+                <span class="home-preview-badge">FLAGSHIP · MAC STUDIO</span>
             </div>
         </section>
 
         <section class="section" id="sec-creator">
-            <div class="section-heading">
-                <h3 data-zh="精选创作者 / BOJIO 杰哥" data-en="Featured creator / BOJIO">精选创作者 / BOJIO 杰哥</h3>
-                <p data-zh="科技评测精选与内容来源参考。" data-en="Selected technology reviews and reference source.">科技评测精选与内容来源参考。</p>
+            <div class="chapter-head">
+                <span class="chapter-eyebrow">REFERENCE</span>
+                <h2 class="section-title"><span class="lang-pair"><span class="lang-zh" lang="zh-CN">精选评测参考</span><span class="lang-divider" aria-hidden="true"> / </span><span class="lang-en" lang="en">BOJIO 杰哥</span></span></h2>
+                <div class="chapter-rule"></div>
             </div>
 
             <div class="video-card">
@@ -1015,427 +1181,17 @@
                     <iframe width="560" height="315" src="https://www.youtube.com/embed/T4FwjYAWAwI?si=FUs0qRRfZWWGJGwA&amp;start=568" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                 </div>
                 <div class="video-info">
-                    <h3 class="video-title" data-zh="BOJIO 杰哥 - 科技评测精选" data-en="BOJIO - Selected technology reviews">BOJIO 杰哥 - 科技评测精选</h3>
+                    <h4 class="video-title" data-zh="BOJIO 杰哥 - 科技评测精选" data-en="BOJIO - Selected technology reviews">BOJIO 杰哥 - 科技评测精选</h4>
                     <span class="video-tagpill">DEEP DIVE</span>
                 </div>
             </div>
         </section>
-
-        <section class="section">
-            <div class="section-panel closing-panel">
-                <h4>值得收藏的设备，应该过几年再看，仍然说得出喜欢它的理由。</h4>
-                <p>这页先把理由摆出来。来源、后记和取舍，留给后面的页面慢慢补齐。</p>
-                <div class="hero-actions">
-                    <a class="button-primary" href="field-notes.html" data-zh="读使用手记" data-en="Read field notes">读使用手记</a>
-                    <a class="button-secondary" href="comparison-lab.html" data-zh="去看对比" data-en="Open compare">去看对比</a>
-                </div>
-            </div>
-        </section>
     </main>
 
     <footer class="site-footer">
-        <div class="footer-line" data-zh="TECH ARSENAL / 首页 / 一份还在更新的个人档案" data-en="TECH ARSENAL / Home / A personal archive in progress">tech arsenal / 首页 / 一份还在更新的个人档案</div>
+        <div class="footer-line" data-zh="TECH ARSENAL / 首页" data-en="TECH ARSENAL / Home">tech arsenal / 首页</div>
     </footer>
     <script src="arsenal-site.js"></script>
-</body>
-</html>
-```
-
-### `on-the-horizon.html`
-```html
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TECH ARSENAL | 观望清单 / Horizon</title>
-    <link rel="stylesheet" href="arsenal-pages.css">
-</head>
-<body>
-    <div class="broadcast-bar">
-        <div class="signal-icon"></div>
-        <span class="shoutout-text" data-zh="未来候选" data-en="Future candidates">future candidates</span>
-        <span class="creator-tag" data-zh="观望" data-en="Horizon">horizon</span>
-        <span class="shoutout-text" data-zh="观察清单" data-en="Watchlist deck">watchlist deck</span>
-    </div>
-
-    <main class="shell">
-        <header class="site-header">
-            <div class="top-row">
-                <a class="back-link home-mark-link" href="index.html" aria-label="返回首页 / Back to home" title="返回首页 / Back to home"><img src="assets/images/arsenal-spark.png" alt=""></a>
-                <nav class="page-nav" aria-label="site">
-                    <a class="page-link${currentFile === "index.html" ? " active" : ""}" href="index.html">首页</a>
-                    <a class="page-link${currentFile === "topology.html" ? " active" : ""}" href="topology.html">工位与连接</a>
-                    <a class="page-link${currentFile === "decision.html" ? " active" : ""}" href="decision.html">选机算盘</a>
-                    <a class="page-link${currentFile === "provenance.html" ? " active" : ""}" href="provenance.html">时间线</a>
-                    <a class="page-link${currentFile === "field-notes.html" ? " active" : ""}" href="field-notes.html">使用手记</a>
-                    <a class="page-link${currentFile === "comparison-lab.html" ? " active" : ""}" href="comparison-lab.html">对比实验室</a>
-                    <a class="page-link${currentFile === "on-the-horizon.html" ? " active" : ""}" href="on-the-horizon.html">观望清单</a>
-                    <a class="page-link${currentFile === "tech-arsenal.html" ? " active" : ""}" href="tech-arsenal.html">总目录</a>
-                </nav>
-            </div>
-
-            <div class="hero-head">
-                <div class="eyebrow" data-zh="观察清单" data-en="Watchlist deck">watchlist deck</div>
-                <div class="title-lockup">
-                    <h1 class="main-title" data-zh="观望清单" data-en="Horizon">Horizon</h1>
-                    <p class="page-subtitle">不是所有感兴趣的东西都应该直接进入主目录。Horizon 页面负责承接那些正在形成中的偏好、传闻线索和还没正式转正的候选设备。</p>
-                </div>
-            </div>
-        </header>
-
-        <section class="hero-panel">
-            <div class="hero-grid">
-                <div class="hero-copy">
-                    <div class="hero-copy-top">
-                        <div class="meta-chip" data-zh="未来观察清单" data-en="Future watchlist">future watchlist</div>
-                        <h2>让整站从静态收藏册，变成还在继续生长的判断系统。</h2>
-                        <p>这个页面的价值不在于写满，而在于区分轻度关注、强关注和接近发布的对象。</p>
-                    </div>
-
-                    <div class="hero-stats">
-                        <div class="hero-stat">
-                            <strong>03</strong>
-                            <span>watch states</span>
-                        </div>
-                        <div class="hero-stat">
-                            <strong>04</strong>
-                            <span>tracked themes</span>
-                        </div>
-                        <div class="hero-stat">
-                            <strong>01</strong>
-                            <span>future lane</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="hero-side">
-                    <img src="https://images.unsplash.com/photo-1655823528247-490cebf65306?q=80&w=1400&auto=format&fit=crop" alt="abstract close up of a device surface">
-                </div>
-            </div>
-        </section>
-
-        <section class="section">
-            <div class="section-heading">
-                <h3>现在最适合单独观察的四条线</h3>
-                <p>它们不一定都会买，但都值得继续盯。分开记录以后，主目录就能继续保持克制。</p>
-            </div>
-
-            <div class="radar-grid">
-                <article class="radar-card">
-                    <div class="status-pill">rumor watch</div>
-                    <h4>Next Galaxy Fold line</h4>
-                    <p>真正该盯的是厚度、折痕和相机妥协是否还存在。如果这三个点一起解决，折叠屏会再次上升一个层级。</p>
-                </article>
-
-                <article class="radar-card">
-                    <div class="status-pill">launch window</div>
-                    <h4>Base iPhone with stronger display tier</h4>
-                    <p>比起单纯涨性能，更重要的是基础款是否终于拿到完整的高刷和更成熟的 AI 入口。</p>
-                </article>
-
-                <article class="radar-card">
-                    <div class="status-pill">high interest</div>
-                    <h4>Compact Android flagships</h4>
-                    <p>小尺寸旗舰更能看出厂商有没有真正下功夫，因为它们很难同时兼顾续航、散热和影像。</p>
-                </article>
-            </div>
-        </section>
-
-        <section class="section">
-            <div class="section-panel">
-                <div class="section-heading">
-                    <h3>后续可以继续补的观察字段</h3>
-                    <p>这个页面很适合再往前一步，变成真正的 watchlist，而不是普通的兴趣备忘录。</p>
-                </div>
-                <div class="spec-grid">
-                    <article class="spec-card">
-                        <div class="status-pill">field 01</div>
-                        <h4>signal source</h4>
-                        <p>记录来自发布会、爆料人还是评测人。</p>
-                    </article>
-                    <article class="spec-card">
-                        <div class="status-pill">field 02</div>
-                        <h4>promotion trigger</h4>
-                        <p>满足什么条件后，它会正式进入 wishlist。</p>
-                    </article>
-                    <article class="spec-card">
-                        <div class="status-pill">field 03</div>
-                        <h4>expected window</h4>
-                        <p>给自己一个大致时间感，而不是永远停在模糊状态。</p>
-                    </article>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer class="site-footer">
-        <div class="footer-line" data-zh="TECH ARSENAL / 观望 / 把未来兴趣留在主档案之外" data-en="TECH ARSENAL / Horizon / Future interest outside the core archive">tech arsenal / horizon / future interest outside the core archive</div>
-    </footer>
-    <script src="arsenal-site.js"></script>
-</body>
-</html>
-```
-
-### `provenance.html`
-```html
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TECH ARSENAL | 时间线 / Timeline</title>
-    <link rel="stylesheet" href="arsenal-pages.css">
-</head>
-<body>
-    <div class="broadcast-bar">
-        <div class="signal-icon"></div>
-        <span class="shoutout-text" data-zh="收藏记忆" data-en="Collection memory">collection memory</span>
-        <span class="creator-tag" data-zh="时间线" data-en="Timeline">timeline</span>
-        <span class="shoutout-text" data-zh="来源层" data-en="Provenance layer">provenance layer</span>
-    </div>
-
-    <main class="shell">
-        <header class="site-header">
-            <div class="top-row">
-                <a class="back-link home-mark-link" href="index.html" aria-label="返回首页 / Back to home" title="返回首页 / Back to home"><img src="assets/images/arsenal-spark.png" alt=""></a>
-                <nav class="page-nav" aria-label="site">
-                    <a class="page-link${currentFile === "index.html" ? " active" : ""}" href="index.html">首页</a>
-                    <a class="page-link${currentFile === "topology.html" ? " active" : ""}" href="topology.html">工位与连接</a>
-                    <a class="page-link${currentFile === "decision.html" ? " active" : ""}" href="decision.html">选机算盘</a>
-                    <a class="page-link${currentFile === "provenance.html" ? " active" : ""}" href="provenance.html">时间线</a>
-                    <a class="page-link${currentFile === "field-notes.html" ? " active" : ""}" href="field-notes.html">使用手记</a>
-                    <a class="page-link${currentFile === "comparison-lab.html" ? " active" : ""}" href="comparison-lab.html">对比实验室</a>
-                    <a class="page-link${currentFile === "on-the-horizon.html" ? " active" : ""}" href="on-the-horizon.html">观望清单</a>
-                    <a class="page-link${currentFile === "tech-arsenal.html" ? " active" : ""}" href="tech-arsenal.html">总目录</a>
-                </nav>
-            </div>
-
-            <div class="hero-head">
-                <div class="eyebrow" data-zh="来源账本" data-en="Provenance ledger">provenance ledger</div>
-                <div class="title-lockup">
-                    <h1 class="main-title" data-zh="时间线" data-en="Timeline">Timeline</h1>
-                    <p class="page-subtitle">这一页专门处理“来源感”。它不需要比主目录更炫，只要更安静、更具体，让设备从参数变成真实经过你手里的东西。</p>
-                </div>
-            </div>
-        </header>
-
-        <section class="hero-panel">
-            <div class="hero-grid">
-                <div class="hero-copy">
-                    <div class="hero-copy-top">
-                        <div class="meta-chip" data-zh="时间线模式" data-en="Timeline mode">timeline mode</div>
-                        <h2>收藏的高级感，往往来自记忆，不来自效果。</h2>
-                        <p>所以时间线页的重点不是视觉花活，而是阶段、原因、使用痕迹和状态变化。</p>
-                    </div>
-
-                    <div class="hero-stats">
-                        <div class="hero-stat">
-                            <strong>03</strong>
-                            <span>archive phases</span>
-                        </div>
-                        <div class="hero-stat">
-                            <strong>05</strong>
-                            <span>owned references</span>
-                        </div>
-                        <div class="hero-stat">
-                            <strong>01</strong>
-                            <span>living ledger</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="hero-side">
-                    <img src="https://images.unsplash.com/photo-1600087626014-e652e18bbff2?q=80&w=1400&auto=format&fit=crop" alt="devices on a dark desk">
-                </div>
-            </div>
-        </section>
-
-        <section class="section">
-            <div class="section-heading">
-                <h3>现在先按阶段归档，后面再补真实日期。</h3>
-                <p>先把结构立住，比硬编精确时间更重要。你之后只要往每个节点补上年月、购买背景和后续评价，这一页就会越来越强。</p>
-            </div>
-
-            <div class="timeline">
-                <article class="timeline-entry">
-                    <div class="entry-kicker">phase 01 / first flagship pull</div>
-                    <h4>Mi 9 把“高性能机很迷人”这件事第一次具体化。</h4>
-                    <p>轻、快、带一点炫技感，但又没有后来那些设备那样沉重。它像整个收藏倾向的起点。</p>
-                    <div class="meta-grid">
-                        <div class="meta-cell"><span>lot</span><strong>n 010</strong></div>
-                        <div class="meta-cell"><span>memory</span><strong>snapdragon 855 and 20w wireless</strong></div>
-                    </div>
-                </article>
-
-                <article class="timeline-entry">
-                    <div class="entry-kicker">phase 02 / daily reliability</div>
-                    <h4>iPhone 11 和 Galaxy A51 把收藏冲动拉回了日常。</h4>
-                    <p>这两台很适合一起写。一个代表长期稳定的 iPhone 体验，一个代表真正陪着日常任务跑很久的安卓中坚。</p>
-                    <div class="meta-grid">
-                        <div class="meta-cell"><span>lots</span><strong>n 019 and n 021</strong></div>
-                        <div class="meta-cell"><span>thread</span><strong>reliability over spectacle</strong></div>
-                    </div>
-                </article>
-
-                <article class="timeline-entry">
-                    <div class="entry-kicker">phase 03 / peripheral memory</div>
-                    <h4>EarPods 和 DeathAdder V2 Pro 记录的是习惯，不只是规格。</h4>
-                    <p>真正留下肌肉记忆的往往不是手机，而是每天摸到的鼠标和耳机。这一段最适合补“使用后记”。</p>
-                    <div class="meta-grid">
-                        <div class="meta-cell"><span>lots</span><strong>n 031 and n 033</strong></div>
-                        <div class="meta-cell"><span>next field</span><strong>post ownership notes</strong></div>
-                    </div>
-                </article>
-            </div>
-        </section>
-
-        <section class="section">
-            <div class="section-heading">
-                <h3>接下来最值得补的字段</h3>
-                <p>只要再补下面三类信息，这一页就会从“结构完成”进入“内容开始有厚度”。</p>
-            </div>
-
-            <div class="spec-grid">
-                <article class="spec-card">
-                    <div class="status-pill">field 01</div>
-                    <h4>入藏时间</h4>
-                    <p>先写到年月就够了，不必强求精确到日。</p>
-                </article>
-
-                <article class="spec-card">
-                    <div class="status-pill">field 02</div>
-                    <h4>使用后记</h4>
-                    <p>让“买之前为什么想要”变成“到手后到底怎样”。</p>
-                </article>
-
-                <article class="spec-card">
-                    <div class="status-pill">field 03</div>
-                    <h4>当前状态</h4>
-                    <p>继续服役、纪念保留、备用、退役，这些标签都很有用。</p>
-                </article>
-            </div>
-        </section>
-    </main>
-
-    <footer class="site-footer">
-        <div class="footer-line" data-zh="TECH ARSENAL / 时间线 / 把来源写成叙事结构" data-en="TECH ARSENAL / Timeline / Provenance as narrative structure">tech arsenal / timeline / provenance as narrative structure</div>
-    </footer>
-    <script src="arsenal-site.js"></script>
-</body>
-</html>
-```
-
-### `specs.html`
-```html
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TECH ARSENAL | 规格</title>
-    <link rel="stylesheet" href="arsenal-pages.css">
-</head>
-<body>
-    <div class="broadcast-bar">
-        <div class="signal-icon"></div>
-        <span class="shoutout-text">设备参数</span>
-        <span class="creator-tag">spec index</span>
-        <span class="shoutout-text">041 records</span>
-    </div>
-
-    <main class="shell">
-        <header class="site-header">
-            <div class="top-row">
-                <a class="back-link home-mark-link" href="index.html" aria-label="返回首页 / Back to home" title="返回首页 / Back to home"><img src="assets/images/arsenal-spark.png" alt=""></a>
-                <nav class="page-nav" aria-label="site">
-                    <a class="page-link${currentFile === "index.html" ? " active" : ""}" href="index.html">首页</a>
-                    <a class="page-link${currentFile === "topology.html" ? " active" : ""}" href="topology.html">工位与连接</a>
-                    <a class="page-link${currentFile === "decision.html" ? " active" : ""}" href="decision.html">选机算盘</a>
-                    <a class="page-link${currentFile === "provenance.html" ? " active" : ""}" href="provenance.html">时间线</a>
-                    <a class="page-link${currentFile === "field-notes.html" ? " active" : ""}" href="field-notes.html">使用手记</a>
-                    <a class="page-link${currentFile === "comparison-lab.html" ? " active" : ""}" href="comparison-lab.html">对比实验室</a>
-                    <a class="page-link${currentFile === "on-the-horizon.html" ? " active" : ""}" href="on-the-horizon.html">观望清单</a>
-                    <a class="page-link${currentFile === "tech-arsenal.html" ? " active" : ""}" href="tech-arsenal.html">总目录</a>
-                </nav>
-            </div>
-
-            <div class="hero-head">
-                <div class="eyebrow">spec index</div>
-                <div class="title-lockup">
-                    <h1 class="main-title">规<span class="accent">格</span></h1>
-                </div>
-            </div>
-        </header>
-
-        <div id="spec-catalog"></div>
-    </main>
-
-    <footer class="site-footer">
-        <div class="footer-line">tech arsenal / 规格</div>
-    </footer>
-
-    <script src="specs-data.js"></script>
-    <script src="arsenal-site.js"></script>
-    <script>
-        const specGroups = [
-            ["mobile", "SMARTPHONES"],
-            ["tablet", "TABLETS & SLATES"],
-            ["laptop", "LAPTOPS"],
-            ["desktop", "DESKTOPS"],
-            ["peripheral", "WEAPONS & PERIPHERALS"]
-        ];
-
-        const escapeHtml = (value) => String(value).replace(/[&<>\"']/g, (character) => ({
-            "&": "&amp;",
-            "<": "&lt;",
-            ">": "&gt;",
-            "\"": "&quot;",
-            "'": "&#039;"
-        }[character]));
-
-        const renderSpecRows = (specs) => {
-            const cameraSystem = specs.find(([label]) => label === "Camera System")?.[1];
-            const cameraSensor = specs.find(([label]) => label === "Camera Sensor")?.[1];
-            const cameraRow = cameraSystem || cameraSensor
-                ? `<div class="spec-camera-row"><dt>Camera System</dt><dd>${cameraSystem ? `<span>${escapeHtml(cameraSystem)}</span>` : ""}${cameraSensor ? `<span class="spec-camera-detail">${escapeHtml(cameraSensor)}</span>` : ""}</dd></div>`
-                : "";
-            const regularRows = specs
-                .filter(([label]) => label !== "Camera System" && label !== "Camera Sensor")
-                .map(([label, value]) => `<div><dt>${escapeHtml(label)}</dt><dd>${escapeHtml(value)}</dd></div>`)
-                .join("");
-            return cameraRow + regularRows;
-        };
-
-        const renderRecord = (item) => `
-            <article class="spec-record" data-status="${escapeHtml(item.status)}">
-                <div class="spec-record-lot">N° ${escapeHtml(item.lot)}</div>
-                <div class="spec-record-identity">
-                    <span class="spec-image-slot" data-image="${escapeHtml(item.image)}" aria-hidden="true"></span>
-                    <div class="spec-record-title">
-                        <span class="spec-record-brand">${escapeHtml(item.brand)}</span>
-                        <h4>${escapeHtml(item.name)}</h4>
-                        <span class="spec-status ${item.status === "owned" ? "owned" : "wishlist"}">${escapeHtml(item.status)}</span>
-                    </div>
-                </div>
-                <dl class="spec-record-data">
-                    ${renderSpecRows(item.specs)}
-                </dl>
-            </article>
-        `;
-
-        document.getElementById("spec-catalog").innerHTML = specGroups.map(([category, label]) => {
-            const items = specsCatalog.filter((item) => item.category === category);
-            return `
-                <section class="section spec-catalog-section">
-                    <div class="section-heading">
-                        <h3>${label} <span class="section-count">(${String(items.length).padStart(2, "0")})</span></h3>
-                    </div>
-                    <div class="spec-catalog-list">${items.map(renderRecord).join("")}</div>
-                </section>
-            `;
-        }).join("");
-    </script>
 </body>
 </html>
 ```
@@ -1443,275 +1199,542 @@
 ### `tech-arsenal.html`
 ```html
 <!DOCTYPE html>
+
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TECH ARSENAL | 年鉴目录 / Personal collection annual index</title>
-    <link rel="stylesheet" href="arsenal-pages.css">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>TECH ARSENAL — 总目录 / Catalogue</title>
+<link href="arsenal-pages.css" rel="stylesheet"/>
+<style>
+        /* ===== 清单视图（manifest / list view） ===== */
+        #catalogue-main.is-list .grid {
+            display: flex !important;
+            flex-direction: column !important;
+            gap: 1px !important;
+            background: var(--line, rgba(255,255,255,.12)) !important;
+            border: 1px solid var(--line, rgba(255,255,255,.12)) !important;
+            padding: 0 !important;
+            grid-template-columns: none !important;
+        }
+        #catalogue-main.is-list .card,
+        #catalogue-main.is-list .card:not(.is-lead),
+        #catalogue-main.is-list .card.is-lead {
+            display: grid !important;
+            grid-template-columns: 60px 48px minmax(180px, 1.2fr) minmax(260px, 2fr) auto !important;
+            grid-column: 1 / -1 !important;
+            align-items: center !important;
+            column-gap: 16px !important;
+            padding: 8px 16px !important;
+            min-height: 0 !important;
+            height: auto !important;
+            border: 0 !important;
+            border-bottom: 1px solid var(--line, rgba(255,255,255,.08)) !important;
+            border-radius: 0 !important;
+            background: var(--panel-solid, #14171f) !important;
+            cursor: pointer !important;
+            transform: none !important;
+            box-shadow: none !important;
+            outline: none !important;
+        }
+        #catalogue-main.is-list .card:hover,
+        #catalogue-main.is-list .card:focus-visible {
+            background: var(--row-hover, rgba(255,255,255,.07)) !important;
+            outline: none !important;
+            transform: none !important;
+        }
+        #catalogue-main.is-list .lot-number {
+            position: static !important;
+            order: 1 !important;
+            font-family: var(--mono, ui-monospace, "SF Mono", Menlo, monospace) !important;
+            font-size: 11px !important;
+            letter-spacing: .04em !important;
+            opacity: .6 !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            color: var(--text) !important;
+        }
+        #catalogue-main.is-list .img-box,
+        #catalogue-main.is-list .card.is-lead .img-box,
+        #catalogue-main.is-list .card:not(.is-lead) .img-box {
+            position: static !important;
+            order: 2 !important;
+            width: 44px !important;
+            height: 44px !important;
+            min-height: 44px !important;
+            max-height: 44px !important;
+            padding: 4px !important;
+            border: 1px solid var(--line, rgba(255,255,255,.1)) !important;
+            border-radius: 6px !important;
+            background: var(--bg-elevated, #0c0e14) !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            overflow: hidden !important;
+            flex: 0 0 44px !important;
+            margin: 0 !important;
+        }
+        #catalogue-main.is-list .img-box img,
+        #catalogue-main.is-list .card.is-lead .img-box img,
+        #catalogue-main.is-list .card:not(.is-lead) .img-box img {
+            width: 100% !important;
+            height: 100% !important;
+            max-width: 36px !important;
+            max-height: 36px !important;
+            object-fit: contain !important;
+            transform: none !important;
+            filter: none !important;
+            display: block !important;
+        }
+        #catalogue-main.is-list .card-content,
+        #catalogue-main.is-list .card.is-lead .card-content,
+        #catalogue-main.is-list .card:not(.is-lead) .card-content {
+            order: 3 !important;
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: flex-start !important;
+            gap: 2px !important;
+            padding: 0 !important;
+            min-width: 0 !important;
+        }
+        #catalogue-main.is-list .product-name,
+        #catalogue-main.is-list .card.is-lead .product-name,
+        #catalogue-main.is-list .card:not(.is-lead) .product-name {
+            order: 1 !important;
+            margin: 0 !important;
+            font-size: 15px !important;
+            line-height: 1.2 !important;
+            white-space: nowrap !important;
+            overflow: hidden !important;
+            text-overflow: ellipsis !important;
+            max-width: 100% !important;
+        }
+        #catalogue-main.is-list .hallmark,
+        #catalogue-main.is-list .card.is-lead .hallmark,
+        #catalogue-main.is-list .card:not(.is-lead) .hallmark {
+            order: 2 !important;
+            margin: 0 !important;
+            font-size: 10px !important;
+            opacity: .55 !important;
+            white-space: nowrap !important;
+            overflow: hidden !important;
+            text-overflow: ellipsis !important;
+            max-width: 100% !important;
+        }
+        #catalogue-main.is-list .specs,
+        #catalogue-main.is-list .card.is-lead .specs,
+        #catalogue-main.is-list .card:not(.is-lead) .specs {
+            order: 4 !important;
+            display: flex !important;
+            align-items: center !important;
+            gap: 14px !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            border: 0 !important;
+            overflow: hidden !important;
+            flex-wrap: nowrap !important;
+            max-width: 100% !important;
+        }
+        #catalogue-main.is-list .spec-row {
+            display: inline-flex !important;
+            align-items: baseline !important;
+            gap: 5px !important;
+            padding: 0 !important;
+            border: 0 !important;
+            white-space: nowrap !important;
+            min-width: 0 !important;
+        }
+        #catalogue-main.is-list .spec-label {
+            font-size: 10px !important;
+            opacity: .45 !important;
+            text-transform: uppercase !important;
+        }
+        #catalogue-main.is-list .spec-val {
+            font-size: 12px !important;
+            opacity: .85 !important;
+            color: var(--text) !important;
+        }
+        #catalogue-main.is-list .seal {
+            order: 5 !important;
+            position: static !important;
+            justify-self: end !important;
+            margin: 0 !important;
+            white-space: nowrap !important;
+        }
+        #catalogue-main.is-list .record-action {
+            display: none !important;
+        }
+        /* ===== 精致视图切换分段控制器（Segmented View Switcher） ===== */
+        .control-subbar {
+            grid-column: 1 / -1;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            margin-top: 12px;
+            padding-top: 14px;
+            border-top: 1px solid var(--line);
+        }
+        .control-subbar .result-summary {
+            margin: 0;
+            grid-column: auto;
+        }
+        .view-toggle {
+            display: inline-flex;
+            align-items: center;
+            padding: 3px;
+            background: rgba(10, 13, 18, 0.85);
+            border: 1px solid var(--line-strong);
+            border-radius: 6px;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.45);
+            gap: 3px;
+            user-select: none;
+        }
+        .view-btn {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 7px;
+            height: 32px;
+            padding: 0 13px;
+            border: 1px solid transparent;
+            border-radius: 4px;
+            background: transparent;
+            color: var(--muted);
+            font-family: var(--mono);
+            font-size: 0.64rem;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: color 180ms ease, background-color 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+        }
+        .view-btn > * {
+            pointer-events: none;
+        }
+        .view-btn .view-icon {
+            width: 12px;
+            height: 12px;
+            flex: 0 0 12px;
+            opacity: 0.65;
+            transition: opacity 180ms ease, color 180ms ease;
+        }
+        .view-btn:hover {
+            color: var(--text);
+            background: rgba(255, 255, 255, 0.04);
+        }
+        .view-btn:hover .view-icon {
+            opacity: 1;
+        }
+        .view-btn:focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 2px;
+        }
+        .view-btn.active {
+            color: #ffffff;
+            background: linear-gradient(180deg, #1f2a3a 0%, #131a26 100%);
+            border: 1px solid rgba(145, 165, 255, 0.4);
+            box-shadow:
+                0 2px 8px rgba(0, 0, 0, 0.38),
+                inset 0 1px 0 rgba(255, 255, 255, 0.12),
+                0 0 12px rgba(111, 134, 255, 0.15);
+        }
+        .view-btn.active .view-icon {
+            color: var(--accent-2);
+            opacity: 1;
+        }
+        @media (max-width: 640px) {
+            .control-subbar {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 12px;
+            }
+            .view-toggle {
+                width: 100%;
+            }
+            .view-btn {
+                flex: 1 1 50%;
+            }
+        }
+    </style>
 </head>
-<body>
-
-    <div class="broadcast-bar">
-        <div class="signal-icon"></div>
-        <span class="shoutout-text" data-zh="私人收藏" data-en="Private collection">私人收藏</span>
-        <span class="creator-tag" data-zh="年鉴目录" data-en="Annual index">年鉴目录</span>
-        <span class="shoutout-text" data-zh="43 条记录 / 5 个章节" data-en="43 records / 5 chapters">43 条记录 / 5 个章节</span>
-    </div>
-
-    <header class="header site-header">
-        <div class="header-top top-row">
-            <a href="index.html" class="back-link home-mark-link" aria-label="返回首页 / Back to home" title="返回首页 / Back to home"><img src="assets/images/arsenal-spark.png" alt=""></a>
-            <nav class="page-nav" aria-label="site">
-                    <a class="page-link${currentFile === "index.html" ? " active" : ""}" href="index.html">首页</a>
-                    <a class="page-link${currentFile === "topology.html" ? " active" : ""}" href="topology.html">工位与连接</a>
-                    <a class="page-link${currentFile === "decision.html" ? " active" : ""}" href="decision.html">选机算盘</a>
-                    <a class="page-link${currentFile === "provenance.html" ? " active" : ""}" href="provenance.html">时间线</a>
-                    <a class="page-link${currentFile === "field-notes.html" ? " active" : ""}" href="field-notes.html">使用手记</a>
-                    <a class="page-link${currentFile === "comparison-lab.html" ? " active" : ""}" href="comparison-lab.html">对比实验室</a>
-                    <a class="page-link${currentFile === "on-the-horizon.html" ? " active" : ""}" href="on-the-horizon.html">观望清单</a>
-                    <a class="page-link${currentFile === "tech-arsenal.html" ? " active" : ""}" href="tech-arsenal.html">总目录</a>
-                </nav>
-        </div>
-        <div class="masthead">
-            <div class="masthead-copy">
-                <h1 class="main-title"><span class="tech">TECH</span> <span class="arsenal">ARSENAL</span></h1>
-                <p class="header-sub" data-zh="个人设备目录：已入藏、关注与配置。" data-en="Owned gear, future objects, useful configurations.">Owned gear, future objects, useful configurations.</p>
-            </div>
-            <div class="collection-ledger" aria-label="收藏概览 / Collection summary">
-                <span><strong>043</strong> <span data-zh="已编目" data-en="Catalogued">catalogued</span></span>
-                <span class="owned"><strong>005</strong> <span data-zh="已入藏" data-en="In collection">in collection</span></span>
-                <span><strong>038</strong> <span data-zh="关注中" data-en="Pursuing">pursuing</span></span>
-                <span><strong>005</strong> <span data-zh="章节" data-en="Chapters">chapters</span></span>
-            </div>
-        </div>
-    </header>
-
-    <section class="control-bar" aria-label="查找并筛选目录 / Find and filter the catalogue">
-        <div class="search-wrap" role="search">
-            <label class="search-label" for="searchInput" data-zh="查找设备或配置" data-en="Find a device or configuration">Find a device or configuration</label>
-            <span class="search-mark" aria-hidden="true"></span>
-            <input type="search" class="search-input" id="searchInput" placeholder="Search gear" data-placeholder-zh="搜索设备" data-placeholder-en="Search gear" autocomplete="off" spellcheck="false" aria-describedby="resultSummary">
-            <span class="search-key" aria-hidden="true" data-zh="按 / 聚焦" data-en="Press / to focus">Press /</span>
-        </div>
-        <div class="filter-bar" role="group" aria-label="按章节筛选 / Filter by chapter">
-            <button class="filter-btn active" type="button" data-filter="all" aria-pressed="true" data-zh="全部设备" data-en="All gear">All gear</button>
-            <button class="filter-btn" type="button" data-filter="mobile" aria-pressed="false" data-zh="手机" data-en="Phones">Phones</button>
-            <button class="filter-btn" type="button" data-filter="tablet" aria-pressed="false" data-zh="平板" data-en="Tablets">Tablets</button>
-            <button class="filter-btn" type="button" data-filter="laptop" aria-pressed="false" data-zh="笔记本" data-en="Laptops">Laptops</button>
-            <button class="filter-btn" type="button" data-filter="desktop" aria-pressed="false" data-zh="台式机" data-en="Desktops">Desktops</button>
-            <button class="filter-btn" type="button" data-filter="peripheral" aria-pressed="false" data-zh="外设" data-en="Peripherals">Peripherals</button>
-        </div>
-        <p class="result-summary" id="resultSummary" role="status" aria-live="polite" data-zh="显示 43 条记录，分布于 5 个章节" data-en="Showing 43 records across 5 chapters">Showing 43 records across 5 chapters</p>
-    </section>
-
-    <aside class="dossier" id="techDossier" aria-labelledby="dossierTitle" hidden>
-        <div class="dossier-visual">
-            <img id="dossierImage" src="assets/images/arsenal-spark.png" alt="Selected device preview">
-        </div>
-        <div class="dossier-body">
-            <div class="dossier-topline">
-                <span class="dossier-brand" id="dossierBrand">Brand / 品牌</span>
-                <span class="dossier-status" id="dossierStatus">Pursuing / 关注中</span>
-            </div>
-            <h2 class="dossier-title" id="dossierTitle">Product name</h2>
-            <p class="dossier-lot" id="dossierLot"></p>
-            <p class="dossier-why" id="dossierWhy"></p>
-            <p class="dossier-desc" id="dossierDesc"></p>
-            <div class="dossier-specs" id="dossierSpecs"></div>
-            <div class="dossier-actions">
-                <a class="dossier-action" href="comparison-lab.html" data-zh="打开对比实验室" data-en="Open comparison lab">Open comparison lab</a>
-                <button class="dossier-close" id="dossierClose" type="button" data-zh="关闭档案" data-en="Close dossier">Close dossier</button>
-            </div>
-        </div>
-    </aside>
-
-    <main class="collection" id="catalogue-main">
-    <div class="section-wrapper" id="sec-mobile">
-        <div class="chapter-head">
-            <span class="chapter-eyebrow">phones</span>
-            <h2 class="section-title"><span class="lang-pair"><span class="lang-zh" lang="zh-CN">手机</span><span class="lang-divider" aria-hidden="true"> / </span><span class="lang-en" lang="en">Smartphones</span></span><span class="section-count">(22 / 22 PIECES)</span></h2>
-            <div class="chapter-rule"></div>
-        </div>
-        <div class="grid">
-
-            <div class="card" data-brand="xiaomi" data-status="wishlist" data-cat="mobile" data-lot="001" data-chapter="SMARTPHONES" data-name="mi 10 ultra xiaomi · 10th anniversary 10th anniversary xiaomi">
-                <div class="lot-number">N&deg; 001</div>
-                <div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
-                <div class="img-box">
-                    <img src="Mi10Ultra.png" alt="Mi 10 Ultra">
-                </div>
-                <div class="card-content">
-                    <div class="hallmark">XIAOMI · 10TH ANNIVERSARY</div>
-                    <h3 class="product-name">Mi 10 Ultra</h3>
-                    <div class="specs">
-<div class="spec-row"><span class="spec-label">Display</span><span class="spec-val">6.67&quot; 120Hz 10-bit OLED</span></div>
-<div class="spec-row"><span class="spec-label">Camera</span><span class="spec-val">48MP OV48C + 120x IMX586</span></div>
+<body class="catalogue-page">
+<header class="header site-header">
+<div class="header-top top-row">
+<a aria-label="返回首页 / Back to home" class="back-link home-mark-link" href="index.html" title="返回首页 / Back to home"><img alt="" decoding="async" height="1000" loading="eager" src="assets/images/arsenal-spark.png" width="1000"/></a>
+<nav aria-label="Site navigation / 站点导航" class="page-nav">
+<a class="page-link" href="index.html"><span class="lang-pair"><span class="lang-zh" lang="zh-CN">首页</span><span aria-hidden="true" class="lang-divider"> / </span><span class="lang-en" lang="en">Home</span></span></a>
+<a aria-current="page" class="page-link active" href="tech-arsenal.html"><span class="lang-pair"><span class="lang-zh" lang="zh-CN">总目录</span><span aria-hidden="true" class="lang-divider"> / </span><span class="lang-en" lang="en">Catalogue</span></span></a>
+<a class="page-link" href="comparison-lab.html"><span class="lang-pair"><span class="lang-zh" lang="zh-CN">对比</span><span aria-hidden="true" class="lang-divider"> / </span><span class="lang-en" lang="en">Compare</span></span></a>
+<a class="page-link" href="topology.html"><span class="lang-pair"><span class="lang-zh" lang="zh-CN">工位与连接</span><span aria-hidden="true" class="lang-divider"> / </span><span class="lang-en" lang="en">Setup</span></span></a>
+</nav>
+</div>
+<div class="masthead">
+<div class="masthead-copy">
+<h1 class="main-title"><span class="tech">TECH</span> <span class="arsenal">ARSENAL</span></h1>
+</div>
+<div aria-label="收藏概览 / Collection summary" class="collection-ledger">
+<span><strong>053</strong> <span data-en="Catalogued" data-zh="已编目">catalogued</span></span>
+<span class="owned"><strong>005</strong> <span data-en="In collection" data-zh="已入藏">in collection</span></span>
+<span><strong>048</strong> <span data-en="Pursuing" data-zh="关注中">pursuing</span></span>
+<span><strong>005</strong> <span data-en="Chapters" data-zh="章节">chapters</span></span>
+</div>
+</div>
+</header>
+<section aria-label="查找并筛选目录 / Find and filter the catalogue" class="control-bar">
+<div class="search-wrap" role="search">
+<label class="search-label" data-en="Find a device or configuration" data-zh="查找设备或配置" for="searchInput">Find a device or configuration</label>
+<span aria-hidden="true" class="search-mark"></span>
+<input aria-describedby="resultSummary" autocomplete="off" class="search-input" data-placeholder-en="Search gear" data-placeholder-zh="搜索设备" id="searchInput" placeholder="Search gear" spellcheck="false" type="search"/>
+<span aria-hidden="true" class="search-key" data-en="Press / to focus" data-zh="按 / 聚焦">Press /</span>
+</div>
+<div aria-label="按章节筛选 / Filter by chapter" class="filter-bar" role="group">
+<button aria-pressed="true" class="filter-btn active" data-en="All gear" data-filter="all" data-zh="全部设备" type="button">All gear</button>
+<button aria-pressed="false" class="filter-btn" data-en="Phones" data-filter="mobile" data-zh="手机" type="button">Phones</button>
+<button aria-pressed="false" class="filter-btn" data-en="Tablets" data-filter="tablet" data-zh="平板" type="button">Tablets</button>
+<button aria-pressed="false" class="filter-btn" data-en="Laptops" data-filter="laptop" data-zh="笔记本" type="button">Laptops</button>
+<button aria-pressed="false" class="filter-btn" data-en="Desktops" data-filter="desktop" data-zh="台式机" type="button">Desktops</button>
+<button aria-pressed="false" class="filter-btn" data-en="Peripherals" data-filter="peripheral" data-zh="外设" type="button">Peripherals</button>
+</div>
+<div class="control-subbar">
+<p aria-live="polite" class="result-summary" data-en="Showing 53 records across 5 chapters" data-zh="显示 53 条记录，分布于 5 个章节" id="resultSummary" role="status">Showing 53 records across 5 chapters</p>
+<div aria-label="切换显示方式 / Switch view" class="view-toggle" role="group">
+<button aria-pressed="false" class="view-btn" data-view="gallery" type="button">
+<svg aria-hidden="true" class="view-icon" fill="currentColor" viewbox="0 0 16 16">
+<path d="M1.5 2A1.5 1.5 0 0 0 0 3.5v3A1.5 1.5 0 0 0 1.5 8h3A1.5 1.5 0 0 0 6 6.5v-3A1.5 1.5 0 0 0 4.5 2h-3zm8 0A1.5 1.5 0 0 0 8 3.5v3A1.5 1.5 0 0 0 9.5 8h3A1.5 1.5 0 0 0 14 6.5v-3A1.5 1.5 0 0 0 12.5 2h-3zm-8 8A1.5 1.5 0 0 0 0 11.5v3A1.5 1.5 0 0 0 1.5 16h3A1.5 1.5 0 0 0 6 14.5v-3A1.5 1.5 0 0 0 4.5 10h-3zm8 0a1.5 1.5 0 0 0-1.5 1.5v3a1.5 1.5 0 0 0 1.5 1.5h3a1.5 1.5 0 0 0 1.5-1.5v-3a1.5 1.5 0 0 0-1.5-1.5h-3z"></path>
+</svg>
+<span data-en="Gallery" data-zh="图册">图册 / Gallery</span>
+</button>
+<button aria-pressed="true" class="view-btn active" data-view="list" type="button">
+<svg aria-hidden="true" class="view-icon" fill="currentColor" viewbox="0 0 16 16">
+<path d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" fill-rule="evenodd"></path>
+</svg>
+<span data-en="List" data-zh="清单">清单 / List</span>
+</button>
+</div>
+</div>
+</section>
+<aside aria-describedby="dossierDesc" aria-labelledby="dossierTitle" aria-modal="true" class="dossier" hidden="" id="techDossier" role="dialog">
+<div aria-hidden="true" class="dossier-backdrop" data-dossier-dismiss=""></div>
+<div class="dossier-panel">
+<div class="dossier-visual">
+<img alt="Selected device preview" decoding="async" height="1000" id="dossierImage" loading="eager" src="assets/images/arsenal-spark.png" width="1000"/>
+<p aria-live="polite" class="dossier-image-note" data-en="Image unavailable; showing archive placeholder" data-zh="图像暂不可用，显示档案占位图" hidden="" id="dossierImageNote" role="status">Image unavailable; showing archive placeholder</p>
+</div>
+<div class="dossier-body">
+<div class="dossier-topline">
+<span class="dossier-brand" id="dossierBrand">Brand / 品牌</span>
+<div class="dossier-topline-tools">
+<span class="dossier-status" id="dossierStatus">Pursuing / 关注中</span>
+<button aria-label="关闭档案 / Close dossier" class="dossier-close" id="dossierClose" type="button">
+<svg aria-hidden="true" class="dossier-close-icon" focusable="false" viewbox="0 0 12 12"><path d="M2 2l8 8M10 2L2 10"></path></svg>
+<span data-en="Close dossier" data-zh="关闭档案">Close dossier</span>
+</button>
+</div>
+</div>
+<h2 class="dossier-title" id="dossierTitle">Product name</h2>
+<p class="dossier-lot" id="dossierLot"></p>
+<p class="dossier-why" id="dossierWhy"></p>
+<p class="dossier-desc" id="dossierDesc"></p>
+<div class="dossier-specs" id="dossierSpecs"></div>
+<div class="dossier-actions">
+<a class="dossier-action" data-en="Open comparison lab" data-zh="打开对比实验室" href="comparison-lab.html">Open comparison lab</a>
+</div>
+</div>
+</div>
+</aside>
+<main class="collection is-list" id="catalogue-main">
+<div class="section-wrapper" id="sec-mobile">
+<div class="chapter-head">
+<span class="chapter-eyebrow">phones</span>
+<h2 class="section-title"><span class="lang-pair"><span class="lang-zh" lang="zh-CN">手机</span><span aria-hidden="true" class="lang-divider"> / </span><span class="lang-en" lang="en">Smartphones</span></span><span class="section-count">(31 / 31 PIECES)</span></h2>
+<div class="chapter-rule"></div>
+</div>
+<div class="grid">
+<div class="card" data-brand="xiaomi" data-cat="mobile" data-chapter="SMARTPHONES" data-lot="001" data-name="mi 10 ultra xiaomi · 10th anniversary 10th anniversary xiaomi" data-status="wishlist">
+<div class="lot-number">N° 001</div>
+<div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
+<div class="img-box">
+<img alt="Mi 10 Ultra" decoding="async" fetchpriority="high" height="1446" loading="eager" src="assets/images/mi10ultra-transparent.png" width="1087"/>
+</div>
+<div class="card-content">
+<div class="hallmark">XIAOMI · 10TH ANNIVERSARY</div>
+<h3 class="product-name">Mi 10 Ultra</h3>
+<div class="specs">
+<div class="spec-row"><span class="spec-label">Display</span><span class="spec-val">6.67" 120Hz 10-bit OLED</span></div>
+<div class="spec-row"><span class="spec-label">Sensor</span><span class="spec-val">1/1.32" OV48C · 1/2" IMX586</span></div>
 <div class="spec-row"><span class="spec-label">Battery</span><span class="spec-val">4500mAh Graphene</span></div>
 <div class="spec-row"><span class="spec-label">Charging</span><span class="spec-val">120W Wired + 50W Wireless</span></div>
-                    </div>
-                </div>
-                <div class="hidden-details" style="display:none;">
-                    <div class="d-brand">XIAOMI // 10TH ANNIVERSARY</div>
-                    <div class="d-title">Mi 10 Ultra</div>
-                    <div class="d-why">120W charging speed is still insane even today. The transparent edition looks absolutely fire - like wearing your internals on your sleeve.</div>
-                    <div class="d-desc">The ultimate 10th-anniversary masterpiece. A camera monster featuring dual 48MP sensors and revolutionary 120W charging technology.</div>
+</div>
+</div>
+<div class="hidden-details" style="display:none;">
+<div class="d-brand">XIAOMI // 10TH ANNIVERSARY</div>
+<div class="d-title">Mi 10 Ultra</div>
+<div class="d-why">120W is still fast today. I like that the transparent edition shows the internals.</div>
+<div class="d-desc">10th-anniversary model. Dual 48MP main and periscope cameras, 120W wired charging.</div>
 <div class="d-spec" data-label="SoC">Snapdragon 865 (7nm) | LPDDR5 | UFS 3.1</div>
 <div class="d-spec" data-label="Display">6.67" OLED | 120Hz | 10-bit Color | 1120 nits peak</div>
 <div class="d-spec" data-label="Camera System">[Main] 48MP OmniVision OV48C | 1/1.32" | OIS<br/>
                         [Periscope] 48MP Sony IMX586 | 5x Optical | 120x Zoom<br/>
                         [Portrait] 12MP S5K2L7 | 2x Optical | 46mm Equivalent<br/>
                         [Ultrawide] 20MP Sony IMX350 | 128° FOV | 12mm</div>
+<div class="d-spec" data-label="Camera Sensors">Main: OmniVision OV48C / 1/1.32" (48MP, 1.2µm, OIS); Periscope: Sony IMX586 / 1/2.0" (48MP, 5× optical / 120× digital, OIS); Portrait: Samsung S5K2L7 / 1/2.56" (12MP, 2× optical); Ultrawide: Sony IMX350 / 1/2.78" (20MP, 128°); Front: Samsung S5K3T2 / 1/3.4" (20MP)</div>
 <div class="d-spec" data-label="Focal Lengths">Native: 12mm / 25mm / 50mm / 120mm | Sensor crop: 50mm (2× main; overlaps the native 50mm camera) | Hybrid reach: 240mm+ at 10× and beyond</div>
 <div class="d-spec" data-label="Battery &amp; Charging">4500mAh Graphene-based | 120W Wired (100% in 23m) | 50W Wireless</div>
 <div class="d-spec" data-label="Build">221.8g | Ceramic Black / Transparent Edition</div>
-                </div>
-            </div>
-            <div class="card" data-brand="samsung" data-status="wishlist" data-cat="mobile" data-lot="002" data-chapter="SMARTPHONES" data-name="galaxy s23 ultra samsung · galaxy ultra galaxy ultra samsung">
-                <div class="lot-number">N&deg; 002</div>
-                <div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
-                <div class="img-box">
-                    <img src="s23ultra.png" alt="Galaxy S23 Ultra">
-                </div>
-                <div class="card-content">
-                    <div class="hallmark">SAMSUNG · GALAXY ULTRA</div>
-                    <h3 class="product-name">Galaxy S23 Ultra</h3>
-                    <div class="specs">
+</div>
+</div>
+<div class="card" data-brand="samsung" data-cat="mobile" data-chapter="SMARTPHONES" data-lot="002" data-name="galaxy s23 ultra samsung · galaxy ultra galaxy ultra samsung" data-status="wishlist">
+<div class="lot-number">N° 002</div>
+<div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
+<div class="img-box">
+<img alt="Galaxy S23 Ultra" decoding="async" height="624" loading="lazy" src="assets/images/s23ultra.png" width="624"/>
+</div>
+<div class="card-content">
+<div class="hallmark">SAMSUNG · GALAXY ULTRA</div>
+<h3 class="product-name">Galaxy S23 Ultra</h3>
+<div class="specs">
 <div class="spec-row"><span class="spec-label">Chip</span><span class="spec-val">Snapdragon 8 Gen 2</span></div>
-<div class="spec-row"><span class="spec-label">Camera</span><span class="spec-val">200MP + 10x Optical</span></div>
+<div class="spec-row"><span class="spec-label">Sensor</span><span class="spec-val">1/1.3" HP2 · 200MP OIS</span></div>
 <div class="spec-row"><span class="spec-label">Feature</span><span class="spec-val">Built-in S-Pen</span></div>
-                    </div>
-                </div>
-                <div class="hidden-details" style="display:none;">
-                    <div class="d-brand">SAMSUNG // GALAXY ULTRA</div>
-                    <div class="d-title">Galaxy S23 Ultra</div>
-                    <div class="d-why">200MP + built-in S-Pen is the combination I keep coming back to. It&#x27;s the phone for people who take notes AND photos seriously.</div>
-                    <div class="d-desc">The ultimate productivity and zoom king. Featuring a custom Snapdragon chip and a 200MP ISOCELL sensor.</div>
+</div>
+</div>
+<div class="hidden-details" style="display:none;">
+<div class="d-brand">SAMSUNG // GALAXY ULTRA</div>
+<div class="d-title">Galaxy S23 Ultra</div>
+<div class="d-why">200MP plus a built-in S-Pen is the combination I keep coming back to.</div>
+<div class="d-desc">A productivity- and zoom-focused flagship with a custom overclocked Snapdragon chip and a 200MP ISOCELL sensor.</div>
 <div class="d-spec" data-label="SoC">Snapdragon 8 Gen 2 For Galaxy (Overclocked)</div>
 <div class="d-spec" data-label="Display">6.8" Dynamic AMOLED 2X | 1-120Hz LTPO | 1750 nits</div>
 <div class="d-spec" data-label="Camera System">[Main] 200MP ISOCELL HP2 | 1/1.3" | Laser AF | OIS<br/>
                         [Periscope] 10MP | 10x Optical | 100x Space Zoom<br/>
                         [Telephoto] 10MP | 3x Optical<br/>
                         [Ultrawide] 12MP | 120° FOV</div>
+<div class="d-spec" data-label="Camera Sensors">Main: Samsung ISOCELL HP2 / 1/1.3" (200MP, 0.6µm, OIS); Periscope: Sony IMX754 / 1/3.52" (10MP, 10× optical, OIS); 3× Telephoto: Sony IMX754 / 1/3.52" (10MP, 3×, OIS); Ultrawide: Sony IMX564 / 1/2.55" (12MP, 120°); Front: Samsung S5K3LU / 1/3.2" (12MP)</div>
 <div class="d-spec" data-label="Focal Lengths">Native: 13mm / 24mm / 70mm / 230mm | Sensor crop: 48mm (2× main) | Space Zoom: up to 100× (algorithmic, not a fixed optical focal length)</div>
 <div class="d-spec" data-label="Feature">Built-in S-Pen | IP68 | Armor Aluminum Frame</div>
 <div class="d-spec" data-label="Battery">5000mAh | 45W Fast Charging</div>
-                </div>
-            </div>
-            <div class="card" data-brand="apple" data-status="wishlist" data-cat="mobile" data-lot="003" data-chapter="SMARTPHONES" data-name="iphone 14 pro max apple · pro max apple flagship apple">
-                <div class="lot-number">N&deg; 003</div>
-                <div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
-                <div class="img-box">
-                    <img src="iphone14promax.png" alt="iPhone 14 Pro Max">
-                </div>
-                <div class="card-content">
-                    <div class="hallmark">APPLE · PRO MAX</div>
-                    <h3 class="product-name">iPhone 14 Pro Max</h3>
-                    <div class="specs">
+<div class="d-spec" data-label="Build">Armor Aluminum frame | Gorilla Glass Victus 2 | IP68 water &amp; dust | 234g</div><div class="d-spec" data-label="Memory">12GB LPDDR5X RAM</div><div class="d-spec" data-label="Storage">1TB UFS 4.0 (顶配)</div></div>
+</div>
+<div class="card" data-brand="apple" data-cat="mobile" data-chapter="SMARTPHONES" data-lot="003" data-name="iphone 14 pro max apple · pro max apple flagship apple" data-status="wishlist">
+<div class="lot-number">N° 003</div>
+<div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
+<div class="img-box">
+<img alt="iPhone 14 Pro Max" decoding="async" height="1254" loading="lazy" src="assets/images/iphone14promax-transparent.png" width="1254"/>
+</div>
+<div class="card-content">
+<div class="hallmark">APPLE · PRO MAX</div>
+<h3 class="product-name">iPhone 14 Pro Max</h3>
+<div class="specs">
 <div class="spec-row"><span class="spec-label">Chip</span><span class="spec-val">A16 Bionic</span></div>
-<div class="spec-row"><span class="spec-label">Display</span><span class="spec-val">6.7&quot; Super Retina XDR</span></div>
+<div class="spec-row"><span class="spec-label">Display</span><span class="spec-val">6.7" Super Retina XDR</span></div>
 <div class="spec-row"><span class="spec-label">Feature</span><span class="spec-val">Dynamic Island</span></div>
-                    </div>
-                </div>
-                <div class="hidden-details" style="display:none;">
-                    <div class="d-brand">APPLE // PRO MAX</div>
-                    <div class="d-title">iPhone 14 Pro Max</div>
-                    <div class="d-why">The Dynamic Island was the design move of the decade. Also that A16 chip ages like fine wine.</div>
-                    <div class="d-desc">The dawn of the Dynamic Island. Apple&#x27;s shift to a 48MP main sensor and Always-On Display.</div>
+</div>
+</div>
+<div class="hidden-details" style="display:none;">
+<div class="d-brand">APPLE // PRO MAX</div>
+<div class="d-title">iPhone 14 Pro Max</div>
+<div class="d-why">Dynamic Island was a real design shift, not just a notch redesign.</div>
+<div class="d-desc">First iPhone with Dynamic Island, and the shift to a 48MP main sensor with an always-on display.</div>
 <div class="d-spec" data-label="SoC">A16 Bionic (4nm) | 6-core CPU | 5-core GPU</div>
 <div class="d-spec" data-label="Display">6.7" Super Retina XDR OLED | ProMotion 120Hz | 2000 nits peak</div>
 <div class="d-spec" data-label="Camera System">[Main] 48MP Sony IMX803 | 1/1.28" | Sensor-shift OIS<br/>
                         [Telephoto] 12MP | 3x Optical | 77mm equivalent<br/>
                         [Ultrawide] 12MP | 120° FOV</div>
+<div class="d-spec" data-label="Camera Sensors">Main: Sony IMX803 / 1/1.28" (48MP, 1.22µm, 24mm, Sensor-shift OIS); 3× Telephoto: Sony IMX713 / 1/3.5" (12MP, 77mm, OIS); Ultrawide: Sony IMX633 / 1/2.55" (12MP, 13mm, 120°); Front: Sony IMX714 / 1/3.6" (12MP)</div>
 <div class="d-spec" data-label="Focal Lengths">Native: 13mm / 24mm / 77mm | Sensor crop: 48mm (2× from the 48MP main sensor)</div>
 <div class="d-spec" data-label="Feature">Dynamic Island | Emergency SOS via Satellite | Crash Detection</div>
 <div class="d-spec" data-label="Build">Surgical-grade Stainless Steel | Ceramic Shield front</div>
-                </div>
-            </div>
-            <div class="card" data-brand="vivo" data-status="wishlist" data-cat="mobile" data-lot="004" data-chapter="SMARTPHONES" data-name="vivo x300 ultra vivo · zeiss master lenses snapdragon 8 elite gen 5 200mp camera">
-                <div class="lot-number">N&deg; 004</div>
-                <div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
-                <div class="img-box">
-                    <img src="vivox300ultra.png" alt="Vivo X300 Ultra">
-                </div>
-                <div class="card-content">
-                    <div class="hallmark">VIVO · ZEISS MASTER LENSES</div>
-                    <h3 class="product-name">Vivo X300 Ultra</h3>
-                    <div class="specs">
+<div class="d-spec" data-label="Battery">4323mAh | 20W wired fast charging | 15W MagSafe | Up to 29 hours video playback</div><div class="d-spec" data-label="Memory">6GB LPDDR5 RAM</div><div class="d-spec" data-label="Storage">1TB NVMe Storage (顶配)</div></div>
+</div>
+<div class="card" data-brand="vivo" data-cat="mobile" data-chapter="SMARTPHONES" data-lot="004" data-name="vivo x300 ultra vivo · zeiss master lenses snapdragon 8 elite gen 5 200mp camera" data-status="wishlist">
+<div class="lot-number">N° 004</div>
+<div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
+<div class="img-box">
+<img alt="Vivo X300 Ultra" decoding="async" height="1254" loading="lazy" src="assets/images/vivox300ultra-transparent.png" width="1254"/>
+</div>
+<div class="card-content">
+<div class="hallmark">VIVO · ZEISS MASTER LENSES</div>
+<h3 class="product-name">Vivo X300 Ultra</h3>
+<div class="specs">
 <div class="spec-row"><span class="spec-label">Optics</span><span class="spec-val">ZEISS 14/35/85mm · 28/50/135mm crop modes</span></div>
 <div class="spec-row"><span class="spec-label">Chip</span><span class="spec-val">Snapdragon 8 Elite Gen 5</span></div>
 <div class="spec-row"><span class="spec-label">Feature</span><span class="spec-val">4K 120fps 10-bit Log Video</span></div>
-                    </div>
-                </div>
-                <div class="hidden-details" style="display:none;">
-                    <div class="d-brand">VIVO // ZEISS MASTER LENSES</div>
-                    <div class="d-title">Vivo X300 Ultra</div>
-                    <div class="d-why">A camera-first flagship built around three ZEISS focal lengths: 14mm ultra-wide, 35mm documentary, and an 85mm gimbal-grade APO telephoto.</div>
-                    <div class="d-desc">The X300 Ultra pairs 200MP master cameras with pro video controls, long-range extenders, and a display tuned for accurate color.</div>
+</div>
+</div>
+<div class="hidden-details" style="display:none;">
+<div class="d-brand">VIVO // ZEISS MASTER LENSES</div>
+<div class="d-title">Vivo X300 Ultra</div>
+<div class="d-why">A camera-first flagship built around three ZEISS focal lengths: 14mm ultra-wide, 35mm documentary, and an 85mm gimbal-grade APO telephoto.</div>
+<div class="d-desc">The X300 Ultra pairs 200MP master cameras with pro video controls, long-range extenders, and a display tuned for accurate color.</div>
 <div class="d-spec" data-label="SoC">Qualcomm Snapdragon 8 Elite Gen 5 | 3nm | up to 4.6GHz</div>
 <div class="d-spec" data-label="Memory">16GB LPDDR5X Ultra Pro | UFS 4.1 | 512GB or 1TB</div>
-<div class="d-spec" data-label="Display">6.82&quot; 2K AMOLED | 3168 × 1440 | 1–144Hz | 4500 nits local peak</div>
-<div class="d-spec" data-label="Camera System">[Ultra-wide] 50MP Sony LYTIA 818 | 14mm | 1/1.28&quot; | OIS<br/>
-                        [Documentary] 200MP Sony LYTIA 901 | 35mm | 1/1.12&quot; | OIS<br/>
-                        [Telephoto] 200MP HP0 | 85mm | 1/1.4&quot; | 3° OIS<br/>
+<div class="d-spec" data-label="Display">6.82" 2K AMOLED | 3168 × 1440 | 1–144Hz | 4500 nits local peak</div>
+<div class="d-spec" data-label="Camera System">[Ultra-wide] 50MP Sony LYTIA 818 | 14mm | 1/1.28" | OIS<br/>
+                        [Documentary] 200MP Sony LYTIA 901 | 35mm | 1/1.12" | OIS<br/>
+                        [Telephoto] 200MP HP0 | 85mm | 1/1.4" | 3° OIS<br/>
                         [Front] 50MP | ZEISS T* coatings across the master lenses</div>
+<div class="d-spec" data-label="Camera Sensors">Documentary Main: Sony LYTIA 901 / 1/1.12" (200MP, 35mm, OIS); Ultrawide: Sony LYTIA 818 / 1/1.28" (50MP, 14mm, OIS); Telephoto: Samsung HP0 / 1/1.4" (200MP, 85mm, 3° OIS); Front: 50MP ZEISS master lens</div>
 <div class="d-spec" data-label="Focal Lengths">Native: 14mm / 35mm / 85mm | Sensor crop modes: 28mm / 50mm / 135mm | ZEISS extenders: 200mm / 400mm equivalent</div>
 <div class="d-spec" data-label="Video">Multi-focal 4K 120fps | 10-bit Log | 4:2:2 | Dolby Vision</div>
 <div class="d-spec" data-label="Battery">6600mAh BlueVolt | 100W wired FlashCharge | 40W wireless</div>
 <div class="d-spec" data-label="Build">IP68/IP69 | 3D ultrasonic fingerprint | 232–237g</div>
-                </div>
-            </div>
-            <div class="card" data-brand="honor" data-status="wishlist" data-cat="mobile" data-lot="005" data-chapter="SMARTPHONES" data-name="magic 4 至臻版 honor · magic ultimate honor // ultimate honor">
-                <div class="lot-number">N&deg; 005</div>
-                <div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
-                <div class="img-box">
-                    <img src="honormagic4ultimate.png" alt="Magic 4 至臻版">
-                </div>
-                <div class="card-content">
-                    <div class="hallmark">HONOR · MAGIC ULTIMATE</div>
-                    <h3 class="product-name">Magic 4 至臻版</h3>
-                    <div class="specs">
-<div class="spec-row"><span class="spec-label">Display</span><span class="spec-val">6.81&quot; LTPO OLED</span></div>
-<div class="spec-row"><span class="spec-label">Camera</span><span class="spec-val">Custom 1/1.12&quot; 50MP</span></div>
+</div>
+</div>
+<div class="card" data-brand="honor" data-cat="mobile" data-chapter="SMARTPHONES" data-lot="005" data-name="magic 4 至臻版 honor · magic ultimate honor // ultimate honor" data-status="wishlist">
+<div class="lot-number">N° 005</div>
+<div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
+<div class="img-box">
+<img alt="Magic 4 至臻版" decoding="async" height="1445" loading="lazy" src="assets/images/honormagic4ultimate-transparent.png" width="1089"/>
+</div>
+<div class="card-content">
+<div class="hallmark">HONOR · MAGIC ULTIMATE</div>
+<h3 class="product-name">Magic 4 至臻版</h3>
+<div class="specs">
+<div class="spec-row"><span class="spec-label">Display</span><span class="spec-val">6.81" LTPO OLED</span></div>
+<div class="spec-row"><span class="spec-label">Sensor</span><span class="spec-val">1/1.12" Custom · Dual OV64B</span></div>
 <div class="spec-row"><span class="spec-label">Feature</span><span class="spec-val">Ceramic / DxO King</span></div>
-                    </div>
-                </div>
-                <div class="hidden-details" style="display:none;">
-                    <div class="d-brand">HONOR // MAGIC ULTIMATE</div>
-                    <div class="d-title">Honor Magic4 Ultimate</div>
-                    <div class="d-why"></div>
-                    <div class="d-desc">A photography monolith. The Ultimate edition features a massive custom 8P lens main sensor and an independent custom image processor, wrapped in premium ceramic.</div>
+</div>
+</div>
+<div class="hidden-details" style="display:none;">
+<div class="d-brand">HONOR // MAGIC ULTIMATE</div>
+<div class="d-title">Honor Magic4 Ultimate</div>
+<div class="d-why"></div>
+<div class="d-desc">Custom 8P-lens main sensor with a dedicated image processor, ceramic body.</div>
 <div class="d-spec" data-label="SoC">Snapdragon 8 Gen 1 (4nm) | Custom Image Signal Processor</div>
 <div class="d-spec" data-label="Display">6.81" LTPO OLED | 1-120Hz | 1920Hz PWM Dimming</div>
 <div class="d-spec" data-label="Camera System">[Main] 50MP Custom 1/1.12" | 8P Lens | f/1.6 | OIS<br/>
                         [Ultrawide] 64MP | 126° FOV | Dual Free-Form Lens<br/>
                         [Periscope] 64MP | 3.5x Optical | 100x Digital | OIS<br/>
                         [Spectrum] 50MP Spectrum Enhanced Sensor</div>
+<div class="d-spec" data-label="Camera Sensors">Main: Custom Sony IMX707 / GNH / 1/1.12" (50MP, 1.4µm, 8P, OIS); Ultrawide: OmniVision OV64B / 1/2.0" (64MP, 126°); Periscope: OmniVision OV64B / 1/2.0" (64MP, 3.5× optical / 100× digital, OIS); Spectrum: 50MP / 1/2.5"; Front: 12MP / 1/3.6" + 3D ToF</div>
 <div class="d-spec" data-label="Focal Lengths">Native: 11mm / 23mm / 90mm | Sensor crop: 46mm (2× main) | 100× mode is computational reach, not a fixed optical focal length</div>
 <div class="d-spec" data-label="Battery &amp; Charging">4600mAh | 100W Wired | 50W Wireless</div>
 <div class="d-spec" data-label="Build">Nanocrystal Ceramic | IP68 | 242g</div>
-                </div>
-            </div>
-            <div class="card" data-brand="huawei" data-status="wishlist" data-cat="mobile" data-lot="006" data-chapter="SMARTPHONES" data-name="huawei p40 pro+ huawei · leica optics huawei // leica huawei">
-                <div class="lot-number">N&deg; 006</div>
-                <div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
-                <div class="img-box">
-                    <img src="huaweip40pro+.png" alt="Huawei P40 Pro+">
-                </div>
-                <div class="card-content">
-                    <div class="hallmark">HUAWEI · LEICA OPTICS</div>
-                    <h3 class="product-name">Huawei P40 Pro+</h3>
-                    <div class="specs">
+</div>
+</div>
+<div class="card" data-brand="huawei" data-cat="mobile" data-chapter="SMARTPHONES" data-lot="006" data-name="huawei p40 pro+ huawei · leica optics huawei // leica huawei" data-status="wishlist">
+<div class="lot-number">N° 006</div>
+<div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
+<div class="img-box">
+<img alt="Huawei P40 Pro+" decoding="async" height="700" loading="lazy" src="assets/images/huaweip40proplus.png" width="700"/>
+</div>
+<div class="card-content">
+<div class="hallmark">HUAWEI · LEICA OPTICS</div>
+<h3 class="product-name">Huawei P40 Pro+</h3>
+<div class="specs">
 <div class="spec-row"><span class="spec-label">Chip</span><span class="spec-val">Kirin 990 5G</span></div>
-<div class="spec-row"><span class="spec-label">Camera</span><span class="spec-val">10x Optical Periscope</span></div>
+<div class="spec-row"><span class="spec-label">Sensor</span><span class="spec-val">1/1.28" IMX700 RYYB · 50MP</span></div>
 <div class="spec-row"><span class="spec-label">Build</span><span class="spec-val">Nano-tech Ceramic</span></div>
-                    </div>
-                </div>
-                <div class="hidden-details" style="display:none;">
-                    <div class="d-brand">HUAWEI // LEICA OPTICS</div>
-                    <div class="d-title">Huawei P40 Pro+</div>
-                    <div class="d-why">World&#x27;s first true 10x optical zoom periscope. Still the camera engineering flex of 2020. The ceramic build slaps too.</div>
-                    <div class="d-desc">The absolute peak of zooming technology of its time. The world&#x27;s first smartphone to feature a true 10x optical continuous zoom periscope lens.</div>
+</div>
+</div>
+<div class="hidden-details" style="display:none;">
+<div class="d-brand">HUAWEI // LEICA OPTICS</div>
+<div class="d-title">Huawei P40 Pro+</div>
+<div class="d-why">First phone with a true 10x optical periscope zoom. Notable engineering for 2020.</div>
+<div class="d-desc">First smartphone with a true 10x optical continuous zoom periscope lens.</div>
 <div class="d-spec" data-label="SoC">Kirin 990 5G (7nm+) | Mali-G76 MC16 GPU</div>
 <div class="d-spec" data-label="Display">6.58" OLED | 90Hz | Quad-Curve Overflow Display</div>
 <div class="d-spec" data-label="Camera System">[Main] 50MP Ultra Vision RYYB | 1/1.28" | OIS<br/>
@@ -1719,1149 +1742,1326 @@
                         [Periscope] 8MP | 10x Optical | 100x Max Zoom | OIS<br/>
                         [Telephoto] 8MP | 3x Optical | OIS<br/>
                         [Depth] 3D ToF Sensor</div>
+<div class="d-spec" data-label="Camera Sensors">Main: Sony IMX700 Ultra Vision RYYB / 1/1.28" (50MP, 1.22µm, OIS); Cine Ultrawide: Sony IMX608 / 1/1.54" (40MP, 18mm); 10× Periscope: Sony IMX520 / 1/3.6" (8MP, 240mm, OIS); 3× Telephoto: Sony IMX520 / 1/3.6" (8MP, 80mm, OIS); 3D ToF; Front: Sony IMX616 / 1/2.8" (32MP)</div>
 <div class="d-spec" data-label="Focal Lengths">Native: 18mm / 23mm / 80mm / 240mm | Sensor crop / hybrid: ~46mm (2× main) | 100× mode extends beyond the optical 240mm anchor</div>
 <div class="d-spec" data-label="Battery">4200mAh | 40W Wired | 40W Wireless Charging</div>
 <div class="d-spec" data-label="Build">Kiln-baked Nano-tech Ceramic | IP68 Water Resistance</div>
-                </div>
-            </div>
-            <div class="card" data-brand="huawei" data-status="wishlist" data-cat="mobile" data-lot="007" data-chapter="SMARTPHONES" data-name="huawei p50 pro huawei · leica optics huawei // leica huawei">
-                <div class="lot-number">N&deg; 007</div>
-                <div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
-                <div class="img-box">
-                    <img src="HuaweiP50Pro.png" alt="Huawei P50 Pro">
-                </div>
-                <div class="card-content">
-                    <div class="hallmark">HUAWEI · LEICA OPTICS</div>
-                    <h3 class="product-name">Huawei P50 Pro</h3>
-                    <div class="specs">
+<div class="d-spec" data-label="Memory">8GB LPDDR4X RAM</div><div class="d-spec" data-label="Storage">512GB UFS 3.0 (顶配)</div></div>
+</div>
+<div class="card" data-brand="huawei" data-cat="mobile" data-chapter="SMARTPHONES" data-lot="007" data-name="huawei p50 pro huawei · leica optics huawei // leica huawei" data-status="wishlist">
+<div class="lot-number">N° 007</div>
+<div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
+<div class="img-box">
+<img alt="Huawei P50 Pro" decoding="async" height="480" loading="lazy" src="assets/images/huaweip50pro-transparent-v2.png" width="378"/>
+</div>
+<div class="card-content">
+<div class="hallmark">HUAWEI · LEICA OPTICS</div>
+<h3 class="product-name">Huawei P50 Pro</h3>
+<div class="specs">
 <div class="spec-row"><span class="spec-label">Design</span><span class="spec-val">Dual-Matrix Camera</span></div>
-<div class="spec-row"><span class="spec-label">Camera</span><span class="spec-val">True-Chroma + Monochrome</span></div>
+<div class="spec-row"><span class="spec-label">Sensor</span><span class="spec-val">1/1.56" IMX766 + 1/2" OV64B</span></div>
 <div class="spec-row"><span class="spec-label">Zoom</span><span class="spec-val">200x Digital Range</span></div>
-                    </div>
-                </div>
-                <div class="hidden-details" style="display:none;">
-                    <div class="d-brand">HUAWEI // LEICA OPTICS</div>
-                    <div class="d-title">Huawei P50 Pro</div>
-                    <div class="d-why">That Dual-Matrix camera ring design is iconic. Nobody else has dared to look this different. XD Optics is something else.</div>
-                    <div class="d-desc">The apex of the P50 series. Famous for its iconic Dual-Matrix camera design and the revolutionary XD Optics computational photography.</div>
+</div>
+</div>
+<div class="hidden-details" style="display:none;">
+<div class="d-brand">HUAWEI // LEICA OPTICS</div>
+<div class="d-title">Huawei P50 Pro</div>
+<div class="d-why">The Dual-Matrix camera ring is a distinct design nobody else really copied.</div>
+<div class="d-desc">Known for its Dual-Matrix camera design and XD Optics computational photography.</div>
 <div class="d-spec" data-label="SoC">Kirin 9000 / Snapdragon 888 4G</div>
 <div class="d-spec" data-label="Display">6.6" OLED | 120Hz | 1440Hz PWM Dimming | True-Chroma</div>
 <div class="d-spec" data-label="Camera System">[Main] 50MP True-Chroma | f/1.8 | OIS<br/>
                         [Monochrome] 40MP True-Chroma | f/1.6<br/>
                         [Periscope] 64MP | 3.5x Optical | 200x Digital Zoom Range | OIS<br/>
                         [Ultrawide] 13MP | 13mm Equivalent</div>
+<div class="d-spec" data-label="Camera Sensors">Color Main: Sony IMX766 / 1/1.56" (50MP, 1.0µm, OIS); B&amp;W Main: Sony IMX600 / 1/1.7" (40MP, 1.0µm); Periscope: OmniVision OV64B / 1/2.0" (64MP, 3.5× optical / 200× digital, OIS); Ultrawide: Sony IMX258 / 1/3.06" (13MP, 13mm); Front: 13MP / 1/3.06"</div>
 <div class="d-spec" data-label="Focal Lengths">Native: 13mm / 23mm / 26mm monochrome / 90mm | Sensor crop: 46mm (2× main) | 200× range is computational reach</div>
 <div class="d-spec" data-label="Imaging Tech">HUAWEI XD Optics | XD Fusion Pro Image Engine</div>
 <div class="d-spec" data-label="Battery">4360mAh | 66W Wired | 50W Wireless Charging</div>
-                </div>
-            </div>
-            <div class="card" data-brand="samsung" data-status="wishlist" data-cat="mobile" data-lot="008" data-chapter="SMARTPHONES" data-name="galaxy z fold8 samsung · galaxy z series samsung foldable">
-                <div class="lot-number">N&deg; 008</div>
-                <div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
-                <div class="img-box">
-                    <img src="assets/images/samsungzfold8-transparent.png" alt="Galaxy Z Fold8">
-                </div>
-                <div class="card-content">
-                    <div class="hallmark">SAMSUNG · GALAXY Z SERIES</div>
-                    <h3 class="product-name">Galaxy Z Fold8</h3>
-                    <div class="specs">
+<div class="d-spec" data-label="Build">Aluminum frame | Curved glass front &amp; back | IP68 water &amp; dust | 195g</div><div class="d-spec" data-label="Memory">12GB LPDDR5 RAM (顶配)</div><div class="d-spec" data-label="Storage">512GB (顶配)</div></div>
+</div>
+<div class="card" data-brand="samsung" data-cat="mobile" data-chapter="SMARTPHONES" data-lot="008" data-name="galaxy z fold6" data-status="wishlist">
+<div class="lot-number">N° 008</div>
+<div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
+<div class="img-box">
+<img alt="Galaxy Z Fold8" decoding="async" height="1254" loading="lazy" src="assets/images/samsungzfold8-transparent.png" width="1254"/>
+</div>
+<div class="card-content">
+<div class="hallmark">SAMSUNG · GALAXY Z SERIES</div>
+<h3 class="product-name">Galaxy Z Fold8</h3>
+<div class="specs">
 <div class="spec-row"><span class="spec-label">SoC</span><span class="spec-val">Snapdragon 8 Elite Gen 5</span></div>
-<div class="spec-row"><span class="spec-label">Display</span><span class="spec-val">7.6&quot; Dynamic AMOLED 2X</span></div>
+<div class="spec-row"><span class="spec-label">Display</span><span class="spec-val">7.6" Dynamic AMOLED 2X</span></div>
 <div class="spec-row"><span class="spec-label">Build</span><span class="spec-val">Flex Titanium · IP48</span></div>
-                    </div>
-                </div>
-                <div class="hidden-details" style="display:none;">
-                    <div class="d-brand">SAMSUNG // GALAXY Z SERIES</div>
-                    <div class="d-title">Galaxy Z Fold8</div>
-                    <div class="d-why">A thinner, sharper foldable that turns a pocket device into a real multitasking canvas.</div>
-                    <div class="d-desc">Samsung&#x27;s next Galaxy Z flagship pairs a large inner screen with a more capable camera system and a lighter titanium frame.</div>
-<div class="d-spec" data-label="SoC">Snapdragon 8 Elite Gen 5 for Galaxy | 12GB / 16GB LPDDR5X</div>
-<div class="d-spec" data-label="Inner Display">7.6&quot; Dynamic AMOLED 2X | 1–120Hz | 3000 nits | 4:3</div>
-<div class="d-spec" data-label="Cover Display">5.5&quot; Dynamic AMOLED 2X | 1–120Hz | 3000 nits | 10:16</div>
-<div class="d-spec" data-label="Camera System">50MP GN3 main | 50MP JN3 ultrawide | 10MP cover + 10MP inner selfie | up to 10x digital zoom</div>
-<div class="d-spec" data-label="Build / Battery">Flex Titanium | IP48 | 4800mAh | 45W wired | 20W wireless | 201g</div>
-                </div>
-            </div>
-            <div class="card" data-brand="google" data-status="wishlist" data-cat="mobile" data-lot="009" data-chapter="SMARTPHONES" data-name="pixel 11 pro xl google · pixel flagship google // pure android google">
-                <div class="lot-number">N&deg; 009</div>
-                <div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
-                <div class="img-box">
-                    <img src="assets/images/pixel11proxl-transparent.png" alt="Pixel 11 Pro XL">
-                </div>
-                <div class="card-content">
-                    <div class="hallmark">GOOGLE · PIXEL FLAGSHIP</div>
-                    <h3 class="product-name">Pixel 11 Pro XL</h3>
-                    <div class="specs">
+</div>
+</div>
+<div class="hidden-details" style="display:none;">
+<div class="d-brand">SAMSUNG // GALAXY Z SERIES</div>
+<div class="d-title">Galaxy Z Fold6</div>
+<div class="d-why">A thinner, sharper foldable that turns a pocket device into a real multitasking canvas.</div>
+<div class="d-desc">Samsung’s refined foldable flagship: symmetrical 239g lightweight design, IP48 dust/water resistance, Snapdragon 8 Gen 3 for Galaxy, and full Galaxy AI suite.</div>
+<div class="d-spec" data-label="SoC">Qualcomm Snapdragon 8 Gen 3 for Galaxy (4nm) | 3.39GHz Cortex-X4 | Adreno 750</div><div class="d-spec" data-label="Memory">12GB LPDDR5X RAM (顶配)</div><div class="d-spec" data-label="Storage">1TB UFS 4.0 (顶配)</div><div class="d-spec" data-label="Inner Display">7.6" Dynamic AMOLED 2X (2160x1856) | 1-120Hz LTPO | 2600 nits peak | Ultra Thin Glass</div><div class="d-spec" data-label="Cover Display">6.3" Dynamic AMOLED 2X (2376x968, 22.1:9) | 1-120Hz LTPO | 2600 nits peak | Corning Gorilla Glass Victus 2</div><div class="d-spec" data-label="Camera System">[Main] 50MP (1/1.56", f/1.8, Dual Pixel AF, OIS) | [Telephoto] 10MP (3x Optical, OIS) | [Ultrawide] 12MP (123° FOV)</div><div class="d-spec" data-label="Camera Sensors">Main: Samsung ISOCELL GN3 / 1/1.56" (50MP, 1.0µm, OIS); 3× Telephoto: Samsung S5K3K1 (10MP, 3×, OIS); Ultrawide: 12MP (123°); Under-display: 4MP; Cover Front: 10MP</div><div class="d-spec" data-label="Focal Lengths">Native: 12mm / 24mm / 67mm | Sensor crop: 48mm (2× main optical crop) | Digital zoom: up to 30×</div><div class="d-spec" data-label="Battery">4400mAh dual battery | 25W wired | 15W wireless | Wireless PowerShare</div><div class="d-spec" data-label="Build">Enhanced Armor Aluminum frame | IP48 water &amp; dust resistance | 239g | 12.1mm folded (5.6mm unfolded)</div><div class="d-spec" data-label="Feature">Dual-Screen Live Interpreter | Note Assist | S-Pen support | Samsung DeX | 7 years OS updates</div></div>
+</div>
+<div class="card" data-brand="google" data-cat="mobile" data-chapter="SMARTPHONES" data-lot="009" data-name="pixel 9 pro xl" data-status="wishlist">
+<div class="lot-number">N° 009</div>
+<div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
+<div class="img-box">
+<img alt="Pixel 11 Pro XL" decoding="async" height="1254" loading="lazy" src="assets/images/pixel11proxl-transparent.png" width="1254"/>
+</div>
+<div class="card-content">
+<div class="hallmark">GOOGLE · PIXEL FLAGSHIP</div>
+<h3 class="product-name">Pixel 11 Pro XL</h3>
+<div class="specs">
 <div class="spec-row"><span class="spec-label">Chip</span><span class="spec-val">Google Tensor G4</span></div>
-<div class="spec-row"><span class="spec-label">Camera</span><span class="spec-val">50MP + Dual 48MP</span></div>
+<div class="spec-row"><span class="spec-label">Sensor</span><span class="spec-val">1/1.31" GNK · Dual 1/2.55"</span></div>
 <div class="spec-row"><span class="spec-label">Feature</span><span class="spec-val">Gemini Nano AI Built-in</span></div>
-                    </div>
-                </div>
-                <div class="hidden-details" style="display:none;">
-                    <div class="d-brand">GOOGLE // PIXEL FLAGSHIP</div>
-                    <div class="d-title">Pixel 11 Pro XL</div>
-                    <div class="d-why">On-device Gemini + that 42MP selfie camera. Google somehow made their best camera AND their best AI phone at the same time.</div>
-                    <div class="d-desc">The smartest smartphone in the room. Combines an ultra-bright Super Actua display with the Tensor G4 chip, delivering deep on-device Gemini AI capabilities.</div>
-<div class="d-spec" data-label="SoC">Google Tensor G4 (4nm) | Titan M2 Security Coprocessor | 16GB RAM</div>
-<div class="d-spec" data-label="Display">6.8" Super Actua LTPO OLED | 1-120Hz | 3000 nits peak</div>
-<div class="d-spec" data-label="Camera System">[Main] 50MP | 1/1.31" | f/1.68 | OIS<br/>
-                        [Periscope] 48MP | 5x Optical | 30x Super Res Zoom | OIS<br/>
-                        [Ultrawide] 48MP | 123° FOV | Macro Focus<br/>
-                        [Selfie] 42MP | Autofocus | 103° FOV</div>
-<div class="d-spec" data-label="Focal Lengths">Native: ~11mm / 25mm / 113mm | Sensor crop: 50mm (2× main) | Super Res Zoom is variable computational reach, not a fixed lens</div>
-<div class="d-spec" data-label="AI Features">Gemini Nano | Add Me | Video Boost | Magic Editor | Zoom Enhance</div>
-<div class="d-spec" data-label="Battery">5060mAh | 37W Wired | 23W Wireless</div>
-<div class="d-spec" data-label="Build">Polished Aluminum Frame | Matte Gorilla Glass Victus 2 Back</div>
-                </div>
-            </div>
-            <div class="card" data-brand="xiaomi" data-status="owned" data-cat="mobile" data-lot="010" data-chapter="SMARTPHONES" data-name="mi 9 xiaomi · battle angel xiaomi // battle angel xiaomi">
-                <div class="lot-number">N&deg; 010</div>
-                <div class="seal owned"><span class="dot"></span>OWNED</div>
-                <div class="img-box">
-                    <img src="https://images.unsplash.com/photo-1565849904461-04a58ad377e0?q=80&amp;w=800&amp;auto=format&amp;fit=crop" alt="Mi 9">
-                </div>
-                <div class="card-content">
-                    <div class="hallmark">XIAOMI · BATTLE ANGEL</div>
-                    <h3 class="product-name">Mi 9</h3>
-                    <div class="specs">
+</div>
+</div>
+<div class="hidden-details" style="display:none;">
+<div class="d-brand">GOOGLE // PIXEL 9 PRO XL</div>
+<div class="d-title">Pixel 9 Pro XL</div>
+<div class="d-why">On-device Gemini plus a 42MP selfie camera — Google's camera phone and AI phone in one this time.</div>
+<div class="d-desc">Google’s flagship hardware: Tensor G4, 16GB RAM for on-device Gemini Live, 3000-nit Super Actua display, and an upgraded 42MP selfie camera.</div>
+<div class="d-spec" data-label="SoC">Google Tensor G4 (4nm) | Titan M2 Security Coprocessor</div><div class="d-spec" data-label="Memory">16GB LPDDR5X RAM (顶配)</div><div class="d-spec" data-label="Storage">1TB UFS 3.1 SSD (顶配)</div><div class="d-spec" data-label="Display">6.8" Super Actua LTPO OLED (1344x2992) | 1-120Hz | 3000 nits peak | Corning Gorilla Glass Victus 2</div><div class="d-spec" data-label="Camera System">[Main] 50MP Octa PD (1/1.31", f/1.68, OIS) | [Periscope] 48MP Quad PD (5x Optical, 30x Super Res Zoom, OIS) | [Ultrawide] 48MP Quad PD (123° FOV, Macro) | [Front] 42MP Dual PD (103° FOV)</div><div class="d-spec" data-label="Camera Sensors">Main: Samsung GNK / 1/1.31" (50MP, 1.2µm, OIS); 5× Periscope: Sony IMX858 / 1/2.51" (48MP, 5× optical, OIS); Ultrawide: Sony IMX858 / 1/2.51" (48MP, 123°); Front: Sony IMX858 / 1/2.51" (42MP, 103°)</div><div class="d-spec" data-label="Focal Lengths">Native: 12mm / 25mm / 110mm | Sensor crop: 50mm (2× from 50MP main) | Super Res Zoom: up to 30× computational reach</div><div class="d-spec" data-label="Battery">5060mAh | 37W wired fast charging | 23W wireless with Pixel Stand 2 | Qi certified</div><div class="d-spec" data-label="Build">Polished aerospace-grade aluminum frame | Silky matte back glass | IP68 water &amp; dust | 221g | 8.5mm</div><div class="d-spec" data-label="Feature">Gemini Live multimodal AI | Add Me | Magic Editor | Pixel Screenshots | Call Notes | 7 years OS updates</div></div>
+</div>
+<div class="card" data-brand="google" data-cat="mobile" data-chapter="SMARTPHONES" data-lot="053" data-name="pixel 9 pro fold" data-status="wishlist">
+<div class="lot-number">N° 053</div>
+<div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
+<div class="img-box">
+<img alt="Pixel 11 Pro Fold" decoding="async" height="1024" loading="lazy" src="assets/images/pixel-11-pro-fold.png" width="1536"/>
+</div>
+<div class="card-content">
+<div class="hallmark">GOOGLE · FOLDABLE FLAGSHIP</div>
+<h3 class="product-name">Pixel 11 Pro Fold</h3>
+<div class="specs">
+<div class="spec-row"><span class="spec-label">Display</span><span class="spec-val">8.0" Super Actua Flex</span></div>
+<div class="spec-row"><span class="spec-label">Chip</span><span class="spec-val">Google Tensor G4</span></div>
+<div class="spec-row"><span class="spec-label">Sensor</span><span class="spec-val">1/2" IMX787 · 1/3.2" 5x</span></div>
+</div>
+</div>
+<div class="hidden-details" style="display:none;">
+<div class="d-brand">GOOGLE // PIXEL 9 PRO FOLD</div>
+<div class="d-title">Pixel 9 Pro Fold</div>
+<div class="d-why">Google's vision of the ultimate foldable: an 8.0" square canvas, fluid multi-tasking, Gemini multimodal intelligence, and genuine flagship camera tuning.</div>
+<div class="d-desc">Google’s thinnest foldable flagship: 8.0" Super Actua Flex square canvas, fluid multi-tasking, Gemini multimodal intelligence, and IPX8 water resistance.</div>
+<div class="d-spec" data-label="SoC">Google Tensor G4 (4nm) | Titan M2 Security Coprocessor</div><div class="d-spec" data-label="Memory">16GB LPDDR5X RAM (顶配)</div><div class="d-spec" data-label="Storage">512GB UFS 3.1 (顶配)</div><div class="d-spec" data-label="Inner Display">8.0" Super Actua Flex LTPO OLED (2076x2152) | 1-120Hz | 2700 nits peak | Ultra Thin Glass</div><div class="d-spec" data-label="Cover Display">6.3" Actua OLED (1080x2424) | 60-120Hz | 2700 nits peak | Corning Gorilla Glass Victus 2</div><div class="d-spec" data-label="Camera System">[Main] 48MP Quad PD (1/2", f/1.7, OIS) | [Telephoto] 10.8MP Dual PD (5x Optical, 20x Super Res Zoom, OIS) | [Ultrawide] 10.5MP (127° FOV, Macro)</div><div class="d-spec" data-label="Camera Sensors">Main: Sony IMX787 (48MP, OIS); 5× Telephoto: Samsung 3J1 (10.8MP, 5× optical, OIS); Ultrawide: Samsung 3LU (10.5MP, 127°); Front &amp; Inner: Dual 10MP Dual PD (f/2.2)</div><div class="d-spec" data-label="Focal Lengths">Native: 12mm / 25mm / 112mm | Sensor crop: 50mm (2× main) | Super Res Zoom: up to 20×</div><div class="d-spec" data-label="Battery">4650mAh | 21W wired fast charging | 7.5W wireless Qi</div><div class="d-spec" data-label="Build">Aerospace-grade high-strength aluminum alloy | Multi-gear fluid hinge | IPX8 water resistance | 257g | 10.5mm folded (5.1mm unfolded)</div><div class="d-spec" data-label="Feature">Split Screen Dual-App Multitasking | Drag and Drop | Gemini Live | 7 years of OS upgrades &amp; Pixel Drops</div></div>
+</div>
+<div class="card" data-brand="xiaomi" data-cat="mobile" data-chapter="SMARTPHONES" data-lot="010" data-name="mi 9 xiaomi · battle angel xiaomi // battle angel xiaomi" data-status="owned">
+<div class="lot-number">N° 010</div>
+<div class="seal owned"><span class="dot"></span>OWNED</div>
+<div class="img-box">
+<img alt="Mi 9" decoding="async" height="1254" loading="lazy" src="assets/images/mi9-transparent.png" width="1254"/>
+</div>
+<div class="card-content">
+<div class="hallmark">XIAOMI · BATTLE ANGEL</div>
+<h3 class="product-name">Mi 9</h3>
+<div class="specs">
 <div class="spec-row"><span class="spec-label">Chip</span><span class="spec-val">Snapdragon 855</span></div>
-<div class="spec-row"><span class="spec-label">Camera</span><span class="spec-val">48MP Triple System</span></div>
+<div class="spec-row"><span class="spec-label">Sensor</span><span class="spec-val">1/2" IMX586 · 48MP</span></div>
 <div class="spec-row"><span class="spec-label">Charging</span><span class="spec-val">20W Fast Wireless</span></div>
-                    </div>
-                </div>
-                <div class="hidden-details" style="display:none;">
-                    <div class="d-brand">XIAOMI // BATTLE ANGEL</div>
-                    <div class="d-title">Mi 9</div>
-                    <div class="d-why">My OG. First phone to hit 20W wireless, Snapdragon 855, holographic back. She&#x27;s been through wars.</div>
-                    <div class="d-desc">Known as the &quot;Battle Angel.&quot; It was one of the first phones to rock the Snapdragon 855 and the world&#x27;s first to feature 20W fast wireless charging, all wrapped in a stunning holographic glass body.</div>
+</div>
+</div>
+<div class="hidden-details" style="display:none;">
+<div class="d-brand">XIAOMI // BATTLE ANGEL</div>
+<div class="d-title">Mi 9</div>
+<div class="d-why">My OG. First phone to hit 20W wireless, Snapdragon 855, holographic back. She's been through wars.</div>
+<div class="d-desc">Known as the "Battle Angel." One of the first phones with the Snapdragon 855, and the first with 20W fast wireless charging, in a holographic glass body.</div>
 <div class="d-spec" data-label="SoC">Snapdragon 855 (7nm) | Adreno 640</div>
 <div class="d-spec" data-label="Display">6.39" Super AMOLED | 60Hz | HDR10</div>
 <div class="d-spec" data-label="Camera System">[Main] 48MP Sony IMX586 | 1/2.0" | f/1.75 | Laser AF<br/>
                         [Telephoto] 12MP Samsung S5K3M5 | 2x Optical Zoom<br/>
                         [Ultrawide] 16MP Sony IMX481 | 117° FOV | 4cm Macro</div>
+<div class="d-spec" data-label="Camera Sensors">Main: Sony IMX586 / 1/2.0" (48MP, 0.8µm / 1.6µm 4-in-1, Laser AF); 2× Telephoto: Samsung S5K3M5 / 1/3.6" (12MP, 54mm); Ultrawide: Sony IMX481 / 1/3.0" (16MP, 117°, 4cm macro); Front: Samsung S5K3T1 / 1/3.1" (20MP)</div>
 <div class="d-spec" data-label="Focal Lengths">Native: 13mm / 27mm / 54mm | Sensor crop: 54mm (2× main; overlaps the native telephoto)</div>
 <div class="d-spec" data-label="Battery &amp; Charging">3300mAh | 27W Wired | 20W Fast Wireless (World's First)</div>
 <div class="d-spec" data-label="Build">Holographic Glass Back | Aluminum Frame | Ultra-light 173g</div>
-                </div>
-            </div>
-            <div class="card" data-brand="apple" data-status="wishlist" data-cat="mobile" data-lot="011" data-chapter="SMARTPHONES" data-name="iphone 13 pro max apple · the battery king apple legend apple">
-                <div class="lot-number">N&deg; 011</div>
-                <div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
-                <div class="img-box">
-                    <img src="assets/images/iphone13promax-transparent.png" alt="iPhone 13 Pro Max">
-                </div>
-                <div class="card-content">
-                    <div class="hallmark">APPLE · THE BATTERY KING</div>
-                    <h3 class="product-name">iPhone 13 Pro Max</h3>
-                    <div class="specs">
+</div>
+</div>
+<div class="card" data-brand="apple" data-cat="mobile" data-chapter="SMARTPHONES" data-lot="011" data-name="iphone 13 pro max apple · the battery king apple legend apple" data-status="wishlist">
+<div class="lot-number">N° 011</div>
+<div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
+<div class="img-box">
+<img alt="iPhone 13 Pro Max" decoding="async" height="1254" loading="lazy" src="assets/images/iphone13promax-transparent.png" width="1254"/>
+</div>
+<div class="card-content">
+<div class="hallmark">APPLE · THE BATTERY KING</div>
+<h3 class="product-name">iPhone 13 Pro Max</h3>
+<div class="specs">
 <div class="spec-row"><span class="spec-label">Chip</span><span class="spec-val">A15 Bionic</span></div>
-<div class="spec-row"><span class="spec-label">Display</span><span class="spec-val">6.7&quot; 120Hz ProMotion</span></div>
+<div class="spec-row"><span class="spec-label">Display</span><span class="spec-val">6.7" 120Hz ProMotion</span></div>
 <div class="spec-row"><span class="spec-label">Feature</span><span class="spec-val">Battery King / Macro</span></div>
-                    </div>
-                </div>
-                <div class="hidden-details" style="display:none;">
-                    <div class="d-brand">APPLE // THE BATTERY KING</div>
-                    <div class="d-title">iPhone 13 Pro Max</div>
-                    <div class="d-why">ProMotion 120Hz finally on an iPhone + that cinematic battery life. The 13 Pro Max era felt like peak iPhone.</div>
-                    <div class="d-desc">An absolute legend in smartphone history. It introduced the 120Hz ProMotion display to the iPhone and delivered unprecedented, record-breaking battery life that remains the gold standard.</div>
+</div>
+</div>
+<div class="hidden-details" style="display:none;">
+<div class="d-brand">APPLE // THE BATTERY KING</div>
+<div class="d-title">iPhone 13 Pro Max</div>
+<div class="d-why">First iPhone with 120Hz ProMotion, and the battery life held up.</div>
+<div class="d-desc">Introduced the 120Hz ProMotion display to iPhone, with battery life that's still a reference point.</div>
 <div class="d-spec" data-label="SoC">A15 Bionic (5nm) | 5-core GPU | 16-core Neural Engine</div>
 <div class="d-spec" data-label="Display">6.7" Super Retina XDR OLED | 120Hz ProMotion | 1200 nits peak</div>
 <div class="d-spec" data-label="Camera System">[Main] 12MP | 1.9µm pixels | f/1.5 | Sensor-shift OIS<br/>
                         [Telephoto] 12MP | 3x Optical Zoom | 77mm<br/>
                         [Ultrawide] 12MP | f/1.8 | Autofocus &amp; Macro Photography</div>
+<div class="d-spec" data-label="Camera Sensors">Main: Sony IMX703 / 1/1.66" (12MP, 1.9µm, 26mm, Sensor-shift OIS); 3× Telephoto: Sony IMX713 / 1/3.5" (12MP, 77mm, OIS); Ultrawide: Sony IMX772 / 1/3.4" (12MP, 13mm, 120°, macro); Front: Sony IMX514 / 1/3.6" (12MP)</div>
 <div class="d-spec" data-label="Focal Lengths">Native: 13mm / 26mm / 77mm | Digital crop: 52mm (2× main; software crop rather than a separate telephoto sensor)</div>
 <div class="d-spec" data-label="Battery">4352mAh | The undisputed endurance champion of its era</div>
 <div class="d-spec" data-label="Build">Surgical-grade Stainless Steel | Ceramic Shield | 240g</div>
-                </div>
-            </div>
-            <div class="card" data-brand="samsung" data-status="wishlist" data-cat="mobile" data-lot="012" data-chapter="SMARTPHONES" data-name="galaxy s21 ultra samsung · galaxy classic design icon samsung">
-                <div class="lot-number">N&deg; 012</div>
-                <div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
-                <div class="img-box">
-                    <img src="assets/images/s21ultra-transparent.png" alt="Galaxy S21 Ultra">
-                </div>
-                <div class="card-content">
-                    <div class="hallmark">SAMSUNG · GALAXY CLASSIC</div>
-                    <h3 class="product-name">Galaxy S21 Ultra</h3>
-                    <div class="specs">
-<div class="spec-row"><span class="spec-label">Camera</span><span class="spec-val">108MP + Dual Telephoto</span></div>
-<div class="spec-row"><span class="spec-label">Display</span><span class="spec-val">6.8&quot; WQHD+ 120Hz</span></div>
+<div class="d-spec" data-label="Memory">6GB LPDDR4X RAM</div><div class="d-spec" data-label="Storage">1TB NVMe Storage (顶配)</div></div>
+</div>
+<div class="card" data-brand="samsung" data-cat="mobile" data-chapter="SMARTPHONES" data-lot="012" data-name="galaxy s21 ultra samsung · galaxy classic design icon samsung" data-status="wishlist">
+<div class="lot-number">N° 012</div>
+<div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
+<div class="img-box">
+<img alt="Galaxy S21 Ultra" decoding="async" height="1254" loading="lazy" src="assets/images/s21ultra-transparent.png" width="1254"/>
+</div>
+<div class="card-content">
+<div class="hallmark">SAMSUNG · GALAXY CLASSIC</div>
+<h3 class="product-name">Galaxy S21 Ultra</h3>
+<div class="specs">
+<div class="spec-row"><span class="spec-label">Sensor</span><span class="spec-val">1/1.33" HM3 · 108MP</span></div>
+<div class="spec-row"><span class="spec-label">Display</span><span class="spec-val">6.8" WQHD+ 120Hz</span></div>
 <div class="spec-row"><span class="spec-label">Design</span><span class="spec-val">Contour Cut Housing</span></div>
-                    </div>
-                </div>
-                <div class="hidden-details" style="display:none;">
-                    <div class="d-brand">SAMSUNG // GALAXY CLASSIC</div>
-                    <div class="d-title">Galaxy S21 Ultra</div>
-                    <div class="d-why">The one that introduced 108MP zoom madness to the mainstream. Still holds up as a photography powerhouse.</div>
-                    <div class="d-desc">A masterpiece of industrial design featuring the iconic Contour Cut camera housing. The phone that cemented Samsung&#x27;s zooming supremacy with its dual-telephoto system.</div>
+</div>
+</div>
+<div class="hidden-details" style="display:none;">
+<div class="d-brand">SAMSUNG // GALAXY CLASSIC</div>
+<div class="d-title">Galaxy S21 Ultra</div>
+<div class="d-why">First phone to bring 108MP and dual telephoto to the mainstream. The specs still hold up.</div>
+<div class="d-desc">Known for the Contour Cut camera housing design. Cemented Samsung's zoom lineup with a dual-telephoto system.</div>
 <div class="d-spec" data-label="SoC">Snapdragon 888 / Exynos 2100 (5nm)</div>
 <div class="d-spec" data-label="Display">6.8" Dynamic AMOLED 2X | WQHD+ | Adaptive 10-120Hz | 1500 nits</div>
 <div class="d-spec" data-label="Camera System">[Main] 108MP ISOCELL HM3 | 1/1.33" | Laser AF | OIS<br/>
                         [Periscope] 10MP | 10x Optical | 100x Space Zoom<br/>
                         [Telephoto] 10MP | 3x Optical<br/>
                         [Ultrawide] 12MP | 120° FOV | Dual Pixel AF</div>
+<div class="d-spec" data-label="Camera Sensors">Main: Samsung ISOCELL HM3 / 1/1.33" (108MP, 0.8µm, Laser AF, OIS); 10× Periscope: Samsung S5K3I1 / 1/3.24" (10MP, 240mm, Dual Pixel AF, OIS); 3× Telephoto: Samsung S5K3I1 / 1/3.24" (10MP, 72mm, Dual Pixel AF, OIS); Ultrawide: Sony IMX563 / 1/2.55" (12MP, 120°); Front: Samsung S5KGH1 / 1/2.8" (40MP)</div>
 <div class="d-spec" data-label="Focal Lengths">Native: 13mm / 24mm / 72mm / 240mm | Sensor crop: 48mm (2× main) | Space Zoom: up to 100× computational reach</div>
 <div class="d-spec" data-label="Feature">S-Pen Support (First for S-Series) | Phantom Black Matte Finish</div>
 <div class="d-spec" data-label="Battery">5000mAh | 25W Wired | 15W Wireless</div>
-                </div>
-            </div>
-            <div class="card" data-brand="samsung" data-status="wishlist" data-cat="mobile" data-lot="013" data-chapter="SMARTPHONES" data-name="galaxy s25 ultra samsung · 2025/2026 apex ultimate flagship samsung">
-                <div class="lot-number">N&deg; 013</div>
-                <div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
-                <div class="img-box">
-                    <img src="https://images.unsplash.com/photo-1707343843437-caacff5cfa74?q=80&amp;w=800&amp;auto=format&amp;fit=crop" alt="Galaxy S25 Ultra">
-                </div>
-                <div class="card-content">
-                    <div class="hallmark">SAMSUNG · 2025/2026 APEX</div>
-                    <h3 class="product-name">Galaxy S25 Ultra</h3>
-                    <div class="specs">
+<div class="d-spec" data-label="Build">Armor Aluminum frame | Gorilla Glass Victus | IP68 | 227g</div><div class="d-spec" data-label="Memory">16GB LPDDR5 RAM (顶配)</div><div class="d-spec" data-label="Storage">512GB UFS 3.1 (顶配)</div></div>
+</div>
+<div class="card" data-brand="samsung" data-cat="mobile" data-chapter="SMARTPHONES" data-lot="013" data-name="galaxy s25 ultra" data-status="wishlist">
+<div class="lot-number">N° 013</div>
+<div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
+<div class="img-box">
+<img alt="Galaxy S25 Ultra" decoding="async" height="1254" loading="lazy" src="assets/images/s25ultra-transparent.png" width="1254"/>
+</div>
+<div class="card-content">
+<div class="hallmark">SAMSUNG · 2025/2026 APEX</div>
+<h3 class="product-name">Galaxy S25 Ultra</h3>
+<div class="specs">
 <div class="spec-row"><span class="spec-label">Chip</span><span class="spec-val">Snapdragon 8 Gen 4</span></div>
-<div class="spec-row"><span class="spec-label">Camera</span><span class="spec-val">200MP + 50MP 5x</span></div>
+<div class="spec-row"><span class="spec-label">Sensor</span><span class="spec-val">1/1.3" HP2 · 1/2.52" 5x</span></div>
 <div class="spec-row"><span class="spec-label">Build</span><span class="spec-val">Titanium Armor</span></div>
-                    </div>
-                </div>
-                <div class="hidden-details" style="display:none;">
-                    <div class="d-brand">SAMSUNG // 2025/2026 APEX</div>
-                    <div class="d-title">Galaxy S25 Ultra</div>
-                    <div class="d-why">Snapdragon 8 Elite + the thinnest Ultra ever. The specs sheet reads like a fever dream. I want it.</div>
-                    <div class="d-desc">The absolute apex predator of the Android world. Features a refined flat display, ultra-tough titanium frame, and the monstrous Snapdragon 8 Gen 4 pushing Galaxy AI to new limits.</div>
-<div class="d-spec" data-label="SoC">Snapdragon 8 Gen 4 For Galaxy | 16GB LPDDR5X RAM</div>
-<div class="d-spec" data-label="Display">6.8" Flat Dynamic AMOLED 2X | 1-120Hz | 2600+ nits | Gorilla Armor (Anti-Reflective)</div>
-<div class="d-spec" data-label="Camera System">[Main] 200MP ISOCELL | 1/1.3" | Laser AF | OIS<br/>
-                        [Periscope] 50MP | 5x Optical | 8K Video | 100x Space Zoom<br/>
-                        [Telephoto] 10MP | 3x Optical<br/>
-                        [Ultrawide] 50MP | Autofocus | Macro</div>
-<div class="d-spec" data-label="Focal Lengths">Native: 13mm / 24mm / 67mm / 111mm | Sensor crop: 48mm (2× main) | Space Zoom: up to 100× computational reach</div>
-<div class="d-spec" data-label="Feature">Built-in S-Pen | Advanced Galaxy AI | Titanium Frame</div>
-<div class="d-spec" data-label="Battery">5000mAh | 45W Fast Charging | Wi-Fi 7</div>
-                </div>
-            </div>
-            <div class="card" data-brand="samsung" data-status="wishlist" data-cat="mobile" data-lot="014" data-chapter="SMARTPHONES" data-name="galaxy s25+ samsung · the sweet spot smart choice samsung">
-                <div class="lot-number">N&deg; 014</div>
-                <div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
-                <div class="img-box">
-                    <img src="S25Plus.png" alt="Galaxy S25+">
-                </div>
-                <div class="card-content">
-                    <div class="hallmark">SAMSUNG · THE SWEET SPOT</div>
-                    <h3 class="product-name">Galaxy S25+</h3>
-                    <div class="specs">
-<div class="spec-row"><span class="spec-label">Display</span><span class="spec-val">6.7&quot; WQHD+ Flat</span></div>
+</div>
+</div>
+<div class="hidden-details" style="display:none;">
+<div class="d-brand">SAMSUNG // 2025/2026 APEX</div>
+<div class="d-title">Galaxy S25 Ultra</div>
+<div class="d-why">Snapdragon 8 Elite in the thinnest Ultra yet. I want one.</div>
+<div class="d-desc">Flat display, Grade 5 titanium frame, Snapdragon 8 Elite for Galaxy running multimodal Galaxy AI.</div>
+<div class="d-spec" data-label="SoC">Qualcomm Snapdragon 8 Elite for Galaxy (3nm) | 2x 4.47GHz Prime + 6x 3.53GHz Performance | Adreno 830 GPU</div><div class="d-spec" data-label="Memory">16GB LPDDR5X RAM (顶配)</div><div class="d-spec" data-label="Storage">1TB UFS 4.0 (顶配)</div><div class="d-spec" data-label="Display">6.8" Flat Dynamic AMOLED 2X | QHD+ (3120x1440) | 1-120Hz LTPO | 2600 nits peak | Corning Gorilla Armor 2 (Anti-Reflective)</div><div class="d-spec" data-label="Camera System">[Main] 200MP ISOCELL HP2 (1/1.3", f/1.7, OIS) | [Periscope] 50MP Sony IMX854 (5x Optical, 100x Space Zoom, OIS) | [Telephoto] 10MP Sony IMX754 (3x Optical, OIS) | [Ultrawide] 50MP ISOCELL JN3 (120° FOV, AF Macro)</div><div class="d-spec" data-label="Camera Sensors">Main: Samsung ISOCELL HP2 / 1/1.3" (200MP, 0.6µm, OIS); 5× Periscope: Sony IMX854 / 1/2.52" (50MP, 5× optical, OIS); 3× Telephoto: Sony IMX754 / 1/3.52" (10MP, 3×, OIS); Ultrawide: Samsung ISOCELL JN3 / 1/2.76" (50MP, 120°); Front: Samsung S5K3LU / 1/3.2" (12MP)</div><div class="d-spec" data-label="Focal Lengths">Native: 13mm / 24mm / 67mm / 111mm | Sensor crop: 48mm (2× main) | Space Zoom: up to 100× computational reach</div><div class="d-spec" data-label="Battery">5000mAh | 45W Fast Charging 2.0 | 15W Fast Wireless Charging 2.0 | Wireless PowerShare | Wi-Fi 7 | Bluetooth 5.4</div><div class="d-spec" data-label="Build">Grade 5 Titanium frame | Corning Gorilla Armor 2 front | Gorilla Glass rear | IP68 water &amp; dust | 218g | 8.2mm</div><div class="d-spec" data-label="Feature">Built-in S-Pen | Galaxy AI with Gemini Nano multimodal | ProVisual Engine | 7 years OS &amp; security updates</div></div>
+</div>
+<div class="card" data-brand="samsung" data-cat="mobile" data-chapter="SMARTPHONES" data-lot="014" data-name="galaxy s25+" data-status="wishlist">
+<div class="lot-number">N° 014</div>
+<div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
+<div class="img-box">
+<img alt="Galaxy S25+" decoding="async" height="1254" loading="lazy" src="assets/images/s25plus-clean-transparent.png" width="1254"/>
+</div>
+<div class="card-content">
+<div class="hallmark">SAMSUNG · THE SWEET SPOT</div>
+<h3 class="product-name">Galaxy S25+</h3>
+<div class="specs">
+<div class="spec-row"><span class="spec-label">Display</span><span class="spec-val">6.7" WQHD+ Flat</span></div>
 <div class="spec-row"><span class="spec-label">Battery</span><span class="spec-val">4900mAh Endurance</span></div>
 <div class="spec-row"><span class="spec-label">Chip</span><span class="spec-val">Snapdragon 8 Gen 4</span></div>
-                    </div>
-                </div>
-                <div class="hidden-details" style="display:none;">
-                    <div class="d-brand">SAMSUNG // THE SWEET SPOT</div>
-                    <div class="d-title">Galaxy S25+</div>
-                    <div class="d-why">The sweet spot - all the performance, none of the S-Pen bulk. This is what most people actually need.</div>
-                    <div class="d-desc">The most practical flagship. You get the same gorgeous WQHD+ resolution and processing power as the Ultra, packaged in a lighter, more comfortable body with incredible battery life.</div>
-<div class="d-spec" data-label="SoC">Snapdragon 8 Gen 4 For Galaxy | 12GB RAM</div>
-<div class="d-spec" data-label="Display">6.7" Flat Dynamic AMOLED 2X | WQHD+ | 1-120Hz LTPO | 2600 nits peak</div>
-<div class="d-spec" data-label="Camera System">[Main] 50MP | Dual Pixel PDAF | OIS<br/>
-                        [Telephoto] 10MP | 3x Optical Zoom | OIS<br/>
-                        [Ultrawide] 12MP | 120° FOV | Super Steady Video</div>
-<div class="d-spec" data-label="Focal Lengths">Native: 13mm / 24mm / 67mm | Sensor crop: 48mm (2× main; optical-quality crop)</div>
-<div class="d-spec" data-label="Build">Armor Aluminum Frame | Symmetrical Bezels | 196g</div>
-<div class="d-spec" data-label="Battery">4900mAh | 45W Wired Charging | Unmatched Screen-On Time</div>
-                </div>
-            </div>
-            <div class="card" data-brand="apple" data-status="wishlist" data-cat="mobile" data-lot="015" data-chapter="SMARTPHONES" data-name="iphone 17 apple · next gen standard apple ai flagship apple">
-                <div class="lot-number">N&deg; 015</div>
-                <div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
-                <div class="img-box">
-                    <img src="assets/images/iphone17-transparent.png" alt="iPhone 17">
-                </div>
-                <div class="card-content">
-                    <div class="hallmark">APPLE · NEXT GEN STANDARD</div>
-                    <h3 class="product-name">iPhone 17</h3>
-                    <div class="specs">
+</div>
+</div>
+<div class="hidden-details" style="display:none;">
+<div class="d-brand">SAMSUNG // THE SWEET SPOT</div>
+<div class="d-title">Galaxy S25+</div>
+<div class="d-why">The sweet spot - all the performance, none of the S-Pen bulk. This is what most people actually need.</div>
+<div class="d-desc">Same WQHD+ resolution and Snapdragon 8 Elite processor as the Ultra, in a lighter 196g body with 4900mAh battery.</div>
+<div class="d-spec" data-label="SoC">Qualcomm Snapdragon 8 Elite for Galaxy (3nm) | 2x 4.47GHz Prime + 6x 3.53GHz Performance | Adreno 830 GPU</div><div class="d-spec" data-label="Memory">12GB LPDDR5X RAM (顶配)</div><div class="d-spec" data-label="Storage">512GB UFS 4.0 (顶配)</div><div class="d-spec" data-label="Display">6.7" Flat Dynamic AMOLED 2X | QHD+ (3120x1440) | 1-120Hz LTPO | 2600 nits peak | Corning Gorilla Glass Victus 2</div><div class="d-spec" data-label="Camera System">[Main] 50MP ISOCELL GN3 (1/1.57", f/1.8, Dual Pixel AF, OIS) | [Telephoto] 10MP (3x Optical, OIS) | [Ultrawide] 12MP (120° FOV, Super Steady)</div><div class="d-spec" data-label="Camera Sensors">Main: Samsung ISOCELL GN3 / 1/1.57" (50MP, 1.0µm, Dual Pixel AF, OIS); 3× Telephoto: Samsung S5K3K1 / 1/3.94" (10MP, 3×, OIS); Ultrawide: Sony IMX564 / 1/2.55" (12MP, 120°); Front: Samsung S5K3LU / 1/3.2" (12MP)</div><div class="d-spec" data-label="Focal Lengths">Native: 13mm / 24mm / 67mm | Sensor crop: 48mm (2× main; optical-quality crop)</div><div class="d-spec" data-label="Battery">4900mAh | 45W Wired Fast Charging | 15W Wireless | Wireless PowerShare | Wi-Fi 7</div><div class="d-spec" data-label="Build">Enhanced Armor Aluminum frame | Corning Gorilla Glass Victus 2 | IP68 water &amp; dust | 196g | 7.3mm thickness</div><div class="d-spec" data-label="Feature">Galaxy AI multimodal suite | Circle to Search | Generative Edit | 7 years OS &amp; security updates</div></div>
+</div>
+<div class="card" data-brand="apple" data-cat="mobile" data-chapter="SMARTPHONES" data-lot="015" data-name="iphone 17 apple · next gen standard apple ai flagship apple" data-status="wishlist">
+<div class="lot-number">N° 015</div>
+<div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
+<div class="img-box">
+<img alt="iPhone 17" decoding="async" height="815" loading="lazy" src="assets/images/iphone17-transparent.png" width="600"/>
+</div>
+<div class="card-content">
+<div class="hallmark">APPLE · NEXT GEN STANDARD</div>
+<h3 class="product-name">iPhone 17</h3>
+<div class="specs">
 <div class="spec-row"><span class="spec-label">Chip</span><span class="spec-val">A19 (3nm)</span></div>
-<div class="spec-row"><span class="spec-label">Camera</span><span class="spec-val">48MP + 48MP UW</span></div>
+<div class="spec-row"><span class="spec-label">Sensor</span><span class="spec-val">1/1.56" Fusion · 48MP</span></div>
 <div class="spec-row"><span class="spec-label">Feature</span><span class="spec-val">Apple Intelligence</span></div>
-                    </div>
-                </div>
-                <div class="hidden-details" style="display:none;">
-                    <div class="d-brand">APPLE // NEXT GEN STANDARD</div>
-                    <div class="d-title">iPhone 17</div>
-                    <div class="d-why">Aluminum frame design leak had me losing sleep. If they bring proper ProMotion to the base model, it&#x27;s game over.</div>
-                    <div class="d-desc">The new baseline for the AI era. Built from the ground up to run Apple Intelligence natively, featuring a much-requested display upgrade and massive camera bumps.</div>
+</div>
+</div>
+<div class="hidden-details" style="display:none;">
+<div class="d-brand">APPLE // NEXT GEN STANDARD</div>
+<div class="d-title">iPhone 17</div>
+<div class="d-why">Aluminum frame design leak had me losing sleep. If they bring proper ProMotion to the base model, it's game over.</div>
+<div class="d-desc">Runs Apple Intelligence natively, with the display upgrade and camera bump people had been asking for.</div>
 <div class="d-spec" data-label="SoC">A19 (3nm process) | 8GB Unified Memory for On-device AI</div>
 <div class="d-spec" data-label="Display">6.3" Super Retina XDR | LTPO 120Hz ProMotion (Finally on base model) | Dynamic Island</div>
 <div class="d-spec" data-label="Camera System">[Main] 48MP | f/1.6 | Sensor-shift OIS | 2x Optical-quality crop<br/>
                         [Ultrawide] 48MP | Autofocus | Spatial Video Capture<br/>
                         [Front] 24MP Upgraded Selfie Camera</div>
+<div class="d-spec" data-label="Camera Sensors">Main: 48MP Sony Fusion / 1/1.56" (1.0µm / 2.0µm 4-in-1, Sensor-shift OIS); Ultrawide: 48MP Sony / 1/2.55" (13mm, 120°); Front: 24MP / 1/3.0" (PDAF)</div>
 <div class="d-spec" data-label="Focal Lengths">Native: 13mm / 26mm | Sensor crop: 52mm (2× main sensor, optical-quality crop)</div>
 <div class="d-spec" data-label="New Features">Action Button | Camera Control | Native Apple Intelligence</div>
 <div class="d-spec" data-label="Build">Aerospace-grade Aluminum | Color-infused Glass</div>
-                </div>
-            </div>
-            <div class="card" data-brand="xiaomi" data-status="wishlist" data-cat="mobile" data-lot="016" data-chapter="SMARTPHONES" data-name="小米 11 ultra xiaomi · imaging pioneer xiaomi // ultra legend xiaomi">
-                <div class="lot-number">N&deg; 016</div>
-                <div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
-                <div class="img-box">
-                    <img src="assets/images/xiaomi11ultra-transparent.png" alt="小米 11 Ultra">
-                </div>
-                <div class="card-content">
-                    <div class="hallmark">XIAOMI · IMAGING PIONEER</div>
-                    <h3 class="product-name">小米 11 Ultra</h3>
-                    <div class="specs">
-<div class="spec-row"><span class="spec-label">Sensor</span><span class="spec-val">1/1.12&quot; GN2</span></div>
+<div class="d-spec" data-label="Battery">3650mAh | 25W wired fast charge | 15W MagSafe | Qi2 wireless</div></div>
+</div>
+<div class="card" data-brand="xiaomi" data-cat="mobile" data-chapter="SMARTPHONES" data-lot="016" data-name="小米 11 ultra xiaomi · imaging pioneer xiaomi // ultra legend xiaomi" data-status="wishlist">
+<div class="lot-number">N° 016</div>
+<div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
+<div class="img-box">
+<img alt="小米 11 Ultra" decoding="async" height="1600" loading="lazy" src="assets/images/xiaomi11ultra-transparent.png" width="1600"/>
+</div>
+<div class="card-content">
+<div class="hallmark">XIAOMI · IMAGING PIONEER</div>
+<h3 class="product-name">小米 11 Ultra</h3>
+<div class="specs">
+<div class="spec-row"><span class="spec-label">Sensor</span><span class="spec-val">1/1.12" GN2 · Dual IMX586</span></div>
 <div class="spec-row"><span class="spec-label">Feature</span><span class="spec-val">Rear Tiny Display</span></div>
 <div class="spec-row"><span class="spec-label">Build</span><span class="spec-val">Ceramic Body</span></div>
-                    </div>
-                </div>
-                <div class="hidden-details" style="display:none;">
-                    <div class="d-brand">XIAOMI // IMAGING PIONEER</div>
-                    <div class="d-title">Xiaomi 11 Ultra</div>
-                    <div class="d-why"></div>
-                    <div class="d-desc">The &quot;Light of Android.&quot; It featured one of the largest sensors in mobile history and a unique rear display for selfies with the main camera.</div>
+</div>
+</div>
+<div class="hidden-details" style="display:none;">
+<div class="d-brand">XIAOMI // IMAGING PIONEER</div>
+<div class="d-title">Xiaomi 11 Ultra</div>
+<div class="d-why"></div>
+<div class="d-desc">One of the largest camera sensors in a phone at the time, plus a rear display for selfies shot with the main camera.</div>
 <div class="d-spec" data-label="SoC">Snapdragon 888 | LPDDR5 | UFS 3.1</div>
 <div class="d-spec" data-label="Display">6.81" 2K AMOLED | 120Hz | 1700 nits | E4 Material</div>
 <div class="d-spec" data-label="Camera System">[Main] 50MP GN2 (1/1.12") | f/1.95 | OIS<br/>
                         [Periscope] 48MP IMX586 | 5x Optical | 120x Digital | OIS<br/>
                         [Ultrawide] 48MP IMX586 | 128° FOV</div>
+<div class="d-spec" data-label="Camera Sensors">Main: Samsung ISOCELL GN2 (S5KGN2) / 1/1.12" (50MP, 1.4µm / 2.8µm 4-in-1, 8P, Dual Pixel Pro, OIS, dToF); Periscope: Sony IMX586 / 1/2.0" (48MP, 5× optical / 120× digital, OIS); Ultrawide: Sony IMX586 / 1/2.0" (48MP, 128° FOV, 12mm); Front: Samsung S5K3T2 / 1/3.4" (20MP)</div>
 <div class="d-spec" data-label="Focal Lengths">Native: 12mm / 24mm / 120mm | Sensor crop: 48mm (2× main) | Hybrid reach: 240mm+ toward the 120× mode</div>
 <div class="d-spec" data-label="Battery">5000mAh Silicon-Oxygen Anode | 67W Wired | 67W Wireless</div>
-                </div>
-            </div>
-            <div class="card" data-brand="xiaomi" data-status="wishlist" data-cat="mobile" data-lot="017" data-chapter="SMARTPHONES" data-name="小米 17 xiaomi · leica optics xiaomi // compact flagship xiaomi">
-                <div class="lot-number">N&deg; 017</div>
-                <div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
-                <div class="img-box">
-                    <img src="assets/images/xiaomi17-transparent.png" alt="小米 17">
-                </div>
-                <div class="card-content">
-                    <div class="hallmark">XIAOMI · LEICA OPTICS</div>
-                    <h3 class="product-name">小米 17</h3>
-                    <div class="specs">
-<div class="spec-row"><span class="spec-label">Display</span><span class="spec-val">6.36&quot; LTPO OLED</span></div>
-<div class="spec-row"><span class="spec-label">Camera</span><span class="spec-val">Leica Triple System</span></div>
+<div class="d-spec" data-label="Build">Ceramic body | 234g | IP68</div>
+<div class="d-spec" data-label="Memory">12GB LPDDR5 RAM (顶配)</div><div class="d-spec" data-label="Storage">512GB UFS 3.1 (顶配)</div></div>
+</div>
+<div class="card" data-brand="xiaomi" data-cat="mobile" data-chapter="SMARTPHONES" data-lot="051" data-name="小米 11 pro xiaomi · android king xiaomi // gn2 flagship xiaomi" data-status="wishlist">
+<div class="lot-number">N° 051</div>
+<div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
+<div class="img-box">
+<img alt="小米 11 Pro" decoding="async" height="1254" loading="lazy" src="assets/images/xiaomi11pro.png" width="1254"/>
+</div>
+<div class="card-content">
+<div class="hallmark">XIAOMI · ANDROID KING</div>
+<h3 class="product-name">小米 11 Pro</h3>
+<div class="specs">
+<div class="spec-row"><span class="spec-label">Sensor</span><span class="spec-val">1/1.12" GN2 · 50MP</span></div>
+<div class="spec-row"><span class="spec-label">Display</span><span class="spec-val">6.81" 2K 120Hz E4</span></div>
+<div class="spec-row"><span class="spec-label">Design</span><span class="spec-val">Dream Purple · IP68</span></div>
+</div>
+</div>
+<div class="hidden-details" style="display:none;">
+<div class="d-brand">XIAOMI // ANDROID KING</div>
+<div class="d-title">Xiaomi 11 Pro</div>
+<div class="d-why">The "King of Android" defined by its massive 1/1.12" Samsung GN2 sensor, 67W dual fast charge, and elegant dream purple quad-curved finish.</div>
+<div class="d-desc">Known as the "King of Android" (安卓机皇), Xiaomi 11 Pro pairs the super-large 1/1.12" GN2 main camera and 50× periscope zoom with a 2K 120Hz E4 quad-curved display and IP68 water resistance.</div>
+<div class="d-spec" data-label="SoC">Qualcomm Snapdragon 888 (5nm) | Adreno 660 | LPDDR5 6400Mbps + UFS 3.1</div>
+<div class="d-spec" data-label="Display">6.81" Quad-Curved AMOLED | 3200×1440 2K WQHD+ | 120Hz | 480Hz Touch | 1700 nits Peak | Samsung E4 | Gorilla Glass Victus</div>
+<div class="d-spec" data-label="Camera System">[Main] 50MP Samsung ISOCELL GN2 | 1/1.12" | f/1.95 | 8P | OIS | Dual Pixel Pro<br/>
+                        [Periscope] 8MP OmniVision OV08A10 | 5× Optical Zoom | 50× Digital | OIS<br/>
+                        [Ultrawide] 13MP OmniVision OV13B10 | 123° FOV | f/2.4<br/>
+                        [Front] 20MP Samsung S5K3T2 | f/2.2</div>
+<div class="d-spec" data-label="Camera Sensors">Main: Samsung ISOCELL GN2 (S5KGN2) / 1/1.12" (1.4µm native, 2.8µm 4-in-1); Periscope: OmniVision OV08A10 / 1/4.4"; Ultrawide: OmniVision OV13B10 / 1/3.06"; Front: Samsung S5K3T2 / 1/3.4"</div>
+<div class="d-spec" data-label="Focal Lengths">Native: 16mm (ultrawide) / 24mm (main) / 120mm (5× periscope) | Sensor crop: 48mm (2× main) | Hybrid zoom reach to 50×</div>
+<div class="d-spec" data-label="Design &amp; Styling">Style: AG Frosted Quad-Curved Glass | Dream Purple (幻境紫) | Stepped squircle camera DECO with CD-textured metal collar ring | Aluminum alloy middle frame | IP68 dust/water resistant | 208g | 8.53mm</div>
+<div class="d-spec" data-label="Battery &amp; Charging">5000mAh MTW Silicon-Oxygen Anode single cell | 67W wired fast charge | 67W wireless fast charge (100% in 36m) | 10W reverse wireless</div>
+<div class="d-spec" data-label="Audio &amp; Haptics">Harman Kardon tuned stereo dual speakers | Hi-Res &amp; Hi-Res Wireless Audio | X-axis linear vibration motor | IR blaster</div>
+<div class="d-spec" data-label="Build">Quad-curved Corning Gorilla Glass Victus | Metal middle frame | IP68 | 208g</div></div>
+</div>
+<div class="card" data-brand="xiaomi" data-cat="mobile" data-chapter="SMARTPHONES" data-lot="017" data-name="小米 17 xiaomi · leica optics xiaomi // compact flagship xiaomi" data-status="wishlist">
+<div class="lot-number">N° 017</div>
+<div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
+<div class="img-box">
+<img alt="小米 17" decoding="async" height="1600" loading="lazy" src="assets/images/xiaomi17-transparent.png" width="1600"/>
+</div>
+<div class="card-content">
+<div class="hallmark">XIAOMI · LEICA OPTICS</div>
+<h3 class="product-name">小米 17</h3>
+<div class="specs">
+<div class="spec-row"><span class="spec-label">Display</span><span class="spec-val">6.36" LTPO OLED</span></div>
+<div class="spec-row"><span class="spec-label">Sensor</span><span class="spec-val">1/1.28" Light Fusion 950</span></div>
 <div class="spec-row"><span class="spec-label">Battery</span><span class="spec-val">5400mAh</span></div>
 <div class="spec-row"><span class="spec-label">Charging</span><span class="spec-val">90W Wired + 50W Wireless</span></div>
-                    </div>
-                </div>
-                <div class="hidden-details" style="display:none;">
-                    <div class="d-brand">XIAOMI // LEICA OPTICS</div>
-                    <div class="d-title">Xiaomi 17</div>
-                    <div class="d-why">A compact Leica flagship built around fast performance, a bright LTPO panel, and a versatile triple-camera system.</div>
-                    <div class="d-desc">Xiaomi 17 brings a refined ceramic body, Leica-tuned imaging, and all-day battery life into a compact flagship form.</div>
+</div>
+</div>
+<div class="hidden-details" style="display:none;">
+<div class="d-brand">XIAOMI // LEICA OPTICS</div>
+<div class="d-title">Xiaomi 17</div>
+<div class="d-why">A compact Leica flagship built around fast performance, a bright LTPO panel, and a versatile triple-camera system.</div>
+<div class="d-desc">Xiaomi 17 brings a ceramic body, Leica-tuned imaging, and all-day battery life into a compact flagship form.</div>
 <div class="d-spec" data-label="SoC">Snapdragon 8 Elite Gen 5 | 16GB LPDDR5X | UFS 4.1</div>
 <div class="d-spec" data-label="Display">6.36" LTPO OLED | 1-120Hz | 3200 nits</div>
 <div class="d-spec" data-label="Camera System">[Main] 50MP Light Fusion 950 | 23mm | OIS<br/>
-                         [Telephoto] 50MP Floating Lens | 60mm | OIS<br/>
-                         [Ultrawide] 50MP | 14mm | 115° FOV</div>
+                        [Telephoto] 50MP Floating Lens | 60mm | OIS<br/>
+                        [Ultrawide] 50MP | 14mm | 115° FOV</div>
+<div class="d-spec" data-label="Camera Sensors">Main: Xiaomi Light Fusion 950 / 1/1.28" (50MP, 1.2µm, 23mm, OIS); Floating Telephoto: Samsung ISOCELL JN5 / 1/2.76" (50MP, 60mm, 10cm macro, OIS); Ultrawide: Samsung ISOCELL JN1 / 1/2.76" (50MP, 14mm, 115°); Front: OmniVision OV32B40 / 1/3.14" (32MP)</div>
 <div class="d-spec" data-label="Focal Lengths">Native: 14mm / 23mm / 60mm | Main-sensor crop modes: 28mm / 35mm / 46mm (2×)</div>
 <div class="d-spec" data-label="Battery &amp; Charging">5400mAh High-Density Battery | 90W Wired | 50W Wireless</div>
 <div class="d-spec" data-label="Build">Ceramic Body | Dragon Crystal Glass</div>
-                </div>
-            </div>
-            <div class="card" data-brand="xiaomi" data-status="wishlist" data-cat="mobile" data-lot="018" data-chapter="SMARTPHONES" data-name="小米 17 pro max xiaomi · the current king xiaomi // 2026 apex xiaomi">
-                <div class="lot-number">N&deg; 018</div>
-                <div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
-                <div class="img-box">
-                    <img src="assets/images/xiaomi17promax-transparent.png" alt="小米 17 Pro Max">
-                </div>
-                <div class="card-content">
-                    <div class="hallmark">XIAOMI · THE CURRENT KING</div>
-                    <h3 class="product-name">小米 17 Pro Max</h3>
-                    <div class="specs">
+</div>
+</div>
+<div class="card" data-brand="xiaomi" data-cat="mobile" data-chapter="SMARTPHONES" data-lot="018" data-name="小米 17 pro max xiaomi · the current king xiaomi // 2026 apex xiaomi" data-status="wishlist">
+<div class="lot-number">N° 018</div>
+<div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
+<div class="img-box">
+<img alt="小米 17 Pro Max" decoding="async" height="1254" loading="lazy" src="assets/images/xiaomi17promax-transparent.png" width="1254"/>
+</div>
+<div class="card-content">
+<div class="hallmark">XIAOMI · THE CURRENT KING</div>
+<h3 class="product-name">小米 17 Pro Max</h3>
+<div class="specs">
 <div class="spec-row"><span class="spec-label">Chip</span><span class="spec-val">Snapdragon 8 Gen 5</span></div>
-<div class="spec-row"><span class="spec-label">Camera</span><span class="spec-val">Leica 17/23/115mm triple system</span></div>
+<div class="spec-row"><span class="spec-label">Sensor</span><span class="spec-val">1.0" LYT-900 · 1/2.51" 5x</span></div>
 <div class="spec-row"><span class="spec-label">Power</span><span class="spec-val">120W / 80W Wireless</span></div>
-                    </div>
-                </div>
-                <div class="hidden-details" style="display:none;">
-                    <div class="d-brand">XIAOMI // THE CURRENT KING</div>
-                    <div class="d-title">Xiaomi 17 Pro Max</div>
-                    <div class="d-why"></div>
-                    <div class="d-desc">Released late 2025, this flagship pairs a Leica triple-camera system with a 5x periscope and a rear secondary display.</div>
+</div>
+</div>
+<div class="hidden-details" style="display:none;">
+<div class="d-brand">XIAOMI // THE CURRENT KING</div>
+<div class="d-title">Xiaomi 17 Pro Max</div>
+<div class="d-why"></div>
+<div class="d-desc">Released late 2025, this flagship pairs a Leica triple-camera system with a 5x periscope and a rear secondary display.</div>
 <div class="d-spec" data-label="SoC">Snapdragon 8 Gen 5 (2nm) | 24GB LPDDR6 | 1TB UFS 4.1</div>
 <div class="d-spec" data-label="Display">6.73" All-Around Micro-Curved | 2K+ | 240Hz | 4500 nits</div>
-<div class="d-spec" data-label="Leica Triple-Camera">[Main] 50MP Light Hunter 950L | 23mm | OIS<br/>
+<div class="d-spec" data-label="Camera System">[Main] 50MP Light Hunter 950L | 23mm | OIS<br/>
                          [Periscope] 50MP Samsung GN8 | 115mm | 5x Optical | OIS<br/>
                          [Ultrawide] 50MP | 17mm | 102° FOV</div>
+<div class="d-spec" data-label="Camera Sensors">Main: Sony LYT-900 / 1.0" (50MP, 1.6µm / 3.2µm 4-in-1, 23mm, OIS); 5× Periscope: Sony IMX858 / 1/2.51" (50MP, 115mm, OIS); Ultrawide: OmniVision OV50M / 1/2.88" (50MP, 17mm); Front: Sony IMX858 / 1/2.51" (50MP)</div>
 <div class="d-spec" data-label="Focal Lengths">Native: 17mm / 23mm / 115mm | Sensor crop: 46mm (2× main) | Hybrid reach: ~230mm (2× telephoto)</div>
 <div class="d-spec" data-label="Build">Full Nano-tech Ceramic Unibody | Dragon Crystal Glass 3.0</div>
 <div class="d-spec" data-label="Battery">6200mAh Solid-State Battery | 120W Wired | 80W Wireless</div>
-                </div>
-            </div>
-            <div class="card" data-brand="apple" data-status="owned" data-cat="mobile" data-lot="019" data-chapter="SMARTPHONES" data-name="iphone 11 apple · legacy apple classic apple">
-                <div class="lot-number">N&deg; 019</div>
-                <div class="seal owned"><span class="dot"></span>OWNED</div>
-                <div class="img-box">
-                    <img src="assets/images/iphone11-transparent.png" alt="iPhone 11">
-                </div>
-                <div class="card-content">
-                    <div class="hallmark">APPLE · LEGACY</div>
-                    <h3 class="product-name">iPhone 11</h3>
-                    <div class="specs">
+</div>
+</div>
+<div class="card" data-brand="apple" data-cat="mobile" data-chapter="SMARTPHONES" data-lot="019" data-name="iphone 11 apple · legacy apple classic apple" data-status="owned">
+<div class="lot-number">N° 019</div>
+<div class="seal owned"><span class="dot"></span>OWNED</div>
+<div class="img-box">
+<img alt="iPhone 11" decoding="async" height="1254" loading="lazy" src="assets/images/iphone11-transparent.png" width="1254"/>
+</div>
+<div class="card-content">
+<div class="hallmark">APPLE · LEGACY</div>
+<h3 class="product-name">iPhone 11</h3>
+<div class="specs">
 <div class="spec-row"><span class="spec-label">Chip</span><span class="spec-val">A13 Bionic</span></div>
-<div class="spec-row"><span class="spec-label">Display</span><span class="spec-val">6.1&quot; Liquid Retina</span></div>
-<div class="spec-row"><span class="spec-label">Camera</span><span class="spec-val">12MP Dual System</span></div>
-                    </div>
-                </div>
-                <div class="hidden-details" style="display:none;">
-                    <div class="d-brand">APPLE // LEGACY</div>
-                    <div class="d-title">iPhone 11</div>
-                    <div class="d-why">My first iPhone. Night Mode changed how I shoot after dark. Still running smooth after all these years.</div>
-                    <div class="d-desc">The phone that set the modern standard for battery life and dual-camera systems. A true classic that aged remarkably well.</div>
+<div class="spec-row"><span class="spec-label">Display</span><span class="spec-val">6.1" Liquid Retina</span></div>
+<div class="spec-row"><span class="spec-label">Sensor</span><span class="spec-val">1/2.55" IMX503 · 12MP</span></div>
+</div>
+</div>
+<div class="hidden-details" style="display:none;">
+<div class="d-brand">APPLE // LEGACY</div>
+<div class="d-title">iPhone 11</div>
+<div class="d-why">My first iPhone. Night Mode changed how I shoot after dark. Still running smooth after all these years.</div>
+<div class="d-desc">Set a new standard at the time for battery life and dual-camera systems on iPhone.</div>
 <div class="d-spec" data-label="SoC">A13 Bionic (7nm+) | 6-core CPU | 4-core GPU</div>
 <div class="d-spec" data-label="Display">6.1" Liquid Retina IPS LCD | 625 nits | True Tone</div>
 <div class="d-spec" data-label="Camera System">[Main] 12MP | 1/2.55" | f/1.8 | Dual Pixel PDAF | OIS<br/>
                         [Ultrawide] 12MP | 120° FOV | f/2.4</div>
+<div class="d-spec" data-label="Camera Sensors">Main: Sony IMX503 / 1/2.55" (12MP, 1.4µm, 26mm, 100% Focus Pixels, OIS); Ultrawide: Sony IMX372 / 1/3.6" (12MP, 13mm, 120°); Front: Sony IMX514 / 1/3.6" (12MP)</div>
 <div class="d-spec" data-label="Focal Lengths">Native: 13mm / 26mm | Digital crop: 52mm (2× main; no separate telephoto sensor)</div>
 <div class="d-spec" data-label="Feature">Face ID | IP68 Water Resistance | Night Mode</div>
 <div class="d-spec" data-label="Battery">3110 mAh | 18W Wired Charging | Qi Wireless</div>
-                </div>
-            </div>
-            <div class="card" data-brand="realme" data-status="wishlist" data-cat="mobile" data-lot="020" data-chapter="SMARTPHONES" data-name="realme 11 pro+ realme · premium mid-range realme design realme">
-                <div class="lot-number">N&deg; 020</div>
-                <div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
-                <div class="img-box">
-                    <img src="assets/images/realme11proplus-transparent.png" alt="realme 11 Pro+">
-                </div>
-                <div class="card-content">
-                    <div class="hallmark">REALME · PREMIUM MID-RANGE</div>
-                    <h3 class="product-name">realme 11 Pro+</h3>
-                    <div class="specs">
-<div class="spec-row"><span class="spec-label">Display</span><span class="spec-val">6.7&quot; 120Hz Curved AMOLED</span></div>
-<div class="spec-row"><span class="spec-label">Camera</span><span class="spec-val">200MP OIS SuperZoom</span></div>
+<div class="d-spec" data-label="Build">Aerospace-grade 7000-series aluminum | Dual-ion glass | IP68 (2m 30min) | 194g</div></div>
+</div>
+<div class="card" data-brand="realme" data-cat="mobile" data-chapter="SMARTPHONES" data-lot="020" data-name="realme 11 pro+ realme · premium mid-range realme design realme" data-status="wishlist">
+<div class="lot-number">N° 020</div>
+<div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
+<div class="img-box">
+<img alt="realme 11 Pro+" decoding="async" height="1254" loading="lazy" src="assets/images/realme11proplus-transparent.png" width="1254"/>
+</div>
+<div class="card-content">
+<div class="hallmark">REALME · PREMIUM MID-RANGE</div>
+<h3 class="product-name">realme 11 Pro+</h3>
+<div class="specs">
+<div class="spec-row"><span class="spec-label">Display</span><span class="spec-val">6.7" 120Hz Curved AMOLED</span></div>
+<div class="spec-row"><span class="spec-label">Sensor</span><span class="spec-val">1/1.4" HP3 · 200MP OIS</span></div>
 <div class="spec-row"><span class="spec-label">Charging</span><span class="spec-val">100W SuperVOOC</span></div>
-                    </div>
-                </div>
-                <div class="hidden-details" style="display:none;">
-                    <div class="d-brand">REALME // PREMIUM MID-RANGE</div>
-                    <div class="d-title">realme 11 Pro+</div>
-                    <div class="d-why">108MP curved OLED at this price point is almost offensive to other manufacturers. Punches way above its class.</div>
-                    <div class="d-desc">Premium vegan leather design co-created with former Gucci designer Matteo Menotto, featuring a massive 200MP sensor.</div>
+</div>
+</div>
+<div class="hidden-details" style="display:none;">
+<div class="d-brand">REALME // PREMIUM MID-RANGE</div>
+<div class="d-title">realme 11 Pro+</div>
+<div class="d-why">A curved OLED display and 200MP sensor at this price is unusual for the segment.</div>
+<div class="d-desc">Vegan leather design co-created with former Gucci designer Matteo Menotto, with a 200MP sensor.</div>
 <div class="d-spec" data-label="SoC">MediaTek Dimensity 7050 (6nm) | Up to 12GB RAM</div>
 <div class="d-spec" data-label="Display">6.7" Curved AMOLED | 120Hz | 1 Billion Colors | 2160Hz PWM</div>
 <div class="d-spec" data-label="Camera System">[Main] 200MP Samsung ISOCELL HP3 | f/1.69 | OIS | 4x In-sensor Zoom<br/>
                         [Ultrawide] 8MP | 112° FOV<br/>
                         [Macro] 2MP</div>
+<div class="d-spec" data-label="Camera Sensors">Main: Samsung ISOCELL HP3 / 1/1.4" (200MP, 0.56µm / 2.24µm 16-in-1, SuperOIS, 4× in-sensor zoom); Ultrawide: Sony IMX355 / 1/4.0" (8MP, 112°); Macro: GalaxyCore GC02M1 / 1/5.0" (2MP, 4cm); Front: Sony IMX615 / 1/2.74" (32MP)</div>
 <div class="d-spec" data-label="Focal Lengths">Native: 15.9mm / 22.9mm | Sensor crops: 45.8mm (2×) / 91.6mm (4× in-sensor zoom) | Macro: 4cm focus distance</div>
 <div class="d-spec" data-label="Battery &amp; Charging">5000mAh | 100W SuperVOOC (100% in 26 mins)</div>
 <div class="d-spec" data-label="Build">Premium Lychee Vegan Leather | 3D Woven Texture</div>
-                </div>
-            </div>
-            <div class="card" data-brand="samsung" data-status="owned" data-cat="mobile" data-lot="021" data-chapter="SMARTPHONES" data-name="galaxy a51 samsung · best seller galaxy essential samsung">
-                <div class="lot-number">N&deg; 021</div>
-                <div class="seal owned"><span class="dot"></span>OWNED</div>
-                <div class="img-box">
-                    <img src="assets/images/samsung-a51-transparent.png" alt="Galaxy A51">
-                </div>
-                <div class="card-content">
-                    <div class="hallmark">SAMSUNG · BEST SELLER</div>
-                    <h3 class="product-name">Galaxy A51</h3>
-                    <div class="specs">
-<div class="spec-row"><span class="spec-label">Display</span><span class="spec-val">6.5&quot; Super AMOLED</span></div>
-<div class="spec-row"><span class="spec-label">Camera</span><span class="spec-val">48MP Quad System</span></div>
+</div>
+</div>
+<div class="card" data-brand="samsung" data-cat="mobile" data-chapter="SMARTPHONES" data-lot="021" data-name="galaxy a51 samsung · best seller galaxy essential samsung" data-status="owned">
+<div class="lot-number">N° 021</div>
+<div class="seal owned"><span class="dot"></span>OWNED</div>
+<div class="img-box">
+<img alt="Galaxy A51" decoding="async" height="1254" loading="lazy" src="assets/images/samsung-a51-transparent.png" width="1254"/>
+</div>
+<div class="card-content">
+<div class="hallmark">SAMSUNG · BEST SELLER</div>
+<h3 class="product-name">Galaxy A51</h3>
+<div class="specs">
+<div class="spec-row"><span class="spec-label">Display</span><span class="spec-val">6.5" Super AMOLED</span></div>
+<div class="spec-row"><span class="spec-label">Sensor</span><span class="spec-val">1/2.0" GM2 · 48MP Quad</span></div>
 <div class="spec-row"><span class="spec-label">Battery</span><span class="spec-val">4000 mAh</span></div>
-                    </div>
-                </div>
-                <div class="hidden-details" style="display:none;">
-                    <div class="d-brand">SAMSUNG // BEST SELLER</div>
-                    <div class="d-title">Galaxy A51</div>
-                    <div class="d-why">The phone that introduced me to Samsung&#x27;s ecosystem. Quad camera mid-ranger done right.</div>
-                    <div class="d-desc">One of the world&#x27;s best-selling smartphones of its era. It brought the Infinity-O display and quad-camera versatility to the masses.</div>
+</div>
+</div>
+<div class="hidden-details" style="display:none;">
+<div class="d-brand">SAMSUNG // BEST SELLER</div>
+<div class="d-title">Galaxy A51</div>
+<div class="d-why">The phone that introduced me to Samsung's ecosystem. Quad camera mid-ranger done right.</div>
+<div class="d-desc">One of the best-selling phones of its era, bringing the Infinity-O display and a quad-camera setup to the mid-range.</div>
 <div class="d-spec" data-label="SoC">Exynos 9611 (10nm) | Mali-G72 MP3</div>
 <div class="d-spec" data-label="Display">6.5" Super AMOLED | 1080x2400 | Corning Gorilla Glass 3</div>
 <div class="d-spec" data-label="Camera System">[Main] 48MP | 1/2.0" | f/2.0 | PDAF<br/>
                         [Ultrawide] 12MP | 123° FOV<br/>
                         [Macro] 5MP | f/2.4<br/>
                         [Depth] 5MP | f/2.2</div>
+<div class="d-spec" data-label="Camera Sensors">Main: Samsung ISOCELL GM2 (S5KGM2) / 1/2.0" (48MP, 0.8µm, PDAF); Ultrawide: Samsung S5K3L6 / 1/3.1" (12MP, 123°); Macro: GalaxyCore GC5035 / 1/5.0" (5MP, 40mm); Depth: GalaxyCore GC5035 / 1/5.0" (5MP); Front: Sony IMX616 / 1/2.8" (32MP)</div>
 <div class="d-spec" data-label="Focal Lengths">Native: 12mm / 26mm | Macro module: 25mm (Samsung also describes close-up framing as ~40mm) | Sensor crop: 52mm (2× main)</div>
 <div class="d-spec" data-label="Battery">4000mAh | 15W Fast Charging</div>
 <div class="d-spec" data-label="Feature">Under-display Fingerprint | 3.5mm Headphone Jack</div>
-                </div>
-            </div>
-            <div class="card" data-brand="samsung" data-status="wishlist" data-cat="mobile" data-lot="041" data-chapter="SMARTPHONES" data-name="galaxy z fold 8 ultra samsung · galaxy z ultra samsung // foldable samsung">
-                <div class="lot-number">N&deg; 041</div>
-                <div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
-                <div class="img-box">
-                    <img src="assets/images/samsungzfold8ultra-square-transparent.png" alt="Galaxy Z Fold 8 Ultra">
-                </div>
-                <div class="card-content">
-                    <div class="hallmark">SAMSUNG · GALAXY Z ULTRA</div>
-                    <h3 class="product-name">Galaxy Z Fold 8 Ultra</h3>
-                    <div class="specs">
-<div class="spec-row"><span class="spec-label">Display</span><span class="spec-val">8.0&quot; Dynamic AMOLED 2X</span></div>
+<div class="d-spec" data-label="Build">Glasstic (polycarbonate) 3D curved back | Aluminum frame | 172g | 7.9mm</div></div>
+</div>
+<div class="card" data-brand="samsung" data-cat="mobile" data-chapter="SMARTPHONES" data-lot="041" data-name="galaxy z fold special edition" data-status="wishlist">
+<div class="lot-number">N° 041</div>
+<div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
+<div class="img-box">
+<img alt="Galaxy Z Fold 8 Ultra" decoding="async" height="1254" loading="lazy" src="assets/images/samsungzfold8ultra-square-transparent.png" width="1254"/>
+</div>
+<div class="card-content">
+<div class="hallmark">SAMSUNG · GALAXY Z ULTRA</div>
+<h3 class="product-name">Galaxy Z Fold 8 Ultra</h3>
+<div class="specs">
+<div class="spec-row"><span class="spec-label">Display</span><span class="spec-val">8.0" Dynamic AMOLED 2X</span></div>
 <div class="spec-row"><span class="spec-label">Chip</span><span class="spec-val">Snapdragon 8 Elite Gen 5</span></div>
 <div class="spec-row"><span class="spec-label">Feature</span><span class="spec-val">Flex Titanium / S Pen</span></div>
-                    </div>
-                </div>
-                <div class="hidden-details" style="display:none;">
-                    <div class="d-brand">SAMSUNG // GALAXY Z ULTRA</div>
-                    <div class="d-title">Galaxy Z Fold 8 Ultra</div>
-                    <div class="d-why">A foldable flagship with an 8-inch canvas, thin titanium hardware, and the camera system of an ultra-class phone.</div>
-                    <div class="d-desc">The next ultra foldable is built around a wider, brighter inner display, a strengthened flex hinge, and Snapdragon 8 Elite Gen 5 performance.</div>
-<div class="d-spec" data-label="SoC">Snapdragon 8 Elite Gen 5 For Galaxy | 12GB / 16GB LPDDR5X RAM</div>
-<div class="d-spec" data-label="Inner Display">8.0" Dynamic AMOLED 2X | 1-120Hz LTPO | 3000 nits | Anti-reflection</div>
-<div class="d-spec" data-label="Cover Display">6.5" Dynamic AMOLED 2X | 1-120Hz | 3000 nits</div>
-<div class="d-spec" data-label="Camera System">[Main] 200MP HP2 | 24mm | f/1.7 | Dual Pixel AF | OIS<br/>
-                         [Telephoto] 10MP | 3x Optical Zoom | OIS<br/>
-                         [Ultrawide] 50MP JN3 | 13mm | 123° FOV<br/>
-                         [Selfie] 10MP (Cover) + 10MP (Inner)</div>
-<div class="d-spec" data-label="Focal Lengths">Native: 13mm / 24mm / 67mm | Sensor crop: 48mm (2× main) | 30× Space Zoom is computational reach</div>
-<div class="d-spec" data-label="Build">Flex Titanium | IP48 Water/Dust Resistance</div>
-<div class="d-spec" data-label="Battery">5000mAh | 45W Wired | 20W Wireless</div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="section-wrapper" id="sec-tablet">
-        <div class="chapter-head">
-            <span class="chapter-eyebrow">tablets</span>
-            <h2 class="section-title"><span class="lang-pair"><span class="lang-zh" lang="zh-CN">平板与薄板设备</span><span class="lang-divider" aria-hidden="true"> / </span><span class="lang-en" lang="en">Tablets &amp; slates</span></span><span class="section-count">(5 / 5 PIECES)</span></h2>
-            <div class="chapter-rule"></div>
-        </div>
-        <div class="grid">
-
-            <div class="card" data-brand="apple" data-status="wishlist" data-cat="tablet" data-lot="022" data-chapter="TABLETS &amp; SLATES" data-name="ipad pro 13&quot; apple · creator slate apple pro apple">
-                <div class="lot-number">N&deg; 022</div>
-                <div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
-                <div class="img-box">
-                    <img src="assets/images/ipad-pro-13-camera-right.png" alt="iPad Pro 13&quot;">
-                </div>
-                <div class="card-content">
-                    <div class="hallmark">APPLE · CREATOR SLATE</div>
-                    <h3 class="product-name">iPad Pro 13&quot;</h3>
-                    <div class="specs">
+</div>
+</div>
+<div class="hidden-details" style="display:none;">
+<div class="d-brand">SAMSUNG // GALAXY Z SPECIAL EDITION</div>
+<div class="d-title">Galaxy Z Fold Special Edition</div>
+<div class="d-why">A foldable flagship with an 8-inch canvas, thin titanium hardware, and the camera system of an ultra-class phone.</div>
+<div class="d-desc">Samsung’s thinnest, widest luxury foldable: 10.6mm ultra-slim chassis, 200MP apex camera sensor, 16GB on-device AI RAM, and expansive 8.0-inch main display.</div>
+<div class="d-spec" data-label="SoC">Qualcomm Snapdragon 8 Gen 3 for Galaxy (4nm) | 3.39GHz Cortex-X4</div><div class="d-spec" data-label="Memory">16GB LPDDR5X RAM (顶配，专为 Galaxy AI 扩容)</div><div class="d-spec" data-label="Storage">512GB UFS 4.0 (顶配)</div><div class="d-spec" data-label="Inner Display">8.0" Dynamic AMOLED 2X (20:18 ratio, 2184x1968) | 1-120Hz LTPO | 2600 nits peak | UTG</div><div class="d-spec" data-label="Cover Display">6.5" Dynamic AMOLED 2X (21:9 ratio, 2520x1080) | 1-120Hz LTPO | 2600 nits peak | Gorilla Glass Ceramic</div><div class="d-spec" data-label="Camera System">[Main] 200MP ISOCELL HP2 (1/1.3", f/1.7, OIS) | [Telephoto] 10MP (3x Optical, OIS) | [Ultrawide] 12MP (AF Macro)</div><div class="d-spec" data-label="Camera Sensors">Main: Samsung ISOCELL HP2 / 1/1.3" (200MP, 0.6µm, OIS); 3× Telephoto: Samsung S5K3K1 (10MP, OIS); Ultrawide: 12MP with AF; Cover Front: 10MP</div><div class="d-spec" data-label="Focal Lengths">Native: 12mm / 24mm / 67mm | Sensor crop: 48mm (2× from 200MP) | Space Zoom: up to 30×</div><div class="d-spec" data-label="Battery">4400mAh dual battery | 25W wired fast charge | 15W wireless | Wi-Fi 7</div><div class="d-spec" data-label="Build">Striped patterned craft titanium/glass back | Armor Aluminum frame | IP48 | 236g | 10.6mm folded (4.9mm unfolded)</div><div class="d-spec" data-label="Feature">First 200MP camera in a Samsung foldable | 16GB RAM on-device AI | Wi-Fi 7 | Ultra-wide 21:9 cover screen</div></div>
+</div>
+<div class="card" data-brand="huawei" data-cat="mobile" data-chapter="SMARTPHONES" data-lot="044" data-name="huawei mate 40 pro+ huawei · mate ultimate huawei // kirin 9000 camera system" data-status="wishlist">
+<div class="lot-number">N° 044</div>
+<div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
+<div class="img-box">
+<img alt="Huawei Mate 40 Pro+" decoding="async" height="1445" loading="lazy" src="assets/images/huaweimate40proplus-transparent.png" width="1088"/>
+</div>
+<div class="card-content">
+<div class="hallmark">HUAWEI · MATE ULTIMATE</div>
+<h3 class="product-name">Huawei Mate 40 Pro+</h3>
+<div class="specs">
+<div class="spec-row"><span class="spec-label">SoC</span><span class="spec-val">Kirin 9000 5G</span></div>
+<div class="spec-row"><span class="spec-label">Display</span><span class="spec-val">6.76" 90Hz OLED</span></div>
+<div class="spec-row"><span class="spec-label">Sensor</span><span class="spec-val">1/1.28" IMX700 RYYB · 50MP</span></div>
+</div>
+</div>
+<div class="hidden-details" style="display:none;">
+<div class="d-brand">HUAWEI // MATE ULTIMATE</div>
+<div class="d-title">Huawei Mate 40 Pro+</div>
+<div class="d-why">The Mate 40 series at its most elaborate: a ceramic-backed flagship with a five-camera system built for every focal length.</div>
+<div class="d-desc">Huawei's top Mate 40 model combines the Kirin 9000 5G platform, a 90Hz OLED display, and a five-camera system with dual telephoto lenses.</div>
+<div class="d-spec" data-label="SoC">Kirin 9000 5G (5nm) | Mali-G78 GPU</div>
+<div class="d-spec" data-label="Display">6.76" OLED | 90Hz | 2772×1344 | Horizon Display</div>
+<div class="d-spec" data-label="Camera System">[Main] 50MP Ultra Vision RYYB | OIS<br/>
+                        [Cine Ultrawide] 20MP | 120° FOV<br/>
+                        [Telephoto] 12MP | 3x Optical | OIS<br/>
+                        [SuperZoom] 8MP | 10x Optical-equivalent | OIS<br/>
+                        [Depth] 3D ToF Sensor</div>
+<div class="d-spec" data-label="Camera Sensors">Main: Sony IMX700 Ultra Vision RYYB / 1/1.28" (50MP, 1.22µm / 2.44µm 4-in-1, OIS); Cine Ultrawide: Sony IMX518 / 1/1.54" (20MP, 14mm, free-form); 3× Telephoto: Sony IMX351 / 1/3.6" (12MP, 70mm, OIS); 10× Periscope: Sony IMX520 / 1/3.6" (8MP, 240mm, OIS); 3D ToF; Front: 13MP / 1/3.06" + 3D ToF</div>
+<div class="d-spec" data-label="Focal Lengths">Native: 18mm / 23mm / 70mm / 240mm | Sensor crop: 46mm (2× main)</div>
+<div class="d-spec" data-label="Imaging Tech">HUAWEI XD Fusion Pro | Leica color science</div>
+<div class="d-spec" data-label="Battery &amp; Charging">4400mAh | 66W Wired | 50W Wireless</div>
+<div class="d-spec" data-label="Build">Ceramic Back | IP68 | 234g</div>
+</div>
+</div>
+<div class="card" data-brand="xiaomi" data-cat="mobile" data-chapter="SMARTPHONES" data-lot="054" data-name="mi 10 pro xiaomi · mi flagship xiaomi camera phone 108mp 1/1.33 sensor" data-status="wishlist">
+<div class="lot-number">N° 054</div>
+<div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
+<div class="img-box">
+<img alt="Mi 10 Pro" decoding="async" height="937" loading="lazy" src="assets/images/mi10-pro-transparent.png" width="672"/>
+</div>
+<div class="card-content">
+<div class="hallmark">XIAOMI · MI FLAGSHIP</div>
+<h3 class="product-name">Mi 10 Pro</h3>
+<div class="specs">
+<div class="spec-row"><span class="spec-label">SoC</span><span class="spec-val">Snapdragon 865</span></div>
+<div class="spec-row"><span class="spec-label">Display</span><span class="spec-val">6.67" OLED · 90Hz</span></div>
+<div class="spec-row"><span class="spec-label">Sensor</span><span class="spec-val">1/1.33" HMX · 108MP OIS</span></div>
+</div>
+</div>
+<div class="hidden-details" style="display:none;">
+<div class="d-brand">XIAOMI // MI FLAGSHIP</div>
+<div class="d-title">Mi 10 Pro</div>
+<div class="d-why">A Snapdragon 865 flagship built around a 108MP primary sensor and a four-camera zoom stack.</div>
+<div class="d-desc">A Snapdragon 865-era imaging flagship with a 108MP primary sensor and a four-camera zoom stack.</div>
+<div class="d-spec" data-label="SoC">Snapdragon 865 | 8GB LPDDR5 + 256GB UFS 3.0</div>
+<div class="d-spec" data-label="Display">6.67" OLED | 2340×1080 FHD+ | 90Hz</div>
+<div class="d-spec" data-label="Camera System">[Main] 108MP primary | f/1.69 | OIS | 8P lens<br/>
+                        [Telephoto] 8MP | 10× hybrid zoom | OIS<br/>
+                        [Portrait] 12MP | 2× optical zoom<br/>
+                        [Ultrawide] 20MP | up to 117° FOV<br/>
+                        [Front] 20MP</div>
+<div class="d-spec" data-label="Camera Sensors">Main: Samsung ISOCELL Bright HMX (S5KHMX) / 1/1.33" (108MP, 0.8µm / 1.6µm 4-in-1, 8P, OIS); 10× Hybrid Tele: OmniVision OV08A10 / 1/4.4" (8MP, OIS); 2× Portrait: Samsung S5K2L7 / 1/2.56" (12MP, 50mm, Dual Pixel AF); Ultrawide: Sony IMX350 / 1/2.78" (20MP, 117°); Front: Samsung S5K3T2 / 1/3.4" (20MP)</div>
+<div class="d-spec" data-label="Battery &amp; Charging">4500mAh typical | 50W wired | 30W wireless</div>
+<div class="d-spec" data-label="Focal Lengths">Native: 12mm / 25mm / 94mm (3.7×) | Sensor crop: 50mm (2×)</div>
+<div class="d-spec" data-label="Build">208g | Glass Back</div>
+</div>
+</div>
+<div class="card" data-brand="xiaomi" data-cat="mobile" data-chapter="SMARTPHONES" data-lot="050" data-name="mi cc9 pro xiaomi mi note 10 pro xiaomi · cc series 108mp samsung hmx camera phone" data-status="wishlist">
+<div class="lot-number">N° 050</div>
+<div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
+<div class="img-box">
+<img alt="Xiaomi Mi CC9 Pro / Mi Note 10 Pro" decoding="async" height="525" loading="lazy" src="assets/images/mi-note-10-pro-transparent.png" width="401"/>
+</div>
+<div class="card-content">
+<div class="hallmark">XIAOMI · CC SERIES</div>
+<h3 class="product-name">Mi CC9 Pro</h3>
+<div class="specs">
+<div class="spec-row"><span class="spec-label">SoC</span><span class="spec-val">Snapdragon 730G</span></div>
+<div class="spec-row"><span class="spec-label">Display</span><span class="spec-val">6.47" AMOLED · curved</span></div>
+<div class="spec-row"><span class="spec-label">Sensor</span><span class="spec-val">108MP Samsung HMX · 1/1.33" · OIS</span></div>
+</div>
+</div>
+<div class="hidden-details" style="display:none;">
+<div class="d-brand">XIAOMI // CC SERIES</div>
+<div class="d-title">Mi CC9 Pro / Mi Note 10 Pro</div>
+<div class="d-why">The camera-first CC-series phone that brought a 108MP, five-camera stack to Xiaomi's mainstream line.</div>
+<div class="d-desc">The China-market Mi CC9 Pro is sold globally as the Mi Note 10 Pro — curved AMOLED body, five camera focal lengths.</div>
+<div class="d-spec" data-label="SoC">Qualcomm Snapdragon 730G (8nm) | Adreno 618 | 8GB LPDDR4X</div>
+<div class="d-spec" data-label="Display">6.47" curved AMOLED | 2340×1080 FHD+ | HDR10 | Gorilla Glass 5</div>
+<div class="d-spec" data-label="Camera System">[Main] 108MP | f/1.69 | OIS<br/>
+                        [Periscope] 8MP | 5× optical | OIS<br/>
+                        [Portrait] 12MP | 2× optical<br/>
+                        [Ultrawide] 20MP | 117° FOV<br/>
+                        [Macro] 2MP | [Front] 32MP</div>
+<div class="d-spec" data-label="Camera Sensors">Main: Samsung ISOCELL Bright HMX (S5KHMX) / 1/1.33" (108MP, 0.8µm / 1.6µm 4-in-1, 4-axis OIS); 5× Telephoto: OmniVision OV08A10 / 1/4.4" (5MP / 8MP crop, 4-axis OIS); 2× Portrait: Samsung S5K2L7 / 1/2.56" (12MP, 50mm, Dual Pixel AF); Ultrawide: Sony IMX350 / 1/2.8" (20MP, 117°); Macro: GalaxyCore GC02M1 / 1/5.0" (2MP); Front: Samsung S5KGD1 / 1/2.8" (32MP)</div>
+<div class="d-spec" data-label="Battery &amp; Charging">5260mAh typical | 30W wired fast charging</div>
+<div class="d-spec" data-label="Focal Lengths">Native: 12mm / 25mm / 50mm / 94mm / 125mm (5×)</div>
+<div class="d-spec" data-label="Build">208g | curved glass front/back | 3.5mm headphone jack</div>
+</div>
+</div>
+<div class="card" data-brand="oppo" data-cat="mobile" data-chapter="SMARTPHONES" data-lot="046" data-name="oppo find x9 ultra oppo · find ultra camera flagship 200mp sony sensor 1/1.12" data-status="wishlist">
+<div class="lot-number">N° 046</div>
+<div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
+<div class="img-box">
+<img alt="OPPO Find X9 Ultra" decoding="async" height="1254" loading="lazy" src="assets/images/oppo-find-x9-ultra-gpt-image-2-transparent.png" width="1254"/>
+</div>
+<div class="card-content">
+<div class="hallmark">OPPO · FIND ULTRA</div>
+<h3 class="product-name">Find X9 Ultra</h3>
+<div class="specs">
+<div class="spec-row"><span class="spec-label">SoC</span><span class="spec-val">Snapdragon 8 Elite Gen 5</span></div>
+<div class="spec-row"><span class="spec-label">Display</span><span class="spec-val">6.82" QHD+ · 1–120Hz</span></div>
+<div class="spec-row"><span class="spec-label">Sensor</span><span class="spec-val">200MP · 1/1.12" Sony</span></div>
+</div>
+</div>
+<div class="hidden-details" style="display:none;">
+<div class="d-brand">OPPO // FIND ULTRA</div>
+<div class="d-title">Find X9 Ultra</div>
+<div class="d-why">An all-focal-length camera flagship built around dual 200MP cameras and a 10× periscope.</div>
+<div class="d-desc">A Hasselblad-tuned camera flagship with dual 200MP sensors and a 10x periscope telephoto.</div>
+<div class="d-spec" data-label="SoC">Snapdragon 8 Elite Gen 5 | 12GB LPDDR5X + 512GB UFS 4.1</div>
+<div class="d-spec" data-label="Display">6.82" AMOLED | QHD+ 3168×1440 | adaptive 1–120Hz (144Hz in supported games)</div>
+<div class="d-spec" data-label="Camera System">[Main] 200MP wide | f/1.5 | 2-axis OIS<br/>
+                        [Portrait Telephoto] 200MP | 3× optical | f/2.2 | 2-axis OIS<br/>
+                        [Ultra Telephoto] 50MP | 10× optical | f/3.5 | 2-axis OIS<br/>
+                        [Ultrawide] 50MP | 123° FOV | f/2.0<br/>
+                        [Monochrome] 3.2MP | [Front] 50MP AF</div>
+<div class="d-spec" data-label="Camera Sensors">Main: Sony LYTIA 900 / 1/1.12" custom (200MP, f/1.5, 2-axis OIS); 3× Portrait Tele: Sony / 1/1.28" (200MP, 2-axis OIS); 10× Tele: Sony / 1/2.75" (50MP, OIS); Ultrawide: Sony / 1/1.95" (50MP, 14mm)</div>
+<div class="d-spec" data-label="Battery &amp; Charging">7050mAh typical | 100W SUPERVOOC wired | 50W AIRVOOC wireless</div>
+<div class="d-spec" data-label="Focal Lengths">Native: 14mm / 23mm / 65mm / 135mm</div>
+<div class="d-spec" data-label="Build">IP68/IP69 | ~225g</div>
+</div>
+</div>
+<div class="card" data-brand="vivo" data-cat="mobile" data-chapter="SMARTPHONES" data-lot="047" data-name="vivo x70 pro vivo · x70 pro camera flagship vivo sony imx766v gimbal sensor" data-status="wishlist">
+<div class="lot-number">N° 047</div>
+<div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
+<div class="img-box">
+<img alt="vivo X70 Pro" decoding="async" height="1254" loading="lazy" src="assets/images/vivo-x70-pro-gpt-image-2-transparent.png" width="1254"/>
+</div>
+<div class="card-content">
+<div class="hallmark">VIVO · X SERIES</div>
+<h3 class="product-name">X70 Pro</h3>
+<div class="specs">
+<div class="spec-row"><span class="spec-label">SoC</span><span class="spec-val">Dimensity 1200-vivo</span></div>
+<div class="spec-row"><span class="spec-label">Display</span><span class="spec-val">6.56" AMOLED · 120Hz</span></div>
+<div class="spec-row"><span class="spec-label">Sensor</span><span class="spec-val">1/1.56" IMX766V · 50MP Gimbal</span></div>
+</div>
+</div>
+<div class="hidden-details" style="display:none;">
+<div class="d-brand">VIVO // X SERIES</div>
+<div class="d-title">X70 Pro</div>
+<div class="d-why">A ZEISS-coated camera flagship whose gimbal-stabilized main sensor is the defining feature.</div>
+<div class="d-desc">A ZEISS-tuned camera flagship built around a gimbal-stabilized main sensor.</div>
+<div class="d-spec" data-label="SoC">MediaTek Dimensity 1200-vivo | 12GB + 256GB</div>
+<div class="d-spec" data-label="Display">6.56" E5 AMOLED | 2376×1080 FHD+ | 120Hz</div>
+<div class="d-spec" data-label="Camera System">[Main] 50MP Ultra-Sensing Gimbal | f/1.75 | ZEISS T* coating<br/>
+                        [Portrait] 12MP | 50mm equivalent | f/1.98<br/>
+                        [Ultrawide] 12MP | f/2.2<br/>
+                        [Periscope] 8MP OIS | f/3.4<br/>
+                        [Front] 32MP | f/2.45</div>
+<div class="d-spec" data-label="Camera Sensors">Main: Sony IMX766V / 1/1.56" (50MP, 1.0µm / 2.0µm, Micro-Gimbal OIS, ZEISS T*); Portrait: Sony IMX663 / 1/2.93" (12MP, 50mm, Dual Pixel AF); Ultrawide: Samsung S5K3L6 / 1/3.1" (12MP, 116°); 5× Periscope: OmniVision OV08A10 / 1/4.4" (8MP, 5× optical / 60× zoom, OIS); Front: Samsung S5KGD2 / 1/2.8" (32MP)</div>
+<div class="d-spec" data-label="Battery &amp; Charging">4450mAh typical | 44W vivo FlashCharge</div>
+<div class="d-spec" data-label="Focal Lengths">Native: 14mm / 23mm / 50mm | ZEISS T* coatings</div>
+<div class="d-spec" data-label="Build">IP68 | 185g | Fluorite AG Glass</div>
+</div>
+</div>
+<div class="card" data-brand="oneplus" data-cat="mobile" data-chapter="SMARTPHONES" data-lot="048" data-name="oneplus 9 pro oneplus · hasselblad flagship oneplus sony imx789 imx766 sensor" data-status="wishlist">
+<div class="lot-number">N° 048</div>
+<div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
+<div class="img-box">
+<img alt="OnePlus 9 Pro" decoding="async" height="1254" loading="lazy" src="assets/images/oneplus-9-pro-gpt-image-2-transparent.png" width="1254"/>
+</div>
+<div class="card-content">
+<div class="hallmark">ONEPLUS · PRO FLAGSHIP</div>
+<h3 class="product-name">OnePlus 9 Pro</h3>
+<div class="specs">
+<div class="spec-row"><span class="spec-label">SoC</span><span class="spec-val">Snapdragon 888 5G</span></div>
+<div class="spec-row"><span class="spec-label">Display</span><span class="spec-val">6.7" LTPO OLED · 120Hz</span></div>
+<div class="spec-row"><span class="spec-label">Sensor</span><span class="spec-val">Sony IMX789 · 48MP · 1/1.43"</span></div>
+</div>
+</div>
+<div class="hidden-details" style="display:none;">
+<div class="d-brand">ONEPLUS // PRO FLAGSHIP</div>
+<div class="d-title">OnePlus 9 Pro</div>
+<div class="d-why">A Hasselblad-tuned flagship with a custom Sony main sensor and a large IMX766 ultrawide.</div>
+<div class="d-desc">A Hasselblad-tuned flagship with a custom Sony IMX789 main sensor and an IMX766 ultrawide.</div>
+<div class="d-spec" data-label="SoC">Snapdragon 888 5G | 12GB LPDDR5 + 256GB UFS 3.1</div>
+<div class="d-spec" data-label="Display">6.7" Fluid Display 2.0 | LTPO | QHD+ 3216×1440 | Smart 1–120Hz</div>
+<div class="d-spec" data-label="Camera System">[Main] 48MP Sony IMX789 | 23mm | f/1.8 | OIS<br/>
+                        [Ultrawide] 50MP Sony IMX766 | 14mm | f/2.2 | Freeform lens<br/>
+                        [Telephoto] 8MP | 3.3× | 77mm | OIS<br/>
+                        [Mono] 2MP | [Front] 16MP</div>
+<div class="d-spec" data-label="Camera Sensors">Main: Sony IMX789 / 1/1.43" (48MP, 1.12µm, 23mm, OIS, Omnidirectional PDAF); Ultrawide: Sony IMX766 / 1/1.56" (50MP, 14mm, Freeform); 3.3× Telephoto: OmniVision OV08A10 / 1/4.4" (8MP, 77mm, OIS); Monochrome: GalaxyCore GC02M1B / 1/5.0" (2MP); Front: Sony IMX471 / 1/3.06" (16MP)</div>
+<div class="d-spec" data-label="Battery &amp; Charging">4500mAh | 65W Warp Charge wired | 50W Warp Charge wireless</div>
+<div class="d-spec" data-label="Focal Lengths">Native: 14mm / 23mm / 77mm | Freeform ultrawide lens</div>
+<div class="d-spec" data-label="Build">197g | Morning Mist / Pine Green</div>
+</div>
+</div>
+<div class="card" data-brand="samsung" data-cat="mobile" data-chapter="SMARTPHONES" data-lot="049" data-name="samsung galaxy a72 samsung · galaxy a series samsung midrange 64mp ois camera sensor" data-status="wishlist">
+<div class="lot-number">N° 049</div>
+<div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
+<div class="img-box">
+<img alt="Samsung Galaxy A72" decoding="async" height="1445" loading="lazy" src="assets/images/samsung-galaxy-a72-gpt-image-2-transparent.png" width="1088"/>
+</div>
+<div class="card-content">
+<div class="hallmark">SAMSUNG · GALAXY A SERIES</div>
+<h3 class="product-name">Galaxy A72</h3>
+<div class="specs">
+<div class="spec-row"><span class="spec-label">SoC</span><span class="spec-val">Snapdragon 720G</span></div>
+<div class="spec-row"><span class="spec-label">Display</span><span class="spec-val">6.7" Super AMOLED · 90Hz</span></div>
+<div class="spec-row"><span class="spec-label">Sensor</span><span class="spec-val">1/1.7" IMX682 · 64MP OIS</span></div>
+</div>
+</div>
+<div class="hidden-details" style="display:none;">
+<div class="d-brand">SAMSUNG // GALAXY A SERIES</div>
+<div class="d-title">Galaxy A72</div>
+<div class="d-why">A practical Galaxy A-series camera phone with OIS, 3× telephoto, and a large 5000mAh battery.</div>
+<div class="d-desc">A practical Galaxy A-series camera phone with OIS, a 3x telephoto lens, and a 5000mAh battery.</div>
+<div class="d-spec" data-label="SoC">Qualcomm Snapdragon 720G (SDM720G) | octa-core 2×2.3GHz + 6×1.8GHz | 6/8GB + 128/256GB</div>
+<div class="d-spec" data-label="Display">6.7" FHD+ Super AMOLED Infinity-O | 1080×2400 | 90Hz | 800 nits</div>
+<div class="d-spec" data-label="Camera System">[Main] 64MP OIS AF | f/1.8 | 0.8µm<br/>
+                        [Ultrawide] 12MP | f/2.2 | 1.12µm<br/>
+                        [Telephoto] 8MP AF | 3× optical | f/2.4 | 1.0µm<br/>
+                        [Macro] 5MP | f/2.4 | 1.12µm<br/>
+                        [Front] 32MP | f/2.2 | 0.8µm</div>
+<div class="d-spec" data-label="Camera Sensors">Main: Sony IMX682 (or Samsung GW1) / 1/1.7" (64MP, 0.8µm / 1.6µm 4-in-1, OIS); 3× Telephoto: SK Hynix Hi-847 / 1/4.0" (8MP, 3× optical, OIS); Ultrawide: 1/3.0" (12MP, 123°); Macro: 1/5.0" (5MP); Front: Sony IMX616 / 1/2.8" (32MP)</div>
+<div class="d-spec" data-label="Battery &amp; Charging">5000mAh typical | 25W fast charging</div>
+<div class="d-spec" data-label="Focal Lengths">Native: 12mm / 26mm / 52mm (2×) / 64mm (2.4× main crop)</div>
+<div class="d-spec" data-label="Build">203g | Plastic (Glasstic) | IP67</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section-wrapper" id="sec-tablet">
+<div class="chapter-head">
+<span class="chapter-eyebrow">tablets</span>
+<h2 class="section-title"><span class="lang-pair"><span class="lang-zh" lang="zh-CN">平板与薄板设备</span><span aria-hidden="true" class="lang-divider"> / </span><span class="lang-en" lang="en">Tablets &amp; slates</span></span><span class="section-count">(6 / 6 PIECES)</span></h2>
+<div class="chapter-rule"></div>
+</div>
+<div class="grid">
+<div class="card" data-brand="apple" data-cat="tablet" data-chapter="TABLETS &amp; SLATES" data-lot="022" data-name='ipad pro 13" apple · creator slate apple pro apple' data-status="wishlist">
+<div class="lot-number">N° 022</div>
+<div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
+<div class="img-box">
+<img alt='iPad Pro 13"' decoding="async" height="1500" loading="lazy" src="assets/images/ipad-pro-13-enhanced.png" width="2000"/>
+</div>
+<div class="card-content">
+<div class="hallmark">APPLE · CREATOR SLATE</div>
+<h3 class="product-name">iPad Pro 13"</h3>
+<div class="specs">
 <div class="spec-row"><span class="spec-label">Chip</span><span class="spec-val">Apple M4</span></div>
 <div class="spec-row"><span class="spec-label">Display</span><span class="spec-val">Tandem OLED</span></div>
 <div class="spec-row"><span class="spec-label">Accessory</span><span class="spec-val">Apple Pencil Pro</span></div>
-                    </div>
-                </div>
-                <div class="hidden-details" style="display:none;">
-                    <div class="d-brand">APPLE // CREATOR SLATE</div>
-                    <div class="d-title">iPad Pro 13&quot; (M4)</div>
-                    <div class="d-why"></div>
-                    <div class="d-desc">Impossibly thin. Outrageously powerful. The first Apple device to feature the M4 chip and Tandem OLED technology.</div>
-<div class="d-spec" data-label="SoC">Apple M4 | 9/10-Core CPU | 10-Core GPU | Hardware Ray Tracing</div>
-<div class="d-spec" data-label="Display">13" Ultra Retina XDR | Tandem OLED | 1000 nits full | 1600 nits peak</div>
-<div class="d-spec" data-label="Design">5.1mm thickness (Thinnest Apple product ever) | 579g</div>
-<div class="d-spec" data-label="Accessories">Apple Pencil Pro (Squeeze &amp; Barrel Roll) | Magic Keyboard (Aluminum)</div>
-                </div>
-            </div>
-            <div class="card" data-brand="apple" data-status="wishlist" data-cat="tablet" data-lot="023" data-chapter="TABLETS &amp; SLATES" data-name="ipad mini (a17 pro) apple · gaming &amp; reading apple portable apple">
-                <div class="lot-number">N&deg; 023</div>
-                <div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
-                <div class="img-box">
-                    <img src="assets/images/ipad-mini-purple.png" alt="iPad mini (A17 Pro)">
-                </div>
-                <div class="card-content">
-                    <div class="hallmark">APPLE · GAMING &amp; READING</div>
-                    <h3 class="product-name">iPad mini (A17 Pro)</h3>
-                    <div class="specs">
+</div>
+</div>
+<div class="hidden-details" style="display:none;">
+<div class="d-brand">APPLE // CREATOR SLATE</div>
+<div class="d-title">iPad Pro 13" (M4)</div>
+<div class="d-why"></div>
+<div class="d-desc">First Apple device with the M4 chip and a Tandem OLED display. 5.1mm thick.</div>
+<div class="d-spec" data-label="SoC">Apple M4 | 10-Core CPU (4P + 6E) | 10-Core GPU | Hardware Ray Tracing | 16-Core Neural Engine (38 TOPS)</div><div class="d-spec" data-label="Memory">16GB Unified Memory (顶配)</div><div class="d-spec" data-label="Storage">2TB PCIe SSD with Nano-texture display glass option (顶配)</div><div class="d-spec" data-label="Display">13" Ultra Retina XDR | Tandem OLED (2752x2064) | 120Hz ProMotion | 1000 nits full / 1600 nits peak HDR | Nano-texture option</div><div class="d-spec" data-label="Camera System">Rear: 12MP Wide (f/1.8) + LiDAR Scanner | Front: Landscape 12MP Ultra Wide (Center Stage)</div><div class="d-spec" data-label="Battery">Built-in 38.99Wh rechargeable lithium-polymer | Up to 10 hours web/video</div><div class="d-spec" data-label="Connectivity">Thunderbolt / USB 4 (up to 40Gb/s) | Wi-Fi 6E (802.11ax) | 5G Sub-6 | Bluetooth 5.3</div><div class="d-spec" data-label="Build">100% recycled aluminum unibody | 5.1mm thickness (Thinnest Apple product) | 579g (Wi-Fi) / 582g (Cellular)</div><div class="d-spec" data-label="Accessories">Apple Pencil Pro (Squeeze, Barrel Roll, Haptic Feedback) | Magic Keyboard for iPad Pro (Aluminum palm rest)</div></div>
+</div>
+<div class="card" data-brand="apple" data-cat="tablet" data-chapter="TABLETS &amp; SLATES" data-lot="023" data-name="ipad mini (a17 pro) apple · gaming &amp; reading apple portable apple" data-status="wishlist">
+<div class="lot-number">N° 023</div>
+<div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
+<div class="img-box">
+<img alt="iPad mini (A17 Pro)" decoding="async" height="1688" loading="lazy" src="assets/images/ipad-mini-enhanced.png" width="2250"/>
+</div>
+<div class="card-content">
+<div class="hallmark">APPLE · GAMING &amp; READING</div>
+<h3 class="product-name">iPad mini (A17 Pro)</h3>
+<div class="specs">
 <div class="spec-row"><span class="spec-label">Chip</span><span class="spec-val">A17 Pro</span></div>
-<div class="spec-row"><span class="spec-label">Display</span><span class="spec-val">8.3&quot; Liquid Retina</span></div>
+<div class="spec-row"><span class="spec-label">Display</span><span class="spec-val">8.3" Liquid Retina</span></div>
 <div class="spec-row"><span class="spec-label">Portability</span><span class="spec-val">Ultra-light 293g</span></div>
-                    </div>
-                </div>
-                <div class="hidden-details" style="display:none;">
-                    <div class="d-brand">APPLE // GAMING &amp; READING</div>
-                    <div class="d-title">iPad mini (A17 Pro)</div>
-                    <div class="d-why">A17 Pro chip in the smallest package - this fits in a jacket pocket and benchmarks like a laptop. Unreal.</div>
-                    <div class="d-desc">The ultimate one-handed powerhouse. Upgraded with the A17 Pro chip for console-level gaming on the go.</div>
-<div class="d-spec" data-label="SoC">A17 Pro (3nm) | Hardware-accelerated Ray Tracing</div>
-<div class="d-spec" data-label="Display">8.3" Liquid Retina | True Tone | P3 Wide Color</div>
-<div class="d-spec" data-label="Connectivity">Wi-Fi 6E | USB-C (10Gbps)</div>
-<div class="d-spec" data-label="Compatibility">Supports Apple Pencil Pro</div>
-                </div>
-            </div>
-            <div class="card" data-brand="samsung" data-status="wishlist" data-cat="tablet" data-lot="024" data-chapter="TABLETS &amp; SLATES" data-name="galaxy tab s10 ultra samsung · galaxy tab galaxy ultra samsung">
-                <div class="lot-number">N&deg; 024</div>
-                <div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
-                <div class="img-box">
-                    <img src="assets/images/galaxy-tab-s11-ultra.png" alt="Galaxy Tab S10 Ultra">
-                </div>
-                <div class="card-content">
-                    <div class="hallmark">SAMSUNG · GALAXY TAB</div>
-                    <h3 class="product-name">Galaxy Tab S10 Ultra</h3>
-                    <div class="specs">
-<div class="spec-row"><span class="spec-label">Display</span><span class="spec-val">14.6&quot; Dynamic AMOLED</span></div>
+</div>
+</div>
+<div class="hidden-details" style="display:none;">
+<div class="d-brand">APPLE // GAMING &amp; READING</div>
+<div class="d-title">iPad mini (A17 Pro)</div>
+<div class="d-why">A17 Pro in the smallest form factor — fits in a jacket pocket and benchmarks close to a laptop.</div>
+<div class="d-desc">Upgraded with the A17 Pro chip, enough for console-level gaming on a device this size.</div>
+<div class="d-spec" data-label="SoC">Apple A17 Pro (3nm) | 6-Core CPU (2P + 4E) | 5-Core GPU | Hardware-accelerated Ray Tracing | 16-Core Neural Engine</div><div class="d-spec" data-label="Memory">8GB Unified Memory (顶配，支持 Apple Intelligence)</div><div class="d-spec" data-label="Storage">512GB PCIe SSD (顶配)</div><div class="d-spec" data-label="Display">8.3" Liquid Retina (2266x1488, 326 PPI) | 500 nits | P3 Wide Color | True Tone | Anti-reflective coating</div><div class="d-spec" data-label="Camera System">Rear: 12MP Wide (f/1.8, Smart HDR 4) | Front: 12MP Ultra Wide (Landscape, Center Stage)</div><div class="d-spec" data-label="Battery">Built-in 19.3Wh lithium-polymer | Up to 10 hours web/video | 20W USB-C adapter</div><div class="d-spec" data-label="Connectivity">USB-C (USB 3, up to 10Gb/s) | Wi-Fi 6E | 5G Sub-6 | Bluetooth 5.3</div><div class="d-spec" data-label="Build">100% recycled aluminum enclosure | 195.4 x 134.8 x 6.3mm | 293g (Wi-Fi) / 297g (Cellular)</div><div class="d-spec" data-label="Compatibility">Supports Apple Pencil Pro (Squeeze &amp; Barrel roll) and Apple Pencil (USB-C)</div></div>
+</div>
+<div class="card" data-brand="samsung" data-cat="tablet" data-chapter="TABLETS &amp; SLATES" data-lot="024" data-name="galaxy tab s10 ultra samsung · galaxy tab galaxy ultra samsung" data-status="wishlist">
+<div class="lot-number">N° 024</div>
+<div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
+<div class="img-box">
+<img alt="Galaxy Tab S10 Ultra" decoding="async" height="1024" loading="lazy" src="assets/images/galaxy-tab-s11-ultra.png" width="1536"/>
+</div>
+<div class="card-content">
+<div class="hallmark">SAMSUNG · GALAXY TAB</div>
+<h3 class="product-name">Galaxy Tab S10 Ultra</h3>
+<div class="specs">
+<div class="spec-row"><span class="spec-label">Display</span><span class="spec-val">14.6" Dynamic AMOLED</span></div>
 <div class="spec-row"><span class="spec-label">Chip</span><span class="spec-val">Dimensity 9300+</span></div>
 <div class="spec-row"><span class="spec-label">Feature</span><span class="spec-val">IP68 &amp; Built-in S-Pen</span></div>
-                    </div>
-                </div>
-                <div class="hidden-details" style="display:none;">
-                    <div class="d-brand">SAMSUNG // GALAXY TAB</div>
-                    <div class="d-title">Galaxy Tab S10 Ultra</div>
-                    <div class="d-why">That massive 14.6&quot; AMOLED + 16GB RAM is basically a desktop replacement that bends. The S-Pen integration is chef&#x27;s kiss.</div>
-                    <div class="d-desc">A colossal 14.6-inch canvas for creators. The king of Android tablets with IP68 water resistance.</div>
-<div class="d-spec" data-label="SoC">MediaTek Dimensity 9300+ | Advanced AI Processing</div>
-<div class="d-spec" data-label="Display">14.6" Dynamic AMOLED 2X | 120Hz | Anti-Reflection Coating</div>
-<div class="d-spec" data-label="Features">IP68 Water &amp; Dust Resistance | Included S-Pen (IP68)</div>
-<div class="d-spec" data-label="Multitasking">Samsung DeX | Multi-Active Window</div>
-                </div>
-            </div>
-            <div class="card" data-brand="samsung" data-status="wishlist" data-cat="tablet" data-lot="025" data-chapter="TABLETS &amp; SLATES" data-name="galaxy tab s10+ samsung · galaxy tab plus the sweet spot samsung">
-                <div class="lot-number">N&deg; 025</div>
-                <div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
-                <div class="img-box">
-                    <img src="assets/images/galaxy-tab-s10-plus.png" alt="Galaxy Tab S10+">
-                </div>
-                <div class="card-content">
-                    <div class="hallmark">SAMSUNG · GALAXY TAB PLUS</div>
-                    <h3 class="product-name">Galaxy Tab S10+</h3>
-                    <div class="specs">
-<div class="spec-row"><span class="spec-label">Display</span><span class="spec-val">12.4&quot; AMOLED 120Hz</span></div>
+</div>
+</div>
+<div class="hidden-details" style="display:none;">
+<div class="d-brand">SAMSUNG // GALAXY TAB</div>
+<div class="d-title">Galaxy Tab S10 Ultra</div>
+<div class="d-why">14.6" AMOLED plus 16GB RAM — close to a desktop replacement, and the S-Pen integration is done well.</div>
+<div class="d-desc">A 14.6-inch display aimed at creators. The largest Android tablet, with IP68 water resistance.</div>
+<div class="d-spec" data-label="SoC">MediaTek Dimensity 9300+ (4nm) | 1x 3.4GHz Cortex-X4 + 3x 2.85GHz Cortex-X4 + 4x 2.0GHz Cortex-A720 | Immortalis-G720 GPU</div><div class="d-spec" data-label="Memory">16GB LPDDR5X RAM (顶配)</div><div class="d-spec" data-label="Storage">1TB UFS 4.0 (MicroSD expandable up to 1.5TB) (顶配)</div><div class="d-spec" data-label="Display">14.6" Dynamic AMOLED 2X (2960x1848, 16:10) | 120Hz | 930 nits peak | Anti-Reflection Coating</div><div class="d-spec" data-label="Camera System">Rear: 13MP Wide + 8MP Ultra-wide | Front: Dual 12MP Wide + 12MP Ultra-wide</div><div class="d-spec" data-label="Battery">11,200mAh | 45W Super Fast Charging 2.0</div><div class="d-spec" data-label="Build">Enhanced Armor Aluminum unibody | IP68 water &amp; dust resistance | 326.4 x 208.6 x 5.4mm | 718g (Wi-Fi) / 723g (5G)</div><div class="d-spec" data-label="Connectivity">Wi-Fi 7 | 5G Sub-6 | USB Type-C 3.2 Gen 1 with DisplayPort Out | Pogo Pin keyboard connection</div><div class="d-spec" data-label="Features">Galaxy AI Suite (Circle to Search, Note Assist, Sketch to Image) | Included IP68 S-Pen | Samsung DeX</div></div>
+</div>
+<div class="card" data-brand="samsung" data-cat="tablet" data-chapter="TABLETS &amp; SLATES" data-lot="025" data-name="galaxy tab s10+ samsung · galaxy tab plus the sweet spot samsung" data-status="wishlist">
+<div class="lot-number">N° 025</div>
+<div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
+<div class="img-box">
+<img alt="Galaxy Tab S10+" decoding="async" height="776" loading="lazy" src="assets/images/galaxy-tab-s10-plus.png" width="1164"/>
+</div>
+<div class="card-content">
+<div class="hallmark">SAMSUNG · GALAXY TAB PLUS</div>
+<h3 class="product-name">Galaxy Tab S10+</h3>
+<div class="specs">
+<div class="spec-row"><span class="spec-label">Display</span><span class="spec-val">12.4" AMOLED 120Hz</span></div>
 <div class="spec-row"><span class="spec-label">Chip</span><span class="spec-val">Dimensity 9300+</span></div>
 <div class="spec-row"><span class="spec-label">Feature</span><span class="spec-val">S-Pen / Anti-Reflective</span></div>
-                    </div>
-                </div>
-                <div class="hidden-details" style="display:none;">
-                    <div class="d-brand">SAMSUNG // GALAXY TAB PLUS</div>
-                    <div class="d-title">Galaxy Tab S10+</div>
-                    <div class="d-why">The balanced one. Just enough screen, just enough power. My ideal couch + coffee setup.</div>
-                    <div class="d-desc">The absolute sweet spot of the Android tablet world. Offers a massive, gorgeous 12.4-inch display without the unwieldy size of the Ultra.</div>
-<div class="d-spec" data-label="SoC">MediaTek Dimensity 9300+ | Advanced AI Processing Engine</div>
-<div class="d-spec" data-label="Display">12.4" Dynamic AMOLED 2X | 120Hz | Anti-Reflection Coating</div>
-<div class="d-spec" data-label="Battery">10,090 mAh | 45W Super Fast Charging</div>
-<div class="d-spec" data-label="Features">IP68 Water/Dust Resistance | Included S-Pen (0.7mm tip, 4096 pressure levels)</div>
-<div class="d-spec" data-label="Audio">Quad Speakers Sound by AKG | Dolby Atmos</div>
-                </div>
-            </div>
-            <div class="card" data-brand="apple" data-status="wishlist" data-cat="tablet" data-lot="045" data-chapter="TABLETS &amp; SLATES" data-name="ipad air 11&quot; apple · everyday slate apple portable">
-                <div class="lot-number">N&deg; 045</div>
-                <div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
-                <div class="img-box">
-                    <img src="assets/images/ipad-air-11-transparent.png" alt="iPad Air 11-inch">
-                </div>
-                <div class="card-content">
-                    <div class="hallmark">APPLE · EVERYDAY SLATE</div>
-                    <h3 class="product-name">iPad Air 11-inch</h3>
-                    <div class="specs">
+</div>
+</div>
+<div class="hidden-details" style="display:none;">
+<div class="d-brand">SAMSUNG // GALAXY TAB PLUS</div>
+<div class="d-title">Galaxy Tab S10+</div>
+<div class="d-why">The balanced one. Just enough screen, just enough power. My ideal couch + coffee setup.</div>
+<div class="d-desc">A 12.4-inch display without the bulk of the Ultra — the size I'd actually reach for.</div>
+<div class="d-spec" data-label="SoC">MediaTek Dimensity 9300+ (4nm) | 1x 3.4GHz Cortex-X4 + 3x 2.85GHz Cortex-X4 + 4x 2.0GHz Cortex-A720 | Immortalis-G720 GPU</div><div class="d-spec" data-label="Memory">12GB LPDDR5X RAM (顶配)</div><div class="d-spec" data-label="Storage">512GB UFS 4.0 (MicroSD expandable up to 1.5TB) (顶配)</div><div class="d-spec" data-label="Display">12.4" Dynamic AMOLED 2X (2800x1752, 16:10) | 120Hz | 650 nits peak | Anti-Reflection Coating</div><div class="d-spec" data-label="Camera System">Rear: 13MP Wide + 8MP Ultra-wide | Front: 12MP Ultra-wide</div><div class="d-spec" data-label="Battery">10,090mAh | 45W Super Fast Charging 2.0</div><div class="d-spec" data-label="Build">Enhanced Armor Aluminum unibody | IP68 water &amp; dust resistance | 285.4 x 185.4 x 5.6mm | 571g (Wi-Fi) / 576g (5G)</div><div class="d-spec" data-label="Connectivity">Wi-Fi 7 | 5G Sub-6 | USB Type-C 3.2 Gen 1 with DisplayPort Out | Pogo Pin</div><div class="d-spec" data-label="Features">Galaxy AI Suite | Included low-latency S-Pen (0.7mm, 4096 pressure levels) | Samsung DeX | Quad AKG Speakers</div></div>
+</div>
+<div class="card" data-brand="apple" data-cat="tablet" data-chapter="TABLETS &amp; SLATES" data-lot="045" data-name='ipad air 11" apple · everyday slate apple portable' data-status="wishlist">
+<div class="lot-number">N° 045</div>
+<div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
+<div class="img-box">
+<img alt="iPad Air 11-inch" decoding="async" height="1254" loading="lazy" src="assets/images/ipad-air-11-transparent.png" width="1254"/>
+</div>
+<div class="card-content">
+<div class="hallmark">APPLE · EVERYDAY SLATE</div>
+<h3 class="product-name">iPad Air 11-inch</h3>
+<div class="specs">
 <div class="spec-row"><span class="spec-label">Chip</span><span class="spec-val">Apple M2</span></div>
-<div class="spec-row"><span class="spec-label">Display</span><span class="spec-val">11&quot; Liquid Retina</span></div>
+<div class="spec-row"><span class="spec-label">Display</span><span class="spec-val">11" Liquid Retina</span></div>
 <div class="spec-row"><span class="spec-label">Weight</span><span class="spec-val">462g</span></div>
-                    </div>
-                </div>
-                <div class="hidden-details" style="display:none;">
-                    <div class="d-brand">APPLE // EVERYDAY SLATE</div>
-                    <div class="d-title">iPad Air 11-inch (M2)</div>
-                    <div class="d-why">The iPad sweet spot: enough M-series power for creative work without the weight or price of the Pro line.</div>
-                    <div class="d-desc">The 11-inch iPad Air pairs the M2 chip with a bright Liquid Retina display, Apple Pencil Pro support, and a lightweight aluminum design.</div>
+</div>
+</div>
+<div class="hidden-details" style="display:none;">
+<div class="d-brand">APPLE // EVERYDAY SLATE</div>
+<div class="d-title">iPad Air 11-inch (M2)</div>
+<div class="d-why">The iPad sweet spot: enough M-series power for creative work without the weight or price of the Pro line.</div>
+<div class="d-desc">Pairs the M2 chip with a Liquid Retina display and Apple Pencil Pro support, in an aluminum body.</div>
 <div class="d-spec" data-label="SoC">Apple M2 | 8-core CPU | 9-core GPU | 16-core Neural Engine</div>
-<div class="d-spec" data-label="Display">11&quot; Liquid Retina | 2360×1640 | 500 nits | P3 | True Tone</div>
+<div class="d-spec" data-label="Display">11" Liquid Retina | 2360×1640 | 500 nits | P3 | True Tone</div>
+<div class="d-spec" data-label="Camera System">Rear: 12MP Wide | Front: 12MP Ultra Wide (Center Stage)</div>
 <div class="d-spec" data-label="Design">6.1mm aluminum body | 462g Wi-Fi model</div>
+<div class="d-spec" data-label="Battery">Built-in 28.93Wh | Up to 10 hours</div>
 <div class="d-spec" data-label="Accessories">Apple Pencil Pro | Apple Pencil (USB-C) | Magic Keyboard Folio</div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="section-wrapper" id="sec-laptop">
-        <div class="chapter-head">
-            <span class="chapter-eyebrow">laptops</span>
-            <h2 class="section-title"><span class="lang-pair"><span class="lang-zh" lang="zh-CN">移动工作站</span><span class="lang-divider" aria-hidden="true"> / </span><span class="lang-en" lang="en">Mobile workstations</span></span><span class="section-count">(8 / 8 PIECES)</span></h2>
-            <div class="chapter-rule"></div>
-        </div>
-        <div class="grid">
-
-            <div class="card" data-brand="apple" data-status="wishlist" data-cat="laptop" data-lot="026" data-chapter="MOBILE WORKSTATIONS" data-name="macbook pro 16-inch m5 pro m5 max apple · professional apple creator">
-                <div class="lot-number">N&deg; 026</div>
-                <div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
-                <div class="img-box">
-                    <img src="assets/images/macbook-pro-16.webp" alt="MacBook Pro 16&quot;">
-                </div>
-                <div class="card-content">
-                    <div class="hallmark">APPLE · MACBOOK PRO / M5</div>
-                    <h3 class="product-name">MacBook Pro 16-inch</h3>
-                    <div class="specs">
+</div>
+</div>
+<div class="card" data-brand="lenovo" data-cat="tablet" data-chapter="TABLETS &amp; SLATES" data-lot="052" data-name="拯救者 y700 lenovo legion y700 联想 拯救者 y700 平板 lenovo · compact gaming slate lenovo gaming tablet" data-status="wishlist">
+<div class="lot-number">N° 052</div>
+<div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
+<div class="img-box">
+<img alt="拯救者 Y700" decoding="async" height="1024" loading="lazy" src="assets/images/legion-y700.png" width="1536"/>
+</div>
+<div class="card-content">
+<div class="hallmark">LENOVO · COMPACT GAMING SLATE</div>
+<h3 class="product-name">拯救者 Y700</h3>
+<div class="specs">
+<div class="spec-row"><span class="spec-label">Display</span><span class="spec-val">8.8" 2.5K 165Hz</span></div>
+<div class="spec-row"><span class="spec-label">Chip</span><span class="spec-val">Snapdragon 8 Gen 3</span></div>
+<div class="spec-row"><span class="spec-label">Feature</span><span class="spec-val">Dual USB-C · 340g</span></div>
+</div>
+</div>
+<div class="hidden-details" style="display:none;">
+<div class="d-brand">LENOVO // COMPACT GAMING SLATE</div>
+<div class="d-title">Legion Y700 (Gen 3)</div>
+<div class="d-why">The undisputed king of compact Android gaming tablets. An 8.8" 165Hz display, Snapdragon 8 Gen 3, dual USB-C ports, and bypass charging in an ultra-portable 340g CNC metal frame.</div>
+<div class="d-desc">Known as the "Pocket Gaming Monolith," the Lenovo Legion Y700 (3rd Gen) pairs Qualcomm Snapdragon 8 Gen 3, a massive 10,004mm² vapor chamber, an 8.8-inch 2.5K 165Hz high-refresh gaming display, and dual USB-C ports with bypass charging into an anodized all-metal body.</div>
+<div class="d-spec" data-label="SoC">Qualcomm Snapdragon 8 Gen 3 (4nm) | Adreno 750 | LPDDR5X (up to 16GB) + UFS 4.0 (up to 512GB)</div>
+<div class="d-spec" data-label="Display">8.8" IPS LCD | 2560×1600 2.5K | 165Hz | 343 PPI | 500 nits | DCI-P3 | DC Dimming | TÜV Low Blue Light</div>
+<div class="d-spec" data-label="Thermal Architecture">QianKun Cooling Architecture | 10,004mm² Super-Large Vapor Chamber (VC)</div>
+<div class="d-spec" data-label="Ports &amp; Gaming Features">Dual USB Type-C Ports (side + bottom) | Bypass Charging (direct motherboard power) | DP Video Output | Dual X-axis Linear Motors</div>
+<div class="d-spec" data-label="Battery &amp; Charging">6550mAh high-density battery | 68W Super Flash Charge</div>
+<div class="d-spec" data-label="Build &amp; Audio">CNC Integrated Anodized Aluminum | 7.79mm | 340g | Dual Ultra-linear Stereo Speakers with Dolby Atmos</div>
+<div class="d-spec" data-label="Camera System">Rear: 13MP Main + 2MP Macro with flash | Front: 8MP Centered HD Camera</div>
+<div class="d-spec" data-label="Build">CNC Integrated Anodized Aluminum | 7.79mm | 340g</div><div class="d-spec" data-label="Battery">6550mAh high-density battery | 68W Super Flash Charge | Bypass Charging</div><div class="d-spec" data-label="Connectivity">Dual USB-C (1x USB 3.2 Gen 2 DP Out + 1x USB 2.0) | Wi-Fi 6E | Bluetooth 5.4</div><div class="d-spec" data-label="Memory">12GB / 16GB LPDDR5X | 256GB / 512GB UFS 4.0</div></div>
+</div>
+</div>
+</div>
+<div class="section-wrapper" id="sec-laptop">
+<div class="chapter-head">
+<span class="chapter-eyebrow">laptops</span>
+<h2 class="section-title"><span class="lang-pair"><span class="lang-zh" lang="zh-CN">移动工作站</span><span aria-hidden="true" class="lang-divider"> / </span><span class="lang-en" lang="en">Mobile workstations</span></span><span class="section-count">(8 / 8 PIECES)</span></h2>
+<div class="chapter-rule"></div>
+</div>
+<div class="grid">
+<div class="card" data-brand="apple" data-cat="laptop" data-chapter="MOBILE WORKSTATIONS" data-lot="026" data-name="macbook pro 16-inch m5 pro m5 max apple · professional apple creator" data-status="wishlist">
+<div class="lot-number">N° 026</div>
+<div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
+<div class="img-box">
+<img alt='MacBook Pro 16"' decoding="async" height="1096" loading="lazy" src="assets/images/macbook-pro-16.webp" width="1436"/>
+</div>
+<div class="card-content">
+<div class="hallmark">APPLE · MACBOOK PRO / M5</div>
+<h3 class="product-name">MacBook Pro 16-inch</h3>
+<div class="specs">
 <div class="spec-row"><span class="spec-label">Processor</span><span class="spec-val">Apple M5 Pro / M5 Max</span></div>
 <div class="spec-row"><span class="spec-label">Memory</span><span class="spec-val">Up to 128GB Unified</span></div>
-<div class="spec-row"><span class="spec-label">Display</span><span class="spec-val">16.2&quot; Liquid Retina XDR</span></div>
-                    </div>
-                </div>
-                <div class="hidden-details" style="display:none;">
-                    <div class="d-brand">APPLE // MACBOOK PRO 16-INCH / M5</div>
-                    <div class="d-title">MacBook Pro 16-inch</div>
-                    <div class="d-why">The uncompromising MacBook: M5 Pro or M5 Max power in a 16-inch Liquid Retina XDR studio display.</div>
-                    <div class="d-desc">Apple&#x27;s current 16-inch MacBook Pro is built for demanding creative, development, AI, and production workflows, with up to 24 hours of battery life.</div>
-<div class="d-spec" data-label="Processor">Apple M5 Pro | up to 18-core CPU | up to 20-core GPU; M5 Max | 18-core CPU | up to 40-core GPU</div>
-<div class="d-spec" data-label="Memory">M5 Pro up to 64GB unified memory | M5 Max up to 128GB unified memory</div>
-<div class="d-spec" data-label="Display">16.2&quot; Liquid Retina XDR | 1,600 nits peak HDR | 1,000,000:1 contrast ratio</div>
-<div class="d-spec" data-label="Battery">Up to 24 hours</div>
-<div class="d-spec" data-label="Camera &amp; Audio">12MP Center Stage camera | Three-mic array | Six-speaker system with Spatial Audio and Dolby Atmos</div>
-<div class="d-spec" data-label="I/O">3× Thunderbolt 4 or 5 | HDMI | MagSafe 3 | SDXC | Headphone jack</div>
-                </div>
-            </div>
-            <div class="card" data-brand="lenovo" data-status="wishlist" data-cat="laptop" data-lot="027" data-chapter="MOBILE WORKSTATIONS" data-name="legion 5 15ahp10 lenovo · legion esports lenovo gaming lenovo">
-                <div class="lot-number">N&deg; 027</div>
-                <div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
-                <div class="img-box">
-                    <img src="assets/images/legion-5-15ahp10.webp" alt="Legion 5 15AHP10">
-                </div>
-                <div class="card-content">
-                    <div class="hallmark">LENOVO · LEGION ESPORTS</div>
-                    <h3 class="product-name">Legion 5 15AHP10</h3>
-                    <div class="specs">
+<div class="spec-row"><span class="spec-label">Display</span><span class="spec-val">16.2" Liquid Retina XDR</span></div>
+</div>
+</div>
+<div class="hidden-details" style="display:none;">
+<div class="d-brand">APPLE // MACBOOK PRO 16-INCH / M5</div>
+<div class="d-title">MacBook Pro 16-inch</div>
+<div class="d-why">M5 Pro or M5 Max in a 16-inch Liquid Retina XDR display, built for heavier workloads.</div>
+<div class="d-desc">Built for creative, development, AI, and production workflows, with up to 24 hours of battery life.</div>
+<div class="d-spec" data-label="Processor">Apple M5 Max | 18-Core CPU (12P + 6E) | 40-Core GPU | 16-Core Neural Engine</div><div class="d-spec" data-label="Graphics">Apple M5 Max 40-Core GPU | Hardware-accelerated Ray Tracing | Dynamic Caching</div><div class="d-spec" data-label="Memory">128GB Unified Memory | 800GB/s Memory Bandwidth</div><div class="d-spec" data-label="Storage">8TB PCIe NVMe SSD (up to 7.4GB/s read)</div><div class="d-spec" data-label="Display">16.2" Liquid Retina XDR (3456x2234) | 120Hz ProMotion | 1,600 nits peak HDR | Nano-texture option</div><div class="d-spec" data-label="Battery">100Wh Lithium-Polymer | 140W USB-C GaN Power Adapter | Up to 24 hours</div><div class="d-spec" data-label="Camera &amp; Audio">12MP Center Stage camera | Studio-quality three-mic array | Six-speaker system with Spatial Audio</div><div class="d-spec" data-label="I/O">3x Thunderbolt 5 (up to 120Gb/s) | HDMI 2.1 (8K) | MagSafe 3 | SDXC (UHS-II) | 3.5mm Headphone Jack</div><div class="d-spec" data-label="Form Factor">100% recycled aluminum unibody | 2.16kg | 16.8mm thickness</div></div>
+</div>
+<div class="card" data-brand="lenovo" data-cat="laptop" data-chapter="MOBILE WORKSTATIONS" data-lot="027" data-name="legion 5 15ahp10 lenovo · legion esports lenovo gaming lenovo" data-status="wishlist">
+<div class="lot-number">N° 027</div>
+<div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
+<div class="img-box">
+<img alt="Legion 5 15AHP10" decoding="async" height="1254" loading="lazy" src="assets/images/legion-5-15ahp10.webp" width="1254"/>
+</div>
+<div class="card-content">
+<div class="hallmark">LENOVO · LEGION ESPORTS</div>
+<h3 class="product-name">Legion 5 15AHP10</h3>
+<div class="specs">
 <div class="spec-row"><span class="spec-label">CPU</span><span class="spec-val">AMD Ryzen 9 9945HX</span></div>
 <div class="spec-row"><span class="spec-label">GPU</span><span class="spec-val">NVIDIA RTX 5070</span></div>
 <div class="spec-row"><span class="spec-label">RAM</span><span class="spec-val">32GB DDR5-5600</span></div>
-                    </div>
-                </div>
-                <div class="hidden-details" style="display:none;">
-                    <div class="d-brand">LENOVO // LEGION ESPORTS</div>
-                    <div class="d-title">Legion 5 15AHP10</div>
-                    <div class="d-why">Ryzen 9 + RTX 5070 in a chassis that doesn&#x27;t look like a transformer toy. This is how you build a gaming laptop.</div>
-                    <div class="d-desc">The ultimate sweet-spot gaming laptop. Coldfront cooling system ensures the AMD CPU and RTX 50-series GPU run at max TGP.</div>
-<div class="d-spec" data-label="Processor">AMD Ryzen 9 9945HX | 16 Cores / 32 Threads</div>
-<div class="d-spec" data-label="Graphics">NVIDIA GeForce RTX 5070 Laptop GPU | 140W Max TGP</div>
-<div class="d-spec" data-label="Memory">32GB (2x16GB) SO-DIMM DDR5-5600</div>
-<div class="d-spec" data-label="Display">15.6" WQHD (2560x1440) | 165Hz | 100% sRGB | G-Sync</div>
-<div class="d-spec" data-label="Cooling">Legion Coldfront 5.0 | Liquid Metal Thermal Interface</div>
-                </div>
-            </div>
-            <div class="card" data-brand="asus" data-status="wishlist" data-cat="laptop" data-lot="037" data-chapter="MOBILE WORKSTATIONS" data-name="proart p16 h7607 rtx spark asus · creator workstation asus creator laptop">
-                <div class="lot-number">N&deg; 037</div>
-                <div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
-                <div class="img-box">
-                    <img src="https://dlcdnwebimgs.asus.com/gain/db815677-1e89-4035-bc04-729491f4386e/w800" alt="ASUS ProArt P16 (H7607)">
-                </div>
-                <div class="card-content">
-                    <div class="hallmark">ASUS · PROART P16 / RTX SPARK</div>
-                    <h3 class="product-name">ProArt P16 (H7607)</h3>
-                    <div class="specs">
+</div>
+</div>
+<div class="hidden-details" style="display:none;">
+<div class="d-brand">LENOVO // LEGION ESPORTS</div>
+<div class="d-title">Legion 5 15AHP10</div>
+<div class="d-why">Ryzen 9 and RTX 5070 in a chassis that doesn't look like a toy.</div>
+<div class="d-desc">Coldfront cooling keeps the AMD CPU and RTX 50-series GPU running at their rated TGP.</div>
+<div class="d-spec" data-label="Processor">AMD Ryzen 9 9945HX | 16 Cores / 32 Threads | up to 5.4GHz | 80MB Cache</div><div class="d-spec" data-label="Graphics">NVIDIA GeForce RTX 5070 Laptop GPU | 8GB GDDR6 | 140W Max TGP</div><div class="d-spec" data-label="Memory">64GB (2x32GB) DDR5-5600 SO-DIMM</div><div class="d-spec" data-label="Storage">4TB (2x2TB) M.2 2280 PCIe Gen 4 NVMe SSD</div><div class="d-spec" data-label="Display">15.6" WQHD (2560x1440) | 165Hz | 100% sRGB | G-Sync | 350 nits</div><div class="d-spec" data-label="Cooling">Legion Coldfront 5.0 | Liquid Metal Thermal Interface | Dual 12V Fans</div><div class="d-spec" data-label="Battery">80Wh integrated battery | 230W Slim Tip AC adapter | Rapid Charge Pro</div><div class="d-spec" data-label="I/O">1x USB-C (DP 1.4, 140W PD) | 3x USB-A 3.2 Gen 1 | 1x HDMI 2.1 | RJ-45 LAN | Wi-Fi 6E</div><div class="d-spec" data-label="Form Factor">Storm Grey aluminum top / polymer bottom | 2.3kg | 19.9-25.2mm</div></div>
+</div>
+<div class="card" data-brand="asus" data-cat="laptop" data-chapter="MOBILE WORKSTATIONS" data-lot="037" data-name="proart p16 h7607 rtx spark asus · creator workstation asus creator laptop" data-status="wishlist">
+<div class="lot-number">N° 037</div>
+<div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
+<div class="img-box">
+<img alt="ASUS ProArt P16 (H7607)" decoding="async" height="600" loading="lazy" src="https://dlcdnwebimgs.asus.com/gain/db815677-1e89-4035-bc04-729491f4386e/w800" width="800"/>
+</div>
+<div class="card-content">
+<div class="hallmark">ASUS · PROART P16 / RTX SPARK</div>
+<h3 class="product-name">ProArt P16 (H7607)</h3>
+<div class="specs">
 <div class="spec-row"><span class="spec-label">Platform</span><span class="spec-val">NVIDIA RTX Spark</span></div>
 <div class="spec-row"><span class="spec-label">AI</span><span class="spec-val">Up to 1 PFLOP FP4</span></div>
 <div class="spec-row"><span class="spec-label">Display</span><span class="spec-val">4K Lumina Pro OLED · 120Hz VRR</span></div>
-                    </div>
-                </div>
-                <div class="hidden-details" style="display:none;">
-                    <div class="d-brand">ASUS // PROART P16 / RTX SPARK</div>
-                    <div class="d-title">ProArt P16 (H7607)</div>
-                    <div class="d-why">The exact RTX Spark creator laptop from ASUS: a portable workstation built for local AI, 3D, and high-resolution creative work.</div>
-                    <div class="d-desc">The ProArt P16 H7607 combines NVIDIA RTX Spark with up to 128GB of unified memory and an ASUS Lumina Pro OLED display.</div>
-<div class="d-spec" data-label="Platform">NVIDIA Blackwell RTX GPU | 6,144 CUDA cores | 20-core NVIDIA Grace CPU</div>
-<div class="d-spec" data-label="AI Performance">Up to 1 petaflop FP4 AI performance | Purpose-built for personal agents</div>
-<div class="d-spec" data-label="Memory">Up to 128GB unified memory</div>
-<div class="d-spec" data-label="Display">4K ASUS Lumina Pro OLED | Delta E &lt; 1 | 120Hz VRR | up to 1,600 nits | anti-reflection</div>
-<div class="d-spec" data-label="Design">12.9mm ultrathin | 1.77kg | Nano Black / Neo White</div>
-<div class="d-spec" data-label="Operating System">Windows 11 Home</div>
-                </div>
-            </div>
-            <div class="card" data-brand="apple" data-status="wishlist" data-cat="laptop" data-lot="038" data-chapter="MOBILE WORKSTATIONS" data-name="macbook air 13 apple · everyday laptop apple macbook">
-                <div class="lot-number">N&deg; 038</div>
-                <div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
-                <div class="img-box">
-                    <img src="assets/images/macbook-air-13-clean.png" alt="MacBook Air 13-inch" onerror="this.onerror=null;this.src='assets/images/arsenal-spark.png';">
-                </div>
-                <div class="card-content">
-                    <div class="hallmark">APPLE · EVERYDAY LAPTOP</div>
-                    <h3 class="product-name">MacBook Air 13-inch</h3>
-                    <div class="specs">
+</div>
+</div>
+<div class="hidden-details" style="display:none;">
+<div class="d-brand">ASUS // PROART P16 / RTX SPARK</div>
+<div class="d-title">ProArt P16 (H7607)</div>
+<div class="d-why">The exact RTX Spark creator laptop from ASUS: a portable workstation built for local AI, 3D, and high-resolution creative work.</div>
+<div class="d-desc">The ProArt P16 H7607 combines NVIDIA RTX Spark with up to 128GB of unified memory and an ASUS Lumina Pro OLED display.</div>
+<div class="d-spec" data-label="Processor">AMD Ryzen AI 9 HX 370 | 12 Cores / 24 Threads | up to 5.1GHz | 50 TOPS NPU</div><div class="d-spec" data-label="Graphics">NVIDIA GeForce RTX 5070 Laptop GPU | 8GB GDDR6 | 105W Max TGP</div><div class="d-spec" data-label="Memory">64GB LPDDR5X-7500 on-board</div><div class="d-spec" data-label="Storage">4TB (2x 2TB) M.2 NVMe PCIe 4.0 SSD</div><div class="d-spec" data-label="Display">16" 4K ASUS Lumina Pro OLED | Delta E &lt; 1 | 120Hz VRR | up to 1,600 nits | Touch &amp; Stylus</div><div class="d-spec" data-label="Battery">90Wh 4-cell Li-ion | 200W AC adapter | Fast charging</div><div class="d-spec" data-label="I/O">1x USB4 40Gbps | 1x USB 3.2 Gen 2 Type-C | 2x USB 3.2 Gen 2 Type-A | HDMI 2.1 | SD Express 7.0</div><div class="d-spec" data-label="Form Factor">Nano Black CNC aluminum unibody | 1.77kg | 12.9mm ultrathin</div><div class="d-spec" data-label="Operating System">Windows 11 Pro</div></div>
+</div>
+<div class="card" data-brand="apple" data-cat="laptop" data-chapter="MOBILE WORKSTATIONS" data-lot="038" data-name="macbook air 13 apple · everyday laptop apple macbook" data-status="wishlist">
+<div class="lot-number">N° 038</div>
+<div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
+<div class="img-box">
+<img alt="MacBook Air 13-inch" decoding="async" height="1086" loading="lazy" onerror="this.onerror=null;this.src='assets/images/arsenal-spark.png';" src="assets/images/macbook-air-13-clean.png" width="1448"/>
+</div>
+<div class="card-content">
+<div class="hallmark">APPLE · EVERYDAY LAPTOP</div>
+<h3 class="product-name">MacBook Air 13-inch</h3>
+<div class="specs">
 <div class="spec-row"><span class="spec-label">Processor</span><span class="spec-val">Apple M5</span></div>
-<div class="spec-row"><span class="spec-label">Display</span><span class="spec-val">13.6&quot; Liquid Retina</span></div>
+<div class="spec-row"><span class="spec-label">Display</span><span class="spec-val">13.6" Liquid Retina</span></div>
 <div class="spec-row"><span class="spec-label">Battery</span><span class="spec-val">Up to 18h video</span></div>
-                    </div>
-                </div>
-                <div class="hidden-details" style="display:none;">
-                    <div class="d-brand">APPLE // EVERYDAY LAPTOP</div>
-                    <div class="d-title">MacBook Air 13-inch</div>
-                    <div class="d-why">The quiet, light everyday machine: enough power for creative work without the weight of a workstation.</div>
-                    <div class="d-desc">Apple&#x27;s M5 MacBook Air keeps the fanless, portable formula while adding a faster neural engine and modern connectivity.</div>
-<div class="d-spec" data-label="Processor">Apple M5 | 10-core CPU | 8-core GPU | 16-core Neural Engine</div>
-<div class="d-spec" data-label="Memory">16GB Unified Memory | Configurable to 24GB / 32GB | 153GB/s</div>
-<div class="d-spec" data-label="Storage">512GB SSD | Configurable to 1TB / 2TB / 4TB</div>
-<div class="d-spec" data-label="Display">13.6&quot; Liquid Retina | 2560×1664 | 500 nits | P3 | True Tone</div>
-<div class="d-spec" data-label="Battery &amp; I/O">Up to 18h video | MagSafe 3 | 2× Thunderbolt 4 | Wi-Fi 7 | Bluetooth 6</div>
-                </div>
-            </div>
-            <div class="card" data-brand="apple" data-status="wishlist" data-cat="laptop" data-lot="043" data-chapter="MOBILE WORKSTATIONS" data-name="macbook air 15 apple · everyday laptop apple macbook">
-                <div class="lot-number">N&deg; 043</div>
-                <div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
-                <div class="img-box">
-                    <img src="assets/images/macbook-air-15-m5.png" alt="MacBook Air 15-inch" onerror="this.onerror=null;this.src='assets/images/arsenal-spark.png';">
-                </div>
-                <div class="card-content">
-                    <div class="hallmark">APPLE · EVERYDAY LAPTOP</div>
-                    <h3 class="product-name">MacBook Air 15-inch</h3>
-                    <div class="specs">
+</div>
+</div>
+<div class="hidden-details" style="display:none;">
+<div class="d-brand">APPLE // EVERYDAY LAPTOP</div>
+<div class="d-title">MacBook Air 13-inch</div>
+<div class="d-why">The quiet, light everyday machine: enough power for creative work without the weight of a workstation.</div>
+<div class="d-desc">Apple's M5 MacBook Air keeps the fanless, portable formula while adding a faster neural engine and modern connectivity.</div>
+<div class="d-spec" data-label="Processor">Apple M5 | 10-Core CPU (4P + 6E) | 10-Core GPU | 16-Core Neural Engine</div><div class="d-spec" data-label="Graphics">Apple M5 10-Core GPU | Hardware-accelerated Ray Tracing</div><div class="d-spec" data-label="Memory">32GB Unified Memory | 153GB/s Bandwidth</div><div class="d-spec" data-label="Storage">4TB PCIe NVMe SSD</div><div class="d-spec" data-label="Display">13.6" Liquid Retina (2560x1664) | 500 nits | P3 Wide Color | True Tone</div><div class="d-spec" data-label="Battery">52.6Wh Lithium-Polymer | 35W Dual USB-C Port Adapter | Up to 18 hours</div><div class="d-spec" data-label="I/O">MagSafe 3 | 2x Thunderbolt / USB 4 (40Gb/s) | 3.5mm Headphone Jack | Wi-Fi 7</div><div class="d-spec" data-label="Form Factor">100% recycled aluminum unibody | 1.24kg | 11.3mm thickness</div></div>
+</div>
+<div class="card" data-brand="apple" data-cat="laptop" data-chapter="MOBILE WORKSTATIONS" data-lot="043" data-name="macbook air 15 apple · everyday laptop apple macbook" data-status="wishlist">
+<div class="lot-number">N° 043</div>
+<div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
+<div class="img-box">
+<img alt="MacBook Air 15-inch" decoding="async" height="1112" loading="lazy" onerror="this.onerror=null;this.src='assets/images/arsenal-spark.png';" src="assets/images/macbook-air-15-m5.png" width="1415"/>
+</div>
+<div class="card-content">
+<div class="hallmark">APPLE · EVERYDAY LAPTOP</div>
+<h3 class="product-name">MacBook Air 15-inch</h3>
+<div class="specs">
 <div class="spec-row"><span class="spec-label">Processor</span><span class="spec-val">Apple M5</span></div>
-<div class="spec-row"><span class="spec-label">Display</span><span class="spec-val">15.3&quot; Liquid Retina</span></div>
+<div class="spec-row"><span class="spec-label">Display</span><span class="spec-val">15.3" Liquid Retina</span></div>
 <div class="spec-row"><span class="spec-label">Battery</span><span class="spec-val">Up to 18h video</span></div>
-                    </div>
-                </div>
-                <div class="hidden-details" style="display:none;">
-                    <div class="d-brand">APPLE // EVERYDAY LAPTOP</div>
-                    <div class="d-title">MacBook Air 15-inch</div>
-                    <div class="d-why">The larger-screen Air: the same silent, fanless M5 platform with more room for multitasking.</div>
-                    <div class="d-desc">Apple&#x27;s 15.3-inch MacBook Air brings the current M5 performance, Liquid Retina display, and lightweight aluminium design to a bigger portable workspace.</div>
-<div class="d-spec" data-label="Processor">Apple M5 | 10-core CPU | up to 10-core GPU | Neural Accelerators</div>
-<div class="d-spec" data-label="Memory">16GB Unified Memory | Configurable to 24GB / 32GB</div>
-<div class="d-spec" data-label="Storage">512GB SSD | Configurable to 1TB / 2TB / 4TB</div>
-<div class="d-spec" data-label="Display">15.3&quot; Liquid Retina | 2880×1864 | 500 nits | P3 | True Tone</div>
-<div class="d-spec" data-label="Battery &amp; I/O">Up to 18h video | MagSafe 3 | 2× Thunderbolt 4 | Wi-Fi 7 | Bluetooth 6</div>
-                </div>
-            </div>
-            <div class="card" data-brand="msi" data-status="wishlist" data-cat="laptop" data-lot="039" data-chapter="MOBILE WORKSTATIONS" data-name="prestige 16 ai c3m c3mx msi · business productivity msi laptop">
-                <div class="lot-number">N&deg; 039</div>
-                <div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
-                <div class="img-box">
-                    <img src="assets/images/prestige-16-ai-plus-c3m.png" alt="MSI Prestige 16 AI+ C3M">
-                </div>
-                <div class="card-content">
-                    <div class="hallmark">MSI · PRESTIGE 16 AI+ / C3M</div>
-                    <h3 class="product-name">Prestige 16 AI+ C3M</h3>
-                    <div class="specs">
+</div>
+</div>
+<div class="hidden-details" style="display:none;">
+<div class="d-brand">APPLE // EVERYDAY LAPTOP</div>
+<div class="d-title">MacBook Air 15-inch</div>
+<div class="d-why">The larger-screen Air: the same silent, fanless M5 platform with more room for multitasking.</div>
+<div class="d-desc">Apple's 15.3-inch MacBook Air brings the current M5 performance and Liquid Retina display to a bigger portable workspace.</div>
+<div class="d-spec" data-label="Processor">Apple M5 | 10-Core CPU (4P + 6E) | 10-Core GPU | 16-Core Neural Engine</div><div class="d-spec" data-label="Graphics">Apple M5 10-Core GPU | Hardware-accelerated Ray Tracing</div><div class="d-spec" data-label="Memory">32GB Unified Memory | 153GB/s Bandwidth</div><div class="d-spec" data-label="Storage">4TB PCIe NVMe SSD</div><div class="d-spec" data-label="Display">15.3" Liquid Retina (2880x1864) | 500 nits | P3 Wide Color | True Tone</div><div class="d-spec" data-label="Battery">66.5Wh Lithium-Polymer | 35W Dual USB-C Port Adapter | Up to 18 hours</div><div class="d-spec" data-label="I/O">MagSafe 3 | 2x Thunderbolt / USB 4 (40Gb/s) | 3.5mm Headphone Jack | Wi-Fi 7</div><div class="d-spec" data-label="Form Factor">100% recycled aluminum unibody | 1.51kg | 11.5mm thickness</div></div>
+</div>
+<div class="card" data-brand="msi" data-cat="laptop" data-chapter="MOBILE WORKSTATIONS" data-lot="039" data-name="prestige 16 ai c3m c3mx msi · business productivity msi laptop" data-status="wishlist">
+<div class="lot-number">N° 039</div>
+<div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
+<div class="img-box">
+<img alt="MSI Prestige 16 AI+ C3M" decoding="async" height="1024" loading="lazy" src="assets/images/prestige-16-ai-plus-c3m.png" width="1536"/>
+</div>
+<div class="card-content">
+<div class="hallmark">MSI · PRESTIGE 16 AI+ / C3M</div>
+<h3 class="product-name">Prestige 16 AI+ C3M</h3>
+<div class="specs">
 <div class="spec-row"><span class="spec-label">Processor</span><span class="spec-val">Intel Core Ultra X9 388H</span></div>
-<div class="spec-row"><span class="spec-label">Display</span><span class="spec-val">16&quot; 2.8K OLED · 48–120Hz VRR</span></div>
+<div class="spec-row"><span class="spec-label">Display</span><span class="spec-val">16" 2.8K OLED · 48–120Hz VRR</span></div>
 <div class="spec-row"><span class="spec-label">Weight</span><span class="spec-val">1.59kg · 11.9–13.9mm</span></div>
-                    </div>
-                </div>
-                <div class="hidden-details" style="display:none;">
-                    <div class="d-brand">MSI // PRESTIGE 16 AI+ / C3M</div>
-                    <div class="d-title">Prestige 16 AI+ C3M</div>
-                    <div class="d-why">A large-screen professional laptop that keeps the executive look, AI headroom, and all-day mobility in balance.</div>
-                    <div class="d-desc">The MSI Prestige 16 AI+ C3M pairs Intel Core Ultra Series 3 with a 16-inch OLED display, a lightweight aluminum chassis, and Copilot+ PC features.</div>
-<div class="d-spec" data-label="Processor">Intel Core Ultra X9 388H | Up to 16 cores | Up to 5.1GHz | 50 NPU TOPS</div>
-<div class="d-spec" data-label="Graphics">Up to Intel Arc GPU B390</div>
-<div class="d-spec" data-label="Memory &amp; Storage">LPDDR5x up to 64GB | 1× M.2 NVMe PCIe Gen4</div>
-<div class="d-spec" data-label="Display">16&quot; 2.8K OLED | 2880×1800 | 48–120Hz VRR | 100% DCI-P3 | DisplayHDR True Black 600</div>
-<div class="d-spec" data-label="Design">Ultra-slim 11.9–13.9mm | 1.59kg aluminum alloy chassis</div>
-<div class="d-spec" data-label="Battery &amp; I/O">81Wh | Up to 24+ hours | 100W PD 3.0 | Thunderbolt 4 | HDMI 2.1 | Wi-Fi 7</div>
-                </div>
-            </div>
-            <div class="card" data-brand="apple" data-status="wishlist" data-cat="laptop" data-lot="040" data-chapter="MOBILE WORKSTATIONS" data-name="macbook neo 13 apple · entry mac apple laptop">
-                <div class="lot-number">N&deg; 040</div>
-                <div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
-                <div class="img-box">
-                    <img src="assets/images/macbook-neo-13-clean.png" alt="MacBook Neo 13-inch" onerror="this.onerror=null;this.src='assets/images/arsenal-spark.png';">
-                </div>
-                <div class="card-content">
-                    <div class="hallmark">APPLE · ENTRY MAC</div>
-                    <h3 class="product-name">MacBook Neo 13-inch</h3>
-                    <div class="specs">
+</div>
+</div>
+<div class="hidden-details" style="display:none;">
+<div class="d-brand">MSI // PRESTIGE 16 AI+ / C3M</div>
+<div class="d-title">Prestige 16 AI+ C3M</div>
+<div class="d-why">A 16-inch professional laptop balancing AI headroom with all-day battery life.</div>
+<div class="d-desc">The MSI Prestige 16 AI+ C3M pairs Intel Core Ultra Series 3 with a 16-inch OLED display, a lightweight aluminum chassis, and Copilot+ PC features.</div>
+<div class="d-spec" data-label="Processor">Intel Core Ultra 9 388H | 16 Cores | up to 5.1GHz | 50+ NPU TOPS</div><div class="d-spec" data-label="Graphics">Intel Arc GPU B390 | Xe2-LPG Architecture</div><div class="d-spec" data-label="Memory">64GB LPDDR5x-8533MHz on-board</div><div class="d-spec" data-label="Storage">2TB NVMe PCIe Gen 4 SSD (M.2 2280)</div><div class="d-spec" data-label="Display">16" 2.8K OLED (2880x1800) | 120Hz VRR | 100% DCI-P3 | DisplayHDR True Black 600</div><div class="d-spec" data-label="Battery">99.9Wh (FAA maximum limit) | 100W PD 3.0 Type-C | Up to 24 hours</div><div class="d-spec" data-label="I/O">1x Thunderbolt 4 | 1x USB 3.2 Gen 2 Type-C | 1x USB 3.2 Gen 2 Type-A | HDMI 2.1 | SD Card Reader</div><div class="d-spec" data-label="Form Factor">Magnesium-aluminum alloy chassis | 1.59kg | 11.9-13.9mm</div></div>
+</div>
+<div class="card" data-brand="apple" data-cat="laptop" data-chapter="MOBILE WORKSTATIONS" data-lot="040" data-name="macbook neo 13 apple · entry mac apple laptop" data-status="wishlist">
+<div class="lot-number">N° 040</div>
+<div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
+<div class="img-box">
+<img alt="MacBook Neo 13-inch" decoding="async" height="1024" loading="lazy" onerror="this.onerror=null;this.src='assets/images/arsenal-spark.png';" src="assets/images/macbook-neo-13-clean.png" width="1536"/>
+</div>
+<div class="card-content">
+<div class="hallmark">APPLE · ENTRY MAC</div>
+<h3 class="product-name">MacBook Neo 13-inch</h3>
+<div class="specs">
 <div class="spec-row"><span class="spec-label">Processor</span><span class="spec-val">Apple A18 Pro</span></div>
-<div class="spec-row"><span class="spec-label">Display</span><span class="spec-val">13.0&quot; Liquid Retina</span></div>
+<div class="spec-row"><span class="spec-label">Display</span><span class="spec-val">13.0" Liquid Retina</span></div>
 <div class="spec-row"><span class="spec-label">Battery</span><span class="spec-val">Up to 16h video</span></div>
-                    </div>
-                </div>
-                <div class="hidden-details" style="display:none;">
-                    <div class="d-brand">APPLE // ENTRY MAC</div>
-                    <div class="d-title">MacBook Neo 13-inch</div>
-                    <div class="d-why">The affordable Mac I keep wishing existed: compact, quiet, and still unmistakably Apple.</div>
-                    <div class="d-desc">MacBook Neo brings Apple&#x27;s A18 Pro platform to a lighter entry notebook with a full-size keyboard and modern wireless connectivity.</div>
-<div class="d-spec" data-label="Processor">Apple A18 Pro | 6-core CPU | 5-core GPU | 16-core Neural Engine</div>
-<div class="d-spec" data-label="Memory &amp; Storage">8GB Unified Memory | 256GB / 512GB SSD</div>
-<div class="d-spec" data-label="Display">13.0&quot; Liquid Retina | 2408×1506 | 500 nits | sRGB</div>
-<div class="d-spec" data-label="Battery">Up to 16h video | 36.5Wh | 20W USB-C Power Adapter</div>
-<div class="d-spec" data-label="I/O &amp; Wireless">USB 3 USB-C + USB 2 USB-C | 3.5mm | Wi-Fi 6E | Bluetooth 6</div>
-                </div>
-            </div>
-            <div class="card" data-brand="acer" data-status="wishlist" data-cat="laptop" data-lot="042" data-chapter="MOBILE WORKSTATIONS" data-name="swift go 14 ai acer · swift go acer 14-inch intel core ultra ai laptop">
-                <div class="lot-number">N&deg; 042</div>
-                <div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
-                <div class="img-box">
-                    <img src="assets/images/swift-go-14-ai.png" alt="Acer Swift Go 14 AI" onerror="this.onerror=null;this.src='assets/images/arsenal-spark.png';">
-                </div>
-                <div class="card-content">
-                    <div class="hallmark">ACER · SWIFT GO / AI</div>
-                    <h3 class="product-name">Swift Go 14 AI</h3>
-                    <div class="specs">
+</div>
+</div>
+<div class="hidden-details" style="display:none;">
+<div class="d-brand">APPLE // ENTRY MAC</div>
+<div class="d-title">MacBook Neo 13-inch</div>
+<div class="d-why">The affordable Mac I keep wishing existed: compact, quiet, and still unmistakably Apple.</div>
+<div class="d-desc">MacBook Neo brings Apple's A18 Pro platform to a lighter entry notebook with a full-size keyboard and modern wireless connectivity.</div>
+<div class="d-spec" data-label="Processor">Apple A18 Pro | 6-Core CPU (2P + 4E) | 5-Core GPU | 16-Core Neural Engine</div><div class="d-spec" data-label="Graphics">Apple A18 Pro 5-Core GPU | Hardware-accelerated Ray Tracing</div><div class="d-spec" data-label="Memory">16GB Unified Memory | 100GB/s Memory Bandwidth</div><div class="d-spec" data-label="Storage">1TB PCIe NVMe SSD</div><div class="d-spec" data-label="Display">13.0" Liquid Retina (2408x1506) | 500 nits | sRGB | True Tone</div><div class="d-spec" data-label="Battery">36.5Wh Lithium-Polymer | 20W USB-C Power Adapter | Up to 16 hours</div><div class="d-spec" data-label="I/O">2x USB-C (USB 3 + USB 2) | 3.5mm Headphone Jack | Wi-Fi 6E | Bluetooth 6.0</div><div class="d-spec" data-label="Form Factor">Recycled Aluminum Unibody | 1.08kg | 10.5mm thickness</div></div>
+</div>
+<div class="card" data-brand="acer" data-cat="laptop" data-chapter="MOBILE WORKSTATIONS" data-lot="042" data-name="swift go 14 ai acer · swift go acer 14-inch intel core ultra ai laptop" data-status="wishlist">
+<div class="lot-number">N° 042</div>
+<div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
+<div class="img-box">
+<img alt="Acer Swift Go 14 AI" decoding="async" height="1254" loading="lazy" onerror="this.onerror=null;this.src='assets/images/arsenal-spark.png';" src="assets/images/swift-go-14-ai.png" width="1254"/>
+</div>
+<div class="card-content">
+<div class="hallmark">ACER · SWIFT GO / AI</div>
+<h3 class="product-name">Swift Go 14 AI</h3>
+<div class="specs">
 <div class="spec-row"><span class="spec-label">Processor</span><span class="spec-val">Intel Core Ultra X9 388H</span></div>
 <div class="spec-row"><span class="spec-label">AI</span><span class="spec-val">Up to 180 TOPS</span></div>
 <div class="spec-row"><span class="spec-label">Display</span><span class="spec-val">Up to 3K OLED · 120Hz</span></div>
-                    </div>
-                </div>
-                <div class="hidden-details" style="display:none;">
-                    <div class="d-brand">ACER // SWIFT GO 14 AI</div>
-                    <div class="d-title">Swift Go 14 AI</div>
-                    <div class="d-why">The 14-inch Swift Go is the portable counterpoint to the big workstations: light enough to carry every day, smart enough to keep up.</div>
-                    <div class="d-desc">Acer&#x27;s Swift Go 14 AI combines an ultra-light aluminum design with Intel Core Ultra performance, OLED display options, and Copilot+ PC features.</div>
-<div class="d-spec" data-label="Processor">Up to Intel Core Ultra X9 388H</div>
-<div class="d-spec" data-label="AI Performance">Up to 180 TOPS total platform AI performance</div>
-<div class="d-spec" data-label="Graphics">Up to Intel Arc B390 graphics</div>
-<div class="d-spec" data-label="Display">Up to 3K OLED | Up to 120Hz | Slim bezels</div>
-<div class="d-spec" data-label="Mobility">Starting at 1.12kg | 180° lie-flat hinge | Laser-etched aluminum cover</div>
-<div class="d-spec" data-label="Connectivity">2× Thunderbolt 4 Type-C | HDMI 2.1 up to 8K | Wi-Fi 7 | 5MP IR camera</div>
-<div class="d-spec" data-label="Operating System">Windows 11 Home</div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="section-wrapper" id="sec-desktop">
-        <div class="chapter-head">
-            <span class="chapter-eyebrow">desktops</span>
-            <h2 class="section-title"><span class="lang-pair"><span class="lang-zh" lang="zh-CN">终极主机</span><span class="lang-divider" aria-hidden="true"> / </span><span class="lang-en" lang="en">Ultimate rigs</span></span><span class="section-count">(3 / 3 PIECES)</span></h2>
-            <div class="chapter-rule"></div>
-        </div>
-        <div class="grid">
-
-            <div class="card" data-brand="amd" data-status="wishlist" data-cat="desktop" data-lot="028" data-chapter="ULTIMATE RIGS" data-name="amd titan rig custom build · team red team red supremacy amd">
-                <div class="lot-number">N&deg; 028</div>
-                <div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
-                <div class="img-box">
-                    <img src="https://images.unsplash.com/photo-1587831990711-23ca6441447b?q=80&amp;w=1000&amp;auto=format&amp;fit=crop" alt="AMD Titan Rig">
-                </div>
-                <div class="card-content">
-                    <div class="hallmark">CUSTOM BUILD · TEAM RED</div>
-                    <h3 class="product-name">AMD Titan Rig</h3>
-                    <div class="specs">
+</div>
+</div>
+<div class="hidden-details" style="display:none;">
+<div class="d-brand">ACER // SWIFT GO 14 AI</div>
+<div class="d-title">Swift Go 14 AI</div>
+<div class="d-why">The 14-inch Swift Go is the portable counterpoint to the big workstations: light enough to carry every day, smart enough to keep up.</div>
+<div class="d-desc">Acer's Swift Go 14 AI combines a light aluminum design with Intel Core Ultra performance, OLED display options, and Copilot+ PC features.</div>
+<div class="d-spec" data-label="Processor">Intel Core Ultra 9 388H | 16 Cores | up to 5.1GHz | 50 NPU TOPS</div><div class="d-spec" data-label="Graphics">Intel Arc B390 Graphics</div><div class="d-spec" data-label="Memory">32GB LPDDR5X-8448 dual-channel</div><div class="d-spec" data-label="Storage">2TB PCIe Gen 4 NVMe SSD</div><div class="d-spec" data-label="Display">14" 3K OLED (2880x1800) | 120Hz | 500 nits | 100% DCI-P3 | DisplayHDR 500</div><div class="d-spec" data-label="Battery">65Wh Li-ion battery | 100W USB-C GaN adapter | Up to 14.5 hours</div><div class="d-spec" data-label="I/O">2x Thunderbolt 4 Type-C | HDMI 2.1 | 2x USB 3.2 Gen 1 Type-A | Wi-Fi 7</div><div class="d-spec" data-label="Form Factor">Laser-etched anodized aluminum | 1.12kg | 14.9mm thickness</div><div class="d-spec" data-label="Operating System">Windows 11 Pro</div></div>
+</div>
+</div>
+</div>
+<div class="section-wrapper" id="sec-desktop">
+<div class="chapter-head">
+<span class="chapter-eyebrow">desktops</span>
+<h2 class="section-title"><span class="lang-pair"><span class="lang-zh" lang="zh-CN">终极主机</span><span aria-hidden="true" class="lang-divider"> / </span><span class="lang-en" lang="en">Ultimate rigs</span></span><span class="section-count">(2 / 2 PIECES)</span></h2>
+<div class="chapter-rule"></div>
+</div>
+<div class="grid">
+<div class="card" data-brand="buildcores" data-cat="desktop" data-chapter="ULTIMATE RIGS" data-lot="028" data-name="buildcores platform 6 gaming setup darkflash dy470 ryzen 9 9950x3d rog astral rtx 5090 256gb ddr5" data-status="wishlist">
+<div class="lot-number">N° 028</div>
+<div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
+<div class="img-box">
+<img alt="BuildCores Platform:6 Gaming Setup" decoding="async" height="1048" loading="lazy" src="assets/images/buildcores-platform6-setup-v2.png" width="1501"/>
+</div>
+<div class="card-content">
+<div class="hallmark">CUSTOM BUILD · BUILDCores</div>
+<h3 class="product-name">Platform:6 Gaming Setup</h3>
+<div class="specs">
 <div class="spec-row"><span class="spec-label">CPU</span><span class="spec-val">Ryzen 9 9950X3D</span></div>
-<div class="spec-row"><span class="spec-label">GPU</span><span class="spec-val">NVIDIA RTX 5090 32GB</span></div>
-<div class="spec-row"><span class="spec-label">RAM</span><span class="spec-val">64GB DDR5-6400</span></div>
-                    </div>
-                </div>
-                <div class="hidden-details" style="display:none;">
-                    <div class="d-brand">CUSTOM BUILD // TEAM RED</div>
-                    <div class="d-title">AMD Titan Rig</div>
-                    <div class="d-why">Team Red all the way. Ryzen X3D cache architecture + RDNA 4 in one build. Overkill is the only way to build.</div>
-                    <div class="d-desc">Built for pure FPS dominance. The massive 3D V-Cache of the 9950X3D eliminates CPU bottlenecks for the mighty RTX 5090.</div>
-<div class="d-spec" data-label="Processor">AMD Ryzen 9 9950X3D | 16 Cores | 128MB L3 Cache</div>
-<div class="d-spec" data-label="Graphics">NVIDIA GeForce RTX 5090 | 32GB GDDR7 | Blackwell Arch</div>
-<div class="d-spec" data-label="Motherboard">ASUS ROG Crosshair X870E Hero</div>
-<div class="d-spec" data-label="Memory">64GB (2x32GB) G.Skill Trident Z5 Neo DDR5-6400 CL30</div>
-<div class="d-spec" data-label="Cooling">NZXT Kraken Elite 360mm AIO Liquid Cooler</div>
-                </div>
-            </div>
-            <div class="card" data-brand="intel" data-status="wishlist" data-cat="desktop" data-lot="029" data-chapter="ULTIMATE RIGS" data-name="intel core rig custom build · team blue team blue flagship intel">
-                <div class="lot-number">N&deg; 029</div>
-                <div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
-                <div class="img-box">
-                    <img src="https://images.unsplash.com/photo-1624701928517-44c8ac49d93c?q=80&amp;w=1000&amp;auto=format&amp;fit=crop" alt="Intel Core Rig">
-                </div>
-                <div class="card-content">
-                    <div class="hallmark">CUSTOM BUILD · TEAM BLUE</div>
-                    <h3 class="product-name">Intel Core Rig</h3>
-                    <div class="specs">
-<div class="spec-row"><span class="spec-label">CPU</span><span class="spec-val">Core Ultra 9 285K</span></div>
-<div class="spec-row"><span class="spec-label">GPU</span><span class="spec-val">NVIDIA RTX 5090 32GB</span></div>
-<div class="spec-row"><span class="spec-label">RAM</span><span class="spec-val">64GB DDR5-6400</span></div>
-                    </div>
-                </div>
-                <div class="hidden-details" style="display:none;">
-                    <div class="d-brand">CUSTOM BUILD // TEAM BLUE</div>
-                    <div class="d-title">Intel Core Rig</div>
-                    <div class="d-why">For when I need the absolute best single-core clock speed. Some workflows just run better on blue.</div>
-                    <div class="d-desc">The king of single-thread and production workflows. Arrow Lake architecture delivers extreme clockspeeds.</div>
-<div class="d-spec" data-label="Processor">Intel Core Ultra 9 285K | 24 Cores (8P+16E) | Up to 5.7GHz</div>
-<div class="d-spec" data-label="Graphics">NVIDIA GeForce RTX 5090 | 32GB GDDR7 | Blackwell Arch</div>
-<div class="d-spec" data-label="Motherboard">MSI ROG Maximus Z890 Apex</div>
-<div class="d-spec" data-label="Memory">64GB (2x32GB) Corsair Dominator Titanium DDR5-6400</div>
-<div class="d-spec" data-label="Power Supply">Corsair AX1600i | 1600W 80+ Titanium</div>
-                </div>
-            </div>
-            <div class="card" data-brand="apple" data-status="wishlist" data-cat="desktop" data-lot="030" data-chapter="ULTIMATE RIGS" data-name="mac studio (m4 ultra) apple · professional desktop apple workstation apple">
-                <div class="lot-number">N&deg; 030</div>
-                <div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
-                <div class="img-box">
-                    <img src="assets/images/macstudio-m4-ultra-transparent.png" alt="Mac Studio (M4 Ultra)">
-                </div>
-                <div class="card-content">
-                    <div class="hallmark">APPLE · PROFESSIONAL DESKTOP</div>
-                    <h3 class="product-name">Mac Studio (M4 Ultra)</h3>
-                    <div class="specs">
+<div class="spec-row"><span class="spec-label">GPU</span><span class="spec-val">ROG Astral RTX 5090 32GB</span></div>
+<div class="spec-row"><span class="spec-label">RAM</span><span class="spec-val">256GB DDR5-6000 RGB</span></div>
+</div>
+</div>
+<div class="hidden-details" style="display:none;">
+<div class="d-brand">CUSTOM BUILD // BUILDCores</div>
+<div class="d-title">Platform:6 Gaming Setup</div>
+<div class="d-why">A $16.7K full-room setup built around the 9950X3D, a 32GB RTX 5090, and an unapologetic 256GB of RGB memory.</div>
+<div class="d-desc">A complete BuildCores setup with a darkFlash DY470 tower, Platform:6 desk, TC500 LUXE chair, Odyssey G7 display, and a full gaming and audio stack. <a href="https://www.buildcores.com/setup/WzqYrLzvE?share=true&amp;view=setup" rel="noopener" target="_blank">View the shared parts list</a>.</div>
+<div class="d-spec" data-label="Processor">AMD Ryzen 9 9950X3D | 16 Cores / 32 Threads | 128MB 3D V-Cache</div><div class="d-spec" data-label="Graphics">ROG Astral GeForce RTX 5090 OC Edition | 32GB GDDR7</div><div class="d-spec" data-label="Case">darkFlash DY470 ATX Mid Tower | Black tempered glass</div><div class="d-spec" data-label="Motherboard">ASUS ROG STRIX X870E-E GAMING WIFI</div><div class="d-spec" data-label="Memory">G.Skill Trident Z5 Neo RGB | 256GB (4x64GB) DDR5-6000 CL36</div><div class="d-spec" data-label="Cooling">TRYX PANORAMA SE 360mm ARGB AIO | Lian Li Uni Fan SL-Infinity 120mm 3-pack</div><div class="d-spec" data-label="Storage">Samsung 990 Pro 4TB PCIe 4.0 NVMe + Samsung 990 EVO 4TB PCIe 5.0 NVMe (8TB total)</div><div class="d-spec" data-label="Power Supply">ASUS ROG THOR 1600T2 | 1600W | 80+ Titanium</div><div class="d-spec" data-label="Display">Corsair Xeneon 32UHD144 (32" 4K 144Hz IPS) + Dual Elgato Flex Arm Rig</div><div class="d-spec" data-label="Battery">AC Mains Powered (Dual Dedicated 120V/15A Circuits)</div><div class="d-spec" data-label="Desk &amp; Chair">CORSAIR Platform:6 Elevate Desk | TC500 LUXE Gaming Chair</div><div class="d-spec" data-label="Keyboards">Razer BlackWidow V3 Mini Phantom Edition | ASUS ROG Strix Scope II 96 RGB</div><div class="d-spec" data-label="Audio">Razer BlackShark V2 Pro (2023) + BlackShark V2 X | Razer Leviathan V2 + Edifier G2000</div><div class="d-spec" data-label="I/O">Dual 2.5GbE LAN | Wi-Fi 7 | 12x Rear USB-A/C | Front USB 3.2 Gen 2x2 Type-C | HDMI 2.1 | DP 2.1</div><div class="d-spec" data-label="Form Factor">Full Tower Custom Rig + Corsair Platform:6 Modular Motorized Sit-Stand Desk</div><div class="d-spec" data-label="Build Total">$16,671.47 total parts list</div></div>
+</div>
+<div class="card" data-brand="apple" data-cat="desktop" data-chapter="ULTIMATE RIGS" data-lot="030" data-name="mac studio (m4 ultra) apple · professional desktop apple workstation apple" data-status="wishlist">
+<div class="lot-number">N° 030</div>
+<div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
+<div class="img-box">
+<img alt="Mac Studio (M4 Ultra)" decoding="async" height="1254" loading="lazy" src="assets/images/macstudio-m4-ultra-transparent.png" width="1254"/>
+</div>
+<div class="card-content">
+<div class="hallmark">APPLE · PROFESSIONAL DESKTOP</div>
+<h3 class="product-name">Mac Studio (M4 Ultra)</h3>
+<div class="specs">
 <div class="spec-row"><span class="spec-label">Processor</span><span class="spec-val">Apple M4 Ultra</span></div>
 <div class="spec-row"><span class="spec-label">Memory</span><span class="spec-val">256GB Unified</span></div>
 <div class="spec-row"><span class="spec-label">Storage</span><span class="spec-val">8TB NVMe SSD</span></div>
-                    </div>
-                </div>
-                <div class="hidden-details" style="display:none;">
-                    <div class="d-brand">APPLE // PROFESSIONAL DESKTOP</div>
-                    <div class="d-title">Mac Studio (M4 Ultra)</div>
-                    <div class="d-why">The M4 Ultra chip is borderline mythological. A desktop that fits in a lunchbox and destroys workstations costing 5x more.</div>
-                    <div class="d-desc">An absolute powerhouse for the studio. The M4 Ultra chip bridges two M4 Max dies to deliver unprecedented rendering and simulation performance.</div>
-<div class="d-spec" data-label="Processor">Apple M4 Ultra | 32-Core CPU | 80-Core GPU</div>
-<div class="d-spec" data-label="Memory">256GB Unified Memory | 1.6TB/s Bandwidth</div>
-<div class="d-spec" data-label="Storage">8TB PCIe Gen 4 SSD</div>
-<div class="d-spec" data-label="Connectivity">6x Thunderbolt 5 | 10Gb Ethernet | HDMI 2.1</div>
-<div class="d-spec" data-label="Form Factor">Extruded Aluminum | Advanced Thermal System</div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="section-wrapper" id="sec-peripheral">
-        <div class="chapter-head">
-            <span class="chapter-eyebrow">peripherals</span>
-            <h2 class="section-title"><span class="lang-pair"><span class="lang-zh" lang="zh-CN">装备与外设</span><span class="lang-divider" aria-hidden="true"> / </span><span class="lang-en" lang="en">Weapons &amp; peripherals</span></span><span class="section-count">(6 / 6 PIECES)</span></h2>
-            <div class="chapter-rule"></div>
-        </div>
-        <div class="grid">
-
-            <div class="card" data-brand="razer" data-status="owned" data-cat="peripheral" data-lot="031" data-chapter="WEAPONS &amp; PERIPHERALS" data-name="deathadder v2 pro razer · for gamers. by gamers. esports grade razer">
-                <div class="lot-number">N&deg; 031</div>
-                <div class="seal owned"><span class="dot"></span>OWNED</div>
-                <div class="img-box">
-                    <img src="https://images.unsplash.com/photo-1615663245857-ac1eeb536fcb?q=80&amp;w=1000&amp;auto=format&amp;fit=crop" alt="DeathAdder V2 Pro">
-                </div>
-                <div class="card-content">
-                    <div class="hallmark">RAZER · FOR GAMERS. BY GAMERS.</div>
-                    <h3 class="product-name">DeathAdder V2 Pro</h3>
-                    <div class="specs">
+</div>
+</div>
+<div class="hidden-details" style="display:none;">
+<div class="d-brand">APPLE // PROFESSIONAL DESKTOP</div>
+<div class="d-title">Mac Studio (M4 Ultra)</div>
+<div class="d-why">Fits in a lunchbox and outperforms workstations that cost several times more.</div>
+<div class="d-desc">The M4 Ultra chip bridges two M4 Max dies for rendering and simulation performance.</div>
+<div class="d-spec" data-label="Processor">Apple M4 Ultra | 32-Core CPU (24P + 8E) | 80-Core GPU | 64-Core Neural Engine</div><div class="d-spec" data-label="Graphics">80-Core Apple GPU | Hardware-accelerated Ray Tracing | 64-Core Neural Engine</div><div class="d-spec" data-label="Memory">256GB Unified Memory | 1.6TB/s Memory Bandwidth</div><div class="d-spec" data-label="Storage">8TB PCIe Gen 4 SSD (up to 7.4GB/s read)</div><div class="d-spec" data-label="Display">External: Up to 8x 6K displays @ 60Hz or 4x 8K displays @ 60Hz (Direct display not integrated)</div><div class="d-spec" data-label="Battery">AC Mains Powered (Desktop Workstation) | Internal 370W Power Supply</div><div class="d-spec" data-label="Camera &amp; Audio">Built-in speaker | 3.5mm Headphone Jack with advanced high-impedance support</div><div class="d-spec" data-label="I/O">6x Thunderbolt 5 (120Gb/s) | 10Gb Ethernet | HDMI 2.1 (8K) | 2x USB-A (5Gbps) | SDXC (UHS-II)</div><div class="d-spec" data-label="Form Factor">Extruded Aluminum Unibody (19.7 x 19.7 x 9.5 cm) | 3.6kg | Dual-fan thermal system</div></div>
+</div>
+</div>
+</div>
+<div class="section-wrapper" id="sec-peripheral">
+<div class="chapter-head">
+<span class="chapter-eyebrow">peripherals</span>
+<h2 class="section-title"><span class="lang-pair"><span class="lang-zh" lang="zh-CN">装备与外设</span><span aria-hidden="true" class="lang-divider"> / </span><span class="lang-en" lang="en">Weapons &amp; peripherals</span></span><span class="section-count">(6 / 6 PIECES)</span></h2>
+<div class="chapter-rule"></div>
+</div>
+<div class="grid">
+<div class="card" data-brand="razer" data-cat="peripheral" data-chapter="WEAPONS &amp; PERIPHERALS" data-lot="031" data-name="deathadder v2 pro razer · for gamers. by gamers. esports grade razer" data-status="owned">
+<div class="lot-number">N° 031</div>
+<div class="seal owned"><span class="dot"></span>OWNED</div>
+<div class="img-box">
+<img alt="DeathAdder V2 Pro" decoding="async" height="1254" loading="lazy" src="assets/images/deathadder-v2-pro-transparent.png" width="1254"/>
+</div>
+<div class="card-content">
+<div class="hallmark">RAZER · FOR GAMERS. BY GAMERS.</div>
+<h3 class="product-name">DeathAdder V2 Pro</h3>
+<div class="specs">
 <div class="spec-row"><span class="spec-label">Sensor</span><span class="spec-val">Focus+ 20K DPI</span></div>
 <div class="spec-row"><span class="spec-label">Connection</span><span class="spec-val">HyperSpeed Wireless</span></div>
 <div class="spec-row"><span class="spec-label">Weight</span><span class="spec-val">Ultra-light 88g</span></div>
-                    </div>
-                </div>
-                <div class="hidden-details" style="display:none;">
-                    <div class="d-brand">RAZER // FOR GAMERS. BY GAMERS.</div>
-                    <div class="d-title">DeathAdder V2 Pro</div>
-                    <div class="d-why">My daily driver. The ergonomics are perfect for my grip style and HyperSpeed wireless is basically wired latency.</div>
-                    <div class="d-desc">Ergonomics without limits. A legendary shape updated with low-latency wireless connectivity.</div>
+</div>
+</div>
+<div class="hidden-details" style="display:none;">
+<div class="d-brand">RAZER // FOR GAMERS. BY GAMERS.</div>
+<div class="d-title">DeathAdder V2 Pro</div>
+<div class="d-why">My daily driver. The ergonomics are perfect for my grip style and HyperSpeed wireless is basically wired latency.</div>
+<div class="d-desc">A long-running ergonomic shape, updated with low-latency wireless connectivity.</div>
 <div class="d-spec" data-label="Sensor">Razer Focus+ Optical Sensor | 20,000 DPI | 650 IPS</div>
 <div class="d-spec" data-label="Switches">Razer Optical Mouse Switches Gen-2 | 70 Million Clicks</div>
 <div class="d-spec" data-label="Connectivity">Razer HyperSpeed Wireless (2.4GHz) | Bluetooth | Wired Speedflex Cable</div>
 <div class="d-spec" data-label="Battery Life">Up to 120 hours (Bluetooth) | 70 hours (HyperSpeed)</div>
 <div class="d-spec" data-label="Form Factor">Right-Handed Ergonomic | 88g Weight</div>
-                </div>
-            </div>
-            <div class="card" data-brand="apple" data-status="wishlist" data-cat="peripheral" data-lot="032" data-chapter="WEAPONS &amp; PERIPHERALS" data-name="pro display xdr 2 apple · reference display reference monitor apple">
-                <div class="lot-number">N&deg; 032</div>
-                <div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
-                <div class="img-box">
-                    <img src="https://images.unsplash.com/photo-1616423641400-0e1dc6d00df7?q=80&amp;w=1000&amp;auto=format&amp;fit=crop" alt="Pro Display XDR 2">
-                </div>
-                <div class="card-content">
-                    <div class="hallmark">APPLE · REFERENCE DISPLAY</div>
-                    <h3 class="product-name">Pro Display XDR 2</h3>
-                    <div class="specs">
-<div class="spec-row"><span class="spec-label">Panel</span><span class="spec-val">32&quot; 6K Tandem OLED</span></div>
+</div>
+</div>
+<div class="card" data-brand="apple" data-cat="peripheral" data-chapter="WEAPONS &amp; PERIPHERALS" data-lot="032" data-name="pro display xdr 2 apple · reference display reference monitor apple" data-status="wishlist">
+<div class="lot-number">N° 032</div>
+<div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
+<div class="img-box">
+<img alt="Pro Display XDR 2" decoding="async" height="906" loading="lazy" src="assets/images/pro-display-xdr-2-transparent.png" width="1736"/>
+</div>
+<div class="card-content">
+<div class="hallmark">APPLE · REFERENCE DISPLAY</div>
+<h3 class="product-name">Pro Display XDR 2</h3>
+<div class="specs">
+<div class="spec-row"><span class="spec-label">Panel</span><span class="spec-val">32" 6K Tandem OLED</span></div>
 <div class="spec-row"><span class="spec-label">Refresh Rate</span><span class="spec-val">120Hz ProMotion</span></div>
 <div class="spec-row"><span class="spec-label">Brightness</span><span class="spec-val">2000 nits Peak</span></div>
-                    </div>
-                </div>
-                <div class="hidden-details" style="display:none;">
-                    <div class="d-brand">APPLE // REFERENCE DISPLAY</div>
-                    <div class="d-title">Pro Display XDR 2</div>
-                    <div class="d-why">6K OLED reference display. I will never need this. I want it so badly it physically hurts.</div>
-                    <div class="d-desc">The ultimate reference monitor gets a major upgrade. Now featuring Tandem OLED technology and ProMotion for flawless HDR grading and buttery-smooth timelines.</div>
+</div>
+</div>
+<div class="hidden-details" style="display:none;">
+<div class="d-brand">APPLE // REFERENCE DISPLAY</div>
+<div class="d-title">Pro Display XDR 2</div>
+<div class="d-why">6K OLED reference panel. I don't need this spec, but I still want it.</div>
+<div class="d-desc">A reference-monitor upgrade with a Tandem OLED panel and ProMotion up to 120Hz, built for HDR grading.</div>
 <div class="d-spec" data-label="Display">32-inch Tandem OLED | 6016 x 3384 (6K)</div>
 <div class="d-spec" data-label="Refresh Rate">ProMotion Adaptive Sync up to 120Hz</div>
 <div class="d-spec" data-label="Brightness">1000 nits sustained | 2000 nits peak (HDR)</div>
 <div class="d-spec" data-label="Contrast Ratio">1,000,000:1 | True Blacks</div>
 <div class="d-spec" data-label="Build">Nano-texture glass | Pro Stand (Sold Separately)</div>
-                </div>
-            </div>
-            <div class="card" data-brand="apple" data-status="owned" data-cat="peripheral" data-lot="033" data-chapter="WEAPONS &amp; PERIPHERALS" data-name="earpods apple · retro essential apple audio apple">
-                <div class="lot-number">N&deg; 033</div>
-                <div class="seal owned"><span class="dot"></span>OWNED</div>
-                <div class="img-box">
-                    <img src="https://images.unsplash.com/photo-1528659139886-c466cfa928ba?q=80&amp;w=800&amp;auto=format&amp;fit=crop" alt="EarPods">
-                </div>
-                <div class="card-content">
-                    <div class="hallmark">APPLE · RETRO ESSENTIAL</div>
-                    <h3 class="product-name">EarPods</h3>
-                    <div class="specs">
+</div>
+</div>
+<div class="card" data-brand="apple" data-cat="peripheral" data-chapter="WEAPONS &amp; PERIPHERALS" data-lot="033" data-name="earpods apple · retro essential apple audio apple" data-status="owned">
+<div class="lot-number">N° 033</div>
+<div class="seal owned"><span class="dot"></span>OWNED</div>
+<div class="img-box">
+<img alt="EarPods" decoding="async" height="1254" loading="lazy" src="assets/images/earpods-transparent.png" width="1254"/>
+</div>
+<div class="card-content">
+<div class="hallmark">APPLE · RETRO ESSENTIAL</div>
+<h3 class="product-name">EarPods</h3>
+<div class="specs">
 <div class="spec-row"><span class="spec-label">Type</span><span class="spec-val">Wired In-Ear</span></div>
 <div class="spec-row"><span class="spec-label">Connection</span><span class="spec-val">USB-C / Lightning / 3.5mm</span></div>
 <div class="spec-row"><span class="spec-label">Feature</span><span class="spec-val">Zero Latency. No Battery.</span></div>
-                    </div>
-                </div>
-                <div class="hidden-details" style="display:none;">
-                    <div class="d-brand">APPLE // RETRO ESSENTIAL</div>
-                    <div class="d-title">EarPods</div>
-                    <div class="d-why">Never left. No ANC, no spatial audio, just crystal clear call quality and zero latency. Underrated forever.</div>
-                    <div class="d-desc">The iconic wired earphones that defined a generation. Engineered to maximize sound output and minimize sound loss. Plug and play, no charging anxiety.</div>
+</div>
+</div>
+<div class="hidden-details" style="display:none;">
+<div class="d-brand">APPLE // RETRO ESSENTIAL</div>
+<div class="d-title">EarPods</div>
+<div class="d-why">Never left. No ANC, no spatial audio, just crystal clear call quality and zero latency. Underrated forever.</div>
+<div class="d-desc">Wired earphones that need no charging and add no latency — plug and play.</div>
 <div class="d-spec" data-label="Acoustics">Custom tuned drivers | Deeper, richer bass tones</div>
 <div class="d-spec" data-label="Design">Defined by the geometry of the ear for enhanced comfort</div>
 <div class="d-spec" data-label="Controls">Built-in remote | Adjust volume, control playback, answer calls</div>
 <div class="d-spec" data-label="Reliability">Zero latency | Infinite battery life | Greater protection from sweat/water</div>
-                </div>
-            </div>
-            <div class="card" data-brand="samsung" data-status="wishlist" data-cat="peripheral" data-lot="034" data-chapter="WEAPONS &amp; PERIPHERALS" data-name="galaxy buds 2 samsung · tws earbuds galaxy audio samsung">
-                <div class="lot-number">N&deg; 034</div>
-                <div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
-                <div class="img-box">
-                    <img src="https://images.unsplash.com/photo-1631281005856-787db8c08db7?q=80&amp;w=800&amp;auto=format&amp;fit=crop" alt="Galaxy Buds 2">
-                </div>
-                <div class="card-content">
-                    <div class="hallmark">SAMSUNG · TWS EARBUDS</div>
-                    <h3 class="product-name">Galaxy Buds 2</h3>
-                    <div class="specs">
+</div>
+</div>
+<div class="card" data-brand="samsung" data-cat="peripheral" data-chapter="WEAPONS &amp; PERIPHERALS" data-lot="034" data-name="galaxy buds 2 samsung · tws earbuds galaxy audio samsung" data-status="wishlist">
+<div class="lot-number">N° 034</div>
+<div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
+<div class="img-box">
+<img alt="Galaxy Buds 2" decoding="async" height="1254" loading="lazy" src="assets/images/galaxy-buds-2-transparent.png" width="1254"/>
+</div>
+<div class="card-content">
+<div class="hallmark">SAMSUNG · TWS EARBUDS</div>
+<h3 class="product-name">Galaxy Buds 2</h3>
+<div class="specs">
 <div class="spec-row"><span class="spec-label">Type</span><span class="spec-val">TWS In-Ear</span></div>
 <div class="spec-row"><span class="spec-label">Feature</span><span class="spec-val">Active Noise Canceling</span></div>
 <div class="spec-row"><span class="spec-label">Weight</span><span class="spec-val">5.0g per bud</span></div>
-                    </div>
-                </div>
-                <div class="hidden-details" style="display:none;">
-                    <div class="d-brand">SAMSUNG // TWS EARBUDS</div>
-                    <div class="d-title">Galaxy Buds 2</div>
-                    <div class="d-why">Compact, clean ANC, and that galaxy ecosystem lock-in makes it seamless. Simple done right.</div>
-                    <div class="d-desc">Lightweight, comfortable, and featuring solid active noise canceling in a sleek, pebble-like design.</div>
+</div>
+</div>
+<div class="hidden-details" style="display:none;">
+<div class="d-brand">SAMSUNG // TWS EARBUDS</div>
+<div class="d-title">Galaxy Buds 2</div>
+<div class="d-why">Compact, clean ANC, and that galaxy ecosystem lock-in makes it seamless. Simple done right.</div>
+<div class="d-desc">Compact, with active noise cancelling and a pebble-shaped case.</div>
 <div class="d-spec" data-label="Audio">Dynamic 2-way speakers (Woofer + Tweeter) | Sound by AKG</div>
 <div class="d-spec" data-label="ANC">Active Noise Canceling cuts background noise by up to 98%</div>
 <div class="d-spec" data-label="Microphones">3 mics + VPU (Voice Pickup Unit) for clear calls</div>
 <div class="d-spec" data-label="Battery">Up to 20h total playback with ANC on (with charging case)</div>
 <div class="d-spec" data-label="Connectivity">Bluetooth 5.2 | Auto Switch between Galaxy devices</div>
-                </div>
-            </div>
-            <div class="card" data-brand="samsung" data-status="wishlist" data-cat="peripheral" data-lot="035" data-chapter="WEAPONS &amp; PERIPHERALS" data-name="galaxy buds 3 samsung · next-gen audio galaxy ai audio samsung">
-                <div class="lot-number">N&deg; 035</div>
-                <div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
-                <div class="img-box">
-                    <img src="https://images.unsplash.com/photo-1590658268037-6bf12165a8df?q=80&amp;w=800&amp;auto=format&amp;fit=crop" alt="Galaxy Buds 3">
-                </div>
-                <div class="card-content">
-                    <div class="hallmark">SAMSUNG · NEXT-GEN AUDIO</div>
-                    <h3 class="product-name">Galaxy Buds 3</h3>
-                    <div class="specs">
+<div class="d-spec" data-label="Build">IPX2 water resistance | 5.0g per bud | 41.2g charging case</div></div>
+</div>
+<div class="card" data-brand="samsung" data-cat="peripheral" data-chapter="WEAPONS &amp; PERIPHERALS" data-lot="035" data-name="galaxy buds 3 samsung · next-gen audio galaxy ai audio samsung" data-status="wishlist">
+<div class="lot-number">N° 035</div>
+<div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
+<div class="img-box">
+<img alt="Galaxy Buds 3" decoding="async" height="1254" loading="lazy" src="assets/images/galaxy-buds-3-transparent.png" width="1254"/>
+</div>
+<div class="card-content">
+<div class="hallmark">SAMSUNG · NEXT-GEN AUDIO</div>
+<h3 class="product-name">Galaxy Buds 3</h3>
+<div class="specs">
 <div class="spec-row"><span class="spec-label">Design</span><span class="spec-val">Blade Design (Stem)</span></div>
 <div class="spec-row"><span class="spec-label">Audio</span><span class="spec-val">24-bit Hi-Fi Sound</span></div>
 <div class="spec-row"><span class="spec-label">Feature</span><span class="spec-val">Galaxy AI Translate</span></div>
-                    </div>
-                </div>
-                <div class="hidden-details" style="display:none;">
-                    <div class="d-brand">SAMSUNG // NEXT-GEN AUDIO</div>
-                    <div class="d-title">Galaxy Buds 3</div>
-                    <div class="d-why">Blade stem design + Galaxy AI real-time interpreter. If I&#x27;m on calls all day, these are the move.</div>
-                    <div class="d-desc">A radical redesign featuring a new &quot;Blade&quot; stem for better controls and mics, deeply integrated with Galaxy AI for real-time translation.</div>
+</div>
+</div>
+<div class="hidden-details" style="display:none;">
+<div class="d-brand">SAMSUNG // NEXT-GEN AUDIO</div>
+<div class="d-title">Galaxy Buds 3</div>
+<div class="d-why">Blade stem design + Galaxy AI real-time interpreter. If I'm on calls all day, these are the move.</div>
+<div class="d-desc">A new "Blade" stem design with better controls and mics, plus Galaxy AI real-time translation.</div>
 <div class="d-spec" data-label="Audio Architecture">11mm Dynamic Driver | 24-bit / 96kHz Hi-Fi Audio (SSC Codec)</div>
 <div class="d-spec" data-label="Design">New Blade Design | Pinch &amp; Swipe Controls | Open-type fit</div>
 <div class="d-spec" data-label="Smart Features">Adaptive EQ | Adaptive ANC | Galaxy AI Real-time Interpreter</div>
 <div class="d-spec" data-label="Durability">IP57 Water &amp; Dust Resistance</div>
 <div class="d-spec" data-label="Connectivity">Bluetooth 5.4 | Auracast Support</div>
-                </div>
-            </div>
-            <div class="card" data-brand="nothing" data-status="wishlist" data-cat="peripheral" data-lot="036" data-chapter="WEAPONS &amp; PERIPHERALS" data-name="nothing ear a nothing · everyday audio wireless earbuds">
-                <div class="lot-number">N&deg; 036</div>
-                <div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
-                <div class="img-box">
-                    <img src="assets/images/nothing-ear-a-transparent.png" alt="Nothing Ear (a)" onerror="this.onerror=null;this.src='assets/images/arsenal-spark.png';">
-                </div>
-                <div class="card-content">
-                    <div class="hallmark">NOTHING · EVERYDAY AUDIO</div>
-                    <h3 class="product-name">Nothing Ear (a)</h3>
-                    <div class="specs">
+<div class="d-spec" data-label="Battery">Up to 5h (ANC on) / 6h (ANC off) | 24h total with case | Wireless Qi</div><div class="d-spec" data-label="ANC">Adaptive ANC | Ambient Sound Mode | Sound Optimization</div><div class="d-spec" data-label="Build">IP57 water &amp; dust resistance | 4.7g per bud | 46.5g case</div></div>
+</div>
+<div class="card" data-brand="nothing" data-cat="peripheral" data-chapter="WEAPONS &amp; PERIPHERALS" data-lot="036" data-name="nothing ear a nothing · everyday audio wireless earbuds" data-status="wishlist">
+<div class="lot-number">N° 036</div>
+<div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
+<div class="img-box">
+<img alt="Nothing Ear (a)" decoding="async" height="1254" loading="lazy" onerror="this.onerror=null;this.src='assets/images/arsenal-spark.png';" src="assets/images/nothing-ear-a-transparent.png" width="1254"/>
+</div>
+<div class="card-content">
+<div class="hallmark">NOTHING · EVERYDAY AUDIO</div>
+<h3 class="product-name">Nothing Ear (a)</h3>
+<div class="specs">
 <div class="spec-row"><span class="spec-label">Driver</span><span class="spec-val">11mm Dynamic Driver</span></div>
 <div class="spec-row"><span class="spec-label">ANC</span><span class="spec-val">Adaptive · up to 45dB</span></div>
 <div class="spec-row"><span class="spec-label">Battery</span><span class="spec-val">Up to 42.5h with case</span></div>
-                    </div>
-                </div>
-                <div class="hidden-details" style="display:none;">
-                    <div class="d-brand">NOTHING // EVERYDAY AUDIO</div>
-                    <div class="d-title">Nothing Ear (a)</div>
-                    <div class="d-why">A playful everyday pair that brings proper ANC, good battery life, and a little visual personality to the shortlist.</div>
-                    <div class="d-desc">Nothing Ear (a) balances a light transparent design with adaptive noise cancellation and broad codec support.</div>
+</div>
+</div>
+<div class="hidden-details" style="display:none;">
+<div class="d-brand">NOTHING // EVERYDAY AUDIO</div>
+<div class="d-title">Nothing Ear (a)</div>
+<div class="d-why">A playful everyday pair that brings proper ANC, good battery life, and a little visual personality to the shortlist.</div>
+<div class="d-desc">Nothing Ear (a) balances a light transparent design with adaptive noise cancellation and broad codec support.</div>
 <div class="d-spec" data-label="Audio Architecture">11mm Dynamic Driver | PMI + TPU diaphragm</div>
 <div class="d-spec" data-label="Noise Cancellation">Adaptive ANC | Up to 45dB | Transparency Mode</div>
 <div class="d-spec" data-label="Battery">Up to 9.5h earbuds | 42.5h with case | 10 min = 10h</div>
 <div class="d-spec" data-label="Connectivity">Bluetooth 5.3 | AAC / SBC / LDAC | Dual Connection</div>
 <div class="d-spec" data-label="Protection">IP54 earbuds | IPX2 case | 4.8g per earbud</div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    </main>
-
-    <div class="site-footer">
-        <div class="footer-line" data-zh="TECH ARSENAL / 年鉴目录 / 043 条记录 / 候选清晰后再对比" data-en="TECH ARSENAL / Annual index / 043 pieces catalogued / Compare when the shortlist is clear">tech arsenal / annual index / 043 pieces catalogued / compare when the shortlist is clear</div>
-    </div>
-
-    <div class="empty-state" id="emptyState" hidden>
-        <h2 data-zh="没有匹配记录" data-en="No records match that search.">No records match that search.</h2>
-        <p data-zh="试试其他设备名称、品牌、规格或章节。清除搜索后，目录会恢复显示全部记录。" data-en="Try a different device name, brand, specification, or chapter. The catalogue will return every record when the search is cleared.">Try a different device name, brand, specification, or chapter. The catalogue will return every record when the search is cleared.</p>
-    </div>
-
-    <script src="arsenal-site.js"></script>
-    <script>
+<div class="d-spec" data-label="Build">IP54 earbuds | IPX2 case | 4.8g per earbud | 39.6g case</div><div class="d-spec" data-label="ANC">Smart ANC with 3 levels | Up to 45dB depth | Transparency Mode</div></div>
+</div>
+</div>
+</div>
+</main>
+<footer class="site-footer">
+<div class="footer-line" data-en="TECH ARSENAL / Catalogue" data-zh="TECH ARSENAL / 总目录">tech arsenal / 总目录</div>
+</footer>
+<div class="empty-state" hidden="" id="emptyState">
+<h2 data-en="No records match that search." data-zh="没有匹配记录">No records match that search.</h2>
+<p data-en="Try a different device name, brand, specification, or chapter. The catalogue will return every record when the search is cleared." data-zh="试试其他设备名称、品牌、规格或章节。清除搜索后，目录会恢复显示全部记录。">Try a different device name, brand, specification, or chapter. The catalogue will return every record when the search is cleared.</p>
+</div>
+<script src="arsenal-site.js"></script>
+<script>
         function applyCardImageFallback(img) {
             if (img.dataset.fallbackApplied) return;
             const card = img.closest(".card");
@@ -2870,6 +3070,7 @@
             img.dataset.fallbackApplied = "true";
             box.classList.add("is-missing-image");
             box.dataset.fallback = card.querySelector(".product-name")?.textContent.trim() || img.alt || "Archive object";
+            img.src = "assets/images/arsenal-spark.png";
         }
 
         document.querySelectorAll(".card .img-box img").forEach((img) => {
@@ -2884,7 +3085,11 @@
         const controlBar = document.querySelector(".control-bar");
         const emptyState = document.getElementById("emptyState");
         const dossier = document.getElementById("techDossier");
+        const dossierBackdrop = dossier.querySelector("[data-dossier-dismiss]");
+        const dossierVisual = dossier.querySelector(".dossier-visual");
+        const dossierBody = dossier.querySelector(".dossier-body");
         const dossierImage = document.getElementById("dossierImage");
+        const dossierImageNote = document.getElementById("dossierImageNote");
         const dossierBrand = document.getElementById("dossierBrand");
         const dossierStatus = document.getElementById("dossierStatus");
         const dossierTitle = document.getElementById("dossierTitle");
@@ -2895,9 +3100,12 @@
         const dossierClose = document.getElementById("dossierClose");
         let activeFilter = "all";
         let selectedCard = null;
+        let dossierInvoker = null;
         const cards = [...document.querySelectorAll(".card")];
 
         dossierImage.addEventListener("error", () => {
+            dossierVisual.classList.add("is-missing-image");
+            dossierImageNote.hidden = false;
             if (dossierImage.dataset.fallbackApplied) return;
             dossierImage.dataset.fallbackApplied = "true";
             dossierImage.src = "assets/images/arsenal-spark.png";
@@ -2907,13 +3115,16 @@
             cards.forEach((card) => {
                 card.tabIndex = 0;
                 card.setAttribute("role", "button");
+                card.setAttribute("aria-haspopup", "dialog");
                 card.setAttribute("aria-controls", "techDossier");
                 card.setAttribute("aria-expanded", "false");
+                const productName = card.querySelector(".product-name")?.textContent.trim() || "device";
+                card.setAttribute("aria-label", "查看 " + productName + " 档案 / View " + productName + " dossier");
                 const content = card.querySelector(".card-content");
                 if (content && !content.querySelector(".record-action")) {
-                    const action = document.createElement("button");
-                    action.type = "button";
+                    const action = document.createElement("span");
                     action.className = "record-action";
+                    action.setAttribute("aria-hidden", "true");
                     action.innerHTML = window.arsenalBilingual("查看档案", "View dossier");
                     content.appendChild(action);
                 }
@@ -2964,7 +3175,10 @@
 
             if (scrollToResult && visibleTotal) {
                 const firstSection = sections.find((section) => !section.hidden);
-                if (firstSection) firstSection.scrollIntoView({behavior: "smooth", block: "start"});
+                if (firstSection) {
+                    const behavior = window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth";
+                    firstSection.scrollIntoView({behavior, block: "start"});
+                }
             }
         }
 
@@ -2998,10 +3212,24 @@
                 return node ? node.textContent.trim() : "";
             };
 
+            dossierInvoker = card;
             selectedCard = card;
             cards.forEach((item) => item.setAttribute("aria-expanded", String(item === card)));
-            dossierImage.src = card.querySelector(".img-box img").src;
-            dossierImage.alt = card.querySelector(".img-box img").alt || getText(".d-title");
+            const sourceImage = card.querySelector(".img-box img");
+            const sourceImageBox = sourceImage?.closest(".img-box");
+            const isMissingImage = sourceImageBox?.classList.contains("is-missing-image");
+            const isPlaceholderImage = sourceImage?.hasAttribute("data-placeholder-image") || isMissingImage;
+            delete dossierImage.dataset.fallbackApplied;
+            dossierVisual.classList.toggle("is-missing-image", Boolean(isMissingImage));
+            dossierImageNote.hidden = !isMissingImage;
+            if (isMissingImage) {
+                dossierImage.dataset.fallbackApplied = "true";
+                dossierImage.src = "assets/images/arsenal-spark.png";
+            } else {
+                dossierImage.src = sourceImage?.currentSrc || sourceImage?.src || "assets/images/arsenal-spark.png";
+            }
+            dossierImage.alt = sourceImage?.alt || getText(".d-title");
+            dossierImage.classList.toggle("is-placeholder", Boolean(isPlaceholderImage));
             dossierBrand.textContent = getText(".d-brand");
             dossierTitle.textContent = getText(".d-title");
             dossierLot.textContent = "N° " + (card.dataset.lot || "") + " · " + (card.dataset.chapter || "");
@@ -3026,19 +3254,38 @@
                 dossierSpecs.appendChild(row);
             });
 
+            dossierBody.scrollTop = 0;
+            const scrollbarGap = Math.max(0, window.innerWidth - document.documentElement.clientWidth);
+            document.documentElement.classList.add("dossier-open");
+            document.body.classList.add("dossier-open");
+            document.body.style.setProperty("--dossier-scrollbar-gap", `${scrollbarGap}px`);
             dossier.hidden = false;
-            dossier.scrollIntoView({behavior: "smooth", block: "nearest"});
             dossierClose.focus({preventScroll: true});
+            requestAnimationFrame(() => {
+                if (!dossier.hidden && selectedCard === card) dossier.classList.add("is-open");
+            });
+        }
+
+        function isVisibleFocusable(element) {
+            if (!(element instanceof HTMLElement) || !element.isConnected || element.hidden || element.disabled || element.getAttribute("aria-disabled") === "true") return false;
+            const style = window.getComputedStyle(element);
+            return style.display !== "none" && style.visibility !== "hidden" && element.getClientRects().length > 0;
         }
 
         function closeTechDossier() {
             if (dossier.hidden) return;
+            const restoreTarget = dossierInvoker;
             dossier.hidden = true;
+            dossier.classList.remove("is-open");
+            document.documentElement.classList.remove("dossier-open");
+            document.body.classList.remove("dossier-open");
+            document.body.style.removeProperty("--dossier-scrollbar-gap");
             if (selectedCard) {
                 selectedCard.setAttribute("aria-expanded", "false");
-                selectedCard.focus({preventScroll: true});
             }
             selectedCard = null;
+            dossierInvoker = null;
+            if (isVisibleFocusable(restoreTarget)) restoreTarget.focus({preventScroll: true});
         }
 
         cards.forEach((card) => {
@@ -3052,9 +3299,38 @@
         });
 
         dossierClose.addEventListener("click", closeTechDossier);
+        dossier.addEventListener("click", (event) => {
+            if (event.target === dossier || event.target === dossierBackdrop) closeTechDossier();
+        });
+        dossier.addEventListener("keydown", (event) => {
+            if (dossier.hidden || event.key !== "Tab") return;
+            const focusable = [...dossier.querySelectorAll("a[href], button:not([disabled]), [tabindex]:not([tabindex='-1'])")]
+                .filter((element) => isVisibleFocusable(element) && !element.closest("[aria-hidden='true']"));
+            if (!focusable.length) {
+                event.preventDefault();
+                dossierClose.focus({preventScroll: true});
+                return;
+            }
+            const first = focusable[0];
+            const last = focusable[focusable.length - 1];
+            if (!dossier.contains(document.activeElement)) {
+                event.preventDefault();
+                first.focus();
+            } else if (event.shiftKey && document.activeElement === first) {
+                event.preventDefault();
+                last.focus();
+            } else if (!event.shiftKey && document.activeElement === last) {
+                event.preventDefault();
+                first.focus();
+            }
+        });
         document.addEventListener("keydown", (event) => {
-            if (event.key === "Escape") closeTechDossier();
-            if (event.key === "/" && document.activeElement !== searchInput && !["INPUT", "TEXTAREA", "SELECT"].includes(document.activeElement.tagName)) {
+            if (event.key === "Escape" && !dossier.hidden) {
+                event.preventDefault();
+                closeTechDossier();
+                return;
+            }
+            if (event.key === "/" && dossier.hidden && document.activeElement !== searchInput && !["INPUT", "TEXTAREA", "SELECT"].includes(document.activeElement.tagName)) {
                 event.preventDefault();
                 searchInput.focus();
             }
@@ -3062,9 +3338,36 @@
 
         addRecordActions();
         applyFilters();
+
+        // ===== 清单/图册视图切换 — 见 implementation-plan.md §3.1 =====
+        const VIEW_KEY = "arsenal-view-mode";
+        const catalogueMain = document.getElementById("catalogue-main");
+        const viewButtons = [...document.querySelectorAll(".view-btn")];
+
+        function applyView(mode) {
+            catalogueMain.classList.toggle("is-list", mode === "list");
+            viewButtons.forEach((btn) => {
+                const active = btn.dataset.view === mode;
+                btn.classList.toggle("active", active);
+                btn.setAttribute("aria-pressed", String(active));
+            });
+            try { localStorage.setItem(VIEW_KEY, mode); } catch (e) { /* storage blocked, ignore */ }
+        }
+
+        viewButtons.forEach((btn) => {
+            btn.addEventListener("click", () => applyView(btn.dataset.view));
+        });
+
+        let initialView = "list";
+        try {
+            const savedView = localStorage.getItem(VIEW_KEY);
+            if (savedView === "list" || savedView === "gallery") {
+                initialView = savedView;
+            }
+        } catch (e) { /* storage blocked, ignore */ }
+        applyView(initialView);
     </script>
 </body>
-
 </html>
 ```
 
@@ -3072,385 +3375,663 @@
 ```html
 <!DOCTYPE html>
 <html lang="zh-CN">
-<!-- Hallmark & Humanizer · page: topology · simple prose · no AI fluff -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TECH ARSENAL | 工位与连接 / Rig & Setup</title>
+    <title>TECH ARSENAL — 工位与连接 / Setup</title>
     <link rel="stylesheet" href="arsenal-pages.css">
+    <style>
+        .setup-intro {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: var(--muted, #a2adbf);
+            margin: 24px 0 28px;
+            max-width: 820px;
+            text-wrap: pretty;
+        }
+
+        /* ===== 空间分区标题 ===== */
+        .zone-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 36px 0 16px;
+        }
+
+        .zone-header:first-of-type {
+            margin-top: 12px;
+        }
+
+        .zone-num {
+            font-family: var(--mono, monospace);
+            font-size: 0.68rem;
+            letter-spacing: 0.1em;
+            color: var(--accent, #6f86ff);
+            background: rgba(111, 134, 255, 0.1);
+            border: 1px solid rgba(111, 134, 255, 0.22);
+            padding: 2px 8px;
+            border-radius: 3px;
+            font-weight: 600;
+        }
+
+        .zone-title {
+            font-size: 0.92rem;
+            font-weight: 600;
+            color: var(--text, #edf2fb);
+            letter-spacing: -0.01em;
+        }
+
+        .zone-line {
+            flex: 1;
+            height: 1px;
+            background: var(--line, rgba(160, 176, 204, 0.12));
+        }
+
+        /* ===== 3列对称网格系统 ===== */
+        .zone-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        /* ===== 通用卡片规范 ===== */
+        .ring-card {
+            background: linear-gradient(180deg, rgba(20, 27, 40, 0.92) 0%, rgba(14, 20, 30, 0.92) 100%);
+            border: 1px solid var(--line-strong, rgba(160, 176, 204, 0.16));
+            border-radius: 8px;
+            padding: 18px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04), 0 4px 16px -2px rgba(0, 0, 0, 0.32);
+            transition: border-color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
+            position: relative;
+        }
+
+        .ring-card:hover {
+            border-color: rgba(111, 134, 255, 0.36);
+            transform: translateY(-2px);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), 0 8px 24px -4px rgba(0, 0, 0, 0.45);
+        }
+
+        .ring-card:active {
+            transform: translateY(0);
+        }
+
+        .ring-card-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .ring-img-box {
+            width: 52px;
+            height: 52px;
+            border-radius: 6px;
+            background: rgba(255, 255, 255, 0.025);
+            border: 1px solid var(--line, rgba(160, 176, 204, 0.12));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            overflow: hidden;
+            padding: 4px;
+        }
+
+        .ring-img-box img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            display: block;
+        }
+
+        .ring-header-info {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            min-width: 0;
+            flex: 1;
+        }
+
+        .ring-title-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+        }
+
+        .ring-device-title {
+            font-size: 1.02rem;
+            font-weight: 600;
+            color: var(--text, #edf2fb);
+            margin: 0;
+            letter-spacing: -0.01em;
+            font-feature-settings: "tnum";
+            font-variant-numeric: tabular-nums;
+            text-wrap: balance;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .ring-role-badge {
+            font-family: var(--mono, monospace);
+            font-size: 0.65rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--accent-2, #91a5ff);
+            background: rgba(111, 134, 255, 0.1);
+            border: 1px solid rgba(111, 134, 255, 0.2);
+            padding: 2px 7px;
+            border-radius: 3px;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .ring-device-duty {
+            font-size: 0.85rem;
+            color: var(--muted, #a2adbf);
+            line-height: 1.55;
+            margin: 0;
+            text-wrap: pretty;
+        }
+
+        .ring-connect-pill {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            margin-top: auto;
+            padding-top: 10px;
+            border-top: 1px solid var(--line, rgba(160, 176, 204, 0.1));
+            font-family: var(--mono, monospace);
+            font-size: 0.72rem;
+            font-variant-numeric: tabular-nums;
+            color: var(--muted-2, #7f8ca2);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* 静态指示圆点，无呼吸灯 */
+        .ring-connect-dot {
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: var(--accent, #6f86ff);
+            flex-shrink: 0;
+        }
+
+        /* ===== ZONE 01: 桌面联动核心大卡 (Mac Studio + XDR 2) ===== */
+        .desk-core-card {
+            grid-column: span 2;
+            background: linear-gradient(180deg, rgba(22, 30, 44, 0.94) 0%, rgba(15, 21, 31, 0.94) 100%);
+            border: 1px solid var(--line-strong, rgba(160, 176, 204, 0.24));
+            border-radius: 8px;
+            padding: 20px 22px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05), 0 4px 20px -2px rgba(0, 0, 0, 0.38);
+            transition: border-color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
+        }
+
+        .desk-core-card:hover {
+            border-color: rgba(111, 134, 255, 0.42);
+            transform: translateY(-2px);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.07), 0 10px 28px -4px rgba(0, 0, 0, 0.5);
+        }
+
+        .desk-core-card:active {
+            transform: translateY(0);
+        }
+
+        .desk-core-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .desk-core-label {
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--text, #edf2fb);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .desk-core-icon {
+            color: var(--accent, #6f86ff);
+            display: flex;
+            align-items: center;
+        }
+
+        .desk-core-status {
+            font-family: var(--mono, monospace);
+            font-size: 0.68rem;
+            letter-spacing: 0.04em;
+            color: var(--accent-2, #91a5ff);
+            background: rgba(111, 134, 255, 0.08);
+            border: 1px solid rgba(111, 134, 255, 0.2);
+            padding: 2px 8px;
+            border-radius: 3px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .status-dot-static {
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: var(--accent, #6f86ff);
+            flex-shrink: 0;
+        }
+
+        .duo-container {
+            display: grid;
+            grid-template-columns: 1fr auto 1.35fr;
+            gap: 16px;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.26);
+            border: 1px solid var(--line, rgba(160, 176, 204, 0.1));
+            border-radius: 6px;
+            padding: 16px 18px;
+        }
+
+        .duo-unit {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .duo-unit-top {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .duo-unit-title {
+            font-size: 1.02rem;
+            font-weight: 600;
+            color: var(--text, #edf2fb);
+            margin: 0;
+            font-feature-settings: "tnum";
+            font-variant-numeric: tabular-nums;
+        }
+
+        .duo-unit-badge {
+            font-family: var(--mono, monospace);
+            font-size: 0.62rem;
+            letter-spacing: 0.05em;
+            color: var(--accent-2, #91a5ff);
+            background: rgba(111, 134, 255, 0.1);
+            border: 1px solid rgba(111, 134, 255, 0.18);
+            padding: 2px 6px;
+            border-radius: 3px;
+            white-space: nowrap;
+        }
+
+        .duo-unit-duty {
+            font-size: 0.83rem;
+            color: var(--muted, #a2adbf);
+            line-height: 1.5;
+            margin: 0;
+            text-wrap: pretty;
+        }
+
+        .duo-bridge {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            padding: 0 4px;
+        }
+
+        .duo-bridge-pill {
+            font-family: var(--mono, monospace);
+            font-size: 0.65rem;
+            letter-spacing: 0.04em;
+            font-variant-numeric: tabular-nums;
+            color: var(--accent-2, #91a5ff);
+            background: rgba(111, 134, 255, 0.1);
+            border: 1px solid rgba(111, 134, 255, 0.24);
+            border-radius: 12px;
+            padding: 3px 9px;
+            white-space: nowrap;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .duo-bridge-pill svg {
+            color: var(--accent, #6f86ff);
+        }
+
+        .duo-bridge-line {
+            width: 44px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(111, 134, 255, 0.4), transparent);
+        }
+
+        .desk-core-footer {
+            font-family: var(--mono, monospace);
+            font-size: 0.72rem;
+            font-variant-numeric: tabular-nums;
+            color: var(--muted-2, #7f8ca2);
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            padding-top: 6px;
+            border-top: 1px solid var(--line, rgba(160, 176, 204, 0.1));
+        }
+
+        .setup-outro {
+            color: var(--muted-2, #7f8ca2);
+            font-size: 0.88rem;
+            line-height: 1.7;
+            margin: 16px 0 48px;
+            padding-left: 14px;
+            border-left: 2px solid var(--accent, #6f86ff);
+            text-wrap: pretty;
+        }
+
+        /* 键盘聚焦支持 (Accessibility a11y) */
+        a.page-link:focus-visible,
+        a.back-link:focus-visible {
+            outline: 2px solid var(--accent, #6f86ff);
+            outline-offset: 3px;
+        }
+
+        /* 响应式适配 */
+        @media (max-width: 1024px) {
+            .zone-grid {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            }
+            .desk-core-card {
+                grid-column: span 1;
+            }
+            .duo-container {
+                grid-template-columns: 1fr;
+                gap: 14px;
+            }
+            .duo-bridge {
+                flex-direction: row;
+                justify-content: center;
+                padding: 4px 0;
+            }
+            .duo-bridge-line {
+                width: 32px;
+            }
+        }
+
+        /* 遵循系统无动画偏好 */
+        @media (prefers-reduced-motion: reduce) {
+            .ring-card, .desk-core-card {
+                transition: none;
+                transform: none !important;
+            }
+        }
+    </style>
 </head>
-<body>
-    <div class="broadcast-bar">
-        <div class="signal-icon"></div>
-        <span class="shoutout-text" data-zh="设备连接" data-en="Connections">设备连接</span>
-        <span class="creator-tag" data-zh="工位设置" data-en="Rig setup">rig setup</span>
-        <span class="shoutout-text" data-zh="供电与同步" data-en="Power & Sync">供电与同步</span>
-    </div>
-
-    <main class="shell">
-        <header class="site-header">
-            <div class="top-row">
-                <a class="back-link home-mark-link" href="index.html" aria-label="返回首页 / Back to home" title="返回首页 / Back to home">
-                    <img src="assets/images/arsenal-spark.png" alt="">
-                </a>
-                <nav class="page-nav" aria-label="site">
-                    <a class="page-link${currentFile === "index.html" ? " active" : ""}" href="index.html">首页</a>
-                    <a class="page-link${currentFile === "topology.html" ? " active" : ""}" href="topology.html">工位与连接</a>
-                    <a class="page-link${currentFile === "decision.html" ? " active" : ""}" href="decision.html">选机算盘</a>
-                    <a class="page-link${currentFile === "provenance.html" ? " active" : ""}" href="provenance.html">时间线</a>
-                    <a class="page-link${currentFile === "field-notes.html" ? " active" : ""}" href="field-notes.html">使用手记</a>
-                    <a class="page-link${currentFile === "comparison-lab.html" ? " active" : ""}" href="comparison-lab.html">对比实验室</a>
-                    <a class="page-link${currentFile === "on-the-horizon.html" ? " active" : ""}" href="on-the-horizon.html">观望清单</a>
-                    <a class="page-link${currentFile === "tech-arsenal.html" ? " active" : ""}" href="tech-arsenal.html">总目录</a>
-                </nav>
+<body class="catalogue-page">
+    <header class="header site-header">
+        <div class="header-top top-row">
+            <a href="index.html" class="back-link home-mark-link" aria-label="返回首页 / Back to home" title="返回首页 / Back to home"><img src="assets/images/arsenal-spark.png" alt="" width="1000" height="1000" loading="eager" decoding="async"></a>
+            <nav class="page-nav" aria-label="Site navigation / 站点导航">
+                <a class="page-link" href="index.html"><span class="lang-pair"><span class="lang-zh" lang="zh-CN">首页</span><span class="lang-divider" aria-hidden="true"> / </span><span class="lang-en" lang="en">Home</span></span></a>
+                <a class="page-link" href="tech-arsenal.html"><span class="lang-pair"><span class="lang-zh" lang="zh-CN">总目录</span><span class="lang-divider" aria-hidden="true"> / </span><span class="lang-en" lang="en">Catalogue</span></span></a>
+                <a class="page-link" href="comparison-lab.html"><span class="lang-pair"><span class="lang-zh" lang="zh-CN">对比</span><span class="lang-divider" aria-hidden="true"> / </span><span class="lang-en" lang="en">Compare</span></span></a>
+                <a class="page-link active" href="topology.html" aria-current="page"><span class="lang-pair"><span class="lang-zh" lang="zh-CN">工位与连接</span><span class="lang-divider" aria-hidden="true"> / </span><span class="lang-en" lang="en">Setup</span></span></a>
+            </nav>
+        </div>
+        <div class="masthead">
+            <div class="masthead-copy">
+                <h1 class="main-title"><span class="tech">TECH</span> <span class="arsenal">ARSENAL</span></h1>
             </div>
+        </div>
+    </header>
 
-            <div class="hero-head">
-                <div class="eyebrow" data-zh="工位与连接" data-en="Rig & Setup">工位与连接</div>
-                <div class="title-lockup">
-                    <h1 class="main-title" data-zh="工位与连接" data-en="Rig & Setup">工位与<span class="accent">连接</span></h1>
-                    <p class="page-subtitle" data-zh="日常用到的几台设备，怎么连屏幕、怎么传文件、怎么供电。" data-en="How my daily devices connect to screens, sync files, and get power.">日常用到的几台设备，怎么连屏幕、怎么传文件、怎么供电。</p>
-                </div>
-            </div>
-        </header>
+    <main class="collection">
+        <p class="setup-intro">家里固定摆的是 Mac Studio 加 Pro Display XDR，当主力工作台；出门就换成 14 寸 MacBook Pro；Legion 5 常年待在桌边，专门用来打游戏。三台机器各管一块，没人越界，也没多出一根线。</p>
 
-        <section class="hero-panel">
-            <div class="hero-grid">
-                <div class="hero-copy">
-                    <div class="hero-copy-top">
-                        <div class="meta-chip" data-zh="日常搭配" data-en="Daily Setup">日常搭配</div>
-                        <h2 data-zh="日常主要用 MacBook 和 Legion 两台电脑。" data-en="My daily setup centers on a MacBook and a Legion laptop.">日常主要用 MacBook 和 Legion 两台电脑。</h2>
-                        <p data-zh="MacBook 负责写代码和日常使用，Legion 负责跑本地模型、渲染和打游戏。两台电脑用 Syncthing 自动同步文件夹，不用手动拷数据。" data-en="MacBook handles code and daily tasks; Legion runs local models, rendering, and games. Syncthing keeps project folders in sync automatically.">MacBook 负责写代码和日常使用，Legion 负责跑本地模型、渲染和打游戏。两台电脑用 Syncthing 自动同步文件夹，不用手动拷数据。</p>
+        <!-- ZONE 01: 家里主工位 -->
+        <div class="zone-header">
+            <span class="zone-num">ZONE 01</span>
+            <span class="zone-title">家里主工位 · Home Workstation</span>
+            <span class="zone-line"></span>
+        </div>
+
+        <div class="zone-grid">
+            <!-- 桌面联动核心大卡 (Mac Studio + XDR 2) 占 2 列 -->
+            <article class="desk-core-card">
+                <div class="desk-core-header">
+                    <div class="desk-core-label">
+                        <span class="desk-core-icon" aria-hidden="true">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="3" rx="2"/><line x1="8" x2="16" y1="21" y2="21"/><line x1="12" x2="12" y1="17" y2="21"/></svg>
+                        </span>
+                        <span>桌面生产力核心 · WORKSTATION CORE</span>
                     </div>
+                    <div class="desk-core-status">
+                        <span class="status-dot-static" aria-hidden="true"></span>
+                        <span>常驻工位 · LIVE DOCKED</span>
+                    </div>
+                </div>
 
-                    <div class="hero-stats">
-                        <div class="hero-stat">
-                            <strong>02</strong>
-                            <span data-zh="主力电脑" data-en="Main PCs">主力电脑</span>
+                <div class="duo-container">
+                    <!-- Mac Studio -->
+                    <div class="duo-unit">
+                        <div class="duo-unit-top">
+                            <div class="ring-img-box">
+                                <img src="assets/images/macstudio-m4-ultra-transparent.png" alt="Mac Studio" width="1254" height="1254" loading="eager" decoding="async">
+                            </div>
+                            <div>
+                                <h3 class="duo-unit-title">Mac Studio</h3>
+                                <span class="duo-unit-badge">主力台机</span>
+                            </div>
                         </div>
-                        <div class="hero-stat">
-                            <strong>03</strong>
-                            <span data-zh="常用场景" data-en="Presets">常用场景</span>
+                        <p class="duo-unit-duty">全天开机连大屏，写代码、跑本地模型服务。</p>
+                    </div>
+
+                    <!-- 连线桥梁 -->
+                    <div class="duo-bridge">
+                        <span class="duo-bridge-line" aria-hidden="true"></span>
+                        <span class="duo-bridge-pill">
+                            <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                            <span>雷电 4 一线直连 · 6K 120Hz</span>
+                        </span>
+                        <span class="duo-bridge-line" aria-hidden="true"></span>
+                    </div>
+
+                    <!-- Pro Display XDR 2 -->
+                    <div class="duo-unit">
+                        <div class="duo-unit-top">
+                            <div class="ring-img-box">
+                                <img src="assets/images/pro-display-xdr-2-transparent.png" alt="Pro Display XDR 2" width="1736" height="906" loading="eager" decoding="async">
+                            </div>
+                            <div>
+                                <h3 class="duo-unit-title">Pro Display XDR 2</h3>
+                                <span class="duo-unit-badge">主力屏幕</span>
+                            </div>
                         </div>
-                        <div class="hero-stat">
-                            <strong>140W</strong>
-                            <span data-zh="桌面充电头" data-en="Desktop Charger">桌面充电头</span>
+                        <p class="duo-unit-duty">32 寸 6K 视网膜屏，左边代码右边预览，分屏用一整天。</p>
+                    </div>
+                </div>
+
+                <div class="desk-core-footer">
+                    <span class="ring-connect-dot" aria-hidden="true"></span>
+                    <span>单根雷电 4 线缆，扛 6K 信号和数据，桌面没有多余走线。</span>
+                </div>
+            </article>
+
+            <!-- Legion 5 拯救者 占 1 列 -->
+            <article class="ring-card">
+                <div class="ring-card-header">
+                    <div class="ring-img-box">
+                        <img src="assets/images/legion-5-15ahp10.png" alt="Legion 5 拯救者" width="1254" height="1254" loading="lazy" decoding="async">
+                    </div>
+                    <div class="ring-header-info">
+                        <div class="ring-title-row">
+                            <h2 class="ring-device-title">Legion 5 拯救者</h2>
+                            <span class="ring-role-badge">桌边游戏机</span>
                         </div>
                     </div>
                 </div>
-
-                <div class="hero-side">
-                    <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1000&auto=format&fit=crop" alt="Desk setup and MacBook">
+                <p class="ring-device-duty">常年放桌边，只打游戏和跑 Windows 独占的工具。走独立网线，不占主屏视野。</p>
+                <div class="ring-connect-pill">
+                    <span class="ring-connect-dot" aria-hidden="true"></span>
+                    <span>有线网络单独接，跟主工位物理隔开。</span>
                 </div>
-            </div>
-        </section>
+            </article>
+        </div>
 
-        <!-- Section 1: Station Nodes -->
-        <section class="section">
-            <div class="section-heading">
-                <h3 data-zh="工位与设备" data-en="Workstation & Devices">工位与设备</h3>
-                <p data-zh="点选不同场景，查看设备的分工和接线方式。" data-en="Select a scenario to see device roles and connections.">点选不同场景，查看设备的分工和接线方式。</p>
-            </div>
+        <!-- ZONE 02: 外出随身生态 -->
+        <div class="zone-header">
+            <span class="zone-num">ZONE 02</span>
+            <span class="zone-title">外出随身生态 · On-the-Go &amp; EDC</span>
+            <span class="zone-line"></span>
+        </div>
 
-            <div class="topology-controls">
-                <button class="station-tab active" data-station="dual-desk" type="button">
-                    <span class="tab-indicator"></span>
-                    <span data-zh="双机桌面" data-en="Dual-PC Desk">双机桌面</span>
-                </button>
-                <button class="station-tab" data-station="edc-mobile" type="button">
-                    <span class="tab-indicator"></span>
-                    <span data-zh="出门随身" data-en="On the Go">出门随身</span>
-                </button>
-                <button class="station-tab" data-station="lab-testbed" type="button">
-                    <span class="tab-indicator"></span>
-                    <span data-zh="备用测试" data-en="Testbed">备用测试</span>
-                </button>
-            </div>
-
-            <div class="topology-board">
-                <div class="topology-nodes-grid" id="topology-nodes-container">
-                    <!-- Populated dynamically by JS -->
+        <div class="zone-grid">
+            <article class="ring-card">
+                <div class="ring-card-header">
+                    <div class="ring-img-box">
+                        <img src="assets/images/macbook-pro-16.webp" alt="MacBook Pro 14&quot;" width="1436" height="1096" loading="lazy" decoding="async">
+                    </div>
+                    <div class="ring-header-info">
+                        <div class="ring-title-row">
+                            <h2 class="ring-device-title">MacBook Pro 14"</h2>
+                            <span class="ring-role-badge">外出主力</span>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </section>
+                <p class="ring-device-duty">出门主力机，咖啡馆、差旅随身带，轻。</p>
+                <div class="ring-connect-pill">
+                    <span class="ring-connect-dot" aria-hidden="true"></span>
+                    <span>移动办公，回家自动同步。</span>
+                </div>
+            </article>
 
-        <!-- Section 2: Data Pipeline -->
-        <section class="section">
-            <div class="section-heading">
-                <h3 data-zh="文件与连接工具" data-en="File Sync & Networking">文件与连接工具</h3>
-                <p data-zh="跨设备传文件和远程连接用的几样工具。" data-en="Tools used for file transfers and remote access across platforms.">跨设备传文件和远程连接用的几样工具。</p>
-            </div>
-
-            <div class="table-wrap">
-                <table class="pipeline-table">
-                    <thead>
-                        <tr>
-                            <th data-zh="工具" data-en="Tool">工具</th>
-                            <th data-zh="连接设备" data-en="Devices">连接设备</th>
-                            <th data-zh="主要用途" data-en="Main Job">主要用途</th>
-                            <th data-zh="特点" data-en="Notes">特点</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><span class="protocol-pill">Syncthing</span></td>
-                            <td>MacBook ⇄ Legion</td>
-                            <td data-zh="自动双向同步代码库和笔记文件夹" data-en="Syncs code repos and note folders automatically">自动双向同步代码库和笔记文件夹</td>
-                            <td class="font-mono" style="font-size:0.75rem; color:var(--muted-2);">局域网直连，不走第三方云端</td>
-                        </tr>
-                        <tr>
-                            <td><span class="protocol-pill">Tailscale</span></td>
-                            <td>手机 / 笔记本 ⇄ 电脑</td>
-                            <td data-zh="出门在外远程连回电脑写代码、调接口" data-en="Remote SSH and coding when away from home">出门在外远程连回电脑写代码、调接口</td>
-                            <td class="font-mono" style="font-size:0.75rem; color:var(--muted-2);">自动组网，不需要公网 IP</td>
-                        </tr>
-                        <tr>
-                            <td><span class="protocol-pill">LocalSend</span></td>
-                            <td>iPhone ⇄ 安卓 / 电脑</td>
-                            <td data-zh="跨平台快速传照片和大文件" data-en="Quick cross-platform photo and file transfer">跨平台快速传照片和大文件</td>
-                            <td class="font-mono" style="font-size:0.75rem; color:var(--muted-2);">局域网免登录，不压画质</td>
-                        </tr>
-                        <tr>
-                            <td><span class="protocol-pill">Barrier</span></td>
-                            <td>Razer 鼠标 ⇄ Mac / Windows</td>
-                            <td data-zh="一套鼠标键盘直接在两台电脑屏幕间滑过去用" data-en="One mouse and keyboard across both screens">一套鼠标键盘直接在两台电脑屏幕间滑过去用</td>
-                            <td class="font-mono" style="font-size:0.75rem; color:var(--muted-2);">延迟低，剪贴板文字直接复制</td>
-                        </tr>
-                        <tr>
-                            <td><span class="protocol-pill">KDE Connect</span></td>
-                            <td>安卓手机 ➔ MacBook</td>
-                            <td data-zh="短信验证码自动显示在电脑屏幕上" data-en="SMS verification codes pop up on Mac">短信验证码自动显示在电脑屏幕上</td>
-                            <td class="font-mono" style="font-size:0.75rem; color:var(--muted-2);">后台省电，省去拿手机看验证码</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </section>
-
-        <!-- Section 3: Power Setup -->
-        <section class="section">
-            <div class="section-heading">
-                <h3 data-zh="供电与充电" data-en="Power & Charging">供电与充电</h3>
-                <p data-zh="桌面和笔记本的实际供电方式。" data-en="How the desk and laptops are powered.">桌面和笔记本的实际供电方式。</p>
-            </div>
-
-            <div class="power-grid-cards">
-                <article class="power-card">
-                    <div class="power-card-head">
-                        <span class="power-card-title" data-zh="桌面 140W 充电头" data-en="140W Desktop Charger">桌面 140W 充电头</span>
-                        <span class="power-card-wattage">140W</span>
+            <article class="ring-card">
+                <div class="ring-card-header">
+                    <div class="ring-img-box">
+                        <img src="assets/images/ipad-mini-enhanced.png" alt="iPad mini" width="2250" height="1688" loading="lazy" decoding="async">
                     </div>
-                    <ul class="power-route-list">
-                        <li class="power-route-item">
-                            <span>C 口 1 (100W)</span>
-                            <span>➔ 充 MacBook Pro 16</span>
-                        </li>
-                        <li class="power-route-item">
-                            <span>C 口 2 (27W)</span>
-                            <span>➔ 充 iPhone 11 或 Mi 9</span>
-                        </li>
-                        <li class="power-route-item">
-                            <span>A 口 (12W)</span>
-                            <span>➔ 鼠标底座供电</span>
-                        </li>
-                    </ul>
-                    <div class="power-note" data-zh="插拔新设备时充电头会短暂重启重新握手，外设底座接 A 口最稳。" data-en="Multi-port chargers restart briefly when new devices are plugged in.">插拔新设备时充电头会短暂重启重新握手，外设底座接 A 口最稳。</div>
-                </article>
-
-                <article class="power-card">
-                    <div class="power-card-head">
-                        <span class="power-card-title" data-zh="Legion 游戏本供电" data-en="Legion Power">Legion 游戏本供电</span>
-                        <span class="power-card-wattage">230W</span>
+                    <div class="ring-header-info">
+                        <div class="ring-title-row">
+                            <h2 class="ring-device-title">iPad mini (A17 Pro)</h2>
+                            <span class="ring-role-badge">便携平板</span>
+                        </div>
                     </div>
-                    <ul class="power-route-list">
-                        <li class="power-route-item">
-                            <span>原装方口电源</span>
-                            <span>➔ 重载渲染与游戏</span>
-                        </li>
-                        <li class="power-route-item">
-                            <span>便携 140W C 口充</span>
-                            <span>➔ 轻办公与外带</span>
-                        </li>
-                        <li class="power-route-item">
-                            <span>普通 65W/100W PD</span>
-                            <span>➔ 待机慢充保电</span>
-                        </li>
-                    </ul>
-                    <div class="power-note" data-zh="独立显卡跑满时功耗高，用普通 PD 充会掉电，重度使用需要用原装电源。" data-en="GPU under full load needs the brick; standard 100W PD will slowly drain under heavy loads.">独立显卡跑满时功耗高，用普通 PD 充会掉电，重度使用需要用原装电源。</div>
-                </article>
-            </div>
-        </section>
+                </div>
+                <p class="ring-device-duty">外出看书、翻 PDF；回工位当 Sidecar 副屏，多摊一块地方看参考文档。</p>
+                <div class="ring-connect-pill">
+                    <span class="ring-connect-dot" aria-hidden="true"></span>
+                    <span>无线接 Sidecar 副屏。</span>
+                </div>
+            </article>
 
-        <!-- Section 4: EDC Loadouts -->
-        <section class="section">
-            <div class="section-heading">
-                <h3 data-zh="出门搭配" data-en="Carry Loadouts">出门搭配</h3>
-                <p data-zh="按出门需求整理的三种随身包。" data-en="Three simple carry setups depending on the trip.">按出门需求整理的三种随身包。</p>
-            </div>
-
-            <div class="loadout-grid">
-                <article class="loadout-card">
-                    <div class="loadout-header">
-                        <span class="loadout-tag" data-zh="01 · 轻便出门" data-en="01 · Light Carry">01 · 轻便出门</span>
-                        <span class="loadout-weight">约 400g</span>
+            <article class="ring-card">
+                <div class="ring-card-header">
+                    <div class="ring-img-box">
+                        <img src="assets/images/iphone11-transparent.png" alt="iPhone 11" width="1254" height="1254" loading="lazy" decoding="async">
                     </div>
-                    <ul class="loadout-list">
-                        <li>iPhone 11 (主力机)</li>
-                        <li>Apple EarPods (插上就能用，不用充电)</li>
-                        <li>5000mAh 磁吸充电宝</li>
-                        <li>0.5 米充电线</li>
-                    </ul>
-                </article>
-
-                <article class="loadout-card">
-                    <div class="loadout-header">
-                        <span class="loadout-tag" data-zh="02 · 电脑外出" data-en="02 · Laptop Carry">02 · 电脑外出</span>
-                        <span class="loadout-weight">约 2.7kg</span>
+                    <div class="ring-header-info">
+                        <div class="ring-title-row">
+                            <h2 class="ring-device-title">iPhone 11</h2>
+                            <span class="ring-role-badge">随身手机</span>
+                        </div>
                     </div>
-                    <ul class="loadout-list">
-                        <li>MacBook Pro 16</li>
-                        <li>Razer 鼠标 (蓝牙模式)</li>
-                        <li>65W 氮化镓充电头</li>
-                        <li>2 米 Type-C 充电线</li>
-                        <li>小拓展坞</li>
-                    </ul>
-                </article>
+                </div>
+                <p class="ring-device-duty">天天带的手机，微信、刷消息，拍完照 AirDrop 扔给电脑。</p>
+                <div class="ring-connect-pill">
+                    <span class="ring-connect-dot" aria-hidden="true"></span>
+                    <span>AirDrop 隔空传。</span>
+                </div>
+            </article>
+        </div>
 
-                <article class="loadout-card">
-                    <div class="loadout-header">
-                        <span class="loadout-tag" data-zh="03 · 现场测试" data-en="03 · Lab / Testing">03 · 现场测试</span>
-                        <span class="loadout-weight">约 1.2kg</span>
+        <!-- ZONE 03: 辅助与实验留存 -->
+        <div class="zone-header">
+            <span class="zone-num">ZONE 03</span>
+            <span class="zone-title">外设与实验留存 · Peripherals &amp; Archive</span>
+            <span class="zone-line"></span>
+        </div>
+
+        <div class="zone-grid">
+            <article class="ring-card">
+                <div class="ring-card-header">
+                    <div class="ring-img-box">
+                        <img src="assets/images/earpods-transparent.png" alt="EarPods" width="1254" height="1254" loading="lazy" decoding="async">
                     </div>
-                    <ul class="loadout-list">
-                        <li>Mi 9 (已刷原生系统，测试用)</li>
-                        <li>千兆网卡转接线</li>
-                        <li>45W 充电宝</li>
-                        <li>iPad mini 6 (副屏查看)</li>
-                        <li>便携固态 U 盘</li>
-                    </ul>
-                </article>
-            </div>
-        </section>
+                    <div class="ring-header-info">
+                        <div class="ring-title-row">
+                            <h2 class="ring-device-title">EarPods</h2>
+                            <span class="ring-role-badge">有线耳机</span>
+                        </div>
+                    </div>
+                </div>
+                <p class="ring-device-duty">有线，免充电，开会收音稳，没有蓝牙延迟这回事。</p>
+                <div class="ring-connect-pill">
+                    <span class="ring-connect-dot" aria-hidden="true"></span>
+                    <span>3.5mm / Type-C，插上就用。</span>
+                </div>
+            </article>
+
+            <article class="ring-card">
+                <div class="ring-card-header">
+                    <div class="ring-img-box">
+                        <img src="assets/images/samsung-a51-transparent.png" alt="Galaxy A51" width="1254" height="1254" loading="lazy" decoding="async">
+                    </div>
+                    <div class="ring-header-info">
+                        <div class="ring-title-row">
+                            <h2 class="ring-device-title">Galaxy A51</h2>
+                            <span class="ring-role-badge">测试副机</span>
+                        </div>
+                    </div>
+                </div>
+                <p class="ring-device-duty">插第二张卡收验证码。偶尔拿来装 APK，看 Android 上跑起来什么样。</p>
+                <div class="ring-connect-pill">
+                    <span class="ring-connect-dot" aria-hidden="true"></span>
+                    <span>USB-C 接电脑，ADB 调试。</span>
+                </div>
+            </article>
+
+            <article class="ring-card">
+                <div class="ring-card-header">
+                    <div class="ring-img-box">
+                        <img src="assets/images/mi9-transparent.png" alt="Mi 9" width="1254" height="1254" loading="lazy" decoding="async">
+                    </div>
+                    <div class="ring-header-info">
+                        <div class="ring-title-row">
+                            <h2 class="ring-device-title">Mi 9</h2>
+                            <span class="ring-role-badge">退役留存</span>
+                        </div>
+                    </div>
+                </div>
+                <p class="ring-device-duty">以前的主力机，现在退役摆架子，偶尔开机翻老照片。</p>
+                <div class="ring-connect-pill">
+                    <span class="ring-connect-dot" aria-hidden="true"></span>
+                    <span>独立摆放，不用常驻接线。</span>
+                </div>
+            </article>
+        </div>
+
+        <div class="setup-outro">照片手机拍完直接传，代码走局域网同步，桌面没有多余的线。</div>
     </main>
 
     <footer class="site-footer">
-        <div class="footer-line" data-zh="TECH ARSENAL / 工位与连接" data-en="TECH ARSENAL / Rig & Setup">tech arsenal / 工位与连接</div>
+        <div class="footer-line" data-zh="TECH ARSENAL / 工位与连接" data-en="TECH ARSENAL / Setup">tech arsenal / 工位与连接</div>
     </footer>
-
     <script src="arsenal-site.js"></script>
-    <script>
-        const stationsData = {
-            "dual-desk": [
-                {
-                    type: "PRIMARY LAPTOP",
-                    badge: "MACOS",
-                    title: "MacBook Pro 16-inch",
-                    role: "写代码、做设计和日常主力。常用 VSCode、Obsidian 和 Docker。",
-                    connections: ["Type-C 连 Pro Display XDR 2 (6K 120Hz)", "Syncthing 自动同步代码给 Legion", "Barrier 接收鼠标光标"]
-                },
-                {
-                    type: "GPU COMPUTE",
-                    badge: "WINDOWS 11",
-                    title: "Legion 5 15AHP10",
-                    role: "跑本地模型、Blender 渲染和打游戏。插网线接入局域网。",
-                    connections: ["有线网口直连局域网", "Tailscale 暴露本地模型端口", "插 2.4G 鼠标接收器"]
-                },
-                {
-                    type: "MONITOR",
-                    badge: "32 INCH 6K",
-                    title: "Pro Display XDR 2",
-                    role: "32 寸主屏幕，Type-C 连 Mac，DP 连 Legion。",
-                    connections: ["Type-C 供电并传输画面", "DP 接口直连游戏本"]
-                },
-                {
-                    type: "MOUSE",
-                    badge: "WIRELESS",
-                    title: "DeathAdder V2 Pro",
-                    role: "双模鼠标，2.4G 连 Legion，通过软件在两台电脑之间移动。",
-                    connections: ["2.4G 低延迟模式", "磁吸底座充电"]
-                }
-            ],
-            "edc-mobile": [
-                {
-                    type: "MAIN PHONE",
-                    badge: "IOS",
-                    title: "iPhone 11",
-                    role: "主力手机，主要负责通讯、看消息和拍照记录。",
-                    connections: ["LocalSend 传照片给电脑", "磁吸充电宝供电"]
-                },
-                {
-                    type: "EARPHONES",
-                    badge: "WIRED",
-                    title: "Apple EarPods",
-                    role: "有线耳机，插上就听，不用充电，开会收音清楚。",
-                    connections: ["Type-C / 3.5mm 直插", "线控直接接听"]
-                },
-                {
-                    type: "COMPACT TABLET",
-                    badge: "IPADOS",
-                    title: "iPad mini (A17 Pro)",
-                    role: "随身看书、看 PDF，出门时可作为笔记本无线副屏。",
-                    connections: ["随航无线副屏", "Wi-Fi 6E 联网"]
-                }
-            ],
-            "lab-testbed": [
-                {
-                    type: "TEST PHONE",
-                    badge: "AOSP",
-                    title: "Xiaomi Mi 9",
-                    role: "备用测试机，解锁刷了原生系统，用来抓包和跑自动化脚本。",
-                    connections: ["无线调试 ADB", "20W 无线充电座"]
-                },
-                {
-                    type: "BACKUP PHONE",
-                    badge: "ANDROID",
-                    title: "Galaxy A51",
-                    role: "备用机，日常放着收短信验证码。",
-                    connections: ["KDE Connect 转发短信到电脑", "双卡待命"]
-                }
-            ]
-        };
-
-        function renderTopology(stationId) {
-            const container = document.getElementById("topology-nodes-container");
-            const nodes = stationsData[stationId] || stationsData["dual-desk"];
-
-            container.innerHTML = nodes.map(node => `
-                <article class="node-card">
-                    <div class="node-header">
-                        <span class="node-type">${node.type}</span>
-                        <span class="node-badge">${node.badge}</span>
-                    </div>
-                    <h4 class="node-title">${node.title}</h4>
-                    <p class="node-role">${node.role}</p>
-                    <div class="node-connections">
-                        ${node.connections.map(conn => `
-                            <div class="connection-tag">
-                                <span class="dot"></span>
-                                <span>${conn}</span>
-                            </div>
-                        `).join("")}
-                    </div>
-                </article>
-            `).join("");
-        }
-
-        document.querySelectorAll(".station-tab").forEach(tab => {
-            tab.addEventListener("click", () => {
-                document.querySelectorAll(".station-tab").forEach(t => t.classList.remove("active"));
-                tab.classList.add("active");
-                renderTopology(tab.dataset.station);
-            });
-        });
-
-        renderTopology("dual-desk");
-    </script>
 </body>
 </html>
 ```
 
-
 ## CSS 源码
+
 ### `arsenal-pages.css`
 ```css
 :root {
@@ -3486,12 +4067,14 @@ html {
 body {
     margin: 0;
     min-height: 100vh;
+    min-height: 100dvh;
+    padding-left: env(safe-area-inset-left, 0px);
+    padding-right: env(safe-area-inset-right, 0px);
     color: var(--text);
     font-family: var(--body);
-    background:
-        radial-gradient(circle at 12% 0%, rgba(111, 134, 255, 0.18), transparent 24%),
-        radial-gradient(circle at 88% 16%, rgba(111, 134, 255, 0.12), transparent 20%),
-        linear-gradient(180deg, #090c11 0%, #0a0d12 42%, #0d1118 100%);
+    background: linear-gradient(180deg, #090c11 0%, #0a0d12 42%, #0d1118 100%);
+    background-color: #0a0d12;
+    background-attachment: fixed;
     position: relative;
 }
 
@@ -3622,7 +4205,7 @@ img {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-height: 42px;
+    min-height: 44px;
     padding: 0 16px;
     border: 1px solid var(--line-strong);
     background: rgba(255, 255, 255, 0.02);
@@ -3638,6 +4221,13 @@ img {
     color: var(--text);
     background: rgba(111, 134, 255, 0.09);
     transform: translateY(-1px);
+}
+
+.back-link:focus-visible,
+.page-link:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    border-color: var(--accent);
 }
 
 .page-nav {
@@ -3684,6 +4274,39 @@ img {
     color: var(--muted);
     line-height: 1.74;
     font-size: 1rem;
+}
+
+/* 标题防孤字与正文排版平衡 */
+.main-title,
+.section-title,
+.product-name,
+.dossier-title,
+.zone-title {
+    text-wrap: balance;
+}
+
+.dossier-why,
+.dossier-desc,
+.setup-intro {
+    text-wrap: pretty;
+}
+
+/* 全站等宽数字排印规范 (Tabular Figures) */
+.collection-ledger strong,
+.hero-stats-inline strong,
+.lot-number,
+.spec-val,
+.d-spec,
+.dossier-specs,
+.dossier-spec-val {
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: "tnum";
+}
+
+/* 锚点滚动避让顶栏 (Scroll Margin) */
+.section-wrapper,
+[id^="sec-"] {
+    scroll-margin-top: 80px;
 }
 
 .hero-panel,
@@ -3779,6 +4402,12 @@ img {
 .button-primary:hover,
 .button-secondary:hover {
     transform: translateY(-1px);
+}
+
+.button-primary:focus-visible,
+.button-secondary:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
 }
 
 .hero-stats {
@@ -4471,18 +5100,15 @@ body {
 
 /* Annual index world: the shared pages use the same blue catalogue language as tech-arsenal. */
 :root {
-    --display: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
-    --body: "Avenir Next", "Helvetica Neue", "Segoe UI", sans-serif;
     --annual-rule: rgba(160, 176, 204, .28);
     --annual-rule-soft: rgba(160, 176, 204, .16);
     --annual-blue-wash: rgba(111, 134, 255, .09);
 }
 
 body {
-    background:
-        radial-gradient(circle at 12% 0%, rgba(111, 134, 255, .18), transparent 25%),
-        radial-gradient(circle at 88% 14%, rgba(111, 134, 255, .11), transparent 22%),
-        linear-gradient(180deg, #090c11 0%, #0a0d12 46%, #0d1118 100%);
+    background: linear-gradient(180deg, #090c11 0%, #0a0d12 46%, #0d1118 100%);
+    background-color: #0a0d12;
+    background-attachment: fixed;
 }
 
 .shell {
@@ -5085,7 +5711,7 @@ tbody th {
 }
 
 .page-nav .page-link {
-    min-height: 42px;
+    min-height: 44px;
 }
 
 @media (max-width: 780px) {
@@ -5363,7 +5989,7 @@ input[type="range"]::-webkit-slider-thumb:hover {
     border: 1px solid var(--line);
     border-radius: 4px;
     padding: 16px;
-    transition: all 0.2s ease;
+    transition: border-color 0.2s ease, background-color 0.2s ease;
 }
 
 .rank-card.top-pick {
@@ -5444,7 +6070,7 @@ input[type="range"]::-webkit-slider-thumb:hover {
     color: var(--muted);
     border-radius: 4px;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
 }
 
 .toggle-btn.active {
@@ -5619,7 +6245,7 @@ select:focus {
     letter-spacing: 0.06em;
     cursor: pointer;
     border-radius: 4px;
-    transition: all 0.2s ease;
+    transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
     display: inline-flex;
     align-items: center;
     gap: 8px;
@@ -5667,7 +6293,7 @@ select:focus {
     border: 1px solid var(--line);
     border-radius: 4px;
     padding: 16px;
-    transition: all 0.2s ease;
+    transition: transform 0.2s ease, border-color 0.2s ease;
 }
 
 .node-card:hover {
@@ -6073,7 +6699,7 @@ select:focus {
 }
 
 .filter-btn {
-    min-height: 36px;
+    min-height: 44px;
     padding: 0 12px;
     border: 1px solid var(--line);
     border-radius: 4px;
@@ -6084,7 +6710,13 @@ select:focus {
     font-size: 0.65rem;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    transition: all 0.2s ease;
+    transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.search-input:focus-visible,
+.filter-btn:focus-visible {
+    outline: 2px solid var(--accent-2);
+    outline-offset: 3px;
 }
 
 .filter-btn:hover {
@@ -6111,34 +6743,73 @@ select:focus {
 
 .dossier {
     position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: min(920px, calc(100% - 32px));
-    max-height: calc(100vh - 48px);
-    margin: 0;
+    inset: 0;
     z-index: 1000;
-    overflow-y: auto;
-    background: var(--panel-solid);
-    border: 1px solid var(--accent);
-    border-radius: 8px;
-    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(160, 176, 204, 0.2);
     display: grid;
-    grid-template-columns: minmax(280px, 0.75fr) minmax(0, 1.25fr);
-}
-
-.dossier::before {
-    content: "";
-    position: fixed;
-    inset: -200vmax;
-    background: rgba(2, 6, 18, 0.75);
-    backdrop-filter: blur(8px);
-    z-index: -1;
-    pointer-events: auto;
-}
-
-body:has(.dossier:not([hidden])) {
+    place-items: center;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    max-height: none;
+    margin: 0;
+    padding-top: max(24px, env(safe-area-inset-top));
+    padding-right: max(24px, env(safe-area-inset-right));
+    padding-bottom: max(24px, env(safe-area-inset-bottom));
+    padding-left: max(24px, env(safe-area-inset-left));
     overflow: hidden;
+    overscroll-behavior: contain;
+    isolation: isolate;
+}
+
+.dossier-backdrop {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background: rgba(2, 6, 18, 0.86);
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.22s ease;
+    touch-action: none;
+}
+
+.dossier-panel {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: minmax(300px, 0.82fr) minmax(0, 1.18fr);
+    grid-template-rows: minmax(0, 1fr);
+    width: min(1040px, 100%);
+    height: min(760px, calc(100vh - 48px));
+    height: min(760px, calc(100dvh - 48px));
+    max-height: 100%;
+    min-height: 0;
+    overflow: hidden;
+    background: var(--panel-solid);
+    border: 1px solid var(--line-strong);
+    border-top-color: var(--accent);
+    border-radius: 10px;
+    box-shadow: 0 26px 68px rgba(0, 0, 0, 0.62);
+    opacity: 0;
+    transform: translateY(14px);
+    transition: transform 0.24s ease, opacity 0.2s ease;
+}
+
+.dossier.is-open .dossier-backdrop {
+    opacity: 1;
+}
+
+.dossier.is-open .dossier-panel {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+html.dossier-open,
+body.dossier-open {
+    overflow: hidden;
+}
+
+body.dossier-open {
+    padding-inline-end: var(--dossier-scrollbar-gap, 0px);
 }
 
 .dossier[hidden] {
@@ -6146,33 +6817,85 @@ body:has(.dossier:not([hidden])) {
 }
 
 .dossier-visual {
-    min-height: 380px;
-    padding: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    position: relative;
+    display: grid;
+    place-items: center;
+    min-width: 0;
+    min-height: 0;
+    height: 100%;
+    padding: 34px;
+    overflow: hidden;
     background: var(--bg-elevated);
     border-right: 1px solid var(--line);
 }
 
+.dossier-visual::before {
+    content: "";
+    position: absolute;
+    inset: 18px;
+    border: 1px solid var(--line);
+    pointer-events: none;
+}
+
 .dossier-visual img {
-    max-height: 320px;
+    position: relative;
+    z-index: 1;
+    width: auto;
+    max-width: 100%;
+    max-height: min(58vh, 420px);
     object-fit: contain;
-    filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.4));
+    filter: drop-shadow(0 16px 30px rgba(0, 0, 0, 0.44));
+}
+
+.dossier-visual.is-missing-image img {
+    width: 64px;
+    height: 64px;
+    max-height: 64px;
+    opacity: 0.35;
+    filter: none;
+}
+
+.dossier-image-note {
+    position: absolute;
+    right: 30px;
+    bottom: 30px;
+    left: 30px;
+    z-index: 1;
+    margin: 0;
+    color: var(--muted-2);
+    font-family: var(--mono);
+    font-size: 0.58rem;
+    letter-spacing: 0.08em;
+    line-height: 1.45;
+    text-align: center;
+    text-transform: uppercase;
+    overflow-wrap: anywhere;
+}
+
+.dossier-image-note[hidden] {
+    display: none;
 }
 
 .dossier-body {
-    padding: 32px 36px;
     display: flex;
     flex-direction: column;
+    min-width: 0;
+    min-height: 0;
+    padding: 28px 34px 30px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    overscroll-behavior: contain;
+    scrollbar-color: var(--line-strong) transparent;
+    scrollbar-width: thin;
 }
 
 .dossier-topline {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 14px;
-    padding-bottom: 12px;
+    gap: 18px;
+    min-width: 0;
+    padding-bottom: 14px;
     border-bottom: 1px solid var(--line);
 }
 
@@ -6180,35 +6903,69 @@ body:has(.dossier:not([hidden])) {
     font-family: var(--mono);
     font-size: 0.65rem;
     letter-spacing: 0.1em;
+    line-height: 1.4;
     text-transform: uppercase;
 }
 
 .dossier-brand {
+    min-width: 0;
     color: var(--muted);
+    overflow-wrap: anywhere;
+}
+
+.dossier-topline-tools {
+    display: flex;
+    flex: 0 1 auto;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+    min-width: 0;
 }
 
 .dossier-status {
     display: inline-flex;
     align-items: center;
-    gap: 6px;
+    gap: 7px;
+    min-height: 30px;
+    padding: 6px 9px;
     color: var(--accent-2);
+    background: var(--panel-soft);
+    border: 1px solid var(--line);
+    border-radius: 2px;
+    white-space: nowrap;
 }
 
 .dossier-status::before {
     content: "";
     width: 6px;
     height: 6px;
+    flex: 0 0 6px;
     border-radius: 50%;
     background: var(--accent);
 }
 
+.dossier-status.owned {
+    color: var(--steel);
+}
+
+.dossier-status.owned::before {
+    background: var(--steel);
+}
+
+.dossier-status.wishlist {
+    color: var(--accent-2);
+}
+
 .dossier-title {
-    margin: 18px 0 6px;
-    font-family: var(--display);
-    font-size: clamp(2rem, 4vw, 3.5rem);
-    font-weight: 600;
+    max-width: 11ch;
+    margin: 26px 0 8px;
     color: var(--text);
-    line-height: 1;
+    font-family: var(--display);
+    font-size: clamp(2.4rem, 4.8vw, 4.6rem);
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    line-height: 0.96;
+    overflow-wrap: anywhere;
 }
 
 .dossier-lot {
@@ -6217,92 +6974,187 @@ body:has(.dossier:not([hidden])) {
     font-family: var(--mono);
     font-size: 0.65rem;
     letter-spacing: 0.1em;
+    line-height: 1.45;
     text-transform: uppercase;
+    overflow-wrap: anywhere;
 }
 
 .dossier-why {
-    margin: 18px 0 0;
+    margin: 24px 0 0;
+    padding-top: 16px;
     color: var(--text);
-    font-size: 1.05rem;
-    line-height: 1.5;
+    border-top: 1px solid var(--line);
+    font-size: 1.02rem;
+    line-height: 1.55;
 }
 
 .dossier-desc {
-    margin: 12px 0 0;
+    margin: 13px 0 0;
     color: var(--muted);
-    font-size: 0.85rem;
+    font-size: 0.86rem;
     line-height: 1.6;
 }
 
 .dossier-specs {
-    margin-top: 22px;
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 12px 20px;
-    padding-top: 18px;
+    margin-top: 26px;
+    padding-top: 2px;
     border-top: 1px solid var(--line);
+}
+
+.dossier-spec {
+    min-width: 0;
+    padding: 14px 16px 14px 0;
+    border-bottom: 1px solid var(--line);
+}
+
+.dossier-spec:nth-child(even) {
+    padding-right: 0;
+    padding-left: 16px;
+    border-left: 1px solid var(--line);
 }
 
 .dossier-spec-label {
     display: block;
-    margin-bottom: 4px;
+    margin-bottom: 5px;
     color: var(--muted-2);
     font-family: var(--mono);
     font-size: 0.6rem;
     letter-spacing: 0.1em;
+    line-height: 1.35;
     text-transform: uppercase;
+    overflow-wrap: anywhere;
 }
 
 .dossier-spec-value {
+    display: block;
     color: var(--text);
-    font-size: 0.85rem;
+    font-size: 0.84rem;
+    line-height: 1.48;
+    overflow-wrap: anywhere;
 }
 
 .dossier-actions {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    display: flex;
+    align-items: center;
     gap: 12px;
     margin-top: 24px;
-    padding-top: 18px;
+    padding-top: 20px;
     border-top: 1px solid var(--line);
 }
 
-.dossier-action, .dossier-close {
-    width: 100%;
-    min-height: 40px;
-    padding: 0 16px;
-    border-radius: 4px;
+.dossier-action,
+.dossier-close {
     cursor: pointer;
     font-family: var(--mono);
     font-size: 0.68rem;
     letter-spacing: 0.08em;
+    line-height: 1.25;
     text-transform: uppercase;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.2s ease;
 }
 
 .dossier-action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 46px;
+    min-width: 0;
+    max-width: 100%;
+    padding: 12px 18px;
+    color: #05070c;
     background: var(--accent);
     border: 1px solid var(--accent);
-    color: #ffffff;
+    border-radius: 2px;
+    transition: transform 0.18s ease, opacity 0.18s ease;
+}
+
+.dossier-action .lang-en {
+    color: inherit;
 }
 
 .dossier-action:hover {
     background: var(--accent-2);
     border-color: var(--accent-2);
+    transform: translateY(-1px);
 }
 
 .dossier-close {
-    background: var(--panel-soft);
-    border: 1px solid var(--line-strong);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-width: 44px;
+    min-height: 44px;
+    max-width: 100%;
+    padding: 8px 10px;
     color: var(--muted);
+    background: transparent;
+    border: 1px solid var(--line-strong);
+    border-radius: 2px;
+    transition: transform 0.18s ease, opacity 0.18s ease;
+}
+
+.dossier-close .lang-pair {
+    white-space: normal;
+    overflow-wrap: anywhere;
+}
+
+.dossier-close-icon {
+    width: 12px;
+    height: 12px;
+    flex: 0 0 12px;
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: square;
+    stroke-width: 1.2;
+    transition: transform 0.18s ease;
 }
 
 .dossier-close:hover {
     color: var(--text);
     border-color: var(--accent);
+    transform: translateY(-1px);
+}
+
+.dossier-close:hover .dossier-close-icon {
+    transform: rotate(90deg);
+}
+
+.dossier-action:focus-visible,
+.dossier-close:focus-visible {
+    outline: 2px solid var(--accent-2);
+    outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .dossier-backdrop,
+    .dossier-panel,
+    .dossier-action,
+    .dossier-close,
+    .dossier-close-icon {
+        transition: none;
+    }
+}
+
+@media (max-width: 900px) {
+    .dossier-topline {
+        align-items: flex-start;
+        gap: 12px;
+        flex-wrap: wrap;
+    }
+
+    .dossier-brand {
+        flex: 1 1 100%;
+    }
+
+    .dossier-topline-tools {
+        flex: 1 1 100%;
+        width: 100%;
+        justify-content: space-between;
+        row-gap: 8px;
+        flex-wrap: wrap;
+    }
 }
 
 .collection {
@@ -6364,8 +7216,320 @@ body:has(.dossier:not([hidden])) {
 
 .grid {
     display: grid;
-    gap: 16px;
-    margin-top: 18px;
+    gap: 12px;
+    margin-top: 16px;
+}
+
+/* --------------------------------------------------------------------------
+   TECH ARSENAL / editorial collection display
+   The catalogue is a reading surface: one lead object, then an index of
+   smaller objects. The existing data, filters and dossier interactions stay
+   intact while the visual rhythm moves away from row-by-row inventory.
+   -------------------------------------------------------------------------- */
+.catalogue-page {
+    color-scheme: dark;
+}
+
+.catalogue-page .collection {
+    gap: 0;
+}
+
+.catalogue-page .section-wrapper {
+    margin-top: 72px;
+    padding-top: 28px;
+    border-top: 1px solid var(--line-strong);
+}
+
+.catalogue-page .chapter-head {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: end;
+    gap: 24px;
+    margin-bottom: 22px;
+}
+
+.catalogue-page .chapter-eyebrow {
+    display: none;
+}
+
+.catalogue-page .section-title {
+    gap: 12px;
+    letter-spacing: -0.025em;
+}
+
+.catalogue-page .section-count {
+    padding-bottom: 3px;
+    color: var(--muted-2);
+}
+
+.catalogue-page .chapter-rule {
+    grid-column: 1 / -1;
+    margin-top: 0;
+    background: var(--accent);
+    opacity: 0.7;
+}
+
+.catalogue-page .grid {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: 1px;
+    margin-top: 0;
+    padding: 1px;
+    background: var(--line-strong);
+    border: 1px solid var(--line-strong);
+}
+
+.catalogue-page .card,
+.catalogue-page .card.is-lead,
+.catalogue-page .card:not(.is-lead) {
+    grid-column: span 4;
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    border: 0;
+    border-radius: 0;
+    background: var(--panel-solid);
+    transform: none;
+    box-shadow: none;
+}
+
+.catalogue-page .card:nth-child(4n + 3):not(.is-lead),
+.catalogue-page .card:nth-child(4n + 4):not(.is-lead) {
+    grid-column: span 6;
+}
+
+.catalogue-page .card:hover,
+.catalogue-page .card:focus-visible {
+    z-index: 2;
+    border: 0;
+    outline: 2px solid var(--accent);
+    outline-offset: -2px;
+    transform: none;
+    box-shadow: 0 14px 34px rgba(0, 0, 0, 0.34);
+}
+
+.catalogue-page .card.is-lead {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: minmax(280px, 0.92fr) minmax(0, 1.08fr);
+    min-height: 430px;
+    background: var(--panel);
+    outline: 1px solid var(--accent);
+    outline-offset: -1px;
+}
+
+.catalogue-page .lot-number {
+    top: 18px;
+    left: 20px;
+    color: var(--text);
+    opacity: 0.72;
+}
+
+.catalogue-page .seal {
+    top: 16px;
+    right: 18px;
+    z-index: 3;
+}
+
+.catalogue-page .img-box,
+.catalogue-page .card.is-lead .img-box,
+.catalogue-page .card:not(.is-lead) .img-box {
+    min-height: 250px;
+    flex: 0 0 auto;
+    padding: 32px;
+    border: 0;
+    border-bottom: 1px solid var(--line);
+    background: var(--bg-elevated);
+}
+
+.catalogue-page .card.is-lead .img-box {
+    min-height: 430px;
+    height: 100%;
+    border-right: 1px solid var(--line);
+    border-bottom: 0;
+}
+
+.catalogue-page .img-box img,
+.catalogue-page .card.is-lead .img-box img {
+    max-height: 230px;
+    transition: transform 280ms ease, filter 280ms ease;
+}
+
+.catalogue-page .card.is-lead .img-box img {
+    max-height: 350px;
+}
+
+.catalogue-page .card:hover .img-box img,
+.catalogue-page .card:focus-visible .img-box img {
+    filter: drop-shadow(0 16px 26px rgba(0, 0, 0, 0.48));
+}
+
+.catalogue-page .card-content,
+.catalogue-page .card.is-lead .card-content,
+.catalogue-page .card:not(.is-lead) .card-content {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    align-items: flex-start;
+    min-width: 0;
+    padding: 20px 22px 22px;
+}
+
+.catalogue-page .card.is-lead .card-content {
+    justify-content: center;
+    padding: 42px 46px;
+}
+
+.catalogue-page .hallmark {
+    margin: 0 0 9px;
+    color: var(--accent-2);
+    font-size: 0.62rem;
+}
+
+.catalogue-page .product-name,
+.catalogue-page .card.is-lead .product-name,
+.catalogue-page .card:not(.is-lead) .product-name {
+    font-size: clamp(1.35rem, 2.1vw, 2.1rem);
+    letter-spacing: -0.025em;
+}
+
+.catalogue-page .card.is-lead .product-name {
+    max-width: 12ch;
+    font-size: clamp(2.6rem, 5vw, 5rem);
+    line-height: 0.96;
+}
+
+.catalogue-page .specs,
+.catalogue-page .card.is-lead .specs,
+.catalogue-page .card:not(.is-lead) .specs {
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0 16px;
+    margin: 20px 0 0;
+    padding: 0;
+    border: 0;
+}
+
+.catalogue-page .card.is-lead .specs {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    max-width: 680px;
+    margin-top: 30px;
+}
+
+.catalogue-page .spec-row {
+    min-width: 0;
+    padding: 11px 0 9px;
+    border-top: 1px solid var(--line);
+}
+
+.catalogue-page .spec-label {
+    font-size: 0.58rem;
+}
+
+.catalogue-page .spec-val {
+    color: var(--text);
+    font-size: 0.76rem;
+    line-height: 1.4;
+}
+
+.catalogue-page .record-action {
+    min-height: 36px;
+    margin-top: auto;
+    padding: 7px 11px;
+    border-color: var(--line-strong);
+}
+
+.catalogue-page .card.is-lead .record-action {
+    margin-top: 28px;
+}
+
+.catalogue-page .empty-state {
+    margin-top: 52px;
+}
+
+@media (max-width: 980px) {
+    .catalogue-page .card,
+    .catalogue-page .card.is-lead,
+    .catalogue-page .card:not(.is-lead) {
+        grid-column: span 6;
+    }
+
+    .catalogue-page .card.is-lead {
+        grid-column: 1 / -1;
+    }
+
+    .catalogue-page .card:nth-child(4n + 3):not(.is-lead),
+    .catalogue-page .card:nth-child(4n + 4):not(.is-lead) {
+        grid-column: span 6;
+    }
+}
+
+@media (max-width: 700px) {
+    .catalogue-page .section-wrapper {
+        margin-top: 48px;
+        padding-top: 22px;
+    }
+
+    .catalogue-page .chapter-head {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+
+    .catalogue-page .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .catalogue-page .card,
+    .catalogue-page .card.is-lead,
+    .catalogue-page .card:not(.is-lead),
+    .catalogue-page .card:nth-child(4n + 3):not(.is-lead),
+    .catalogue-page .card:nth-child(4n + 4):not(.is-lead) {
+        grid-column: 1;
+    }
+
+    .catalogue-page .card.is-lead {
+        display: flex;
+        min-height: 0;
+    }
+
+    .catalogue-page .card.is-lead .img-box {
+        min-height: 300px;
+        height: 300px;
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+    }
+
+    .catalogue-page .card.is-lead .card-content {
+        padding: 28px 22px 24px;
+    }
+
+    .catalogue-page .card.is-lead .product-name {
+        max-width: none;
+        font-size: clamp(2.4rem, 13vw, 4.2rem);
+    }
+
+    .catalogue-page .card.is-lead .specs,
+    .catalogue-page .specs {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .catalogue-page .card:not(.is-lead) .img-box {
+        min-height: 210px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    .catalogue-page .card,
+    .catalogue-page .img-box img,
+    .catalogue-page .filter-btn,
+    .catalogue-page .record-action {
+        transition: none;
+    }
 }
 
 .card {
@@ -6374,10 +7538,10 @@ body:has(.dossier:not([hidden])) {
     border: 1px solid var(--line);
     border-radius: 6px;
     display: grid;
-    grid-template-columns: 200px minmax(0, 1fr);
+    grid-template-columns: 220px minmax(0, 1fr);
     min-width: 0;
     cursor: pointer;
-    transition: all 0.22s ease;
+    transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
     overflow: hidden;
 }
 
@@ -6388,7 +7552,7 @@ body:has(.dossier:not([hidden])) {
 }
 
 .card.is-lead {
-    grid-template-columns: minmax(320px, 0.9fr) minmax(0, 1.1fr);
+    grid-template-columns: minmax(280px, 0.38fr) minmax(0, 0.62fr);
     background: var(--panel);
     border-color: var(--line-strong);
 }
@@ -6450,45 +7614,489 @@ body:has(.dossier:not([hidden])) {
 }
 
 .img-box {
-    min-height: 180px;
-    padding: 24px;
+    min-height: 220px;
+    padding: 22px;
     display: flex;
     align-items: center;
     justify-content: center;
     background: var(--bg-elevated);
     border-right: 1px solid var(--line);
+    overflow: hidden;
 }
 
 .card.is-lead .img-box {
-    min-height: 380px;
-    padding: 40px;
+    min-height: 300px;
+    padding: 24px;
 }
 
 .img-box img {
-    max-height: 150px;
+    max-width: 100%;
+    max-height: 210px;
     object-fit: contain;
     filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3));
     transition: transform 0.3s ease;
+    transform: scale(1.06);
 }
 
 .card.is-lead .img-box img {
     max-height: 280px;
+    transform: scale(1.1);
 }
 
 .card:hover .img-box img {
+    transform: scale(1.1);
+}
+
+.card.is-lead:hover .img-box img {
+    transform: scale(1.14);
+}
+
+/* Local product renders include transparent canvas padding; scale the object,
+   not just its surrounding image rail, so the hardware remains legible. */
+.img-box img:not([src^="http"]) {
+    transform: scale(1.45);
+}
+
+.card.is-lead .img-box img:not([src^="http"]) {
+    transform: scale(1.6);
+}
+
+.card:hover .img-box img:not([src^="http"]) {
+    transform: scale(1.5);
+}
+
+.card.is-lead:hover .img-box img:not([src^="http"]) {
+    transform: scale(1.65);
+}
+
+/* Tall phone cutouts stay contained instead of being enlarged past the rail. */
+.img-box img:not([src^="http"])[src$="mi10ultra-transparent.png"],
+.img-box img:not([src^="http"])[src$="huaweimate40proplus-transparent.png"],
+.img-box img:not([src^="http"])[src$="huaweip50pro-transparent-v2.png"],
+.img-box img:not([src^="http"])[src$="honormagic4ultimate-transparent.png"] {
+    transform: scale(1.08);
+}
+
+.card.is-lead .img-box img:not([src^="http"])[src$="mi10ultra-transparent.png"],
+.card.is-lead .img-box img:not([src^="http"])[src$="huaweimate40proplus-transparent.png"],
+.card.is-lead .img-box img:not([src^="http"])[src$="huaweip50pro-transparent-v2.png"],
+.card.is-lead .img-box img:not([src^="http"])[src$="honormagic4ultimate-transparent.png"] {
+    transform: scale(1.1);
+}
+
+.card:hover .img-box img:not([src^="http"])[src$="mi10ultra-transparent.png"],
+.card:hover .img-box img:not([src^="http"])[src$="huaweimate40proplus-transparent.png"],
+.card:hover .img-box img:not([src^="http"])[src$="huaweip50pro-transparent-v2.png"],
+.card:hover .img-box img:not([src^="http"])[src$="honormagic4ultimate-transparent.png"] {
+    transform: scale(1.1);
+}
+
+.card.is-lead:hover .img-box img:not([src^="http"])[src$="mi10ultra-transparent.png"],
+.card.is-lead:hover .img-box img:not([src^="http"])[src$="huaweimate40proplus-transparent.png"],
+.card.is-lead:hover .img-box img:not([src^="http"])[src$="huaweip50pro-transparent-v2.png"],
+.card.is-lead:hover .img-box img:not([src^="http"])[src$="honormagic4ultimate-transparent.png"] {
+    transform: scale(1.14);
+}
+
+/* iPhone 17's portrait render fills its canvas; keep the complete phone inside the rail. */
+.img-box img:not([src^="http"])[src$="iphone17-transparent.png"] {
+    transform: scale(1);
+}
+
+.card.is-lead .img-box img:not([src^="http"])[src$="iphone17-transparent.png"] {
+    transform: scale(1.02);
+}
+
+.card:hover .img-box img:not([src^="http"])[src$="iphone17-transparent.png"] {
+    transform: scale(1.02);
+}
+
+.card.is-lead:hover .img-box img:not([src^="http"])[src$="iphone17-transparent.png"] {
+    transform: scale(1.04);
+}
+
+/* Edge-to-edge square cutouts stay fully inside the image rail. */
+.img-box img:not([src^="http"])[src$="mi9-transparent.png"],
+.img-box img:not([src^="http"])[src$="pixel11proxl-transparent.png"],
+.img-box img:not([src^="http"])[src$="iphone13promax-transparent.png"],
+.img-box img:not([src^="http"])[src$="macstudio-m4-ultra-transparent.png"],
+.img-box img:not([src^="http"])[src$="s21ultra-transparent.png"],
+.img-box img:not([src^="http"])[src$="samsungzfold8-transparent.png"],
+.img-box img:not([src^="http"])[src$="samsungzfold8ultra-square-transparent.png"] {
+    transform: scale(1);
+}
+
+.card.is-lead .img-box img:not([src^="http"])[src$="mi9-transparent.png"],
+.card.is-lead .img-box img:not([src^="http"])[src$="pixel11proxl-transparent.png"],
+.card.is-lead .img-box img:not([src^="http"])[src$="iphone13promax-transparent.png"],
+.card.is-lead .img-box img:not([src^="http"])[src$="macstudio-m4-ultra-transparent.png"],
+.card.is-lead .img-box img:not([src^="http"])[src$="s21ultra-transparent.png"],
+.card.is-lead .img-box img:not([src^="http"])[src$="samsungzfold8-transparent.png"],
+.card.is-lead .img-box img:not([src^="http"])[src$="samsungzfold8ultra-square-transparent.png"] {
+    transform: scale(1.02);
+}
+
+.card:hover .img-box img:not([src^="http"])[src$="mi9-transparent.png"],
+.card:hover .img-box img:not([src^="http"])[src$="pixel11proxl-transparent.png"],
+.card:hover .img-box img:not([src^="http"])[src$="iphone13promax-transparent.png"],
+.card:hover .img-box img:not([src^="http"])[src$="macstudio-m4-ultra-transparent.png"],
+.card:hover .img-box img:not([src^="http"])[src$="s21ultra-transparent.png"],
+.card:hover .img-box img:not([src^="http"])[src$="samsungzfold8-transparent.png"],
+.card:hover .img-box img:not([src^="http"])[src$="samsungzfold8ultra-square-transparent.png"] {
+    transform: scale(1.02);
+}
+
+.card.is-lead:hover .img-box img:not([src^="http"])[src$="mi9-transparent.png"],
+.card.is-lead:hover .img-box img:not([src^="http"])[src$="pixel11proxl-transparent.png"],
+.card.is-lead:hover .img-box img:not([src^="http"])[src$="iphone13promax-transparent.png"],
+.card.is-lead:hover .img-box img:not([src^="http"])[src$="macstudio-m4-ultra-transparent.png"],
+.card.is-lead:hover .img-box img:not([src^="http"])[src$="s21ultra-transparent.png"],
+.card.is-lead:hover .img-box img:not([src^="http"])[src$="samsungzfold8-transparent.png"],
+.card.is-lead:hover .img-box img:not([src^="http"])[src$="samsungzfold8ultra-square-transparent.png"] {
+    transform: scale(1.04);
+}
+
+/* These newly catalogued Xiaomi and Samsung cutouts already use tight transparent canvases. */
+.img-box img:not([src^="http"])[src$="mi10-pro-transparent.png"],
+.img-box img:not([src^="http"])[src$="mi-note-10-pro-transparent.png"],
+.img-box img:not([src^="http"])[src$="samsung-galaxy-a72-transparent.png"],
+.img-box img:not([src^="http"])[src$="samsung-galaxy-a72-gpt-image-2.png"],
+.img-box img:not([src^="http"])[src$="samsung-galaxy-a72-gpt-image-2-transparent.png"],
+.img-box img:not([src^="http"])[src$="oneplus-9-pro-gpt-image-2-transparent.png"],
+.img-box img:not([src^="http"])[src$="vivo-x70-pro-gpt-image-2-transparent.png"],
+.img-box img:not([src^="http"])[src$="oppo-find-x9-ultra-gpt-image-2-transparent.png"] {
+    transform: scale(1);
+}
+
+.card.is-lead .img-box img:not([src^="http"])[src$="mi10-pro-transparent.png"],
+.card.is-lead .img-box img:not([src^="http"])[src$="mi-note-10-pro-transparent.png"],
+.card.is-lead .img-box img:not([src^="http"])[src$="samsung-galaxy-a72-transparent.png"],
+.card.is-lead .img-box img:not([src^="http"])[src$="samsung-galaxy-a72-gpt-image-2.png"],
+.card.is-lead .img-box img:not([src^="http"])[src$="samsung-galaxy-a72-gpt-image-2-transparent.png"],
+.card.is-lead .img-box img:not([src^="http"])[src$="oneplus-9-pro-gpt-image-2-transparent.png"],
+.card.is-lead .img-box img:not([src^="http"])[src$="vivo-x70-pro-gpt-image-2-transparent.png"],
+.card.is-lead .img-box img:not([src^="http"])[src$="oppo-find-x9-ultra-gpt-image-2-transparent.png"] {
+    transform: scale(1.02);
+}
+
+.card:hover .img-box img:not([src^="http"])[src$="mi10-pro-transparent.png"],
+.card:hover .img-box img:not([src^="http"])[src$="mi-note-10-pro-transparent.png"],
+.card:hover .img-box img:not([src^="http"])[src$="samsung-galaxy-a72-transparent.png"],
+.card:hover .img-box img:not([src^="http"])[src$="samsung-galaxy-a72-gpt-image-2.png"],
+.card:hover .img-box img:not([src^="http"])[src$="samsung-galaxy-a72-gpt-image-2-transparent.png"],
+.card:hover .img-box img:not([src^="http"])[src$="oneplus-9-pro-gpt-image-2-transparent.png"],
+.card:hover .img-box img:not([src^="http"])[src$="vivo-x70-pro-gpt-image-2-transparent.png"],
+.card:hover .img-box img:not([src^="http"])[src$="oppo-find-x9-ultra-gpt-image-2-transparent.png"] {
+    transform: scale(1.02);
+}
+
+.card.is-lead:hover .img-box img:not([src^="http"])[src$="mi10-pro-transparent.png"],
+.card.is-lead:hover .img-box img:not([src^="http"])[src$="mi-note-10-pro-transparent.png"],
+.card.is-lead:hover .img-box img:not([src^="http"])[src$="samsung-galaxy-a72-transparent.png"],
+.card.is-lead:hover .img-box img:not([src^="http"])[src$="samsung-galaxy-a72-gpt-image-2.png"],
+.card.is-lead:hover .img-box img:not([src^="http"])[src$="samsung-galaxy-a72-gpt-image-2-transparent.png"],
+.card.is-lead:hover .img-box img:not([src^="http"])[src$="oneplus-9-pro-gpt-image-2-transparent.png"],
+.card.is-lead:hover .img-box img:not([src^="http"])[src$="vivo-x70-pro-gpt-image-2-transparent.png"],
+.card.is-lead:hover .img-box img:not([src^="http"])[src$="oppo-find-x9-ultra-gpt-image-2-transparent.png"] {
+    transform: scale(1.04);
+}
+
+/* Xiaomi 11 Pro is scaled up generously to be prominent while keeping safe margins without overflowing */
+.img-box img:not([src^="http"])[src$="xiaomi11pro.png"] {
+    transform: scale(1.22);
+}
+
+.card.is-lead .img-box img:not([src^="http"])[src$="xiaomi11pro.png"] {
+    transform: scale(1.26);
+}
+
+.card:hover .img-box img:not([src^="http"])[src$="xiaomi11pro.png"] {
+    transform: scale(1.25);
+}
+
+.card.is-lead:hover .img-box img:not([src^="http"])[src$="xiaomi11pro.png"] {
+    transform: scale(1.29);
+}
+
+/* Xiaomi's restored cutout has a wider canvas; keep the hardware large but contained. */
+.img-box img:not([src^="http"])[src$="xiaomi17promax-transparent.png"] {
+    transform: scale(1.4);
+}
+
+.card.is-lead .img-box img:not([src^="http"])[src$="xiaomi17promax-transparent.png"] {
+    transform: scale(1.48);
+}
+
+.card:hover .img-box img:not([src^="http"])[src$="xiaomi17promax-transparent.png"] {
+    transform: scale(1.45);
+}
+
+.card.is-lead:hover .img-box img:not([src^="http"])[src$="xiaomi17promax-transparent.png"] {
+    transform: scale(1.52);
+}
+
+.img-box img:not([src^="http"])[src$="xiaomi17-transparent.png"] {
+    transform: scale(1.4);
+}
+
+.card.is-lead .img-box img:not([src^="http"])[src$="xiaomi17-transparent.png"] {
+    transform: scale(1.48);
+}
+
+.card:hover .img-box img:not([src^="http"])[src$="xiaomi17-transparent.png"] {
+    transform: scale(1.45);
+}
+
+.card.is-lead:hover .img-box img:not([src^="http"])[src$="xiaomi17-transparent.png"] {
+    transform: scale(1.52);
+}
+
+/* Honor's tall cutout fills its canvas; leave a safe edge around the hardware. */
+.img-box img:not([src^="http"])[src$="honormagic4ultimate-transparent.png"] {
+    transform: scale(.96);
+}
+
+.card.is-lead .img-box img:not([src^="http"])[src$="honormagic4ultimate-transparent.png"] {
+    transform: scale(.98);
+}
+
+.card:hover .img-box img:not([src^="http"])[src$="honormagic4ultimate-transparent.png"] {
+    transform: scale(.98);
+}
+
+.card.is-lead:hover .img-box img:not([src^="http"])[src$="honormagic4ultimate-transparent.png"] {
+    transform: scale(1);
+}
+
+/* iPhone 11's restored portrait cutout needs a smaller scale to stay inside the image rail. */
+.img-box img:not([src^="http"])[src$="iphone11-transparent.png"] {
+    transform: scale(1.08);
+}
+
+.card.is-lead .img-box img:not([src^="http"])[src$="iphone11-transparent.png"] {
+    transform: scale(1.1);
+}
+
+.card:hover .img-box img:not([src^="http"])[src$="iphone11-transparent.png"] {
+    transform: scale(1.1);
+}
+
+.card.is-lead:hover .img-box img:not([src^="http"])[src$="iphone11-transparent.png"] {
+    transform: scale(1.14);
+}
+
+/* Galaxy A51's restored portrait cutout needs a smaller scale to stay inside the image rail. */
+.img-box img:not([src^="http"])[src$="samsung-a51-transparent.png"] {
+    transform: scale(1.08);
+}
+
+.card.is-lead .img-box img:not([src^="http"])[src$="samsung-a51-transparent.png"] {
+    transform: scale(1.1);
+}
+
+.card:hover .img-box img:not([src^="http"])[src$="samsung-a51-transparent.png"] {
+    transform: scale(1.1);
+}
+
+.card.is-lead:hover .img-box img:not([src^="http"])[src$="samsung-a51-transparent.png"] {
+    transform: scale(1.14);
+}
+
+/* Realme 11 Pro+'s restored portrait cutout needs a smaller scale to stay inside the image rail. */
+.img-box img:not([src^="http"])[src$="realme11proplus-transparent.png"] {
+    transform: scale(1.08);
+}
+
+.card.is-lead .img-box img:not([src^="http"])[src$="realme11proplus-transparent.png"] {
+    transform: scale(1.1);
+}
+
+.card:hover .img-box img:not([src^="http"])[src$="realme11proplus-transparent.png"] {
+    transform: scale(1.1);
+}
+
+.card.is-lead:hover .img-box img:not([src^="http"])[src$="realme11proplus-transparent.png"] {
+    transform: scale(1.14);
+}
+
+/* Nothing Ear (a)'s restored horizontal case uses a contained scale to keep the full shell visible. */
+.img-box img:not([src^="http"])[src$="nothing-ear-a-transparent.png"] {
+    transform: scale(.96);
+}
+
+.card.is-lead .img-box img:not([src^="http"])[src$="nothing-ear-a-transparent.png"] {
+    transform: scale(.98);
+}
+
+.card:hover .img-box img:not([src^="http"])[src$="nothing-ear-a-transparent.png"] {
+    transform: scale(.98);
+}
+
+.card.is-lead:hover .img-box img:not([src^="http"])[src$="nothing-ear-a-transparent.png"] {
+    transform: scale(1);
+}
+
+/* Laptop renders already fill their source canvas; the shared local-image zoom crops them on narrow cards. */
+.img-box img:not([src^="http"])[src$="macbook-air-15-m5.png"],
+.img-box img:not([src^="http"])[src$="prestige-16-ai-plus-c3m.png"],
+.img-box img:not([src^="http"])[src$="macbook-neo-13-clean.png"] {
+    transform: scale(1);
+}
+
+.card.is-lead .img-box img:not([src^="http"])[src$="macbook-air-15-m5.png"],
+.card.is-lead .img-box img:not([src^="http"])[src$="prestige-16-ai-plus-c3m.png"],
+.card.is-lead .img-box img:not([src^="http"])[src$="macbook-neo-13-clean.png"] {
+    transform: scale(1.02);
+}
+
+.card:hover .img-box img:not([src^="http"])[src$="macbook-air-15-m5.png"],
+.card:hover .img-box img:not([src^="http"])[src$="prestige-16-ai-plus-c3m.png"],
+.card:hover .img-box img:not([src^="http"])[src$="macbook-neo-13-clean.png"] {
+    transform: scale(1.02);
+}
+
+.card.is-lead:hover .img-box img:not([src^="http"])[src$="macbook-air-15-m5.png"],
+.card.is-lead:hover .img-box img:not([src^="http"])[src$="prestige-16-ai-plus-c3m.png"],
+.card.is-lead:hover .img-box img:not([src^="http"])[src$="macbook-neo-13-clean.png"] {
+    transform: scale(1.04);
+}
+
+/* iPad Air 11's restored square cutout already fills its canvas; keep the full tablet visible. */
+.img-box img:not([src^="http"])[src$="ipad-air-11-transparent.png"] {
+    transform: scale(.98);
+}
+
+.card.is-lead .img-box img:not([src^="http"])[src$="ipad-air-11-transparent.png"] {
+    transform: scale(1);
+}
+
+.card:hover .img-box img:not([src^="http"])[src$="ipad-air-11-transparent.png"] {
+    transform: scale(1);
+}
+
+.card.is-lead:hover .img-box img:not([src^="http"])[src$="ipad-air-11-transparent.png"] {
+    transform: scale(1.02);
+}
+
+/* Full-bleed WebP renders already use their canvas; keep them contained. */
+.img-box img:not([src^="http"])[src$=".webp"] {
+    transform: scale(1.06);
+}
+
+.card.is-lead .img-box img:not([src^="http"])[src$=".webp"] {
+    transform: scale(1.1);
+}
+
+.card:hover .img-box img:not([src^="http"])[src$=".webp"] {
+    transform: scale(1.1);
+}
+
+.card.is-lead:hover .img-box img:not([src^="http"])[src$=".webp"] {
+    transform: scale(1.14);
+}
+
+/* These PNGs are also full-frame renders, not transparent cut-outs. */
+.img-box img[src$="ipad-pro-13-enhanced.png"],
+.img-box img[src$="galaxy-tab-s11-ultra.png"],
+.img-box img[src$="galaxy-tab-s10-plus.png"] {
+    transform: scale(1.06);
+}
+
+.card.is-lead .img-box img[src$="ipad-pro-13-enhanced.png"],
+.card.is-lead .img-box img[src$="galaxy-tab-s11-ultra.png"],
+.card.is-lead .img-box img[src$="galaxy-tab-s10-plus.png"] {
+    transform: scale(1.1);
+}
+
+.card:hover .img-box img[src$="ipad-pro-13-enhanced.png"],
+.card:hover .img-box img[src$="galaxy-tab-s11-ultra.png"],
+.card:hover .img-box img[src$="galaxy-tab-s10-plus.png"] {
+    transform: scale(1.1);
+}
+
+.card.is-lead:hover .img-box img[src$="ipad-pro-13-enhanced.png"],
+.card.is-lead:hover .img-box img[src$="galaxy-tab-s11-ultra.png"],
+.card.is-lead:hover .img-box img[src$="galaxy-tab-s10-plus.png"] {
+    transform: scale(1.14);
+}
+
+/* Galaxy Buds 2's restored square cutout already fills its canvas; keep the complete case visible. */
+.img-box img:not([src^="http"])[src$="galaxy-buds-2-transparent.png"] {
+    transform: scale(.98);
+}
+
+.card.is-lead .img-box img:not([src^="http"])[src$="galaxy-buds-2-transparent.png"] {
+    transform: scale(1);
+}
+
+.card:hover .img-box img:not([src^="http"])[src$="galaxy-buds-2-transparent.png"] {
+    transform: scale(1);
+}
+
+.card.is-lead:hover .img-box img:not([src^="http"])[src$="galaxy-buds-2-transparent.png"] {
+    transform: scale(1.02);
+}
+
+/* BuildCores is a complete desk scene rather than a transparent single-object render. */
+.img-box img[src$="buildcores-platform6-setup-v2.png"] {
+    transform: scale(1);
+}
+
+.card.is-lead .img-box img[src$="buildcores-platform6-setup-v2.png"] {
+    transform: scale(1.02);
+}
+
+.card:hover .img-box img[src$="buildcores-platform6-setup-v2.png"] {
+    transform: scale(1.02);
+}
+
+.card.is-lead:hover .img-box img[src$="buildcores-platform6-setup-v2.png"] {
     transform: scale(1.04);
 }
 
 .card-content {
-    padding: 28px 24px 20px;
+    padding: 22px 28px 20px;
     display: flex;
     flex-direction: column;
     min-width: 0;
 }
 
 .card.is-lead .card-content {
-    padding: 44px 36px 30px;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: minmax(170px, 0.72fr) minmax(0, 1.28fr);
+    grid-template-rows: auto auto auto;
+    align-content: center;
+    column-gap: 28px;
+    padding: 28px 32px;
+}
+
+.card.is-lead .hallmark {
+    grid-column: 1;
+    grid-row: 1;
+    margin: 0 0 10px;
+}
+
+.card.is-lead .product-name {
+    grid-column: 1;
+    grid-row: 2;
+    align-self: start;
+}
+
+.card.is-lead .specs {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    align-self: center;
+    margin: 0;
+    padding: 0 0 0 24px;
+    border-top: 0;
+    border-left: 1px solid var(--line);
+}
+
+.card.is-lead .record-action {
+    grid-column: 2;
+    grid-row: 3;
+    align-self: start;
+    margin-top: 16px;
 }
 
 .hallmark {
@@ -6515,17 +8123,21 @@ body:has(.dossier:not([hidden])) {
 
 .specs {
     display: grid;
-    gap: 6px;
-    margin-top: auto;
-    padding-top: 16px;
-    border-top: 1px solid var(--line);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    min-width: 0;
+    gap: 0 16px;
+    margin-top: 18px;
+    padding-top: 0;
+    border-top: 0;
 }
 
 .spec-row {
-    display: grid;
-    grid-template-columns: minmax(70px, 0.35fr) minmax(0, 1fr);
-    gap: 12px;
-    padding: 4px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 0;
+    padding: 10px 0 8px;
+    border-top: 1px solid var(--line);
 }
 
 .spec-label {
@@ -6539,7 +8151,10 @@ body:has(.dossier:not([hidden])) {
 .spec-val {
     color: var(--muted);
     font-size: 0.8rem;
-    text-align: right;
+    line-height: 1.35;
+    text-align: left;
+    min-width: 0;
+    overflow-wrap: anywhere;
 }
 
 .record-action {
@@ -6555,7 +8170,7 @@ body:has(.dossier:not([hidden])) {
     font-size: 0.62rem;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    transition: all 0.2s ease;
+    transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
 }
 
 .record-action:hover {
@@ -6565,15 +8180,15 @@ body:has(.dossier:not([hidden])) {
 }
 
 .card:not(.is-lead) {
-    grid-template-columns: 160px minmax(0, 1fr);
+    grid-template-columns: 240px minmax(0, 1fr);
 }
 
 .card:not(.is-lead) .card-content {
     display: grid;
-    grid-template-columns: minmax(160px, 0.7fr) minmax(200px, 1fr) auto;
+    grid-template-columns: minmax(180px, 0.65fr) minmax(300px, 1.35fr) auto;
     align-items: center;
-    gap: 20px;
-    padding: 20px 22px;
+    gap: 24px;
+    padding: 18px 28px;
 }
 
 .card:not(.is-lead) .hallmark {
@@ -6591,8 +8206,10 @@ body:has(.dossier:not([hidden])) {
 .card:not(.is-lead) .specs {
     grid-column: 2;
     grid-row: 1 / span 2;
+    align-self: stretch;
+    align-content: center;
     margin: 0;
-    padding: 0 0 0 18px;
+    padding: 0 0 0 20px;
     border-top: 0;
     border-left: 1px solid var(--line);
 }
@@ -6712,6 +8329,30 @@ body:has(.dossier:not([hidden])) {
         border-top: 1px solid var(--line);
         padding: 10px 0 0;
     }
+    /* The lead card keeps its image rail at this width, but its content
+       rail is too narrow for a second grid column. Stack the metadata before
+       the nested specs grid can collapse and visibly clip its values. */
+    .card.is-lead .card-content {
+        grid-template-columns: minmax(0, 1fr);
+        grid-template-rows: auto;
+        row-gap: 0;
+        column-gap: 0;
+        padding-inline: 24px;
+    }
+    .card.is-lead .hallmark,
+    .card.is-lead .product-name,
+    .card.is-lead .specs,
+    .card.is-lead .record-action {
+        grid-column: 1;
+        grid-row: auto;
+    }
+    .card.is-lead .specs {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        margin-top: 18px;
+        padding: 12px 0 0;
+        border-top: 1px solid var(--line);
+        border-left: 0;
+    }
 }
 
 @media (max-width: 768px) {
@@ -6737,20 +8378,119 @@ body:has(.dossier:not([hidden])) {
         width: 100%;
     }
     .dossier {
+        place-items: end center;
+        padding-top: max(12px, env(safe-area-inset-top));
+        padding-right: max(12px, env(safe-area-inset-right));
+        padding-bottom: max(12px, env(safe-area-inset-bottom));
+        padding-left: max(12px, env(safe-area-inset-left));
+    }
+    .dossier-panel {
+        width: 100%;
+        height: min(680px, calc(100vh - 24px));
+        height: min(680px, calc(100dvh - 24px));
+        max-height: 100%;
         grid-template-columns: 1fr;
+        grid-template-rows: minmax(170px, 34dvh) minmax(0, 1fr);
+        border-radius: 10px 10px 4px 4px;
     }
     .dossier-visual {
-        min-height: 220px;
+        min-height: 0;
+        padding: 22px;
         border-right: 0;
         border-bottom: 1px solid var(--line);
+    }
+    .dossier-visual::before {
+        inset: 12px;
+    }
+    .dossier-visual img {
+        max-height: 25dvh;
+    }
+    .dossier-image-note {
+        right: 22px;
+        bottom: 16px;
+        left: 22px;
+    }
+    .dossier-body {
+        padding: 22px 18px calc(22px + env(safe-area-inset-bottom));
+    }
+    .dossier-topline {
+        align-items: flex-start;
+        gap: 12px;
+        flex-wrap: wrap;
+    }
+    .dossier-brand {
+        flex: 1 1 100%;
+    }
+    .dossier-topline-tools {
+        flex: 1 1 100%;
+        width: 100%;
+        justify-content: space-between;
+        align-items: center;
+        gap: 8px;
+        row-gap: 8px;
+        flex-wrap: wrap;
+    }
+    .dossier-title {
+        max-width: none;
+        font-size: clamp(2rem, 11vw, 3.6rem);
+    }
+    .dossier-why {
+        font-size: 0.98rem;
+    }
+    .dossier-specs {
+        grid-template-columns: 1fr;
+    }
+    .dossier-spec,
+    .dossier-spec:nth-child(even) {
+        padding: 13px 0;
+        border-left: 0;
+    }
+    .dossier-actions {
+        display: block;
+    }
+    .dossier-action {
+        width: 100%;
     }
     .card, .card.is-lead, .card:not(.is-lead) {
         grid-template-columns: 1fr;
     }
     .img-box, .card.is-lead .img-box, .card:not(.is-lead) .img-box {
-        min-height: 180px;
+        min-height: 230px;
+        padding: 22px;
         border-right: 0;
         border-bottom: 1px solid var(--line);
+    }
+    .card.is-lead .img-box {
+        min-height: 280px;
+    }
+    .img-box img {
+        max-height: 210px;
+    }
+    .card.is-lead .img-box img {
+        max-height: 260px;
+    }
+    .card.is-lead .card-content {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        gap: 0;
+        padding: 22px 18px;
+    }
+    .card.is-lead .hallmark,
+    .card.is-lead .product-name,
+    .card.is-lead .specs,
+    .card.is-lead .record-action {
+        grid-column: 1;
+        grid-row: auto;
+    }
+    .card.is-lead .specs {
+        grid-template-columns: 1fr 1fr;
+        margin-top: 18px;
+        padding: 12px 0 0;
+        border-top: 1px solid var(--line);
+        border-left: 0;
+    }
+    .card.is-lead .record-action {
+        margin-top: 16px;
     }
     .card:not(.is-lead) .card-content {
         grid-template-columns: 1fr;
@@ -6759,6 +8499,7 @@ body:has(.dossier:not([hidden])) {
     .card:not(.is-lead) .specs {
         grid-column: 1;
         grid-row: auto;
+        grid-template-columns: 1fr;
     }
     .card:not(.is-lead) .record-action {
         grid-column: 1;
@@ -6766,94 +8507,369 @@ body:has(.dossier:not([hidden])) {
         justify-self: flex-start;
     }
 }
-```
 
-
-## JavaScript 源码
-### `arsenal-compare.js`
-```javascript
-const compareDevices = {
-    fold7: {
-        name: "Galaxy Z Fold 7",
-        role: "Best when the form factor itself is the reason to buy.",
-        display: '7.6 inch inner AMOLED with a 6.3 inch cover screen.',
-        camera: "50MP main system with a productivity first compromise profile.",
-        chip: "Snapdragon 8 Gen 4 for Galaxy with multitasking as the main story.",
-        note: "It pulls hardest when a normal slab phone already feels solved."
-    },
-    s25u: {
-        name: "Galaxy S25 Ultra",
-        role: "The no weak category option in the whole shortlist.",
-        display: '6.8 inch flat LTPO AMOLED with an anti reflective top layer.',
-        camera: "200MP main and stronger zoom stack across more situations.",
-        chip: "Snapdragon 8 Gen 4 for Galaxy plus the most complete Android utility set.",
-        note: "This is the safe apex pick when you want one device to do everything."
-    },
-    iphone17: {
-        name: "iPhone 17",
-        role: "The ecosystem anchor if the base line really grows up this cycle.",
-        display: '6.3 inch class panel with expected ProMotion and cleaner balance.',
-        camera: "Less wild than the Ultras, but tighter and more cohesive in daily use.",
-        chip: "A19 positioning with Apple Intelligence as the baseline story.",
-        note: "It matters if the regular iPhone finally stops feeling intentionally held back."
-    },
-    pixel9: {
-        name: "Pixel 11 Pro XL",
-        role: "The software flavored flagship in this group.",
-        display: '6.8 inch LTPO OLED with strong brightness and clean Android feel.',
-        camera: "Signature Pixel tuning with a more obvious computational identity.",
-        chip: "Tensor G4 with Gemini leaning features and Google first behavior.",
-        note: "Choose it when camera taste and software personality matter more than prestige."
-    }
-};
-
-const compareConfig = window.compareLabConfig || { slots: ["fold7", "s25u", "iphone17"] };
-const compareSlots = [...compareConfig.slots];
-
-function renderCompareTable() {
-    compareSlots.forEach((deviceKey, index) => {
-        const device = compareDevices[deviceKey];
-        if (!device) return;
-
-        document.getElementById(`head-${index}`).textContent = device.name;
-        document.getElementById(`role-${index}`).textContent = device.role;
-        document.getElementById(`display-${index}`).textContent = device.display;
-        document.getElementById(`camera-${index}`).textContent = device.camera;
-        document.getElementById(`chip-${index}`).textContent = device.chip;
-        document.getElementById(`note-${index}`).textContent = device.note;
-    });
-
-    document.querySelectorAll(".choice-btn").forEach((button) => {
-        const slotIndex = Number(button.dataset.slot);
-        const key = button.dataset.device;
-        button.classList.toggle("active", compareSlots[slotIndex] === key);
-    });
+/* Final cascade for the catalogue view. Kept at the end so shared page rules
+   cannot turn the editorial lead back into an inventory row. */
+.catalogue-page .card.is-lead .card-content {
+    display: flex;
+    grid-template-columns: none;
+    grid-template-rows: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 42px 46px;
 }
 
-document.querySelectorAll(".choice-btn").forEach((button) => {
-    button.addEventListener("click", () => {
-        const slotIndex = Number(button.dataset.slot);
-        const key = button.dataset.device;
-        compareSlots[slotIndex] = key;
-        renderCompareTable();
-    });
-});
+.catalogue-page .card.is-lead .product-name {
+    max-width: 12ch;
+    font-size: clamp(2.6rem, 5vw, 5rem);
+    line-height: 0.96;
+}
 
-renderCompareTable();
+.catalogue-page .card.is-lead .specs {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    width: 100%;
+    max-width: 680px;
+    margin: 30px 0 0;
+    padding: 0;
+    border: 0;
+}
+
+.catalogue-page .card:not(.is-lead) .card-content {
+    display: flex;
+    grid-template-columns: none;
+    grid-template-rows: none;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px 22px 22px;
+}
+
+.catalogue-page .card:not(.is-lead) .specs {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    width: 100%;
+    margin: 20px 0 0;
+    padding: 0;
+    border: 0;
+}
+
+.catalogue-page .card:not(.is-lead) .record-action {
+    align-self: flex-start;
+    margin-top: auto;
+}
+
+@media (max-width: 1080px) {
+    .catalogue-page .card.is-lead .card-content {
+        grid-template-columns: none;
+        padding-inline: 32px;
+    }
+
+    .catalogue-page .card.is-lead .specs {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 760px) {
+    .catalogue-page .card.is-lead .card-content {
+        padding: 28px 22px 24px;
+    }
+
+    .catalogue-page .card.is-lead .product-name {
+        max-width: none;
+        font-size: clamp(2.4rem, 13vw, 4.2rem);
+    }
+
+    .catalogue-page .card.is-lead .specs,
+    .catalogue-page .card:not(.is-lead) .specs {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (min-width: 981px) {
+    .catalogue-page .card:not(.is-lead) {
+        grid-column: span 4;
+    }
+
+    .catalogue-page .card:nth-child(4n + 3):not(.is-lead),
+    .catalogue-page .card:nth-child(4n + 4):not(.is-lead) {
+        grid-column: span 4;
+    }
+
+    /* Pair an expansive index entry with a narrow one, then reset to a
+       three-up row. This keeps the rhythm intentional without stranded gaps. */
+    .catalogue-page .card:nth-child(5n + 2):not(.is-lead) {
+        grid-column: span 8;
+    }
+
+    .catalogue-page .card:nth-child(5n + 3):not(.is-lead) {
+        grid-column: span 4;
+    }
+}
+
+@media (max-width: 980px) {
+    .catalogue-page .card:not(.is-lead) {
+        grid-column: span 6;
+    }
+}
+
+@media (max-width: 760px) {
+    .catalogue-page {
+        overflow-x: hidden;
+    }
+
+    .catalogue-page .top-row .page-nav {
+        display: grid;
+        width: auto;
+        flex: 1 1 auto;
+        min-width: 0;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 6px;
+    }
+
+    .catalogue-page .top-row .page-link {
+        min-width: 0;
+        width: 100%;
+        justify-content: flex-start;
+        padding-inline: 6px;
+        white-space: normal;
+        overflow-wrap: anywhere;
+        line-height: 1.25;
+        font-size: 0.56rem;
+    }
+
+    .catalogue-page .control-bar,
+    .catalogue-page .search-wrap,
+    .catalogue-page .filter-bar {
+        min-width: 0;
+    }
+
+    .catalogue-page .filter-bar {
+        justify-content: flex-start;
+        display: grid;
+        width: 100%;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 6px;
+    }
+
+    .catalogue-page .filter-btn {
+        width: 100%;
+        min-width: 0;
+        padding-inline: 4px;
+        white-space: normal;
+        line-height: 1.2;
+    }
+
+    .catalogue-page .collection-ledger {
+        width: 100%;
+        min-width: 0;
+        overflow: hidden;
+    }
+}
+
+@media (min-width: 761px) {
+    .catalogue-page .header,
+    .catalogue-page .control-bar,
+    .catalogue-page .collection,
+    .catalogue-page .empty-state,
+    .catalogue-page .site-footer {
+        width: calc(100% - 80px);
+    }
+}
+
+.catalogue-page .masthead-copy {
+    width: 100%;
+    min-width: 0;
+}
+
+.catalogue-page .header-sub {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+}
+
+.catalogue-page .header-sub .lang-pair {
+    display: inline;
+}
+
+.catalogue-page .header-sub,
+.catalogue-page .header-sub .lang-pair,
+.catalogue-page .header-sub .lang-zh,
+.catalogue-page .header-sub .lang-en {
+    display: inline;
+    max-width: 100%;
+    white-space: normal !important;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+}
+
+@media (max-width: 760px) {
+    .catalogue-page .masthead {
+        width: 100%;
+    }
+
+    .catalogue-page .header-sub {
+        display: block;
+        width: 100%;
+    }
+
+    .catalogue-page .header-sub .lang-pair {
+        display: block;
+        width: 100%;
+    }
+
+    .catalogue-page .header-sub .lang-en {
+        display: block;
+    }
+}
+
+.catalogue-page #dossierImage.is-placeholder {
+    width: 64px;
+    height: 64px;
+    opacity: 0.35;
+    filter: none;
+}
+
+@media (max-width: 760px) {
+    .catalogue-page .site-header {
+        padding-top: 16px;
+        padding-bottom: 8px;
+    }
+
+    .catalogue-page .top-row {
+        gap: 8px;
+    }
+
+    .catalogue-page .home-mark-link,
+    .catalogue-page .home-mark-link img {
+        width: 30px;
+        height: 30px;
+    }
+
+    .catalogue-page .top-row .page-link {
+        min-height: 32px;
+        padding-inline: 6px;
+    }
+
+    .catalogue-page .masthead {
+        gap: 12px;
+        padding-top: 16px;
+        padding-bottom: 14px;
+        margin-top: 8px;
+    }
+
+    .catalogue-page .control-bar {
+        margin-top: 20px;
+        padding: 14px;
+    }
+
+    /* Keep the mobile canvas from touching the viewport edge. */
+    .catalogue-page .site-header,
+    .catalogue-page .collection,
+    .catalogue-page .control-bar,
+    .catalogue-page .empty-state,
+    .catalogue-page .site-footer {
+        width: calc(100% - 32px);
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+/* Keep the standalone catalogue rails clear of the browser edge before the
+   mobile layout begins. The catalogue is not wrapped by .shell. */
+:root {
+    --catalogue-gutter: 36px;
+}
+
+.header,
+.control-bar,
+.collection {
+    width: min(var(--shell), calc(100% - var(--catalogue-gutter) - var(--catalogue-gutter)));
+}
+
+@media (max-width: 1280px) {
+    :root {
+        --catalogue-gutter: 28px;
+    }
+
+    .control-bar {
+        grid-template-columns: 1fr;
+    }
+
+    .filter-bar {
+        justify-content: flex-start;
+    }
+}
+
+@media (min-width: 1081px) and (max-width: 1280px) {
+    .top-row .page-nav {
+        column-gap: 5px;
+    }
+
+    .top-row .page-nav .page-link {
+        padding-inline: 10px;
+    }
+}
+
+@media (max-width: 760px) {
+    :root {
+        --catalogue-gutter: 18px;
+    }
+}
+
+/* A failed source should become an intentional archive state, not a browser
+   broken-image icon followed by the alt text. */
+.img-box.is-missing-image {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+    background:
+        radial-gradient(circle at 50% 40%, rgba(111, 134, 255, 0.12), transparent 42%),
+        var(--bg-elevated);
+}
+
+.img-box.is-missing-image img {
+    display: none;
+}
+
+.img-box.is-missing-image::before {
+    content: "";
+    display: block;
+    width: 64px;
+    height: 64px;
+    flex: 0 0 auto;
+    background: url("assets/images/arsenal-spark.png") center / contain no-repeat;
+    opacity: 0.72;
+    filter: drop-shadow(0 0 18px rgba(111, 134, 255, 0.22));
+}
+
+.img-box.is-missing-image::after {
+    content: attr(data-fallback) " / IMAGE PENDING";
+    display: block;
+    max-width: 100%;
+    color: var(--muted-2);
+    font-family: var(--mono);
+    font-size: 0.58rem;
+    line-height: 1.45;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    overflow-wrap: anywhere;
+}
+
+.card.is-lead .img-box.is-missing-image::before {
+    width: 92px;
+    height: 92px;
+}
 ```
+
+## JavaScript 源码
 
 ### `arsenal-site.js`
 ```javascript
 (function () {
     const pages = [
         { file: "index.html", zh: "首页", en: "Home", key: "home" },
-        { file: "topology.html", zh: "工位与连接", en: "Setup", key: "topology" },
-        { file: "decision.html", zh: "选机算盘", en: "Decision", key: "decision" },
-        { file: "provenance.html", zh: "时间线", en: "Timeline", key: "timeline" },
-        { file: "field-notes.html", zh: "使用手记", en: "Field notes", key: "notes" },
-        { file: "comparison-lab.html", zh: "对比实验室", en: "Compare", key: "compare" },
-        { file: "on-the-horizon.html", zh: "观望清单", en: "Horizon", key: "horizon" },
-        { file: "tech-arsenal.html", zh: "总目录", en: "Catalogue", key: "catalogue" }
+        { file: "tech-arsenal.html", zh: "总目录", en: "Catalogue", key: "catalogue" },
+        { file: "comparison-lab.html", zh: "对比", en: "Compare", key: "compare" },
+        { file: "topology.html", zh: "工位与连接", en: "Setup", key: "topology" }
     ];
 
     const currentFile = (window.location.pathname.split("/").pop() || "index.html").toLowerCase();
@@ -7015,11 +9031,9 @@ renderCompareTable();
         "每一列后面都可以继续连回新的设备详情页。": ["每一列后面都可以继续连回新的设备详情页。", "Each column can eventually link back to a fuller device dossier."],
         "这个页面的价值不在于写满，而在于区分轻度关注、强关注和接近发布的对象。": ["这个页面的价值不在于写满，而在于区分轻度关注、强关注和接近发布的对象。", "The value is not filling the page; it is separating light interest, strong interest, and near-launch candidates."],
         "它们不一定都会买，但都值得继续盯。分开记录以后，主目录就能继续保持克制。": ["它们不一定都会买，但都值得继续盯。分开记录以后，主目录就能继续保持克制。", "I may not buy all of them, but each is worth watching. Keeping them separate lets the main catalogue stay restrained."],
-        "现在最适合单独观察的四条线": ["现在最适合单独观察的四条线", "Four lines worth watching on their own"],
         "真正该盯的是厚度、折痕和相机妥协是否还存在。如果这三个点一起解决，折叠屏会再次上升一个层级。": ["真正该盯的是厚度、折痕和相机妥协是否还存在。如果这三个点一起解决，折叠屏会再次上升一个层级。", "Watch the thickness, crease, and camera compromises. If all three improve together, foldables move up another tier."],
         "比起单纯涨性能，更重要的是基础款是否终于拿到完整的高刷和更成熟的 AI 入口。": ["比起单纯涨性能，更重要的是基础款是否终于拿到完整的高刷和更成熟的 AI 入口。", "More than a performance bump, the question is whether the base model finally gets a full high-refresh display and a mature AI entry point."],
         "小尺寸旗舰更能看出厂商有没有真正下功夫，因为它们很难同时兼顾续航、散热和影像。": ["小尺寸旗舰更能看出厂商有没有真正下功夫，因为它们很难同时兼顾续航、散热和影像。", "Compact flagships reveal how serious the engineering is because battery life, thermals, and imaging are hard to balance at once."],
-        "后续可以继续补的观察字段": ["后续可以继续补的观察字段", "Fields to add to the watchlist"],
         "这个页面很适合再往前一步，变成真正的 watchlist，而不是普通的兴趣备忘录。": ["这个页面很适合再往前一步，变成真正的 watchlist，而不是普通的兴趣备忘录。", "This page can become a real watchlist rather than an ordinary interest memo."],
         "记录来自发布会、爆料人还是评测人。": ["记录来自发布会、爆料人还是评测人。", "Record whether the signal came from a launch, a leaker, or a reviewer."],
         "满足什么条件后，它会正式进入 wishlist。": ["满足什么条件后，它会正式进入 wishlist。", "Name the condition that promotes it into the wishlist."],
@@ -7048,17 +9062,19 @@ renderCompareTable();
         "after": ["之后", "After"],
         "still good": ["仍然成立", "Still good"],
         "status": ["状态", "Status"],
-        "next move": ["下一步", "Next move"],
         "field 01": ["字段 01", "Field 01"],
         "field 02": ["字段 02", "Field 02"],
         "field 03": ["字段 03", "Field 03"],
         "phones": ["手机", "Phones"],
         "手机": ["手机", "Phones"],
         "Magic 4 至臻版": ["Magic 4 至臻版", "Magic4 Ultimate"],
+        "小米 11 Pro": ["小米 11 Pro", "Xiaomi 11 Pro"],
         "小米 11 Ultra": ["小米 11 Ultra", "Xiaomi 11 Ultra"],
         "小米 15": ["小米 15", "Xiaomi 15"],
         "小米 17": ["小米 17", "Xiaomi 17"],
         "小米 17 Pro Max": ["小米 17 Pro Max", "Xiaomi 17 Pro Max"],
+        "拯救者 Y700": ["拯救者 Y700", "Legion Y700"],
+        "Legion Y700": ["拯救者 Y700", "Legion Y700"],
         "平板与薄板设备": ["平板与薄板设备", "Tablets & thin slabs"],
         "移动工作站": ["移动工作站", "Mobile workstations"],
         "终极主机": ["终极主机", "Ultimate desktop"],
@@ -7123,180 +9139,3 @@ renderCompareTable();
 })();
 ```
 
-### `specs-data.js`
-```javascript
-const specsCatalog = [
-    {
-        lot: "001", category: "mobile", name: "Mi 10 Ultra", brand: "XIAOMI · 10TH ANNIVERSARY", status: "wishlist", image: "Mi10Ultra.png",
-        specs: [["SoC", "Snapdragon 865 (7nm) | LPDDR5 | UFS 3.1"], ["Display", "6.67\" OLED | 120Hz | 10-bit Color | 1120 nits peak"], ["Camera Sensor", "Main: OmniVision OV48C / 1/1.32\"; 2x portrait: Samsung ISOCELL 2L7 (S5K2L7) / 1/2.56\"; 5x periscope: Sony IMX586 / 1/2\"; ultrawide: Sony IMX350 / 1/2.78\"; front: Samsung ISOCELL 3T2 (S5K3T2) / 1/3.4\""], ["Camera System", "48MP OmniVision OV48C | 48MP 5x periscope | 12MP portrait | 20MP ultrawide"], ["Battery & Charging", "4500mAh Graphene | 120W wired | 50W wireless"], ["Build", "221.8g | Ceramic Black / Transparent Edition"]]
-    },
-    {
-        lot: "002", category: "mobile", name: "Galaxy S23 Ultra", brand: "SAMSUNG · GALAXY ULTRA", status: "wishlist", image: "s23ultra.png",
-        specs: [["SoC", "Snapdragon 8 Gen 2 For Galaxy"], ["Display", "6.8\" Dynamic AMOLED 2X | 1–120Hz LTPO | 1750 nits"], ["Camera Sensor", "Main: Samsung ISOCELL S5KHP2 (HP2) / 1/1.3\"; 3x and 10x tele: Sony IMX754 / 1/3.52\"; ultrawide: Sony IMX564 / 1/2.55\"; front: Samsung ISOCELL 3LU (S5K3LU) / 1/3.2\""], ["Camera System", "200MP main | 10MP 10x periscope | 10MP 3x tele | 12MP ultrawide"], ["Feature", "Built-in S-Pen | IP68 | Armor Aluminum Frame"], ["Battery", "5000mAh | 45W fast charging"]]
-    },
-    {
-        lot: "003", category: "mobile", name: "iPhone 14 Pro Max", brand: "APPLE · PRO MAX", status: "wishlist", image: "iphone14promax.png",
-        specs: [["SoC", "A16 Bionic (4nm) | 6-core CPU | 5-core GPU"], ["Display", "6.7\" Super Retina XDR OLED | ProMotion 120Hz | 2000 nits peak"], ["Camera Sensor", "Main: Sony IMX803 / 1/1.28\"; 3x tele: Sony IMX713 / 1/3.5\"; ultrawide: Sony IMX633 / 1/2.55\"; front: Sony IMX714 / 1/3.6\""], ["Camera System", "48MP main | 12MP 3x tele | 12MP ultrawide"], ["Feature", "Dynamic Island | Emergency SOS via Satellite | Crash Detection"], ["Build", "Surgical-grade Stainless Steel | Ceramic Shield front"]]
-    },
-    {
-        lot: "004", category: "mobile", name: "Vivo X300 Pro", brand: "VIVO · ZEISS CO-ENGINEERED", status: "wishlist", image: "vivox300pro.png",
-        specs: [["SoC", "MediaTek Dimensity 9400 | Custom V3+ Imaging Chip"], ["Display", "6.78\" 8T LTPO AMOLED | 144Hz | 3000 nits peak"], ["Camera Sensor", "Main: Sony LYTIA LYT-828 / 1/1.28\"; 3.7x ZEISS APO periscope: Samsung ISOCELL HPB / 1/1.4\"; ultrawide and front: Samsung ISOCELL JN1 / 1/2.76\""], ["Camera System", "50MP LYT-828 main | 200MP HPB 3.7x ZEISS APO periscope | 50MP JN1 ultrawide"], ["Battery", "5400mAh BlueVolt | 100W wired | 50W wireless"]]
-    },
-    {
-        lot: "005", category: "mobile", name: "Magic 4 至臻版", brand: "HONOR · MAGIC ULTIMATE", status: "wishlist", image: "honormagic4ultimate.png",
-        specs: [["SoC", "Snapdragon 8 Gen 1 | Custom Image Signal Processor"], ["Display", "6.81\" LTPO OLED | 1–120Hz | 1920Hz PWM"], ["Camera Sensor", "Main: HONOR GNH (often labeled S5KGNH; exact part number not officially disclosed) / 1/1.12\"; ultrawide and periscope: OmniVision OV64B / 1/2\"; spectrum-enhanced camera: 50MP / 1/2.5\" (part number not disclosed); front: 12MP + 3D depth sensor / model and size not publicly disclosed"], ["Camera System", "50MP GNH main | 64MP OV64B ultrawide | 64MP OV64B periscope | 50MP spectrum"], ["Battery & Charging", "4600mAh | 100W wired | 50W wireless"], ["Build", "Nanocrystal Ceramic | IP68 | 242g"]]
-    },
-    {
-        lot: "006", category: "mobile", name: "Huawei P40 Pro+", brand: "HUAWEI · LEICA OPTICS", status: "wishlist", image: "huaweip40pro+.png",
-        specs: [["SoC", "Kirin 990 5G | Mali-G76 MC16 GPU"], ["Display", "6.58\" OLED | 90Hz | Quad-Curve Overflow Display"], ["Camera Sensor", "Main: Sony IMX700 / 1/1.28\"; cine ultrawide: Sony IMX608 / 1/1.54\"; 3x and 10x tele model/size not publicly disclosed; ToF: Sony IMX316 / 1/6\"; front: Sony IMX616 / 1/2.8\"; front IR/depth: Sony IMX332 / 1/6.95\""], ["Camera System", "50MP RYYB main | 40MP cine ultrawide | 8MP 10x periscope | 8MP 3x tele"], ["Battery", "4200mAh | 40W wired | 40W wireless"], ["Build", "Kiln-baked Nano-tech Ceramic | IP68"]]
-    },
-    {
-        lot: "007", category: "mobile", name: "Huawei P50 Pro", brand: "HUAWEI · LEICA OPTICS", status: "wishlist", image: "HuaweiP50Pro.png",
-        specs: [["SoC", "Kirin 9000 / Snapdragon 888 4G"], ["Display", "6.6\" OLED | 120Hz | 1440Hz PWM | True-Chroma"], ["Camera Sensor", "Main: Huawei-custom True-Chroma, likely OmniVision OV50A / about 1/1.55\" (inferred; exact part not officially disclosed); monochrome: about 1/1.7\" (likely OmniVision OV40A or Sony IMX600; not confirmed); 3.5x tele: 64MP / 1/1.97\" if Samsung ISOCELL GW3, or 1/2\" if OmniVision OV64B (sensor model not confirmed); ultrawide: about 1/2.75\" (likely OmniVision OV13B10 or Hynix HI1333; not confirmed); front: likely OmniVision OV13870 / 1/2.74\" (inferred; exact part not officially disclosed)"], ["Camera System", "50MP True-Chroma | 40MP monochrome | 64MP 3.5x periscope | 13MP ultrawide"], ["Imaging Tech", "HUAWEI XD Optics | XD Fusion Pro Image Engine"], ["Battery", "4360mAh | 66W wired | 50W wireless"]]
-    },
-    {
-        lot: "008", category: "mobile", name: "Galaxy Z Fold8", brand: "SAMSUNG · GALAXY Z SERIES", status: "wishlist", image: "assets/images/samsungzfold8-transparent.png",
-        specs: [["SoC", "Snapdragon 8 Elite Gen 5 for Galaxy | 12GB / 16GB LPDDR5X"], ["Inner Display", "7.6\" Dynamic AMOLED 2X | 1–120Hz | 3000 nits | 4:3"], ["Cover Display", "5.5\" Dynamic AMOLED 2X | 1–120Hz | 3000 nits | 10:16"], ["Camera Sensor", "Main: Samsung ISOCELL S5KGN3 (GN3) / 1/1.56\"; ultrawide: Samsung ISOCELL S5KJN3 (JN3) / 1/2.5\"; cover and inner selfie: Sony IMX374 / 1/3.0\""], ["Camera System", "50MP GN3 main | 50MP JN3 ultrawide | 10MP cover + 10MP inner selfie | up to 10x digital zoom"], ["Build / Battery", "Flex Titanium | IP48 | 4800mAh | 45W wired | 20W wireless | 201g"]]
-    },
-    {
-        lot: "009", category: "mobile", name: "Pixel 11 Pro XL", brand: "GOOGLE · PIXEL FLAGSHIP", status: "wishlist", image: "assets/images/pixel11proxl-transparent.png",
-        specs: [["SoC", "Google Tensor G4 | Titan M2 | 16GB RAM"], ["Display", "6.8\" Super Actua LTPO OLED | 1–120Hz | 3000 nits"], ["Camera Sensor", "Main: Samsung ISOCELL GNK (S5KGNK) / 1/1.31\"; 5x tele and ultrawide: Sony IMX858 / 1/2.55\"; front: Samsung ISOCELL 3J1 / 1/3.1\""], ["Camera System", "50MP main | 48MP 5x periscope | 48MP ultrawide | 42MP selfie"], ["AI Features", "Gemini Nano | Add Me | Video Boost | Magic Editor | Zoom Enhance"], ["Battery / Build", "5060mAh | 37W wired | 23W wireless | Polished Aluminum"]]
-    },
-    {
-        lot: "010", category: "mobile", name: "Mi 9", brand: "XIAOMI · BATTLE ANGEL", status: "owned", image: "https://images.unsplash.com/photo-1565849904461-04a58ad377e0?q=80&w=800&auto=format&fit=crop",
-        specs: [["SoC", "Snapdragon 855 (7nm) | Adreno 640"], ["Display", "6.39\" Super AMOLED | 60Hz | HDR10"], ["Camera Sensor", "Main: Sony IMX586 / 1/2\"; 2x tele: Samsung ISOCELL 3M5 (S5K3M5) / 1/3\"; ultrawide: Sony IMX481 / 1/3\"; front: Samsung ISOCELL 3T1 (S5K3T1) / 1/3\""], ["Camera System", "48MP main | 12MP 2x tele | 16MP ultrawide | 4cm macro"], ["Battery & Charging", "3300mAh | 27W wired | 20W fast wireless"], ["Build", "Holographic Glass Back | Aluminum Frame | 173g"]]
-    },
-    {
-        lot: "011", category: "mobile", name: "iPhone 13 Pro Max", brand: "APPLE · THE BATTERY KING", status: "wishlist", image: "assets/images/iphone13promax-transparent.png",
-        specs: [["SoC", "A15 Bionic (5nm) | 5-core GPU | 16-core Neural Engine"], ["Display", "6.7\" Super Retina XDR OLED | 120Hz ProMotion | 1200 nits"], ["Camera Sensor", "Main: Sony IMX703 / about 1/1.65\"; 3x tele: Sony IMX713 / 1/3.4\"; ultrawide: Sony IMX772 / 1/3.4\"; front: Sony IMX514 / 1/3.6\""], ["Camera System", "12MP main | 12MP 3x tele | 12MP ultrawide | macro"], ["Battery", "4352mAh | endurance flagship"], ["Build", "Surgical-grade Stainless Steel | Ceramic Shield | 240g"]]
-    },
-    {
-        lot: "012", category: "mobile", name: "Galaxy S21 Ultra", brand: "SAMSUNG · GALAXY CLASSIC", status: "wishlist", image: "assets/images/s21ultra-transparent.png",
-        specs: [["SoC", "Snapdragon 888 / Exynos 2100 (5nm)"], ["Display", "6.8\" Dynamic AMOLED 2X | WQHD+ | Adaptive 10–120Hz"], ["Camera Sensor", "Main: Samsung ISOCELL S5KHM3 (HM3) / 1/1.33\"; 3x and 10x tele: Samsung S5K3J1 / about 1/3.24\"; ultrawide: Sony IMX563 / 1/2.55\"; front: Samsung ISOCELL GH1 (S5KGH1) / 1/2.65\""], ["Camera System", "108MP main | 10MP 10x periscope | 10MP 3x tele | 12MP ultrawide"], ["Feature", "S-Pen Support | Contour Cut Housing"], ["Battery", "5000mAh | 25W wired | 15W wireless"]]
-    },
-    {
-        lot: "013", category: "mobile", name: "Galaxy S25 Ultra", brand: "SAMSUNG · 2025/2026 APEX", status: "wishlist", image: "https://images.unsplash.com/photo-1707343843437-caacff5cfa74?q=80&w=800&auto=format&fit=crop",
-        specs: [["SoC", "Snapdragon 8 Gen 4 For Galaxy | 16GB LPDDR5X RAM"], ["Display", "6.8\" Flat Dynamic AMOLED 2X | 1–120Hz | 2600+ nits"], ["Camera Sensor", "Main: Samsung ISOCELL S5KHP2 (HP2) / 1/1.3\"; 5x periscope: Sony IMX854 / about 1/2.52\"; 3x tele: Sony IMX754 / 1/3.52\"; ultrawide: Samsung ISOCELL JN3 (S5KJN3) / about 1/2.76\" (third-party estimate; Samsung has no dedicated public JN3 datasheet); front: Samsung ISOCELL 3LU (S5K3LU) / 1/3.2\""], ["Camera System", "200MP HP2 main | 50MP IMX854 5x periscope | 10MP IMX754 3x tele | 50MP JN3 ultrawide"], ["Feature", "Built-in S-Pen | Galaxy AI | Titanium Frame"], ["Battery", "5000mAh | 45W wired | Wi-Fi 7"]]
-    },
-    {
-        lot: "014", category: "mobile", name: "Galaxy S25+", brand: "SAMSUNG · THE SWEET SPOT", status: "wishlist", image: "S25Plus.png",
-        specs: [["SoC", "Snapdragon 8 Gen 4 For Galaxy | 12GB RAM"], ["Display", "6.7\" Flat Dynamic AMOLED 2X | WQHD+ | 1–120Hz LTPO"], ["Camera Sensor", "Main: Samsung ISOCELL GN3 (S5KGN3) / 1/1.57\"; 3x tele: Samsung ISOCELL 3K1 (S5K3K1) / 1/3.94\"; ultrawide: Sony IMX564 / 1/2.55\"; front: Samsung ISOCELL 3LU (S5K3LU) / 1/3.2\""], ["Camera System", "50MP GN3 main | 10MP 3x S5K3K1 tele | 12MP IMX564 ultrawide"], ["Build", "Armor Aluminum Frame | Symmetrical Bezels | 196g"], ["Battery", "4900mAh | 45W wired"]]
-    },
-    {
-        lot: "015", category: "mobile", name: "iPhone 17", brand: "APPLE · NEXT GEN STANDARD", status: "wishlist", image: "assets/images/iphone17-transparent.png",
-        specs: [["SoC", "A19 (3nm) | 8GB Unified Memory"], ["Display", "6.3\" Super Retina XDR | LTPO 120Hz ProMotion"], ["Camera Sensor", "Main: Sony IMX904 / 1/1.56\"; ultrawide: Sony IMX972 / 1/2.55\"; front: Sony IMX914 / square active area, optical format not publicly disclosed"], ["Camera System", "48MP main | 48MP ultrawide | 18MP selfie"], ["Features", "Action Button | Camera Control | Apple Intelligence"], ["Build", "Aerospace-grade Aluminum | Color-infused Glass"]]
-    },
-    {
-        lot: "016", category: "mobile", name: "小米 11 Ultra", brand: "XIAOMI · IMAGING PIONEER", status: "wishlist", image: "assets/images/xiaomi11ultra-transparent.png",
-        specs: [["SoC", "Snapdragon 888 | LPDDR5 | UFS 3.1"], ["Display", "6.81\" 2K AMOLED | 120Hz | 1700 nits | E4"], ["Camera Sensor", "Main: Samsung ISOCELL S5KGN2 (GN2) / 1/1.12\"; 5x periscope: Sony IMX586 / 1/2\"; ultrawide: Sony IMX586 / 1/2\"; front: Samsung ISOCELL 3T2 (S5K3T2) / 1/3.4\""], ["Camera System", "50MP GN2 1/1.12\" main | 48MP 5x periscope | 48MP ultrawide"], ["Feature", "Rear Tiny Display | Ceramic Body"], ["Battery", "5000mAh silicon-oxygen | 67W wired | 67W wireless"]]
-    },
-    {
-        lot: "017", category: "mobile", name: "小米 17", brand: "XIAOMI · LEICA OPTICS", status: "wishlist", image: "assets/images/xiaomi17-transparent.png",
-        specs: [["SoC", "Snapdragon 8 Elite Gen 5 | 16GB LPDDR5X | UFS 4.1"], ["Display", "6.36\" LTPO OLED | 1–120Hz | 3200 nits"], ["Camera Sensor", "Main: Xiaomi Light Fusion 950 / 1/1.28\"; floating tele: Samsung ISOCELL JN5 / 1/2.76\"; ultrawide: Samsung ISOCELL JN1 / 1/2.76\"; front: OmniVision OV32B40 / 1/3.14\""], ["Camera System", "50MP Light Fusion 950 main | 50MP 60mm floating tele | 50MP JN1 ultrawide"], ["Lens", "Leica Summilux"], ["Battery", "5400mAh | 90W wired | 50W wireless"]]
-    },
-    {
-        lot: "018", category: "mobile", name: "小米 17 Pro Max", brand: "XIAOMI · THE CURRENT KING", status: "wishlist", image: "assets/images/xiaomi17promax-transparent.png",
-        specs: [["SoC", "Snapdragon 8 Gen 5 (2nm) | 24GB LPDDR6 | 1TB UFS 4.1"], ["Display", "6.73\" All-Around Micro-Curved | 2K+ | 240Hz | 4500 nits"], ["Camera Sensor", "Main: Xiaomi Light Fusion 950L / 1/1.28\"; 5x periscope: Samsung ISOCELL GN8 (S5KGN8) / 1/1.95\" (often rounded to 1/2\"); ultrawide: OmniVision OV50M / 1/2.87\"; front: OmniVision OV50M / 1/2.87\""], ["Camera System", "50MP Light Fusion 950L main | 50MP 5x large-bottom periscope | 50MP OV50M ultrawide"], ["Build", "Full Nano-tech Ceramic Unibody"], ["Battery", "6200mAh solid-state | 120W wired | 80W wireless"]]
-    },
-    {
-        lot: "019", category: "mobile", name: "iPhone 11", brand: "APPLE · LEGACY", status: "owned", image: "assets/images/iphone11-transparent.png",
-        specs: [["SoC", "A13 Bionic (7nm+) | 6-core CPU | 4-core GPU"], ["Display", "6.1\" Liquid Retina IPS LCD | 625 nits | True Tone"], ["Camera Sensor", "Main: Sony IMX503 / 1/2.55\"; ultrawide: Sony IMX372 / 1/3.6\"; front: model not publicly disclosed / 1/3.6\""], ["Camera System", "12MP main | 12MP ultrawide | Night Mode"], ["Feature", "Face ID | IP68"], ["Battery", "3110mAh | 18W wired | Qi wireless"]]
-    },
-    {
-        lot: "020", category: "mobile", name: "realme 11 Pro+", brand: "REALME · PREMIUM MID-RANGE", status: "wishlist", image: "assets/images/realme11proplus-transparent.png",
-        specs: [["SoC", "MediaTek Dimensity 7050 (6nm) | Up to 12GB RAM"], ["Display", "6.7\" Curved AMOLED | 120Hz | 1 Billion Colors"], ["Camera Sensor", "Main: Samsung ISOCELL S5KHP3 (HP3) / 1/1.4\"; ultrawide: Sony IMX355 / 1/4\"; macro: model not publicly disclosed / 1/5\"; front: Sony IMX615 / size not publicly disclosed"], ["Camera System", "200MP Samsung HP3 main | 8MP IMX355 ultrawide | 2MP macro"], ["Battery & Charging", "5000mAh | 100W SuperVOOC"], ["Build", "Premium Lychee Vegan Leather"]]
-    },
-    {
-        lot: "021", category: "mobile", name: "Galaxy A51", brand: "SAMSUNG · BEST SELLER", status: "owned", image: "assets/images/samsung-a51-transparent.png",
-        specs: [["SoC", "Exynos 9611 (10nm) | Mali-G72 MP3"], ["Display", "6.5\" Super AMOLED | 1080×2400 | Gorilla Glass 3"], ["Camera Sensor", "Main: Sony IMX582 / 1/2\" (some regional/variant reports differ); ultrawide: Samsung ISOCELL 3L6 (S5K3L6) / 1/3\"; macro and depth: GalaxyCore GC5035 / 1/5\"; front: Samsung ISOCELL GD1 (S5KGD1) / 1/2.8\""], ["Camera System", "48MP main | 12MP ultrawide | 5MP macro | 5MP depth"], ["Battery", "4000mAh | 15W fast charging"], ["Feature", "Under-display Fingerprint | 3.5mm Jack"]]
-    },
-    {
-        lot: "022", category: "tablet", name: "iPad Pro 13\"", brand: "APPLE · CREATOR SLATE", status: "wishlist", image: "assets/images/ipad-pro-13-camera-right.png",
-        specs: [["SoC", "Apple M4 | 9/10-core CPU | 10-core GPU"], ["Display", "13\" Ultra Retina XDR | Tandem OLED | 1000/1600 nits"], ["Design", "5.1mm thickness | 579g"], ["Accessories", "Apple Pencil Pro | Magic Keyboard"]]
-    },
-    {
-        lot: "023", category: "tablet", name: "iPad mini (A17 Pro)", brand: "APPLE · GAMING & READING", status: "wishlist", image: "assets/images/ipad-mini-purple.png",
-        specs: [["SoC", "A17 Pro (3nm) | Hardware Ray Tracing"], ["Display", "8.3\" Liquid Retina | True Tone | P3"], ["Connectivity", "Wi-Fi 6E | USB-C 10Gbps"], ["Compatibility", "Apple Pencil Pro"]]
-    },
-    {
-        lot: "024", category: "tablet", name: "Galaxy Tab S10 Ultra", brand: "SAMSUNG · GALAXY TAB", status: "wishlist", image: "assets/images/galaxy-tab-s11-ultra.png",
-        specs: [["SoC", "MediaTek Dimensity 9300+ | AI Processing"], ["Display", "14.6\" Dynamic AMOLED 2X | 120Hz | Anti-Reflection"], ["Features", "IP68 | Included S-Pen"], ["Multitasking", "Samsung DeX | Multi-Active Window"]]
-    },
-    {
-        lot: "025", category: "tablet", name: "Galaxy Tab S10+", brand: "SAMSUNG · GALAXY TAB PLUS", status: "wishlist", image: "assets/images/galaxy-tab-s10-plus.png",
-        specs: [["SoC", "MediaTek Dimensity 9300+ | AI Processing Engine"], ["Display", "12.4\" Dynamic AMOLED 2X | 120Hz | Anti-Reflection"], ["Battery", "10,090mAh | 45W Super Fast Charging"], ["Features", "IP68 | Included S-Pen | AKG Quad Speakers"]]
-    },
-    {
-        lot: "026", category: "laptop", name: "MacBook Pro 16-inch", brand: "APPLE · MACBOOK PRO / M5", status: "wishlist", image: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1000&auto=format&fit=crop",
-        specs: [["Processor", "Apple M5 Pro | up to 18-core CPU | up to 20-core GPU; M5 Max | 18-core CPU | up to 40-core GPU"], ["Memory", "M5 Pro up to 64GB unified memory | M5 Max up to 128GB unified memory"], ["Display", "16.2\" Liquid Retina XDR | 1,600 nits peak HDR | 1,000,000:1 contrast ratio"], ["Battery", "Up to 24 hours"], ["Camera & Audio", "12MP Center Stage | Three-mic array | Six-speaker system with Spatial Audio and Dolby Atmos"], ["I/O", "3× Thunderbolt 4 or 5 | HDMI | MagSafe 3 | SDXC | Headphone jack"]]
-    },
-    {
-        lot: "027", category: "laptop", name: "Legion 5 15AHP10", brand: "LENOVO · LEGION ESPORTS", status: "wishlist", image: "https://images.unsplash.com/photo-1603302576837-37561b2e2302?q=80&w=1000&auto=format&fit=crop",
-        specs: [["Processor", "AMD Ryzen 9 9945HX | 16 cores / 32 threads"], ["Graphics", "NVIDIA RTX 5070 Laptop GPU | 140W"], ["Memory", "32GB (2×16GB) DDR5-5600"], ["Display", "15.6\" WQHD | 165Hz | 100% sRGB | G-Sync"], ["Cooling", "Legion Coldfront 5.0 | Liquid Metal"]]
-    },
-    {
-        lot: "028", category: "desktop", name: "AMD Titan Rig", brand: "CUSTOM BUILD · TEAM RED", status: "wishlist", image: "https://images.unsplash.com/photo-1587831990711-23ca6441447b?q=80&w=1000&auto=format&fit=crop",
-        specs: [["Processor", "AMD Ryzen 9 9950X3D | 16 cores | 128MB L3"], ["Graphics", "NVIDIA RTX 5090 | 32GB GDDR7"], ["Motherboard", "ASUS ROG Crosshair X870E Hero"], ["Memory", "64GB G.Skill Trident Z5 Neo DDR5-6400"], ["Cooling", "NZXT Kraken Elite 360mm AIO"]]
-    },
-    {
-        lot: "029", category: "desktop", name: "Intel Core Rig", brand: "CUSTOM BUILD · TEAM BLUE", status: "wishlist", image: "https://images.unsplash.com/photo-1624701928517-44c8ac49d93c?q=80&w=1000&auto=format&fit=crop",
-        specs: [["Processor", "Intel Core Ultra 9 285K | 24 cores | Up to 5.7GHz"], ["Graphics", "NVIDIA RTX 5090 | 32GB GDDR7"], ["Motherboard", "MSI ROG Maximus Z890 Apex"], ["Memory", "64GB Corsair Dominator Titanium DDR5-6400"], ["Power Supply", "Corsair AX1600i | 1600W 80+ Titanium"]]
-    },
-    {
-        lot: "030", category: "desktop", name: "Mac Studio (M4 Ultra)", brand: "APPLE · PROFESSIONAL DESKTOP", status: "wishlist", image: "assets/images/macstudio-m4-ultra-transparent.png",
-        specs: [["Processor", "Apple M4 Ultra | 32-core CPU | 80-core GPU"], ["Memory", "256GB Unified Memory | 1.6TB/s"], ["Storage", "8TB PCIe Gen 4 SSD"], ["Connectivity", "6× Thunderbolt 5 | 10Gb Ethernet | HDMI 2.1"], ["Form Factor", "Extruded Aluminum | Advanced Thermal System"]]
-    },
-    {
-        lot: "031", category: "peripheral", name: "DeathAdder V2 Pro", brand: "RAZER · FOR GAMERS. BY GAMERS.", status: "owned", image: "https://images.unsplash.com/photo-1615663245857-ac1eeb536fcb?q=80&w=1000&auto=format&fit=crop",
-        specs: [["Sensor", "Razer Focus+ Optical | 20,000 DPI | 650 IPS"], ["Switches", "Optical Mouse Switches Gen-2 | 70M clicks"], ["Connectivity", "HyperSpeed 2.4GHz | Bluetooth | Wired"], ["Battery Life", "120h Bluetooth | 70h HyperSpeed"], ["Form Factor", "Right-handed ergonomic | 88g"]]
-    },
-    {
-        lot: "032", category: "peripheral", name: "Pro Display XDR 2", brand: "APPLE · REFERENCE DISPLAY", status: "wishlist", image: "https://images.unsplash.com/photo-1616423641400-0e1dc6d00df7?q=80&w=1000&auto=format&fit=crop",
-        specs: [["Display", "32-inch Tandem OLED | 6016×3384 (6K)"], ["Refresh Rate", "ProMotion adaptive sync up to 120Hz"], ["Brightness", "1000 nits sustained | 2000 nits peak HDR"], ["Contrast Ratio", "1,000,000:1 | True Blacks"], ["Build", "Nano-texture glass | Pro Stand separate"]]
-    },
-    {
-        lot: "033", category: "peripheral", name: "EarPods", brand: "APPLE · RETRO ESSENTIAL", status: "owned", image: "https://images.unsplash.com/photo-1528659139886-c466cfa928ba?q=80&w=800&auto=format&fit=crop",
-        specs: [["Acoustics", "Custom tuned drivers | Deeper bass tones"], ["Design", "Geometry-shaped open fit"], ["Controls", "Built-in remote | Volume | Playback | Calls"], ["Reliability", "Zero latency | No battery | Sweat/water protection"], ["Connection", "USB-C / Lightning / 3.5mm"]]
-    },
-    {
-        lot: "034", category: "peripheral", name: "Galaxy Buds 2", brand: "SAMSUNG · TWS EARBUDS", status: "wishlist", image: "https://images.unsplash.com/photo-1631281005856-787db8c08db7?q=80&w=800&auto=format&fit=crop",
-        specs: [["Audio", "Dynamic 2-way speakers | Sound by AKG"], ["ANC", "Active Noise Canceling | up to 98%"], ["Microphones", "3 mics + VPU"], ["Battery", "20h total with ANC on"], ["Connectivity", "Bluetooth 5.2 | Auto Switch"]]
-    },
-    {
-        lot: "035", category: "peripheral", name: "Galaxy Buds 3", brand: "SAMSUNG · NEXT-GEN AUDIO", status: "wishlist", image: "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?q=80&w=800&auto=format&fit=crop",
-        specs: [["Audio Architecture", "11mm Dynamic Driver | 24-bit / 96kHz Hi-Fi"], ["Design", "Blade Design | Pinch & Swipe | Open fit"], ["Smart Features", "Adaptive EQ | Adaptive ANC | Galaxy AI"], ["Durability", "IP57 Water & Dust Resistance"], ["Connectivity", "Bluetooth 5.4 | Auracast"]]
-    },
-    {
-        lot: "036", category: "peripheral", name: "Nothing Ear (a)", brand: "NOTHING · EVERYDAY AUDIO", status: "wishlist", image: "assets/images/nothing-ear-a-transparent.png",
-        specs: [["Audio Architecture", "11mm Dynamic Driver | PMI + TPU diaphragm"], ["Noise Cancellation", "Adaptive ANC | Up to 45dB | Transparency Mode"], ["Battery", "Up to 9.5h earbuds | 42.5h with case | 10 min = 10h"], ["Connectivity", "Bluetooth 5.3 | AAC / SBC / LDAC | Dual Connection"], ["Protection", "IP54 earbuds | IPX2 case | 4.8g per earbud"]]
-    },
-    {
-        lot: "037", category: "laptop", name: "ProArt P16 (H7607)", brand: "ASUS · PROART P16 / RTX SPARK", status: "wishlist", image: "https://dlcdnwebimgs.asus.com/gain/db815677-1e89-4035-bc04-729491f4386e/w800",
-        specs: [["Platform", "NVIDIA Blackwell RTX GPU | 6,144 CUDA cores | 20-core NVIDIA Grace CPU"], ["AI Performance", "Up to 1 petaflop FP4 AI performance | Purpose-built for personal agents"], ["Memory", "Up to 128GB unified memory"], ["Display", "4K ASUS Lumina Pro OLED | Delta E < 1 | 120Hz VRR | up to 1,600 nits | anti-reflection"], ["Design", "12.9mm ultrathin | 1.77kg | Nano Black / Neo White"], ["Operating System", "Windows 11 Home"]]
-    },
-    {
-        lot: "038", category: "laptop", name: "MacBook Air 13\"", brand: "APPLE · EVERYDAY LAPTOP", status: "wishlist", image: "assets/images/macbook-air-13-clean.png",
-        specs: [["Processor", "Apple M5 | 10-core CPU | up to 10-core GPU | Neural Accelerators"], ["Memory", "16GB Unified Memory | Configurable to 24GB / 32GB"], ["Storage", "512GB SSD | Configurable to 1TB / 2TB / 4TB"], ["Display", "13.6\" Liquid Retina | 2560×1664 | 500 nits | P3 | True Tone"], ["Battery & I/O", "Up to 18h video | MagSafe 3 | 2× Thunderbolt 4 | Wi-Fi 7 | Bluetooth 6"]]
-    },
-    {
-        lot: "043", category: "laptop", name: "MacBook Air 15\"", brand: "APPLE · EVERYDAY LAPTOP", status: "wishlist", image: "assets/images/macbook-air-15-m5.png",
-        specs: [["Processor", "Apple M5 | 10-core CPU | up to 10-core GPU | Neural Accelerators"], ["Memory", "16GB Unified Memory | Configurable to 24GB / 32GB"], ["Storage", "512GB SSD | Configurable to 1TB / 2TB / 4TB"], ["Display", "15.3\" Liquid Retina | 2880×1864 | 500 nits | P3 | True Tone"], ["Battery & I/O", "Up to 18h video | MagSafe 3 | 2× Thunderbolt 4 | Wi-Fi 7 | Bluetooth 6"]]
-    },
-    {
-        lot: "039", category: "laptop", name: "Prestige 16 AI+ C3M", brand: "MSI · PRESTIGE 16 AI+ / C3M", status: "wishlist", image: "assets/images/prestige-16-ai-plus-c3m.png",
-        specs: [["Processor", "Intel Core Ultra X9 388H | Up to 16 cores | Up to 5.1GHz | 50 NPU TOPS"], ["Graphics", "Up to Intel Arc GPU B390"], ["Memory & Storage", "LPDDR5x up to 64GB | 1× M.2 NVMe PCIe Gen4"], ["Display", "16\" 2.8K OLED | 2880×1800 | 48–120Hz VRR | 100% DCI-P3 | DisplayHDR True Black 600"], ["Design", "Ultra-slim 11.9–13.9mm | 1.59kg aluminum alloy chassis"], ["Battery & I/O", "81Wh | Up to 24+ hours | 100W PD 3.0 | Thunderbolt 4 | HDMI 2.1 | Wi-Fi 7"]]
-    },
-    {
-        lot: "040", category: "laptop", name: "MacBook Neo 13\"", brand: "APPLE · ENTRY MAC", status: "wishlist", image: "assets/images/macbook-neo-13-clean.png",
-        specs: [["Processor", "Apple A18 Pro | 6-core CPU | 5-core GPU | 16-core Neural Engine"], ["Memory & Storage", "8GB Unified Memory | 256GB / 512GB SSD"], ["Display", "13.0\" Liquid Retina | 2408×1506 | 500 nits | sRGB"], ["Battery", "Up to 16h video | 36.5Wh | 20W USB-C Power Adapter"], ["I/O & Wireless", "USB 3 USB-C + USB 2 USB-C | 3.5mm | Wi-Fi 6E | Bluetooth 6"]]
-    },
-    {
-        lot: "042", category: "laptop", name: "Swift Go 14 AI", brand: "ACER · SWIFT GO / AI", status: "wishlist", image: "assets/images/swift-go-14-ai.png",
-        specs: [["Processor", "Up to Intel Core Ultra X9 388H"], ["AI Performance", "Up to 180 TOPS total platform AI performance"], ["Graphics", "Up to Intel Arc B390 graphics"], ["Display", "Up to 3K OLED | Up to 120Hz | Slim bezels"], ["Mobility", "Starting at 1.12kg | 180° lie-flat hinge | Laser-etched aluminum cover"], ["Connectivity", "2× Thunderbolt 4 Type-C | HDMI 2.1 up to 8K | Wi-Fi 7 | 5MP IR camera"], ["Operating System", "Windows 11 Home"]]
-    },
-    {
-        lot: "041", category: "mobile", name: "Galaxy Z Fold 8 Ultra", brand: "SAMSUNG · GALAXY Z ULTRA", status: "wishlist", image: "assets/images/samsungzfold8ultra-square-transparent.png",
-        specs: [["SoC", "Snapdragon 8 Elite Gen 5 for Galaxy | 12GB / 16GB LPDDR5X"], ["Inner Display", "8.0\" Dynamic AMOLED 2X | 1–120Hz | 3000 nits | anti-reflection"], ["Cover Display", "6.5\" Dynamic AMOLED 2X | 1–120Hz | 3000 nits"], ["Camera Sensor", "Main: Samsung ISOCELL S5KHP2 (HP2) / 1/1.3\"; 3x tele: Samsung S5K3K1 / 1/3.94\"; ultrawide: Samsung ISOCELL S5KJN3 (JN3) / 1/2.5\"; cover and inner selfie: Sony IMX374 / 1/3.0\""], ["Camera System", "200MP HP2 main | 50MP JN3 ultrawide | 10MP 3x tele | 10MP cover + 10MP inner selfie"], ["Build / Battery", "Flex Titanium | IP48 | 5000mAh | 45W wired | 20W wireless | 215g"]]
-    }
-];
-```
