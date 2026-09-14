@@ -1145,7 +1145,7 @@
             <div class="home-hero-content">
                 <div class="hero-stats-inline" aria-label="馆藏数据概览 / Collection statistics">
                     <div class="hero-stat-item">
-                        <strong class="stat-num">053</strong>
+                        <strong class="stat-num">058</strong>
                         <span class="hero-stat-label" data-zh="已编目" data-en="catalogued">catalogued</span>
                     </div>
                     <div class="hero-stat-item owned">
@@ -1153,7 +1153,7 @@
                         <span class="hero-stat-label" data-zh="已入藏" data-en="in collection">in collection</span>
                     </div>
                     <div class="hero-stat-item">
-                        <strong class="stat-num">048</strong>
+                        <strong class="stat-num">053</strong>
                         <span class="hero-stat-label" data-zh="关注中" data-en="pursuing">pursuing</span>
                     </div>
                 </div>
@@ -1476,9 +1476,9 @@
 <h1 class="main-title"><span class="tech">TECH</span> <span class="arsenal">ARSENAL</span></h1>
 </div>
 <div aria-label="收藏概览 / Collection summary" class="collection-ledger">
-<span><strong>053</strong> <span data-en="Catalogued" data-zh="已编目">catalogued</span></span>
+<span><strong>058</strong> <span data-en="Catalogued" data-zh="已编目">catalogued</span></span>
 <span class="owned"><strong>005</strong> <span data-en="In collection" data-zh="已入藏">in collection</span></span>
-<span><strong>048</strong> <span data-en="Pursuing" data-zh="关注中">pursuing</span></span>
+<span><strong>053</strong> <span data-en="Pursuing" data-zh="关注中">pursuing</span></span>
 <span><strong>005</strong> <span data-en="Chapters" data-zh="章节">chapters</span></span>
 </div>
 </div>
@@ -1499,7 +1499,7 @@
 <button aria-pressed="false" class="filter-btn" data-en="Peripherals" data-filter="peripheral" data-zh="外设" type="button">Peripherals</button>
 </div>
 <div class="control-subbar">
-<p aria-live="polite" class="result-summary" data-en="Showing 53 records across 5 chapters" data-zh="显示 53 条记录，分布于 5 个章节" id="resultSummary" role="status">Showing 53 records across 5 chapters</p>
+<p aria-live="polite" class="result-summary" data-en="Showing 58 records across 5 chapters" data-zh="显示 58 条记录，分布于 5 个章节" id="resultSummary" role="status">Showing 58 records across 5 chapters</p>
 <div aria-label="切换显示方式 / Switch view" class="view-toggle" role="group">
 <button aria-pressed="false" class="view-btn" data-view="gallery" type="button">
 <svg aria-hidden="true" class="view-icon" fill="currentColor" viewbox="0 0 16 16">
@@ -1549,7 +1549,7 @@
 <div class="section-wrapper" id="sec-mobile">
 <div class="chapter-head">
 <span class="chapter-eyebrow">phones</span>
-<h2 class="section-title"><span class="lang-pair"><span class="lang-zh" lang="zh-CN">手机</span><span aria-hidden="true" class="lang-divider"> / </span><span class="lang-en" lang="en">Smartphones</span></span><span class="section-count">(31 / 31 PIECES)</span></h2>
+<h2 class="section-title"><span class="lang-pair"><span class="lang-zh" lang="zh-CN">手机</span><span aria-hidden="true" class="lang-divider"> / </span><span class="lang-en" lang="en">Smartphones</span></span><span class="section-count">(36 / 36 PIECES)</span></h2>
 <div class="chapter-rule"></div>
 </div>
 <div class="grid">
@@ -2486,6 +2486,184 @@
 <div class="d-spec" data-label="Battery &amp; Charging">5000mAh typical | 25W fast charging</div>
 <div class="d-spec" data-label="Focal Lengths">Native: 12mm / 26mm / 52mm (2×) / 64mm (2.4× main crop)</div>
 <div class="d-spec" data-label="Build">203g | Plastic (Glasstic) | IP67</div>
+</div>
+</div>
+<div class="card" data-brand="xiaomi" data-cat="mobile" data-chapter="SMARTPHONES" data-lot="029" data-name="xiaomi 13 ultra xiaomi · leica apex leica apex xiaomi" data-status="wishlist">
+<div class="lot-number">N° 029</div>
+<div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
+<div class="img-box">
+<img alt="Xiaomi 13 Ultra" decoding="async" height="1024" loading="lazy" src="assets/images/xiaomi13ultra-transparent.png" width="1024"/>
+</div>
+<div class="card-content">
+<div class="hallmark">XIAOMI · LEICA APEX</div>
+<h3 class="product-name">Xiaomi 13 Ultra</h3>
+<div class="specs">
+<div class="spec-row"><span class="spec-label">Chip</span><span class="spec-val">Snapdragon 8 Gen 2</span></div>
+<div class="spec-row"><span class="spec-label">Display</span><span class="spec-val">6.73" 120Hz C7 WQHD+</span></div>
+<div class="spec-row"><span class="spec-label">Sensor</span><span class="spec-val">1" IMX989 · 可变光圈</span></div>
+<div class="spec-row"><span class="spec-label">Camera</span><span class="spec-val">50MP Quad · 全焦段徕卡</span></div>
+</div>
+</div>
+<div class="hidden-details" style="display:none;">
+<div class="d-brand">XIAOMI // LEICA APEX</div>
+<div class="d-title">Xiaomi 13 Ultra</div>
+<div class="d-why">一英寸可变光圈与全焦段大底四摄，溜背蒙皮造型把小米彻底拉入了相机时代。</div>
+<div class="d-desc">小米与徕卡联合研发的专业影像旗舰，四颗5000万像素全焦段大光圈镜头，搭载一英寸IMX989物理双档可变光圈与仿相机蒙皮微凸后盖。</div>
+<div class="d-spec" data-label="SoC">Snapdragon 8 Gen 2 (4nm) | Adreno 740 | LPDDR5X | UFS 4.0</div>
+<div class="d-spec" data-label="Memory">16GB LPDDR5X RAM 8533Mbps (顶配)</div>
+<div class="d-spec" data-label="Storage">1TB UFS 4.0 高速闪存 (顶配)</div>
+<div class="d-spec" data-label="Display">6.73" C7 AMOLED | 1-120Hz LTPO | 2600 nits peak | WQHD+ (3200×1440) | 12-bit 色深 | 1920Hz 高频 PWM + 类 DC 调光 | Gorilla Glass Victus</div>
+<div class="d-spec" data-label="Camera System">[Main] 50MP Sony IMX989 | 1" 超大底 | 8P 镜头 | f/1.9-f/4.0 物理两档可变光圈 | OIS<br/>
+                        [Portrait Telephoto] 50MP Sony IMX858 | 3.2× Optical (75mm) | f/1.8 | OIS<br/>
+                        [Super Telephoto] 50MP Sony IMX858 | 5× Optical (120mm) | 120× 数码变焦 | f/3.0 | OIS<br/>
+                        [Ultrawide] 50MP Sony IMX858 | 12mm 等效 | 122° FOV | f/1.8 | 5cm 超微距</div>
+<div class="d-spec" data-label="Camera Sensors">Main: Sony IMX989 / 1.0" (50MP, 1.6µm / 3.2µm 4-in-1, 8P 非球面, OIS, Octa-PD); Telephoto 3.2×: Sony IMX858 / 1/2.51" (50MP, 75mm, f/1.8, OIS); Super Telephoto 5×: Sony IMX858 / 1/2.51" (50MP, 120mm, f/3.0, OIS); Ultrawide: Sony IMX858 / 1/2.51" (50MP, 12mm, f/1.8, AF); Front: OmniVision OV32C / 1/3.14" (32MP, f/2.0)</div>
+<div class="d-spec" data-label="Focal Lengths">Native: 12mm / 23mm / 75mm / 120mm | In-sensor zoom: 46mm (2×) / 240mm (10×) | 数码裁切至 120×</div>
+<div class="d-spec" data-label="Battery &amp; Charging">5000mAh 单电芯 | 90W 有线澎湃秒充 | 50W Pro 无线秒充 | 10W 无线反向充 | 澎湃 P2 快充芯片 + G1 电源管理芯片</div>
+<div class="d-spec" data-label="Build">227g | 第二代科技纳米皮 | 一体化金属中框延伸结构 | 经典相机溜背造型 | IP68 防尘防水</div>
+<div class="d-spec" data-label="Feature">Leica 专业影像套装生态 (实体两段快门手柄/67mm滤镜转接环) | 环形冷泵散热架构 | 徕卡经典/生动双画质 | USB 3.2 Gen 1 (DP 视频输出)</div>
+</div>
+</div>
+<div class="card" data-brand="xiaomi" data-cat="mobile" data-chapter="SMARTPHONES" data-lot="055" data-name="xiaomi mix 4 xiaomi · unibody ceramic unibody ceramic cup xiaomi" data-status="wishlist">
+<div class="lot-number">N° 055</div>
+<div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
+<div class="img-box">
+<img alt="Xiaomi MIX 4" decoding="async" height="1024" loading="lazy" src="assets/images/xiaomimix4-transparent.png" width="1024"/>
+</div>
+<div class="card-content">
+<div class="hallmark">XIAOMI · UNIBODY CERAMIC</div>
+<h3 class="product-name">Xiaomi MIX 4</h3>
+<div class="specs">
+<div class="spec-row"><span class="spec-label">Chip</span><span class="spec-val">Snapdragon 888+</span></div>
+<div class="spec-row"><span class="spec-label">Display</span><span class="spec-val">6.67" CUP 屏下全视屏</span></div>
+<div class="spec-row"><span class="spec-label">Sensor</span><span class="spec-val">1/1.33" HMX · 108MP OIS</span></div>
+<div class="spec-row"><span class="spec-label">Build</span><span class="spec-val">一体化汝窑温润陶瓷</span></div>
+</div>
+</div>
+<div class="hidden-details" style="display:none;">
+<div class="d-brand">XIAOMI // UNIBODY CERAMIC</div>
+<div class="d-title">Xiaomi MIX 4</div>
+<div class="d-why">Unibody 仿汝窑一体化轻量陶瓷，配合正面无开孔真全面屏，手感温润如玉。</div>
+<div class="d-desc">全陶瓷一体化机身工业设计，首发微钻排列 CUP 屏下相机真全面屏，搭载骁龙 888+ 与 120W 有线秒充。</div>
+<div class="d-spec" data-label="SoC">Snapdragon 888+ (5nm, Cortex-X1 @ 3.0GHz) | Adreno 660 | LPDDR5 | UFS 3.1</div>
+<div class="d-spec" data-label="Memory">12GB LPDDR5 RAM 6400Mbps (顶配)</div>
+<div class="d-spec" data-label="Storage">512GB UFS 3.1 高速闪存 (顶配)</div>
+<div class="d-spec" data-label="Display">6.67" CUP 屏下微曲 AMOLED | 2400×1080 FHD+ | 120Hz | 480Hz 触控 | 400PPI 微钻排列真全视屏 | 10-bit HDR10+ | Dolby Vision | Gorilla Glass Victus</div>
+<div class="d-spec" data-label="Camera System">[Main] 108MP Samsung HMX | 1/1.33" 超大底 | 7P 镜头 | 4 轴 OIS 光学防抖<br/>
+                        [Periscope] 8MP 5× 潜望长焦 (120mm) | OIS 光学防抖 | 50× 数码变焦<br/>
+                        [Ultrawide] 13MP 自由曲面超广角 (12mm) | 120° FOV | 硬件级低畸变</div>
+<div class="d-spec" data-label="Camera Sensors">Main: Samsung ISOCELL HMX / 1/1.33" (108MP, 0.8µm / 1.6µm 4-in-1, 7P, f/1.95, 4 轴 OIS); Periscope: 8MP (5× optical / 50× digital, 120mm, f/4.1, OIS); Ultrawide: 13MP 自由曲面防畸变 (12mm, f/2.2, 120°); Front CUP: 20MP 微钻排列屏下微米相机 (1.6µm 4-in-1)</div>
+<div class="d-spec" data-label="Focal Lengths">Native: 12mm / 24mm / 120mm | Sensor crop: 48mm (2×) | 数码变焦至 50×</div>
+<div class="d-spec" data-label="Battery &amp; Charging">4500mAh 石墨烯双电芯 | 120W 有线秒充 (疾速 15 分钟满电 / 恒温 21 分钟) | 50W 无线秒充 (疾速 28 分钟满电) | 10W 无线反充</div>
+<div class="d-spec" data-label="Build">225g | 高精密轻量化一体全陶瓷 (Unibody Ceramic, 减重 30%) | 影青灰 / 陶瓷黑 / 陶瓷白 (仿汝窑釉色)</div>
+<div class="d-spec" data-label="Feature">CUP 真正零挖孔真全面屏 | 自由曲面防畸变超广角镜头 | UWB 一指连空间精准感知定位 | Harman Kardon 联合调校立体声双扬声器</div>
+</div>
+</div>
+<div class="card" data-brand="sony" data-cat="mobile" data-chapter="SMARTPHONES" data-lot="056" data-name="sony xperia 1 v sony · alpha in hand zeiss t optics continuous optical zoom sony" data-status="wishlist">
+<div class="lot-number">N° 056</div>
+<div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
+<div class="img-box">
+<img alt="Sony Xperia 1 V" decoding="async" height="1024" loading="lazy" src="assets/images/sony-xperia-1-v-transparent.png" width="1024"/>
+</div>
+<div class="card-content">
+<div class="hallmark">SONY · ALPHA IN HAND</div>
+<h3 class="product-name">Sony Xperia 1 V</h3>
+<div class="specs">
+<div class="spec-row"><span class="spec-label">Chip</span><span class="spec-val">Snapdragon 8 Gen 2</span></div>
+<div class="spec-row"><span class="spec-label">Display</span><span class="spec-val">6.5" 4K 120Hz 21:9 OLED</span></div>
+<div class="spec-row"><span class="spec-label">Sensor</span><span class="spec-val">双层晶体管 Exmor T</span></div>
+<div class="spec-row"><span class="spec-label">Zoom</span><span class="spec-val">85-125mm 真正连续光变</span></div>
+</div>
+</div>
+<div class="hidden-details" style="display:none;">
+<div class="d-brand">SONY // ALPHA IN HAND</div>
+<div class="d-title">Sony Xperia 1 V</div>
+<div class="d-why">21:9 4K 无开孔带鱼屏与日系棱线防滑微粒，保留实体两段式快门和真连续光学变焦。</div>
+<div class="d-desc">索尼日系工业美学旗舰，首发双层晶体管像素 Exmor T 传感器，具备 85-125mm 物理连续光学变焦潜望模组与实体相机快门按键。</div>
+<div class="d-spec" data-label="SoC">Snapdragon 8 Gen 2 (4nm) | Adreno 740 | LPDDR5X | UFS 4.0</div>
+<div class="d-spec" data-label="Memory">16GB LPDDR5X RAM (顶配)</div>
+<div class="d-spec" data-label="Storage">512GB UFS 4.0 (顶配) | 支持 MicroSDXC 免工具插拔扩展最高 1TB</div>
+<div class="d-spec" data-label="Display">6.5" 4K HDR OLED (3840×1644, 643 PPI) | 120Hz | 21:9 电影画幅 | 无挖孔对称上下微额头 | X1 for mobile 引擎 | Gorilla Glass Victus 2</div>
+<div class="d-spec" data-label="Camera System">[Main] 48MP (有效52MP) 双层晶体管 Exmor T | 24mm | f/1.9 | 蔡司 T* 镀膜 | OIS<br/>
+                        [Telephoto] 12MP 物理连续光学变焦 (85mm-125mm, 3.5×-5.2×) | f/2.3-f/2.8 | OIS<br/>
+                        [Ultrawide] 12MP Exmor RS | 16mm | f/2.2 | 123° FOV | Dual PD AF<br/>
+                        [Shutter] 侧边独立实体两段式机械快门键</div>
+<div class="d-spec" data-label="Camera Sensors">Main: Sony Exmor T for mobile / 1/1.35" (48MP 有效, 1.12µm / 2.24µm 4-in-1, 24mm, f/1.9, OIS, 蔡司 Zeiss T* 镀膜); Telephoto: Sony IMX650 / 1/3.5" (12MP, 85-125mm 物理连续光学变焦, f/2.3-f/2.8, OIS); Ultrawide: Sony IMX563 / 1/2.5" (12MP, 16mm, f/2.2); Front: Sony IMX663 / 1/2.9" (12MP, 24mm, f/2.0)</div>
+<div class="d-spec" data-label="Focal Lengths">Native: 16mm / 24mm / 85mm-125mm (全域物理连续无级光学变焦) | Sensor crop: 48mm (2× 高画质主摄裁切)</div>
+<div class="d-spec" data-label="Battery &amp; Charging">5000mAh 长寿命电池 (Xperia 电池保护技术) | 30W USB PD 快充 | Qi 无线快充与无线电量共享</div>
+<div class="d-spec" data-label="Build">187g 极致轻量化 | 71mm 黄金手感宽度 | 棱线防滑微粒金属中框 | 触感微粒磨砂玻璃 | 独立 3.5mm 镀金耳机孔 | IP65/IP68 双重防水</div>
+<div class="d-spec" data-label="Feature">实体两段式快门按键 | 85-125mm 物理连续光变 | 独立 3.5mm 无损音频孔 | 全焦段 4K 120fps HDR 录制与眼部追焦 | Alpha 微单监视屏直连</div>
+</div>
+</div>
+<div class="card" data-brand="huawei" data-cat="mobile" data-chapter="SMARTPHONES" data-lot="057" data-name="huawei p60 pro huawei · rococo pearl rococo pearl xmage optics huawei" data-status="wishlist">
+<div class="lot-number">N° 057</div>
+<div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
+<div class="img-box">
+<img alt="Huawei P60 Pro" decoding="async" height="1024" loading="lazy" src="assets/images/huawei-p60-pro-transparent.png" width="1024"/>
+</div>
+<div class="card-content">
+<div class="hallmark">HUAWEI · ROCOCO PEARL</div>
+<h3 class="product-name">Huawei P60 Pro</h3>
+<div class="specs">
+<div class="spec-row"><span class="spec-label">Chip</span><span class="spec-val">Snapdragon 8+ Gen 1</span></div>
+<div class="spec-row"><span class="spec-label">Display</span><span class="spec-val">6.67" 玲珑四曲 120Hz LTPO</span></div>
+<div class="spec-row"><span class="spec-label">Sensor</span><span class="spec-val">48MP 十档物理可变光圈</span></div>
+<div class="spec-row"><span class="spec-label">Tele</span><span class="spec-val">超聚光夜视潜望 · 长焦微距</span></div>
+</div>
+</div>
+<div class="hidden-details" style="display:none;">
+<div class="d-brand">HUAWEI // ROCOCO PEARL</div>
+<div class="d-title">Huawei P60 Pro</div>
+<div class="d-why">首创凝光贝母工艺让每一台花纹独一无二，超聚光长焦群把暗光长焦带到了新高度。</div>
+<div class="d-desc">华为 XMAGE 影像美学旗舰，采用独创手工凝光贝母背板与十档物理可变光圈主摄，首发聚光镜群超聚光夜视潜望长焦。</div>
+<div class="d-spec" data-label="SoC">Snapdragon 8+ Gen 1 4G (4nm) | Adreno 730 | LPDDR5 | UFS 3.1</div>
+<div class="d-spec" data-label="Memory">12GB LPDDR5 RAM (顶配)</div>
+<div class="d-spec" data-label="Storage">512GB UFS 3.1 (顶配) | 支持最高 256GB NM 存储卡扩展</div>
+<div class="d-spec" data-label="Display">6.67" 玲珑四曲 OLED | 2700×1220 1.5K+ | 1-120Hz LTPO 自适应刷新 | 1440Hz 高频 PWM 调光 | 10.7 亿色 | 华为昆仑玻璃 (耐摔抗跌落提升 10 倍)</div>
+<div class="d-spec" data-label="Camera System">[Main] 48MP 超聚光主摄 | f/1.4-f/4.0 十档物理可变光圈 | RYYB | OIS 传感器位移防抖<br/>
+                        [Telephoto] 48MP 超聚光夜视长焦 | f/2.1 超大光圈 | 3.5× 光学 (90mm) | RYYB | 100× 数字变焦 | 三轴传感器位移防抖 | 10cm 超级长焦微距<br/>
+                        [Ultrawide] 13MP 超广角 | 13mm | f/2.2 | RYYB | 2.5cm 超微距</div>
+<div class="d-spec" data-label="Camera Sensors">Main: Sony IMX888 / 1/1.43" (48MP, RYYB 超聚光, f/1.4-f/4.0 十档可变光圈, OIS 传感器位移防抖); Telephoto: 48MP (RYYB, f/2.1 行业最大潜望光圈, 90mm, 3.5× 光学 / 100× 数字, 三轴位移 OIS); Ultrawide: 13MP RYYB (13mm, f/2.2); Front: 13MP 超广角 (f/2.4)</div>
+<div class="d-spec" data-label="Focal Lengths">Native: 13mm / 24.5mm / 90mm | Sensor crop: 49mm (2×) / 270mm (10× 混合变焦) | 数字变焦至 100×</div>
+<div class="d-spec" data-label="Battery &amp; Charging">4815mAh | 88W 有线超级快充 (Turbo 10 分钟充至 50%) | 50W 无线超级快充 | 7.5W 反向无线充</div>
+<div class="d-spec" data-label="Build">200g | 8.3mm | 天然矿物微粉手工凝光贝母 (洛可可白独一无二纹理) | 昆仑玻璃面板 | IP68 防尘防水</div>
+<div class="d-spec" data-label="Feature">十档物理可变光圈 (f/1.4-f/4.0) | 洛可可白天然手工贝母纹理 | 双向北斗卫星消息 (无地面信号联络) | 10cm 超聚光长焦微距</div>
+</div>
+</div>
+<div class="card" data-brand="oppo" data-cat="mobile" data-chapter="SMARTPHONES" data-lot="058" data-name="oppo find x7 ultra oppo · hasselblad dual periscope hasselblad optics oppo" data-status="wishlist">
+<div class="lot-number">N° 058</div>
+<div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
+<div class="img-box">
+<img alt="OPPO Find X7 Ultra" decoding="async" height="1024" loading="lazy" src="assets/images/oppo-find-x7-ultra-transparent.png" width="1024"/>
+</div>
+<div class="card-content">
+<div class="hallmark">OPPO · HASSELBLAD DUAL PERISCOPE</div>
+<h3 class="product-name">OPPO Find X7 Ultra</h3>
+<div class="specs">
+<div class="spec-row"><span class="spec-label">Chip</span><span class="spec-val">Snapdragon 8 Gen 3</span></div>
+<div class="spec-row"><span class="spec-label">Display</span><span class="spec-val">6.82" 2K 120Hz LTPO</span></div>
+<div class="spec-row"><span class="spec-label">Sensor</span><span class="spec-val">1" LYT-900 · 50MP OIS</span></div>
+<div class="spec-row"><span class="spec-label">Telephoto</span><span class="spec-val">双潜望 · 65mm + 135mm</span></div>
+</div>
+</div>
+<div class="hidden-details" style="display:none;">
+<div class="d-brand">OPPO // HASSELBLAD DUAL PERISCOPE</div>
+<div class="d-title">OPPO Find X7 Ultra</div>
+<div class="d-why">大漠银月双拼皮金属复古机身，全球首创双潜望长焦系统，哈苏全焦段人像标杆。</div>
+<div class="d-desc">全球首发双潜望四主摄系统，搭载第二代一英寸索尼 LYT-900 与 65mm/135mm 双潜望长焦镜头，采用经典大漠银月双拼材质与哈苏超光影画质。</div>
+<div class="d-spec" data-label="SoC">Snapdragon 8 Gen 3 (4nm) | 潮汐架构 | Adreno 750 | LPDDR5X | UFS 4.0</div>
+<div class="d-spec" data-label="Memory">16GB LPDDR5X RAM 8533Mbps (顶配)</div>
+<div class="d-spec" data-label="Storage">512GB UFS 4.0 高速闪存 (顶配)</div>
+<div class="d-spec" data-label="Display">6.82" 2K (3168×1440) 东方钻石屏 | 1-120Hz LTPO | 4500 nits 局部峰值 | ProXDR 显示 | 2160Hz 高频 PWM + 类 DC 调光 | Gorilla Glass Victus 2</div>
+<div class="d-spec" data-label="Camera System">[Main] 50MP Sony LYT-900 | 第二代 1" 超大底 | 1G+7P 混合镜头 | f/1.8 | OIS<br/>
+                        [Portrait Telephoto] 50MP Sony IMX890 | 3× (65mm) | 1/1.56" 行业超大底 | f/2.6 | 悬浮棱镜防抖 | 25cm 最近对焦<br/>
+                        [Close-up Telephoto] 50MP Sony IMX858 | 6× (135mm) | 1/2.51" | f/4.3 | 棱镜防抖 | 35cm 最近对焦<br/>
+                        [Ultrawide] 50MP Sony LYT-600 | 14mm | f/2.0 | 123° FOV | 4cm 微距</div>
+<div class="d-spec" data-label="Camera Sensors">Main: Sony LYT-900 / 1.0" (50MP, 1.6µm / 3.2µm 4-in-1, 1G+7P, f/1.8, OIS); 65mm 3× 潜望: Sony IMX890 / 1/1.56" (50MP, f/2.6, 悬浮棱镜 OIS); 135mm 6× 潜望: Sony IMX858 / 1/2.51" (50MP, f/4.3, 棱镜 OIS); Ultrawide: Sony LYT-600 / 1/1.95" (50MP, 14mm, f/2.0); Front: 32MP Sony IMX709 (RGBW, f/2.4, AF)</div>
+<div class="d-spec" data-label="Focal Lengths">Native: 14mm / 23mm / 65mm / 135mm | In-sensor zoom: 46mm (2×) / 300mm (13.3×) | 数码变焦至 120×</div>
+<div class="d-spec" data-label="Battery &amp; Charging">5000mAh 大容量电池 | 100W 有线超级闪充 (26 分钟充至 100%) | 50W 无线闪充 | 10W 无线反充 | 支持 -20°C 极寒充电</div>
+<div class="d-spec" data-label="Build">221g | 大漠银月 (荔枝纹高端素皮与冷雕金属微弧拼接) | 独立三段式物理滑块按键 | IP68 防尘防水</div>
+<div class="d-spec" data-label="Feature">全球首创双潜望四主摄系统 (65mm+135mm) | 独立三段式物理滑块 (一键 VIP 隐私模式) | 国密二级独立安全芯片 | 全焦段 4K 杜比视界 HDR 视频</div>
 </div>
 </div>
 </div>
@@ -8938,13 +9116,11 @@ body.dossier-open {
         "next move": ["下一步", "Next move"],
         "signal source": ["信号来源", "Signal source"],
         "promotion trigger": ["转正条件", "Promotion trigger"],
-        "expected window": ["预计时间", "Expected window"]
-    };
+        "expected window": ["预计时间", "Expected window"],
 
-    /* Narrative copy that predates the bilingual data attributes. Keep the
-       Chinese source intact, then give every visible sentence the same paired
-       treatment as the shared chrome. */
-    Object.assign(textPairs, {
+        /* Narrative copy that predates the bilingual data attributes. Keep the
+           Chinese source intact, then give every visible sentence the same paired
+           treatment as the shared chrome. */
         "已记录的品目": ["已记录的品目", "Catalogued entries"],
         "正在更新的页面": ["正在更新的页面", "Pages in progress"],
         "贯穿全站的口味": ["贯穿全站的口味", "A consistent point of view"],
@@ -9075,13 +9251,19 @@ body.dossier-open {
         "小米 17 Pro Max": ["小米 17 Pro Max", "Xiaomi 17 Pro Max"],
         "拯救者 Y700": ["拯救者 Y700", "Legion Y700"],
         "Legion Y700": ["拯救者 Y700", "Legion Y700"],
+        "Xiaomi 13 Ultra": ["小米 13 Ultra", "Xiaomi 13 Ultra"],
+        "小米 13 Ultra": ["小米 13 Ultra", "Xiaomi 13 Ultra"],
+        "Xiaomi MIX 4": ["小米 MIX 4", "Xiaomi MIX 4"],
+        "小米 MIX 4": ["小米 MIX 4", "Xiaomi MIX 4"],
+        "Sony Xperia 1 V": ["索尼 Xperia 1 V", "Sony Xperia 1 V"],
+        "索尼 Xperia 1 V": ["索尼 Xperia 1 V", "Sony Xperia 1 V"],
+        "Huawei P60 Pro": ["华为 P60 Pro", "Huawei P60 Pro"],
+        "华为 P60 Pro": ["华为 P60 Pro", "Huawei P60 Pro"],
+        "OPPO Find X7 Ultra": ["OPPO Find X7 Ultra", "OPPO Find X7 Ultra"],
         "平板与薄板设备": ["平板与薄板设备", "Tablets & thin slabs"],
         "移动工作站": ["移动工作站", "Mobile workstations"],
         "终极主机": ["终极主机", "Ultimate desktop"],
-        "装备与外设": ["装备与外设", "Gear & peripherals"]
-    });
-
-    Object.assign(textPairs, {
+        "装备与外设": ["装备与外设", "Gear & peripherals"],
         "The no weak category option in the whole shortlist.": ["这份候选中没有明显短板的选择。", "The no-weak-category option in the whole shortlist."],
         "Best when the form factor itself is the reason to buy.": ["当形态本身就是购买理由时，它最合适。", "Best when the form factor itself is the reason to buy."],
         "The ecosystem anchor if the base line really grows up this cycle.": ["如果基础款这次真正成长，它就是生态锚点。", "The ecosystem anchor if the base line really grows up this cycle."],
@@ -9102,7 +9284,7 @@ body.dossier-open {
         "This is the safe apex pick when you want one device to do everything.": ["如果只想用一台设备完成所有事，这是最稳妥的顶点选择。", "This is the safe apex pick when you want one device to do everything."],
         "It matters if the regular iPhone finally stops feeling intentionally held back.": ["如果普通 iPhone 不再被刻意限制，它就会变得重要。", "It matters if the regular iPhone finally stops feeling intentionally held back."],
         "Choose it when camera taste and software personality matter more than prestige.": ["当影像口味与软件个性比声望更重要时，选它。", "Choose it when camera taste and software personality matter more than prestige."]
-    });
+    };
 
     document.querySelectorAll("body *:not(script):not(style)").forEach((node) => {
         if (node.children.length || node.closest(".lang-pair") || node.dataset.zh) return;
@@ -9128,9 +9310,11 @@ body.dossier-open {
 
     document.querySelectorAll(".back-link, .back-btn").forEach((link) => {
         link.classList.add("home-mark-link");
-        link.innerHTML = '<img src="assets/images/arsenal-spark.png" alt="">';
-        link.setAttribute("aria-label", "返回首页 / Back to home");
-        link.setAttribute("title", "返回首页 / Back to home");
+        if (!link.querySelector("img")) {
+            link.innerHTML = '<img src="assets/images/arsenal-spark.png" alt="">';
+        }
+        if (!link.hasAttribute("aria-label")) link.setAttribute("aria-label", "返回首页 / Back to home");
+        if (!link.hasAttribute("title")) link.setAttribute("title", "返回首页 / Back to home");
     });
 
 

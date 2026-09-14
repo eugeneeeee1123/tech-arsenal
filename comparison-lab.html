@@ -880,16 +880,8 @@
         [pickA, pickB, pickC].forEach((select) => select.addEventListener("change", render));
         toggleDiff?.addEventListener("change", render);
 
-        document.getElementById("clearA").addEventListener("click", () => { pickA.value = ""; render(); });
-        document.getElementById("clearB").addEventListener("click", () => { pickB.value = ""; render(); });
-        document.getElementById("clearC").addEventListener("click", () => { pickC.value = ""; render(); });
-
-        document.getElementById("btnReset").addEventListener("click", () => {
-            pickA.value = "";
-            pickB.value = "";
-            pickC.value = "";
-            render();
-        });
+        [pickA, pickB, pickC].forEach((sel, i) => document.getElementById("clear" + ["A","B","C"][i])?.addEventListener("click", () => { sel.value = ""; render(); }));
+        document.getElementById("btnReset").addEventListener("click", () => { [pickA, pickB, pickC].forEach((s) => s.value = ""); render(); });
 
         document.getElementById("btnSwap").addEventListener("click", () => {
             const temp = pickA.value;
