@@ -4631,8 +4631,6 @@ body.dossier-open {
         align-items: center;
         justify-content: center;
         height: 170px;
-        min-height: 150px;
-        max-height: 180px;
         padding: 14px;
         border-right: 0;
         border-bottom: 1px solid var(--line);
@@ -4644,9 +4642,7 @@ body.dossier-open {
         border-radius: 6px;
     }
     .dossier-visual img {
-        width: auto;
         max-width: 100%;
-        height: auto;
         max-height: 130px;
         object-fit: contain;
     }

@@ -276,9 +276,7 @@
         }
 
         /* ===== Hidden State Enforcement ===== */
-        [hidden],
-        .compare-empty-card[hidden],
-        .compare-table-card[hidden] {
+        [hidden] {
             display: none !important;
         }
 
@@ -1192,8 +1190,7 @@
             renderTable(chosen, isDiffHighlight);
         }
 
-        function renderTable(chosen, isDiffHighlight = Boolean(document.getElementById("toggleDiff")?.checked)) {
-            const effectiveChosen = isMobileView() ? chosen.slice(0, 2) : chosen;
+        function renderTable(chosen, isDiffHighlight) {
             const table = document.getElementById("compareTable");
             if (isDiffHighlight) {
                 table.classList.add("highlight-diff");
@@ -1202,7 +1199,7 @@
             }
 
             const headRow = document.getElementById("compareHeadRow");
-            headRow.innerHTML = "<th>SPECIFICATION</th>" + effectiveChosen.map((d) =>
+            headRow.innerHTML = "<th>SPECIFICATION</th>" + chosen.map((d) =>
                 `<th>
                     <div class="compare-head-cell">
                         <div class="compare-head-thumb"><img src="${escapeHtml(d.img)}" alt="${escapeHtml(d.title)}" width="46" height="46" loading="lazy" decoding="async"></div>
@@ -1244,10 +1241,10 @@
             // 1. Iterate canonical taxonomy
             CANONICAL_TAXONOMY.forEach((canon) => {
                 const aliases = canon.aliases;
-                const hasAny = effectiveChosen.some((d) => d.specs.some((s) => aliases.includes(s.label.toLowerCase())));
+                const hasAny = chosen.some((d) => d.specs.some((s) => aliases.includes(s.label.toLowerCase())));
                 if (!hasAny) return;
 
-                const values = effectiveChosen.map((d) => {
+                const values = chosen.map((d) => {
                     const match = d.specs.find((s) => aliases.includes(s.label.toLowerCase()));
                     if (match) {
                         matchedSpecs.add(`${d.lot}:${match.label.toLowerCase()}`);
@@ -1260,13 +1257,13 @@
             });
 
             // 2. Append unmapped category specs
-            effectiveChosen.forEach((d) => {
+            chosen.forEach((d) => {
                 d.specs.forEach((s) => {
                     const specKey = `${d.lot}:${s.label.toLowerCase()}`;
                     if (!matchedSpecs.has(specKey)) {
                         const existing = renderedRows.find((r) => r.label.toLowerCase() === s.label.toLowerCase());
                         if (!existing) {
-                            const values = effectiveChosen.map((item) => {
+                            const values = chosen.map((item) => {
                                 const m = item.specs.find((x) => x.label.toLowerCase() === s.label.toLowerCase());
                                 return m ? m.value : "";
                             });
@@ -1322,9 +1319,7 @@
             });
         });
 
-        window.addEventListener("resize", () => {
-            render();
-        });
+        window.addEventListener("resize", render);
 
         loadDevices().then(() => {
             populateSelects();
