@@ -2533,7 +2533,7 @@
                 dossierImage.dataset.fallbackApplied = "true";
                 dossierImage.src = "assets/images/arsenal-spark.png";
             } else {
-                dossierImage.src = sourceImage?.currentSrc || sourceImage?.src || "assets/images/arsenal-spark.png";
+                dossierImage.src = sourceImage?.getAttribute("src") || sourceImage?.src || sourceImage?.currentSrc || "assets/images/arsenal-spark.png";
             }
             dossierImage.alt = sourceImage?.alt || getText(".d-title");
             dossierImage.classList.toggle("is-placeholder", Boolean(isPlaceholderImage));
