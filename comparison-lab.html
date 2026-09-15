@@ -526,43 +526,247 @@
         }
 
         @media (max-width: 640px) {
-            .compare-deck {
-                grid-template-columns: 1fr;
+            /* Hide Slot 3 entirely on mobile (max 2 devices compare) */
+            #slotCardC {
+                display: none !important;
             }
+
+            .compare-deck {
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+                margin: 16px 0 12px;
+            }
+
+            .compare-slot {
+                padding: 10px;
+                gap: 8px;
+            }
+
+            .slot-header .slot-tag {
+                font-size: 0.60rem;
+                padding: 2px 5px;
+                letter-spacing: 0.04em;
+            }
+
+            .slot-clear-btn {
+                font-size: 0.70rem;
+                padding: 2px 4px;
+            }
+
+            .slot-preview {
+                padding: 6px 8px;
+                gap: 8px;
+            }
+
+            .slot-thumb {
+                width: 32px;
+                height: 32px;
+                flex: 0 0 32px;
+            }
+
+            .slot-lot {
+                font-size: 0.58rem;
+            }
+
+            .slot-title {
+                font-size: 0.78rem;
+            }
+
+            .lab-select {
+                font-size: 0.72rem;
+                padding: 7px 20px 7px 8px;
+                background-position: right 6px center;
+            }
+
+            /* Toolbar on mobile */
             .compare-toolbar {
                 flex-direction: column;
                 align-items: stretch;
+                gap: 10px;
+                padding: 8px 10px;
+                margin-bottom: 16px;
             }
+
+            .preset-group {
+                display: flex;
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                gap: 6px;
+                padding-bottom: 4px;
+                scrollbar-width: none;
+            }
+
+            .preset-group::-webkit-scrollbar {
+                display: none;
+            }
+
+            .preset-chip {
+                flex: 0 0 auto;
+                white-space: nowrap;
+                padding: 4px 8px;
+                font-size: 0.64rem;
+            }
+
             .toolbar-actions {
-                margin-left: 0;
+                display: flex;
+                align-items: center;
                 justify-content: space-between;
-            }
-            .compare-slot {
-                padding: 12px 14px;
-            }
-            .compare-table thead th,
-            .compare-table tbody td,
-            .compare-table tbody th {
-                padding: 10px 12px;
-                font-size: 0.78rem;
-            }
-            .compare-table thead th:first-child {
-                width: 100px;
-                min-width: 90px;
-            }
-            .compare-head-cell {
+                width: 100%;
+                margin-left: 0;
                 gap: 8px;
             }
+
+            .diff-toggle-label {
+                font-size: 0.72rem;
+            }
+
+            .toolbar-btn {
+                font-size: 0.70rem;
+                padding: 5px 8px;
+            }
+
+            /* GSMArena-Style 2-Device Mobile Compare Table */
+            .compare-table-card {
+                border-radius: 8px;
+                overflow: hidden;
+                margin-bottom: 32px;
+            }
+
+            .compare-table-scroller {
+                width: 100%;
+                overflow-x: visible;
+            }
+
+            .compare-table {
+                display: block;
+                width: 100%;
+                border-collapse: collapse;
+            }
+
+            .compare-table thead,
+            .compare-table tbody {
+                display: block;
+                width: 100%;
+            }
+
+            /* Sticky 2-Column Device Header */
+            .compare-table thead tr {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                width: 100%;
+                position: sticky;
+                top: 0;
+                z-index: 25;
+                background: #111723;
+                border-bottom: 1px solid var(--line-strong, rgba(160, 176, 204, 0.25));
+                box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45);
+            }
+
+            /* Hide 'SPECIFICATION' label in sticky header */
+            .compare-table thead th:first-child {
+                display: none !important;
+            }
+
+            .compare-table thead th {
+                display: flex;
+                align-items: center;
+                padding: 8px 10px;
+                border: none;
+                background: transparent;
+                min-width: 0;
+            }
+
+            .compare-table thead th:first-of-type {
+                border-right: 1px solid var(--line, rgba(160, 176, 204, 0.15));
+            }
+
+            .compare-head-cell {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                min-width: 0;
+                width: 100%;
+            }
+
             .compare-head-thumb {
-                width: 36px;
-                height: 36px;
+                width: 32px;
+                height: 32px;
+                flex: 0 0 32px;
+                padding: 2px;
             }
-            .preset-group {
-                gap: 6px;
+
+            .compare-head-meta {
+                min-width: 0;
+                flex: 1;
             }
-            .preset-chip {
-                padding: 4px 8px;
-                font-size: 0.62rem;
+
+            .compare-head-lot {
+                font-size: 0.58rem;
+                color: var(--accent-2, #91a5ff);
+            }
+
+            .compare-head-title {
+                font-size: 0.78rem;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            /* Each spec row on mobile */
+            .compare-table tbody tr {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                width: 100%;
+                border-bottom: 1px solid var(--line, rgba(160, 176, 204, 0.12));
+            }
+
+            /* Full-width Specification Category Bar (GSMArena style) */
+            .compare-table tbody tr th {
+                grid-column: 1 / -1;
+                display: flex;
+                align-items: center;
+                width: 100%;
+                box-sizing: border-box;
+                background: rgba(14, 21, 33, 0.95);
+                border-right: none;
+                border-bottom: 1px solid var(--line, rgba(160, 176, 204, 0.1));
+                border-left: 3px solid transparent;
+                padding: 7px 10px;
+                font-family: var(--mono);
+                font-size: 0.65rem;
+                font-weight: 700;
+                letter-spacing: 0.08em;
+                text-transform: uppercase;
+                color: var(--accent-2, #91a5ff);
+            }
+
+            /* Value cells side by side */
+            .compare-table tbody tr td {
+                display: block;
+                width: 100%;
+                box-sizing: border-box;
+                padding: 8px 10px;
+                font-size: 0.76rem;
+                line-height: 1.45;
+                border-bottom: none;
+                min-width: 0;
+                word-break: break-word;
+            }
+
+            .compare-table tbody tr td:first-of-type {
+                border-right: 1px solid var(--line, rgba(160, 176, 204, 0.12));
+            }
+
+            /* Difference Highlighting */
+            .compare-table.highlight-diff tbody tr.row-diff th {
+                border-left: 3px solid var(--accent, #6f86ff);
+                color: #ffffff;
+                background: rgba(111, 134, 255, 0.14);
+            }
+
+            .compare-table.highlight-diff tbody tr.row-diff td {
+                background: rgba(111, 134, 255, 0.035);
             }
         }
     </style>
@@ -830,8 +1034,13 @@
             clearBtn.hidden = true;
         }
 
+        function isMobileView() {
+            return window.matchMedia("(max-width: 640px)").matches;
+        }
+
         function currentSelection() {
-            return [pickA.value, pickB.value, pickC.value]
+            const slots = isMobileView() ? [pickA.value, pickB.value] : [pickA.value, pickB.value, pickC.value];
+            return slots
                 .filter(Boolean)
                 .map((lot) => devices.find((d) => d.lot === lot))
                 .filter(Boolean);
@@ -840,13 +1049,14 @@
         function render() {
             updateSlotVisual("A", pickA);
             updateSlotVisual("B", pickB);
-            updateSlotVisual("C", pickC);
+            if (!isMobileView()) {
+                updateSlotVisual("C", pickC);
+            }
 
             const chosen = currentSelection();
             const empty = document.getElementById("compareEmpty");
             const card = document.getElementById("compareCard");
-            const table = document.getElementById("compareTable");
-            const isDiffHighlight = document.getElementById("toggleDiff")?.checked;
+            const isDiffHighlight = Boolean(document.getElementById("toggleDiff")?.checked);
 
             if (chosen.length < 2) {
                 empty.hidden = false;
@@ -856,10 +1066,11 @@
             empty.hidden = true;
             card.hidden = false;
 
-            renderTable(chosen);
+            renderTable(chosen, isDiffHighlight);
         }
 
-        function renderTable(chosen) {
+        function renderTable(chosen, isDiffHighlight = Boolean(document.getElementById("toggleDiff")?.checked)) {
+            const effectiveChosen = isMobileView() ? chosen.slice(0, 2) : chosen;
             const table = document.getElementById("compareTable");
             if (isDiffHighlight) {
                 table.classList.add("highlight-diff");
@@ -868,7 +1079,7 @@
             }
 
             const headRow = document.getElementById("compareHeadRow");
-            headRow.innerHTML = "<th>SPECIFICATION</th>" + chosen.map((d) =>
+            headRow.innerHTML = "<th>SPECIFICATION</th>" + effectiveChosen.map((d) =>
                 `<th>
                     <div class="compare-head-cell">
                         <div class="compare-head-thumb"><img src="${escapeHtml(d.img)}" alt="${escapeHtml(d.title)}" width="46" height="46" loading="lazy" decoding="async"></div>
@@ -910,10 +1121,10 @@
             // 1. Iterate canonical taxonomy
             CANONICAL_TAXONOMY.forEach((canon) => {
                 const aliases = canon.aliases;
-                const hasAny = chosen.some((d) => d.specs.some((s) => aliases.includes(s.label.toLowerCase())));
+                const hasAny = effectiveChosen.some((d) => d.specs.some((s) => aliases.includes(s.label.toLowerCase())));
                 if (!hasAny) return;
 
-                const values = chosen.map((d) => {
+                const values = effectiveChosen.map((d) => {
                     const match = d.specs.find((s) => aliases.includes(s.label.toLowerCase()));
                     if (match) {
                         matchedSpecs.add(`${d.lot}:${match.label.toLowerCase()}`);
@@ -926,13 +1137,13 @@
             });
 
             // 2. Append unmapped category specs
-            chosen.forEach((d) => {
+            effectiveChosen.forEach((d) => {
                 d.specs.forEach((s) => {
                     const specKey = `${d.lot}:${s.label.toLowerCase()}`;
                     if (!matchedSpecs.has(specKey)) {
                         const existing = renderedRows.find((r) => r.label.toLowerCase() === s.label.toLowerCase());
                         if (!existing) {
-                            const values = chosen.map((item) => {
+                            const values = effectiveChosen.map((item) => {
                                 const m = item.specs.find((x) => x.label.toLowerCase() === s.label.toLowerCase());
                                 return m ? m.value : "";
                             });
@@ -988,7 +1199,31 @@
             });
         });
 
-        loadDevices().then(populateSelects).then(render).catch((err) => {
+        window.addEventListener("resize", () => {
+            render();
+        });
+
+        loadDevices().then(() => {
+            populateSelects();
+
+            // Support URL search params e.g. ?a=003&b=013 or default to flagship matchup
+            const urlParams = new URLSearchParams(window.location.search);
+            const paramA = urlParams.get("a");
+            const paramB = urlParams.get("b");
+            const paramC = urlParams.get("c");
+
+            if (paramA && paramB) {
+                pickA.value = paramA;
+                pickB.value = paramB;
+                if (paramC && !isMobileView()) pickC.value = paramC;
+            } else if (!pickA.value && !pickB.value) {
+                // Default to popular comparison so table appears immediately
+                pickA.value = "003"; // iPhone 14 Pro Max
+                pickB.value = "013"; // Galaxy S25 Ultra
+            }
+
+            render();
+        }).catch((err) => {
             console.error("Initialization error:", err);
             showLoadError();
         });
