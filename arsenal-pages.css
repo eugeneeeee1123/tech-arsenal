@@ -4611,7 +4611,7 @@ body.dossier-open {
         width: 100%;
     }
     .dossier {
-        place-items: end center;
+        place-items: center;
         padding-top: max(12px, env(safe-area-inset-top));
         padding-right: max(12px, env(safe-area-inset-right));
         padding-bottom: max(12px, env(safe-area-inset-bottom));
@@ -4619,24 +4619,36 @@ body.dossier-open {
     }
     .dossier-panel {
         width: 100%;
-        height: min(680px, calc(100vh - 24px));
-        height: min(680px, calc(100dvh - 24px));
+        height: min(720px, calc(100vh - 24px));
+        height: min(720px, calc(100dvh - 24px));
         max-height: 100%;
         grid-template-columns: 1fr;
-        grid-template-rows: minmax(170px, 34dvh) minmax(0, 1fr);
-        border-radius: 10px 10px 4px 4px;
+        grid-template-rows: auto minmax(0, 1fr);
+        border-radius: 12px;
     }
     .dossier-visual {
-        min-height: 0;
-        padding: 22px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 170px;
+        min-height: 150px;
+        max-height: 180px;
+        padding: 14px;
         border-right: 0;
         border-bottom: 1px solid var(--line);
+        box-sizing: border-box;
+        overflow: hidden;
     }
     .dossier-visual::before {
-        inset: 12px;
+        inset: 10px;
+        border-radius: 6px;
     }
     .dossier-visual img {
-        max-height: 25dvh;
+        width: auto;
+        max-width: 100%;
+        height: auto;
+        max-height: 130px;
+        object-fit: contain;
     }
     .dossier-image-note {
         right: 22px;
@@ -4644,7 +4656,7 @@ body.dossier-open {
         left: 22px;
     }
     .dossier-body {
-        padding: 22px 18px calc(22px + env(safe-area-inset-bottom));
+        padding: 18px 16px calc(18px + env(safe-area-inset-bottom));
     }
     .dossier-topline {
         align-items: flex-start;
@@ -4665,7 +4677,8 @@ body.dossier-open {
     }
     .dossier-title {
         max-width: none;
-        font-size: clamp(2rem, 11vw, 3.6rem);
+        font-size: clamp(1.4rem, 6.5vw, 2.2rem);
+        margin: 12px 0 4px;
     }
     .dossier-why {
         font-size: 0.98rem;
