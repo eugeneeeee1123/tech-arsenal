@@ -1,14 +1,13 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TECH ARSENAL — 对比 / Compare</title>
+    <title>TECH ARSENAL · Comparison Lab</title>
     <link rel="stylesheet" href="arsenal-pages.css">
     <style>
-        /* 这页没有独立的产品文案 — 规格全部从 tech-arsenal.html 现读现拿，
-           样式沿用 dossier 的视觉语言（等宽 lot number / seal / spec 行）。*/
-        /* ===== 对比控制台卡座 (3-Slot Deck) ===== */
+        /* Specification comparison lab using dossier visual language */
+        /* ===== 3-Slot Deck ===== */
         .compare-deck {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -122,7 +121,7 @@
             text-overflow: ellipsis;
         }
 
-        /* 统一的实验室下拉菜单 */
+        /* Laboratory select dropdown */
         .lab-select {
             width: 100%;
             background-color: rgba(0, 0, 0, 0.32);
@@ -165,7 +164,7 @@
             padding: 6px 12px;
         }
 
-        /* ===== 工具栏 ===== */
+        /* ===== Toolbar ===== */
         .compare-toolbar {
             display: flex;
             flex-wrap: wrap;
@@ -174,46 +173,47 @@
             gap: 12px;
             margin: 0 0 20px;
             padding: 10px 14px;
-            background: rgba(16, 22, 33, 0.6);
-            border: 1px solid var(--line, rgba(160, 176, 204, 0.12));
+            background: var(--panel-solid, #131a26);
+            border: 1px solid var(--line-strong, rgba(160, 176, 204, 0.2));
             border-radius: 6px;
         }
 
         .preset-group {
             display: flex;
-            align-items: center;
             flex-wrap: wrap;
+            align-items: center;
             gap: 8px;
         }
 
         .preset-label {
             font-family: var(--mono, monospace);
-            font-size: 0.72rem;
+            font-size: 0.65rem;
             color: var(--muted-2, #7f8ca2);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
         }
 
         .preset-chip {
-            background: rgba(111, 134, 255, 0.08);
-            border: 1px solid rgba(111, 134, 255, 0.2);
-            color: var(--accent-2, #91a5ff);
-            font-family: var(--mono, monospace);
-            font-size: 0.72rem;
-            padding: 3px 8px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--line, rgba(160, 176, 204, 0.16));
             border-radius: 4px;
+            color: var(--text, #edf2fb);
+            font-family: var(--mono, monospace);
+            font-size: 0.68rem;
+            padding: 5px 10px;
             cursor: pointer;
-            transition: background 0.15s ease, border-color 0.15s ease;
+            transition: all 0.15s ease;
         }
 
         .preset-chip:hover {
-            background: rgba(111, 134, 255, 0.16);
-            border-color: rgba(111, 134, 255, 0.4);
+            border-color: var(--accent, #6f86ff);
+            background: rgba(111, 134, 255, 0.1);
         }
 
         .toolbar-actions {
             display: flex;
             align-items: center;
             gap: 10px;
-            margin-left: auto;
         }
 
         .diff-toggle-label {
@@ -227,30 +227,55 @@
         }
 
         .diff-checkbox {
-            accent-color: var(--accent, #6f86ff);
+            appearance: none;
+            -webkit-appearance: none;
+            width: 14px;
+            height: 14px;
+            border: 1px solid var(--line-strong, rgba(160, 176, 204, 0.28));
+            border-radius: 3px;
+            background: rgba(0, 0, 0, 0.3);
             cursor: pointer;
+            position: relative;
+            vertical-align: middle;
         }
 
-        .toolbar-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid var(--line, rgba(160, 176, 204, 0.16));
-            color: var(--text, #edf2fb);
-            font-size: 0.76rem;
-            padding: 4px 9px;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background 0.15s ease, border-color 0.15s ease;
-        }
-
-        .toolbar-btn:hover {
-            background: rgba(255, 255, 255, 0.08);
+        .diff-checkbox:checked {
+            background: var(--accent, #6f86ff);
             border-color: var(--accent, #6f86ff);
         }
 
-        /* ===== 空状态 (Empty State) ===== */
+        .diff-checkbox:checked::after {
+            content: "";
+            position: absolute;
+            left: 4px;
+            top: 1px;
+            width: 4px;
+            height: 8px;
+            border: solid #fff;
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+        }
+
+        .toolbar-btn {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--line, rgba(160, 176, 204, 0.16));
+            border-radius: 4px;
+            color: var(--text, #edf2fb);
+            font-size: 0.75rem;
+            padding: 6px 12px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+
+        .toolbar-btn:hover {
+            border-color: var(--line-strong, rgba(160, 176, 204, 0.3));
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        /* ===== Empty State ===== */
         .compare-empty-card {
             background: linear-gradient(180deg, rgba(20, 27, 40, 0.8) 0%, rgba(14, 20, 30, 0.8) 100%);
             border: 1px dashed var(--line-strong, rgba(160, 176, 204, 0.25));
@@ -323,7 +348,7 @@
             font-family: var(--mono, monospace);
         }
 
-        /* ===== 对比数据表格卡片 ===== */
+        /* ===== Comparison Table Card ===== */
         .compare-table-card {
             background: var(--panel-solid, #131a26);
             border: 1px solid var(--line-strong, rgba(160, 176, 204, 0.2));
@@ -449,7 +474,7 @@
             background: rgba(111, 134, 255, 0.04);
         }
 
-        /* 差异高亮 */
+        /* Difference highlighting */
         .compare-table.highlight-diff tbody tr.row-diff td {
             background: rgba(111, 134, 255, 0.05);
         }
@@ -464,7 +489,7 @@
             opacity: 0.4;
         }
 
-        /* 无障碍焦点 */
+        /* Accessibility focus indicators */
         a.page-link:focus-visible,
         a.back-link:focus-visible,
         .preset-chip:focus-visible,
@@ -492,12 +517,12 @@
 <body class="catalogue-page">
     <header class="header site-header">
         <div class="header-top top-row">
-            <a href="index.html" class="back-link home-mark-link" aria-label="返回首页 / Back to home" title="返回首页 / Back to home"><img src="assets/images/arsenal-spark.png" alt="" width="1000" height="1000" loading="eager" decoding="async"></a>
-            <nav class="page-nav" aria-label="Site navigation / 站点导航">
-                <a class="page-link" href="index.html"><span class="lang-pair"><span class="lang-zh" lang="zh-CN">首页</span><span class="lang-divider" aria-hidden="true"> / </span><span class="lang-en" lang="en">Home</span></span></a>
-                <a class="page-link" href="tech-arsenal.html"><span class="lang-pair"><span class="lang-zh" lang="zh-CN">总目录</span><span class="lang-divider" aria-hidden="true"> / </span><span class="lang-en" lang="en">Catalogue</span></span></a>
-                <a class="page-link active" href="comparison-lab.html" aria-current="page"><span class="lang-pair"><span class="lang-zh" lang="zh-CN">对比</span><span class="lang-divider" aria-hidden="true"> / </span><span class="lang-en" lang="en">Compare</span></span></a>
-                <a class="page-link" href="topology.html"><span class="lang-pair"><span class="lang-zh" lang="zh-CN">工位与连接</span><span class="lang-divider" aria-hidden="true"> / </span><span class="lang-en" lang="en">Setup</span></span></a>
+            <a href="index.html" class="back-link home-mark-link" aria-label="Back to home" title="Back to home"><img src="assets/images/arsenal-spark.png" alt="" width="1000" height="1000" loading="eager" decoding="async"></a>
+            <nav class="page-nav" aria-label="Site navigation">
+                <a class="page-link" href="index.html">Home</a>
+                <a class="page-link" href="tech-arsenal.html">Catalogue</a>
+                <a class="page-link active" href="comparison-lab.html" aria-current="page">Compare</a>
+                <a class="page-link" href="topology.html">Setup</a>
             </nav>
         </div>
         <div class="masthead">
@@ -508,13 +533,13 @@
     </header>
 
     <main class="collection">
-        <!-- 对比卡座 (3-Slot Deck) -->
+        <!-- 3-Slot Deck -->
         <div class="compare-deck">
             <!-- SLOT 01 -->
             <div class="compare-slot" id="slotCardA">
                 <div class="slot-header">
-                    <span class="slot-tag">机位 01 · 基准</span>
-                    <button type="button" class="slot-clear-btn" id="clearA" title="清除当前设备" aria-label="清空当前基准机" hidden>清空</button>
+                    <span class="slot-tag">SLOT 01 · BASELINE</span>
+                    <button type="button" class="slot-clear-btn" id="clearA" title="Clear slot" aria-label="Clear baseline slot" hidden>Clear</button>
                 </div>
                 <div class="slot-preview" id="previewA" hidden>
                     <div class="slot-thumb"><img id="thumbA" src="" alt=""></div>
@@ -523,16 +548,16 @@
                         <span class="slot-title" id="nameA"></span>
                     </div>
                 </div>
-                <select id="pickA" class="lab-select" aria-label="选择第一台基准设备">
-                    <option value="">选一台基准机…</option>
+                <select id="pickA" class="lab-select" aria-label="Select baseline device">
+                    <option value="">Select baseline device...</option>
                 </select>
             </div>
 
             <!-- SLOT 02 -->
             <div class="compare-slot" id="slotCardB">
                 <div class="slot-header">
-                    <span class="slot-tag">机位 02 · 对照</span>
-                    <button type="button" class="slot-clear-btn" id="clearB" title="清除当前设备" aria-label="清空当前对照机" hidden>清空</button>
+                    <span class="slot-tag">SLOT 02 · CONTRAST</span>
+                    <button type="button" class="slot-clear-btn" id="clearB" title="Clear slot" aria-label="Clear contrast slot" hidden>Clear</button>
                 </div>
                 <div class="slot-preview" id="previewB" hidden>
                     <div class="slot-thumb"><img id="thumbB" src="" alt=""></div>
@@ -541,16 +566,16 @@
                         <span class="slot-title" id="nameB"></span>
                     </div>
                 </div>
-                <select id="pickB" class="lab-select" aria-label="选择第二台对照设备">
-                    <option value="">选一台对照机…</option>
+                <select id="pickB" class="lab-select" aria-label="Select contrast device">
+                    <option value="">Select contrast device...</option>
                 </select>
             </div>
 
             <!-- SLOT 03 -->
             <div class="compare-slot" id="slotCardC">
                 <div class="slot-header">
-                    <span class="slot-tag">机位 03 · 参考 (可选)</span>
-                    <button type="button" class="slot-clear-btn" id="clearC" title="清除当前设备" aria-label="清空当前参考机" hidden>清空</button>
+                    <span class="slot-tag">SLOT 03 · REFERENCE (OPTIONAL)</span>
+                    <button type="button" class="slot-clear-btn" id="clearC" title="Clear slot" aria-label="Clear reference slot" hidden>Clear</button>
                 </div>
                 <div class="slot-preview" id="previewC" hidden>
                     <div class="slot-thumb"><img id="thumbC" src="" alt=""></div>
@@ -559,43 +584,43 @@
                         <span class="slot-title" id="nameC"></span>
                     </div>
                 </div>
-                <select id="pickC" class="lab-select" aria-label="选择第三台参考设备（可选）">
-                    <option value="">第三台（可选）…</option>
+                <select id="pickC" class="lab-select" aria-label="Select third device (optional)">
+                    <option value="">Select third device (optional)...</option>
                 </select>
             </div>
         </div>
 
-        <!-- 实验室工具栏 -->
+        <!-- Toolbar -->
         <div class="compare-toolbar">
             <div class="preset-group">
-                <span class="preset-label">对局速选:</span>
+                <span class="preset-label">Quick Matchups:</span>
                 <button type="button" class="preset-chip" data-a="003" data-b="013">14 Pro Max vs S25 Ultra</button>
                 <button type="button" class="preset-chip" data-a="030" data-b="026">Mac Studio vs MBP 16"</button>
                 <button type="button" class="preset-chip" data-a="022" data-b="023">iPad Pro vs iPad mini</button>
                 <button type="button" class="preset-chip" data-a="027" data-b="026">Legion 5 vs MBP 16"</button>
             </div>
             <div class="toolbar-actions">
-                <label class="diff-toggle-label" title="高亮所有存在参数差异的对比行">
+                <label class="diff-toggle-label" title="Highlight all specification differences">
                     <input type="checkbox" id="toggleDiff" class="diff-checkbox">
-                    <span>高亮参数差异</span>
+                    <span>Highlight differences</span>
                 </label>
-                <button type="button" class="toolbar-btn" id="btnSwap" title="交换 A 和 B 位置" aria-label="交换机位 A 与机位 B 设备">
+                <button type="button" class="toolbar-btn" id="btnSwap" title="Swap slot A and B" aria-label="Swap slot A and slot B devices">
                     <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m16 3 4 4-4 4"/><path d="M20 7H4"/><path d="m8 21-4-4 4-4"/><path d="M4 17h16"/></svg>
-                    <span>对调 A/B</span>
+                    <span>Swap A/B</span>
                 </button>
-                <button type="button" class="toolbar-btn" id="btnReset" title="重置对比" aria-label="重置并清空所有对比机位">
-                    <span>清空</span>
+                <button type="button" class="toolbar-btn" id="btnReset" title="Reset comparison" aria-label="Reset and clear all slots">
+                    <span>Clear</span>
                 </button>
             </div>
         </div>
 
-        <!-- 空状态卡片 -->
+        <!-- Empty State -->
         <div id="compareEmpty" class="compare-empty-card">
             <div class="empty-icon-box" aria-hidden="true">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="M7 21h10"/><path d="M12 3v18"/><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"/></svg>
             </div>
-            <h2 class="empty-title">待选机位</h2>
-            <p class="empty-desc">单看参数都不差。在上方选两三台设备，比一比屏幕、重量、芯片和影像；或者直接看下方的对局组合。</p>
+            <h2 class="empty-title">Select Devices to Compare</h2>
+            <p class="empty-desc">Select two or three devices above to compare displays, dimensions, chipsets, and camera hardware side by side. Or choose a quick matchup preset below.</p>
             <div class="empty-presets">
                 <button type="button" class="empty-preset-card" data-a="003" data-b="013">
                     <span>iPhone 14 Pro Max vs Galaxy S25 Ultra</span>
@@ -612,7 +637,7 @@
             </div>
         </div>
 
-        <!-- 对比表格 -->
+        <!-- Table Card -->
         <div id="compareCard" class="compare-table-card" hidden>
             <div class="compare-table-scroller">
                 <table id="compareTable" class="compare-table">
@@ -624,12 +649,11 @@
     </main>
 
     <footer class="site-footer">
-        <div class="footer-line" data-zh="TECH ARSENAL / 对比" data-en="TECH ARSENAL / Compare">tech arsenal / 对比</div>
+        <div class="footer-line">TECH ARSENAL / COMPARE</div>
     </footer>
 
     <script>
-        // 这页不维护自己的产品数据。所有规格从 tech-arsenal.html 现读现解析，
-        // 避免总目录和对比页各自一份数据、互相对不上。
+        // Reads specs directly from tech-arsenal.html to ensure a single source of truth.
         let devices = [];
 
         const escapeHtml = (str) => String(str ?? "").replace(/[&<>"']/g, (s) => ({
@@ -662,7 +686,7 @@
                     };
                 }).filter((d) => d.title);
             } catch (err) {
-                console.warn("无法直接通过 fetch 读取 tech-arsenal.html（若通过本地 file:// 协议打开，受浏览器同源策略限制）：", err);
+                console.warn("Unable to fetch tech-arsenal.html via file:// protocol:", err);
                 showLoadError();
             }
         }
@@ -673,18 +697,18 @@
                 const notice = document.createElement("div");
                 notice.className = "compare-notice-banner";
                 notice.style.cssText = "margin-top: 18px; padding: 14px 18px; background: rgba(255, 123, 123, 0.08); border: 1px solid rgba(255, 123, 123, 0.28); border-radius: 6px; text-align: left; font-size: 0.85rem; line-height: 1.6; color: #ffb4b4;";
-                notice.innerHTML = '<strong>提示 / Notice:</strong> 检测到当前可能通过本地直接双击打开（<code>file://</code> 协议），受现代浏览器安全策略限制，页面无法直接读取 <code>tech-arsenal.html</code> 目录数据。建议通过本地服务器打开本页面（例如在 VSCode 中使用 <em>Live Server</em> 插件，或在项目根目录终端运行 <code>npx serve</code>）。<br><span style="font-size: 0.76rem; opacity: 0.85;">Direct file:// browsing prevents fetching sibling HTML data due to CORS policy. Please view via a local server (e.g., Live Server or <code>npx serve</code>).</span>';
+                notice.innerHTML = '<strong>Notice:</strong> Direct <code>file://</code> browsing prevents loading catalog data due to browser CORS policies. Please view via a local server (e.g., Live Server or <code>npx serve</code> in the project folder).';
                 emptyNotice.appendChild(notice);
             }
         }
 
         const CATEGORY_NAMES = {
-            "mobile": "手机 / SMARTPHONES",
-            "tablet": "平板 / TABLETS",
-            "laptop": "笔记本 / LAPTOPS",
-            "desktop": "台机与显示 / DESKTOPS & RIGS",
-            "audio": "音频与外设 / AUDIO & PERIPHERALS",
-            "peripheral": "音频与外设 / AUDIO & PERIPHERALS"
+            "mobile": "SMARTPHONES",
+            "tablet": "TABLETS",
+            "laptop": "LAPTOPS",
+            "desktop": "DESKTOPS & RIGS",
+            "audio": "AUDIO & PERIPHERALS",
+            "peripheral": "AUDIO & PERIPHERALS"
         };
 
         function populateSelects() {
@@ -699,27 +723,29 @@
             // Sort within each group
             Object.values(groups).forEach(arr => arr.sort((a, b) => a.title.localeCompare(b.title)));
 
-            const catOrder = ["mobile", "tablet", "laptop", "desktop", "peripheral", "audio"];
+            const selects = [
+                { el: document.getElementById("pickA"), placeholder: "Select baseline device..." },
+                { el: document.getElementById("pickB"), placeholder: "Select contrast device..." },
+                { el: document.getElementById("pickC"), placeholder: "Select third device (optional)..." }
+            ];
 
-            [pickA, pickB, pickC].forEach((select) => {
-                // Keep the first default option
-                select.innerHTML = select.options[0].outerHTML;
-
-                catOrder.forEach((catKey) => {
-                    const list = groups[catKey];
-                    if (!list || list.length === 0) return;
-
-                    const groupEl = document.createElement("optgroup");
-                    groupEl.label = `—— ${CATEGORY_NAMES[catKey] || catKey.toUpperCase()} ——`;
-
-                    list.forEach((d) => {
+            selects.forEach(({ el, placeholder }) => {
+                el.innerHTML = `<option value="">${placeholder}</option>`;
+                const order = ["mobile", "tablet", "laptop", "desktop", "audio", "peripheral"];
+                const seenCats = new Set();
+                order.forEach((catKey) => {
+                    if (seenCats.has(catKey) || !groups[catKey] || !groups[catKey].length) return;
+                    seenCats.add(catKey);
+                    const groupLabel = CATEGORY_NAMES[catKey] || catKey.toUpperCase();
+                    const optgroup = document.createElement("optgroup");
+                    optgroup.label = groupLabel;
+                    groups[catKey].forEach((d) => {
                         const opt = document.createElement("option");
                         opt.value = d.lot;
                         opt.textContent = `N° ${d.lot} · ${d.title}`;
-                        groupEl.appendChild(opt);
+                        optgroup.appendChild(opt);
                     });
-
-                    select.appendChild(groupEl);
+                    el.appendChild(optgroup);
                 });
             });
         }
@@ -777,6 +803,11 @@
             empty.hidden = true;
             card.hidden = false;
 
+            renderTable(chosen);
+        }
+
+        function renderTable(chosen) {
+            const table = document.getElementById("compareTable");
             if (isDiffHighlight) {
                 table.classList.add("highlight-diff");
             } else {
@@ -784,7 +815,7 @@
             }
 
             const headRow = document.getElementById("compareHeadRow");
-            headRow.innerHTML = "<th>参数项 / SPEC</th>" + chosen.map((d) =>
+            headRow.innerHTML = "<th>SPECIFICATION</th>" + chosen.map((d) =>
                 `<th>
                     <div class="compare-head-cell">
                         <div class="compare-head-thumb"><img src="${escapeHtml(d.img)}" alt="${escapeHtml(d.title)}" width="46" height="46" loading="lazy" decoding="async"></div>
@@ -796,7 +827,7 @@
                 </th>`
             ).join("");
 
-            // 标准参数项分类映射表，确保不同品类设备横向对比时对齐同一参数行
+            // Canonical taxonomy to align specifications across categories
             const CANONICAL_TAXONOMY = [
                 { label: "PROCESSOR / SOC", aliases: ["soc", "processor", "platform", "cpu"] },
                 { label: "GRAPHICS / GPU", aliases: ["graphics", "gpu"] },
@@ -823,7 +854,7 @@
             const renderedRows = [];
             const matchedSpecs = new Set();
 
-            // 1. 遍历标准参数体系
+            // 1. Iterate canonical taxonomy
             CANONICAL_TAXONOMY.forEach((canon) => {
                 const aliases = canon.aliases;
                 const hasAny = chosen.some((d) => d.specs.some((s) => aliases.includes(s.label.toLowerCase())));
@@ -841,7 +872,7 @@
                 renderedRows.push({ label: canon.label, values });
             });
 
-            // 2. 补齐任何未归入标准分类的个性化规格行
+            // 2. Append unmapped category specs
             chosen.forEach((d) => {
                 d.specs.forEach((s) => {
                     const specKey = `${d.lot}:${s.label.toLowerCase()}`;

@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TECH ARSENAL — 工位与连接 / Setup</title>
+    <title>TECH ARSENAL · Setup</title>
     <link rel="stylesheet" href="arsenal-pages.css">
     <style>
         .setup-intro {
@@ -15,7 +15,7 @@
             text-wrap: pretty;
         }
 
-        /* ===== 空间分区标题 ===== */
+        /* ===== Zone Section Headers ===== */
         .zone-header {
             display: flex;
             align-items: center;
@@ -52,7 +52,7 @@
             background: var(--line, rgba(160, 176, 204, 0.12));
         }
 
-        /* ===== 3列对称网格系统 ===== */
+        /* ===== 3-Column Symmetric Grid ===== */
         .zone-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -60,7 +60,7 @@
             margin-bottom: 24px;
         }
 
-        /* ===== 通用卡片规范 ===== */
+        /* ===== Universal Card Specs ===== */
         .ring-card {
             background: linear-gradient(180deg, rgba(20, 27, 40, 0.92) 0%, rgba(14, 20, 30, 0.92) 100%);
             border: 1px solid var(--line-strong, rgba(160, 176, 204, 0.16));
@@ -178,7 +178,7 @@
             text-overflow: ellipsis;
         }
 
-        /* 静态指示圆点，无呼吸灯 */
+        /* Static status indicator, no breathing animation */
         .ring-connect-dot {
             width: 5px;
             height: 5px;
@@ -187,7 +187,7 @@
             flex-shrink: 0;
         }
 
-        /* ===== ZONE 01: 桌面联动核心大卡 (Mac Studio + XDR 2) ===== */
+        /* ===== ZONE 01: Workstation Core Card (Mac Studio + XDR 2) ===== */
         .desk-core-card {
             grid-column: span 2;
             background: linear-gradient(180deg, rgba(22, 30, 44, 0.94) 0%, rgba(15, 21, 31, 0.94) 100%);
@@ -363,14 +363,14 @@
             text-wrap: pretty;
         }
 
-        /* 键盘聚焦支持 (Accessibility a11y) */
+        /* Keyboard focus support (Accessibility a11y) */
         a.page-link:focus-visible,
         a.back-link:focus-visible {
             outline: 2px solid var(--accent, #6f86ff);
             outline-offset: 3px;
         }
 
-        /* 响应式适配 */
+        /* Responsive layout */
         @media (max-width: 1024px) {
             .zone-grid {
                 grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -392,7 +392,7 @@
             }
         }
 
-        /* 遵循系统无动画偏好 */
+        /* Reduced motion preference */
         @media (prefers-reduced-motion: reduce) {
             .ring-card, .desk-core-card {
                 transition: none;
@@ -404,12 +404,12 @@
 <body class="catalogue-page">
     <header class="header site-header">
         <div class="header-top top-row">
-            <a href="index.html" class="back-link home-mark-link" aria-label="返回首页 / Back to home" title="返回首页 / Back to home"><img src="assets/images/arsenal-spark.png" alt="" width="1000" height="1000" loading="eager" decoding="async"></a>
-            <nav class="page-nav" aria-label="Site navigation / 站点导航">
-                <a class="page-link" href="index.html"><span class="lang-pair"><span class="lang-zh" lang="zh-CN">首页</span><span class="lang-divider" aria-hidden="true"> / </span><span class="lang-en" lang="en">Home</span></span></a>
-                <a class="page-link" href="tech-arsenal.html"><span class="lang-pair"><span class="lang-zh" lang="zh-CN">总目录</span><span class="lang-divider" aria-hidden="true"> / </span><span class="lang-en" lang="en">Catalogue</span></span></a>
-                <a class="page-link" href="comparison-lab.html"><span class="lang-pair"><span class="lang-zh" lang="zh-CN">对比</span><span class="lang-divider" aria-hidden="true"> / </span><span class="lang-en" lang="en">Compare</span></span></a>
-                <a class="page-link active" href="topology.html" aria-current="page"><span class="lang-pair"><span class="lang-zh" lang="zh-CN">工位与连接</span><span class="lang-divider" aria-hidden="true"> / </span><span class="lang-en" lang="en">Setup</span></span></a>
+            <a href="index.html" class="back-link home-mark-link" aria-label="Back to home" title="Back to home"><img src="assets/images/arsenal-spark.png" alt="" width="1000" height="1000" loading="eager" decoding="async"></a>
+            <nav class="page-nav" aria-label="Site navigation">
+                <a class="page-link" href="index.html">Home</a>
+                <a class="page-link" href="tech-arsenal.html">Catalogue</a>
+                <a class="page-link" href="comparison-lab.html">Compare</a>
+                <a class="page-link active" href="topology.html" aria-current="page">Setup</a>
             </nav>
         </div>
         <div class="masthead">
@@ -420,28 +420,28 @@
     </header>
 
     <main class="collection">
-        <p class="setup-intro">家里固定摆的是 Mac Studio 加 Pro Display XDR，当主力工作台；出门就换成 14 寸 MacBook Pro；Legion 5 常年待在桌边，专门用来打游戏。三台机器各管一块，没人越界，也没多出一根线。</p>
+        <p class="setup-intro">The desk centers on a Mac Studio paired with a Pro Display XDR for primary development. The 14-inch MacBook Pro travels for remote work, while the Legion 5 handles gaming and Windows utilities at the desk. Each machine has a dedicated lane without clutter.</p>
 
-        <!-- ZONE 01: 家里主工位 -->
+        <!-- ZONE 01: Home Workstation -->
         <div class="zone-header">
             <span class="zone-num">ZONE 01</span>
-            <span class="zone-title">家里主工位 · Home Workstation</span>
+            <span class="zone-title">Home Workstation</span>
             <span class="zone-line"></span>
         </div>
 
         <div class="zone-grid">
-            <!-- 桌面联动核心大卡 (Mac Studio + XDR 2) 占 2 列 -->
+            <!-- Workstation Core Duo (Mac Studio + Pro Display XDR 2) spans 2 columns -->
             <article class="desk-core-card">
                 <div class="desk-core-header">
                     <div class="desk-core-label">
                         <span class="desk-core-icon" aria-hidden="true">
                             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="3" rx="2"/><line x1="8" x2="16" y1="21" y2="21"/><line x1="12" x2="12" y1="17" y2="21"/></svg>
                         </span>
-                        <span>桌面生产力核心 · WORKSTATION CORE</span>
+                        <span>WORKSTATION CORE</span>
                     </div>
                     <div class="desk-core-status">
                         <span class="status-dot-static" aria-hidden="true"></span>
-                        <span>常驻工位 · LIVE DOCKED</span>
+                        <span>LIVE DOCKED</span>
                     </div>
                 </div>
 
@@ -454,18 +454,18 @@
                             </div>
                             <div>
                                 <h3 class="duo-unit-title">Mac Studio</h3>
-                                <span class="duo-unit-badge">主力台机</span>
+                                <span class="duo-unit-badge">Primary Desktop</span>
                             </div>
                         </div>
-                        <p class="duo-unit-duty">全天开机连大屏，写代码、跑本地模型服务。</p>
+                        <p class="duo-unit-duty">Runs continuously connected to the display for software development and local model inference.</p>
                     </div>
 
-                    <!-- 连线桥梁 -->
+                    <!-- Bridge Connection -->
                     <div class="duo-bridge">
                         <span class="duo-bridge-line" aria-hidden="true"></span>
                         <span class="duo-bridge-pill">
                             <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-                            <span>雷电 4 一线直连 · 6K 120Hz</span>
+                            <span>Thunderbolt 4 Direct · 6K 120Hz</span>
                         </span>
                         <span class="duo-bridge-line" aria-hidden="true"></span>
                     </div>
@@ -478,44 +478,44 @@
                             </div>
                             <div>
                                 <h3 class="duo-unit-title">Pro Display XDR 2</h3>
-                                <span class="duo-unit-badge">主力屏幕</span>
+                                <span class="duo-unit-badge">Reference Display</span>
                             </div>
                         </div>
-                        <p class="duo-unit-duty">32 寸 6K 视网膜屏，左边代码右边预览，分屏用一整天。</p>
+                        <p class="duo-unit-duty">32-inch 6K Retina panel split between code editor on the left and live preview on the right.</p>
                     </div>
                 </div>
 
                 <div class="desk-core-footer">
                     <span class="ring-connect-dot" aria-hidden="true"></span>
-                    <span>单根雷电 4 线缆，扛 6K 信号和数据，桌面没有多余走线。</span>
+                    <span>Single Thunderbolt 4 cable delivers 6K video and high-speed data without extra desk wiring.</span>
                 </div>
             </article>
 
-            <!-- Legion 5 拯救者 占 1 列 -->
+            <!-- Legion 5 spans 1 column -->
             <article class="ring-card">
                 <div class="ring-card-header">
                     <div class="ring-img-box">
-                        <img src="assets/images/legion-5-15ahp10.png" alt="Legion 5 拯救者" width="1254" height="1254" loading="lazy" decoding="async">
+                        <img src="assets/images/legion-5-15ahp10.png" alt="Legion 5" width="1254" height="1254" loading="lazy" decoding="async">
                     </div>
                     <div class="ring-header-info">
                         <div class="ring-title-row">
-                            <h2 class="ring-device-title">Legion 5 拯救者</h2>
-                            <span class="ring-role-badge">桌边游戏机</span>
+                            <h2 class="ring-device-title">Legion 5</h2>
+                            <span class="ring-role-badge">Gaming Rig</span>
                         </div>
                     </div>
                 </div>
-                <p class="ring-device-duty">常年放桌边，只打游戏和跑 Windows 独占的工具。走独立网线，不占主屏视野。</p>
+                <p class="ring-device-duty">Dedicated desk setup for PC gaming and Windows-only utilities. Wired directly to ethernet off the main workspace.</p>
                 <div class="ring-connect-pill">
                     <span class="ring-connect-dot" aria-hidden="true"></span>
-                    <span>有线网络单独接，跟主工位物理隔开。</span>
+                    <span>Dedicated ethernet drop, physically isolated from the primary workstation.</span>
                 </div>
             </article>
         </div>
 
-        <!-- ZONE 02: 外出随身生态 -->
+        <!-- ZONE 02: On-the-Go & EDC -->
         <div class="zone-header">
             <span class="zone-num">ZONE 02</span>
-            <span class="zone-title">外出随身生态 · On-the-Go &amp; EDC</span>
+            <span class="zone-title">On-the-Go &amp; EDC</span>
             <span class="zone-line"></span>
         </div>
 
@@ -528,14 +528,14 @@
                     <div class="ring-header-info">
                         <div class="ring-title-row">
                             <h2 class="ring-device-title">MacBook Pro 14"</h2>
-                            <span class="ring-role-badge">外出主力</span>
+                            <span class="ring-role-badge">Mobile Daily</span>
                         </div>
                     </div>
                 </div>
-                <p class="ring-device-duty">出门主力机，咖啡馆、差旅随身带，轻。</p>
+                <p class="ring-device-duty">Primary machine for remote work, coffee shops, and travel. Compact and light.</p>
                 <div class="ring-connect-pill">
                     <span class="ring-connect-dot" aria-hidden="true"></span>
-                    <span>移动办公，回家自动同步。</span>
+                    <span>Mobile workstation, auto-syncs upon returning home.</span>
                 </div>
             </article>
 
@@ -547,14 +547,14 @@
                     <div class="ring-header-info">
                         <div class="ring-title-row">
                             <h2 class="ring-device-title">iPad mini (A17 Pro)</h2>
-                            <span class="ring-role-badge">便携平板</span>
+                            <span class="ring-role-badge">Field Tablet</span>
                         </div>
                     </div>
                 </div>
-                <p class="ring-device-duty">外出看书、翻 PDF；回工位当 Sidecar 副屏，多摊一块地方看参考文档。</p>
+                <p class="ring-device-duty">Reading technical papers and PDFs on the go. Serves as a Sidecar secondary screen at the desk for reference material.</p>
                 <div class="ring-connect-pill">
                     <span class="ring-connect-dot" aria-hidden="true"></span>
-                    <span>无线接 Sidecar 副屏。</span>
+                    <span>Wireless Sidecar secondary display.</span>
                 </div>
             </article>
 
@@ -566,22 +566,22 @@
                     <div class="ring-header-info">
                         <div class="ring-title-row">
                             <h2 class="ring-device-title">iPhone 11</h2>
-                            <span class="ring-role-badge">随身手机</span>
+                            <span class="ring-role-badge">Pocket Daily</span>
                         </div>
                     </div>
                 </div>
-                <p class="ring-device-duty">天天带的手机，微信、刷消息，拍完照 AirDrop 扔给电脑。</p>
+                <p class="ring-device-duty">Daily driver for messaging, communications, and field camera reference. Files sync to Mac via AirDrop.</p>
                 <div class="ring-connect-pill">
                     <span class="ring-connect-dot" aria-hidden="true"></span>
-                    <span>AirDrop 隔空传。</span>
+                    <span>Direct wireless AirDrop transfer.</span>
                 </div>
             </article>
         </div>
 
-        <!-- ZONE 03: 辅助与实验留存 -->
+        <!-- ZONE 03: Peripherals & Archive -->
         <div class="zone-header">
             <span class="zone-num">ZONE 03</span>
-            <span class="zone-title">外设与实验留存 · Peripherals &amp; Archive</span>
+            <span class="zone-title">Peripherals &amp; Archive</span>
             <span class="zone-line"></span>
         </div>
 
@@ -594,14 +594,14 @@
                     <div class="ring-header-info">
                         <div class="ring-title-row">
                             <h2 class="ring-device-title">EarPods</h2>
-                            <span class="ring-role-badge">有线耳机</span>
+                            <span class="ring-role-badge">Wired Audio</span>
                         </div>
                     </div>
                 </div>
-                <p class="ring-device-duty">有线，免充电，开会收音稳，没有蓝牙延迟这回事。</p>
+                <p class="ring-device-duty">Wired, zero charging required, dependable mic pick-up for calls with no Bluetooth latency.</p>
                 <div class="ring-connect-pill">
                     <span class="ring-connect-dot" aria-hidden="true"></span>
-                    <span>3.5mm / Type-C，插上就用。</span>
+                    <span>3.5mm / USB-C, plug and play.</span>
                 </div>
             </article>
 
@@ -613,14 +613,14 @@
                     <div class="ring-header-info">
                         <div class="ring-title-row">
                             <h2 class="ring-device-title">Galaxy A51</h2>
-                            <span class="ring-role-badge">测试副机</span>
+                            <span class="ring-role-badge">Test Device</span>
                         </div>
                     </div>
                 </div>
-                <p class="ring-device-duty">插第二张卡收验证码。偶尔拿来装 APK，看 Android 上跑起来什么样。</p>
+                <p class="ring-device-duty">Houses secondary SIM for SMS verification. Used for testing Android APK builds and responsive layouts.</p>
                 <div class="ring-connect-pill">
                     <span class="ring-connect-dot" aria-hidden="true"></span>
-                    <span>USB-C 接电脑，ADB 调试。</span>
+                    <span>USB-C tethering, ADB debugging.</span>
                 </div>
             </article>
 
@@ -632,23 +632,23 @@
                     <div class="ring-header-info">
                         <div class="ring-title-row">
                             <h2 class="ring-device-title">Mi 9</h2>
-                            <span class="ring-role-badge">退役留存</span>
+                            <span class="ring-role-badge">Archive Unit</span>
                         </div>
                     </div>
                 </div>
-                <p class="ring-device-duty">以前的主力机，现在退役摆架子，偶尔开机翻老照片。</p>
+                <p class="ring-device-duty">Former daily driver, now kept on display shelf for legacy data and photo archives.</p>
                 <div class="ring-connect-pill">
                     <span class="ring-connect-dot" aria-hidden="true"></span>
-                    <span>独立摆放，不用常驻接线。</span>
+                    <span>Stand-alone shelf unit, zero persistent wiring.</span>
                 </div>
             </article>
         </div>
 
-        <div class="setup-outro">照片手机拍完直接传，代码走局域网同步，桌面没有多余的线。</div>
+        <div class="setup-outro">Photos sync instantly over air, code builds push across local network, zero cable clutter on desk.</div>
     </main>
 
     <footer class="site-footer">
-        <div class="footer-line" data-zh="TECH ARSENAL / 工位与连接" data-en="TECH ARSENAL / Setup">tech arsenal / 工位与连接</div>
+        <div class="footer-line">TECH ARSENAL / Setup</div>
     </footer>
     <script src="arsenal-site.js"></script>
 </body>

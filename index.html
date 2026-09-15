@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TECH ARSENAL</title>
     <link rel="stylesheet" href="arsenal-pages.css">
     <style>
-        /* ===== 方案 A：馆藏统计指标模块 (Hero Stats Ledger) ===== */
+        /* ===== Hero Stats Ledger ===== */
         .hero-stats-inline {
             display: inline-flex;
             align-items: stretch;
@@ -56,30 +56,8 @@
             display: flex;
             flex-direction: column;
             gap: 2px;
-        }
-
-        .hero-stat-label .lang-pair {
-            display: flex;
-            flex-direction: column;
-            gap: 2px;
-        }
-
-        /* 隐藏落单孤悬的斜杠，中英文以年鉴层级整饬排印 */
-        .hero-stat-label .lang-divider {
-            display: none !important;
-        }
-
-        .hero-stat-label .lang-zh {
-            font-size: 0.76rem;
-            font-weight: 500;
-            color: var(--text);
-            line-height: 1.2;
-            letter-spacing: 0.04em;
-        }
-
-        .hero-stat-label .lang-en {
             font-family: var(--mono);
-            font-size: 0.58rem;
+            font-size: 0.62rem;
             font-weight: 500;
             letter-spacing: 0.08em;
             text-transform: uppercase;
@@ -87,7 +65,7 @@
             line-height: 1.2;
         }
 
-        /* ===== 极简主屏 Bento 卡片 (Minimalist Hero Bento) ===== */
+        /* ===== Minimalist Hero Bento ===== */
         .home-hero-card {
             display: grid;
             grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr);
@@ -174,14 +152,14 @@
 <body class="catalogue-page">
     <header class="header site-header">
         <div class="header-top top-row">
-            <a class="back-link home-mark-link" href="index.html" aria-label="返回首页 / Back to home" title="返回首页 / Back to home">
+            <a class="back-link home-mark-link" href="index.html" aria-label="Back to home" title="Back to home">
                 <img src="assets/images/arsenal-spark.png" alt="Tech Arsenal spark mark" width="1000" height="1000" loading="eager" decoding="async">
             </a>
-            <nav class="page-nav" aria-label="Site navigation / 站点导航">
-                <a class="page-link active" href="index.html" aria-current="page"><span class="lang-pair"><span class="lang-zh" lang="zh-CN">首页</span><span class="lang-divider" aria-hidden="true"> / </span><span class="lang-en" lang="en">Home</span></span></a>
-                <a class="page-link" href="tech-arsenal.html"><span class="lang-pair"><span class="lang-zh" lang="zh-CN">总目录</span><span class="lang-divider" aria-hidden="true"> / </span><span class="lang-en" lang="en">Catalogue</span></span></a>
-                <a class="page-link" href="comparison-lab.html"><span class="lang-pair"><span class="lang-zh" lang="zh-CN">对比</span><span class="lang-divider" aria-hidden="true"> / </span><span class="lang-en" lang="en">Compare</span></span></a>
-                <a class="page-link" href="topology.html"><span class="lang-pair"><span class="lang-zh" lang="zh-CN">工位与连接</span><span class="lang-divider" aria-hidden="true"> / </span><span class="lang-en" lang="en">Setup</span></span></a>
+            <nav class="page-nav" aria-label="Site navigation">
+                <a class="page-link active" href="index.html" aria-current="page">Home</a>
+                <a class="page-link" href="tech-arsenal.html">Catalogue</a>
+                <a class="page-link" href="comparison-lab.html">Compare</a>
+                <a class="page-link" href="topology.html">Setup</a>
             </nav>
         </div>
 
@@ -195,23 +173,23 @@
     <main class="collection">
         <section class="home-hero-card">
             <div class="home-hero-content">
-                <div class="hero-stats-inline" aria-label="馆藏数据概览 / Collection statistics">
+                <div class="hero-stats-inline" aria-label="Collection statistics">
                     <div class="hero-stat-item">
-                        <strong class="stat-num">058</strong>
-                        <span class="hero-stat-label" data-zh="已编目" data-en="catalogued">catalogued</span>
+                        <strong class="stat-num">060</strong>
+                        <span class="hero-stat-label">catalogued</span>
                     </div>
                     <div class="hero-stat-item owned">
                         <strong class="stat-num">005</strong>
-                        <span class="hero-stat-label" data-zh="已入藏" data-en="in collection">in collection</span>
+                        <span class="hero-stat-label">in collection</span>
                     </div>
                     <div class="hero-stat-item">
-                        <strong class="stat-num">053</strong>
-                        <span class="hero-stat-label" data-zh="关注中" data-en="pursuing">pursuing</span>
+                        <strong class="stat-num">055</strong>
+                        <span class="hero-stat-label">pursuing</span>
                     </div>
                 </div>
                 <div class="hero-actions">
-                    <a class="button-primary" href="tech-arsenal.html" data-zh="打开总目录" data-en="Open the catalogue">打开总目录</a>
-                    <a class="button-secondary" href="comparison-lab.html" data-zh="进入对比实验室" data-en="Open comparison lab">进入对比实验室</a>
+                    <a class="button-primary" href="tech-arsenal.html">Open Catalogue</a>
+                    <a class="button-secondary" href="comparison-lab.html">Open Comparison Lab</a>
                 </div>
             </div>
 
@@ -224,7 +202,7 @@
         <section class="section" id="sec-creator">
             <div class="chapter-head">
                 <span class="chapter-eyebrow">REFERENCE</span>
-                <h2 class="section-title"><span class="lang-pair"><span class="lang-zh" lang="zh-CN">精选评测参考</span><span class="lang-divider" aria-hidden="true"> / </span><span class="lang-en" lang="en">BOJIO 杰哥</span></span></h2>
+                <h2 class="section-title">Selected Reviews · BOJIO</h2>
                 <div class="chapter-rule"></div>
             </div>
 
@@ -233,7 +211,7 @@
                     <iframe width="560" height="315" src="https://www.youtube.com/embed/T4FwjYAWAwI?si=FUs0qRRfZWWGJGwA&amp;start=568" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                 </div>
                 <div class="video-info">
-                    <h4 class="video-title" data-zh="BOJIO 杰哥 - 科技评测精选" data-en="BOJIO - Selected technology reviews">BOJIO 杰哥 - 科技评测精选</h4>
+                    <h4 class="video-title">BOJIO - Selected Technology Reviews</h4>
                     <span class="video-tagpill">DEEP DIVE</span>
                 </div>
             </div>
@@ -241,7 +219,7 @@
     </main>
 
     <footer class="site-footer">
-        <div class="footer-line" data-zh="TECH ARSENAL / 首页" data-en="TECH ARSENAL / Home">tech arsenal / 首页</div>
+        <div class="footer-line">TECH ARSENAL / HOME</div>
     </footer>
     <script src="arsenal-site.js"></script>
 </body>

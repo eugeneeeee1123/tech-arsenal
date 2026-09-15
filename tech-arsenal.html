@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 
-<html lang="zh-CN">
+<html lang="en">
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>TECH ARSENAL — 总目录 / Catalogue</title>
+<title>TECH ARSENAL · Catalogue</title>
 <link href="arsenal-pages.css" rel="stylesheet"/>
 <style>
-        /* ===== 清单视图（manifest / list view） ===== */
+        /* ===== Manifest / list view ===== */
         #catalogue-main.is-list .grid {
             display: flex !important;
             flex-direction: column !important;
@@ -164,7 +164,7 @@
         #catalogue-main.is-list .record-action {
             display: none !important;
         }
-        /* ===== 精致视图切换分段控制器（Segmented View Switcher） ===== */
+        /* ===== Segmented View Switcher ===== */
         .control-subbar {
             grid-column: 1 / -1;
             display: flex;
@@ -263,55 +263,55 @@
 <body class="catalogue-page">
 <header class="header site-header">
 <div class="header-top top-row">
-<a aria-label="返回首页 / Back to home" class="back-link home-mark-link" href="index.html" title="返回首页 / Back to home"><img alt="" decoding="async" height="1000" loading="eager" src="assets/images/arsenal-spark.png" width="1000"/></a>
-<nav aria-label="Site navigation / 站点导航" class="page-nav">
-<a class="page-link" href="index.html"><span class="lang-pair"><span class="lang-zh" lang="zh-CN">首页</span><span aria-hidden="true" class="lang-divider"> / </span><span class="lang-en" lang="en">Home</span></span></a>
-<a aria-current="page" class="page-link active" href="tech-arsenal.html"><span class="lang-pair"><span class="lang-zh" lang="zh-CN">总目录</span><span aria-hidden="true" class="lang-divider"> / </span><span class="lang-en" lang="en">Catalogue</span></span></a>
-<a class="page-link" href="comparison-lab.html"><span class="lang-pair"><span class="lang-zh" lang="zh-CN">对比</span><span aria-hidden="true" class="lang-divider"> / </span><span class="lang-en" lang="en">Compare</span></span></a>
-<a class="page-link" href="topology.html"><span class="lang-pair"><span class="lang-zh" lang="zh-CN">工位与连接</span><span aria-hidden="true" class="lang-divider"> / </span><span class="lang-en" lang="en">Setup</span></span></a>
+<a aria-label="Back to home" class="back-link home-mark-link" href="index.html" title="Back to home"><img alt="" decoding="async" height="1000" loading="eager" src="assets/images/arsenal-spark.png" width="1000"/></a>
+<nav aria-label="Site navigation" class="page-nav">
+<a class="page-link" href="index.html">Home</a>
+<a aria-current="page" class="page-link active" href="tech-arsenal.html">Catalogue</a>
+<a class="page-link" href="comparison-lab.html">Compare</a>
+<a class="page-link" href="topology.html">Setup</a>
 </nav>
 </div>
 <div class="masthead">
 <div class="masthead-copy">
 <h1 class="main-title"><span class="tech">TECH</span> <span class="arsenal">ARSENAL</span></h1>
 </div>
-<div aria-label="收藏概览 / Collection summary" class="collection-ledger">
-<span><strong>058</strong> <span data-en="Catalogued" data-zh="已编目">catalogued</span></span>
-<span class="owned"><strong>005</strong> <span data-en="In collection" data-zh="已入藏">in collection</span></span>
-<span><strong>053</strong> <span data-en="Pursuing" data-zh="关注中">pursuing</span></span>
-<span><strong>005</strong> <span data-en="Chapters" data-zh="章节">chapters</span></span>
+<div aria-label="Collection summary" class="collection-ledger">
+<span><strong>060</strong> catalogued</span>
+<span class="owned"><strong>005</strong> in collection</span>
+<span><strong>055</strong> pursuing</span>
+<span><strong>005</strong> chapters</span>
 </div>
 </div>
 </header>
-<section aria-label="查找并筛选目录 / Find and filter the catalogue" class="control-bar">
+<section aria-label="Find and filter the catalogue" class="control-bar">
 <div class="search-wrap" role="search">
-<label class="search-label" data-en="Find a device or configuration" data-zh="查找设备或配置" for="searchInput">Find a device or configuration</label>
+<label class="search-label" for="searchInput">Find a device or configuration</label>
 <span aria-hidden="true" class="search-mark"></span>
-<input aria-describedby="resultSummary" autocomplete="off" class="search-input" data-placeholder-en="Search gear" data-placeholder-zh="搜索设备" id="searchInput" placeholder="Search gear" spellcheck="false" type="search"/>
-<span aria-hidden="true" class="search-key" data-en="Press / to focus" data-zh="按 / 聚焦">Press /</span>
+<input aria-describedby="resultSummary" autocomplete="off" class="search-input" id="searchInput" placeholder="Search gear" spellcheck="false" type="search"/>
+<span aria-hidden="true" class="search-key">Press /</span>
 </div>
-<div aria-label="按章节筛选 / Filter by chapter" class="filter-bar" role="group">
-<button aria-pressed="true" class="filter-btn active" data-en="All gear" data-filter="all" data-zh="全部设备" type="button">All gear</button>
-<button aria-pressed="false" class="filter-btn" data-en="Phones" data-filter="mobile" data-zh="手机" type="button">Phones</button>
-<button aria-pressed="false" class="filter-btn" data-en="Tablets" data-filter="tablet" data-zh="平板" type="button">Tablets</button>
-<button aria-pressed="false" class="filter-btn" data-en="Laptops" data-filter="laptop" data-zh="笔记本" type="button">Laptops</button>
-<button aria-pressed="false" class="filter-btn" data-en="Desktops" data-filter="desktop" data-zh="台式机" type="button">Desktops</button>
-<button aria-pressed="false" class="filter-btn" data-en="Peripherals" data-filter="peripheral" data-zh="外设" type="button">Peripherals</button>
+<div aria-label="Filter by chapter" class="filter-bar" role="group">
+<button aria-pressed="true" class="filter-btn active" data-filter="all" type="button">All gear</button>
+<button aria-pressed="false" class="filter-btn" data-filter="mobile" type="button">Phones</button>
+<button aria-pressed="false" class="filter-btn" data-filter="tablet" type="button">Tablets</button>
+<button aria-pressed="false" class="filter-btn" data-filter="laptop" type="button">Laptops</button>
+<button aria-pressed="false" class="filter-btn" data-filter="desktop" type="button">Desktops</button>
+<button aria-pressed="false" class="filter-btn" data-filter="peripheral" type="button">Peripherals</button>
 </div>
 <div class="control-subbar">
-<p aria-live="polite" class="result-summary" data-en="Showing 58 records across 5 chapters" data-zh="显示 58 条记录，分布于 5 个章节" id="resultSummary" role="status">Showing 58 records across 5 chapters</p>
-<div aria-label="切换显示方式 / Switch view" class="view-toggle" role="group">
+<p aria-live="polite" class="result-summary" id="resultSummary" role="status">Showing 60 records across 5 chapters</p>
+<div aria-label="Switch view" class="view-toggle" role="group">
 <button aria-pressed="false" class="view-btn" data-view="gallery" type="button">
 <svg aria-hidden="true" class="view-icon" fill="currentColor" viewbox="0 0 16 16">
 <path d="M1.5 2A1.5 1.5 0 0 0 0 3.5v3A1.5 1.5 0 0 0 1.5 8h3A1.5 1.5 0 0 0 6 6.5v-3A1.5 1.5 0 0 0 4.5 2h-3zm8 0A1.5 1.5 0 0 0 8 3.5v3A1.5 1.5 0 0 0 9.5 8h3A1.5 1.5 0 0 0 14 6.5v-3A1.5 1.5 0 0 0 12.5 2h-3zm-8 8A1.5 1.5 0 0 0 0 11.5v3A1.5 1.5 0 0 0 1.5 16h3A1.5 1.5 0 0 0 6 14.5v-3A1.5 1.5 0 0 0 4.5 10h-3zm8 0a1.5 1.5 0 0 0-1.5 1.5v3a1.5 1.5 0 0 0 1.5 1.5h3a1.5 1.5 0 0 0 1.5-1.5v-3a1.5 1.5 0 0 0-1.5-1.5h-3z"></path>
 </svg>
-<span data-en="Gallery" data-zh="图册">图册 / Gallery</span>
+<span>Gallery</span>
 </button>
 <button aria-pressed="true" class="view-btn active" data-view="list" type="button">
 <svg aria-hidden="true" class="view-icon" fill="currentColor" viewbox="0 0 16 16">
 <path d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" fill-rule="evenodd"></path>
 </svg>
-<span data-en="List" data-zh="清单">清单 / List</span>
+<span>List</span>
 </button>
 </div>
 </div>
@@ -321,16 +321,16 @@
 <div class="dossier-panel">
 <div class="dossier-visual">
 <img alt="Selected device preview" decoding="async" height="1000" id="dossierImage" loading="eager" src="assets/images/arsenal-spark.png" width="1000"/>
-<p aria-live="polite" class="dossier-image-note" data-en="Image unavailable; showing archive placeholder" data-zh="图像暂不可用，显示档案占位图" hidden="" id="dossierImageNote" role="status">Image unavailable; showing archive placeholder</p>
+<p aria-live="polite" class="dossier-image-note" hidden="" id="dossierImageNote" role="status">Image unavailable; showing archive placeholder</p>
 </div>
 <div class="dossier-body">
 <div class="dossier-topline">
-<span class="dossier-brand" id="dossierBrand">Brand / 品牌</span>
+<span class="dossier-brand" id="dossierBrand">Brand</span>
 <div class="dossier-topline-tools">
-<span class="dossier-status" id="dossierStatus">Pursuing / 关注中</span>
-<button aria-label="关闭档案 / Close dossier" class="dossier-close" id="dossierClose" type="button">
+<span class="dossier-status" id="dossierStatus">Pursuing</span>
+<button aria-label="Close dossier" class="dossier-close" id="dossierClose" type="button">
 <svg aria-hidden="true" class="dossier-close-icon" focusable="false" viewbox="0 0 12 12"><path d="M2 2l8 8M10 2L2 10"></path></svg>
-<span data-en="Close dossier" data-zh="关闭档案">Close dossier</span>
+<span>Close dossier</span>
 </button>
 </div>
 </div>
@@ -340,7 +340,7 @@
 <p class="dossier-desc" id="dossierDesc"></p>
 <div class="dossier-specs" id="dossierSpecs"></div>
 <div class="dossier-actions">
-<a class="dossier-action" data-en="Open comparison lab" data-zh="打开对比实验室" href="comparison-lab.html">Open comparison lab</a>
+<a class="dossier-action" href="comparison-lab.html">Open comparison lab</a>
 </div>
 </div>
 </div>
@@ -349,7 +349,7 @@
 <div class="section-wrapper" id="sec-mobile">
 <div class="chapter-head">
 <span class="chapter-eyebrow">phones</span>
-<h2 class="section-title"><span class="lang-pair"><span class="lang-zh" lang="zh-CN">手机</span><span aria-hidden="true" class="lang-divider"> / </span><span class="lang-en" lang="en">Smartphones</span></span><span class="section-count">(36 / 36 PIECES)</span></h2>
+<h2 class="section-title"><span>Phones</span><span class="section-count">(38 / 38 PIECES)</span></h2>
 <div class="chapter-rule"></div>
 </div>
 <div class="grid">
@@ -416,7 +416,7 @@
 <div class="d-spec" data-label="Focal Lengths">Native: 13mm / 24mm / 70mm / 230mm | Sensor crop: 48mm (2× main) | Space Zoom: up to 100× (algorithmic, not a fixed optical focal length)</div>
 <div class="d-spec" data-label="Feature">Built-in S-Pen | IP68 | Armor Aluminum Frame</div>
 <div class="d-spec" data-label="Battery">5000mAh | 45W Fast Charging</div>
-<div class="d-spec" data-label="Build">Armor Aluminum frame | Gorilla Glass Victus 2 | IP68 water &amp; dust | 234g</div><div class="d-spec" data-label="Memory">12GB LPDDR5X RAM</div><div class="d-spec" data-label="Storage">1TB UFS 4.0 (顶配)</div></div>
+<div class="d-spec" data-label="Build">Armor Aluminum frame | Gorilla Glass Victus 2 | IP68 water &amp; dust | 234g</div><div class="d-spec" data-label="Memory">12GB LPDDR5X RAM</div><div class="d-spec" data-label="Storage">1TB UFS 4.0 (Max spec)</div></div>
 </div>
 <div class="card" data-brand="apple" data-cat="mobile" data-chapter="SMARTPHONES" data-lot="003" data-name="iphone 14 pro max apple · pro max apple flagship apple" data-status="wishlist">
 <div class="lot-number">N° 003</div>
@@ -447,7 +447,7 @@
 <div class="d-spec" data-label="Focal Lengths">Native: 13mm / 24mm / 77mm | Sensor crop: 48mm (2× from the 48MP main sensor)</div>
 <div class="d-spec" data-label="Feature">Dynamic Island | Emergency SOS via Satellite | Crash Detection</div>
 <div class="d-spec" data-label="Build">Surgical-grade Stainless Steel | Ceramic Shield front</div>
-<div class="d-spec" data-label="Battery">4323mAh | 20W wired fast charging | 15W MagSafe | Up to 29 hours video playback</div><div class="d-spec" data-label="Memory">6GB LPDDR5 RAM</div><div class="d-spec" data-label="Storage">1TB NVMe Storage (顶配)</div></div>
+<div class="d-spec" data-label="Battery">4323mAh | 20W wired fast charging | 15W MagSafe | Up to 29 hours video playback</div><div class="d-spec" data-label="Memory">6GB LPDDR5 RAM</div><div class="d-spec" data-label="Storage">1TB NVMe Storage (Max spec)</div></div>
 </div>
 <div class="card" data-brand="vivo" data-cat="mobile" data-chapter="SMARTPHONES" data-lot="004" data-name="vivo x300 ultra vivo · zeiss master lenses snapdragon 8 elite gen 5 200mp camera" data-status="wishlist">
 <div class="lot-number">N° 004</div>
@@ -483,15 +483,15 @@
 <div class="d-spec" data-label="Build">IP68/IP69 | 3D ultrasonic fingerprint | 232–237g</div>
 </div>
 </div>
-<div class="card" data-brand="honor" data-cat="mobile" data-chapter="SMARTPHONES" data-lot="005" data-name="magic 4 至臻版 honor · magic ultimate honor // ultimate honor" data-status="wishlist">
+<div class="card" data-brand="honor" data-cat="mobile" data-chapter="SMARTPHONES" data-lot="005" data-name="magic 4 ultimate honor · magic ultimate honor // ultimate honor" data-status="wishlist">
 <div class="lot-number">N° 005</div>
 <div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
 <div class="img-box">
-<img alt="Magic 4 至臻版" decoding="async" height="1445" loading="lazy" src="assets/images/honormagic4ultimate-transparent.png" width="1089"/>
+<img alt="Magic4 Ultimate" decoding="async" height="1445" loading="lazy" src="assets/images/honormagic4ultimate-transparent.png" width="1089"/>
 </div>
 <div class="card-content">
 <div class="hallmark">HONOR · MAGIC ULTIMATE</div>
-<h3 class="product-name">Magic 4 至臻版</h3>
+<h3 class="product-name">Magic4 Ultimate</h3>
 <div class="specs">
 <div class="spec-row"><span class="spec-label">Display</span><span class="spec-val">6.81" LTPO OLED</span></div>
 <div class="spec-row"><span class="spec-label">Sensor</span><span class="spec-val">1/1.12" Custom · Dual OV64B</span></div>
@@ -546,7 +546,7 @@
 <div class="d-spec" data-label="Focal Lengths">Native: 18mm / 23mm / 80mm / 240mm | Sensor crop / hybrid: ~46mm (2× main) | 100× mode extends beyond the optical 240mm anchor</div>
 <div class="d-spec" data-label="Battery">4200mAh | 40W Wired | 40W Wireless Charging</div>
 <div class="d-spec" data-label="Build">Kiln-baked Nano-tech Ceramic | IP68 Water Resistance</div>
-<div class="d-spec" data-label="Memory">8GB LPDDR4X RAM</div><div class="d-spec" data-label="Storage">512GB UFS 3.0 (顶配)</div></div>
+<div class="d-spec" data-label="Memory">8GB LPDDR4X RAM</div><div class="d-spec" data-label="Storage">512GB UFS 3.0 (Max spec)</div></div>
 </div>
 <div class="card" data-brand="huawei" data-cat="mobile" data-chapter="SMARTPHONES" data-lot="007" data-name="huawei p50 pro huawei · leica optics huawei // leica huawei" data-status="wishlist">
 <div class="lot-number">N° 007</div>
@@ -578,7 +578,7 @@
 <div class="d-spec" data-label="Focal Lengths">Native: 13mm / 23mm / 26mm monochrome / 90mm | Sensor crop: 46mm (2× main) | 200× range is computational reach</div>
 <div class="d-spec" data-label="Imaging Tech">HUAWEI XD Optics | XD Fusion Pro Image Engine</div>
 <div class="d-spec" data-label="Battery">4360mAh | 66W Wired | 50W Wireless Charging</div>
-<div class="d-spec" data-label="Build">Aluminum frame | Curved glass front &amp; back | IP68 water &amp; dust | 195g</div><div class="d-spec" data-label="Memory">12GB LPDDR5 RAM (顶配)</div><div class="d-spec" data-label="Storage">512GB (顶配)</div></div>
+<div class="d-spec" data-label="Build">Aluminum frame | Curved glass front &amp; back | IP68 water &amp; dust | 195g</div><div class="d-spec" data-label="Memory">12GB LPDDR5 RAM (Max spec)</div><div class="d-spec" data-label="Storage">512GB (Max spec)</div></div>
 </div>
 <div class="card" data-brand="samsung" data-cat="mobile" data-chapter="SMARTPHONES" data-lot="008" data-name="galaxy z fold6" data-status="wishlist">
 <div class="lot-number">N° 008</div>
@@ -600,7 +600,7 @@
 <div class="d-title">Galaxy Z Fold6</div>
 <div class="d-why">A thinner, sharper foldable that turns a pocket device into a real multitasking canvas.</div>
 <div class="d-desc">Samsung’s refined foldable flagship: symmetrical 239g lightweight design, IP48 dust/water resistance, Snapdragon 8 Gen 3 for Galaxy, and full Galaxy AI suite.</div>
-<div class="d-spec" data-label="SoC">Qualcomm Snapdragon 8 Gen 3 for Galaxy (4nm) | 3.39GHz Cortex-X4 | Adreno 750</div><div class="d-spec" data-label="Memory">12GB LPDDR5X RAM (顶配)</div><div class="d-spec" data-label="Storage">1TB UFS 4.0 (顶配)</div><div class="d-spec" data-label="Inner Display">7.6" Dynamic AMOLED 2X (2160x1856) | 1-120Hz LTPO | 2600 nits peak | Ultra Thin Glass</div><div class="d-spec" data-label="Cover Display">6.3" Dynamic AMOLED 2X (2376x968, 22.1:9) | 1-120Hz LTPO | 2600 nits peak | Corning Gorilla Glass Victus 2</div><div class="d-spec" data-label="Camera System">[Main] 50MP (1/1.56", f/1.8, Dual Pixel AF, OIS) | [Telephoto] 10MP (3x Optical, OIS) | [Ultrawide] 12MP (123° FOV)</div><div class="d-spec" data-label="Camera Sensors">Main: Samsung ISOCELL GN3 / 1/1.56" (50MP, 1.0µm, OIS); 3× Telephoto: Samsung S5K3K1 (10MP, 3×, OIS); Ultrawide: 12MP (123°); Under-display: 4MP; Cover Front: 10MP</div><div class="d-spec" data-label="Focal Lengths">Native: 12mm / 24mm / 67mm | Sensor crop: 48mm (2× main optical crop) | Digital zoom: up to 30×</div><div class="d-spec" data-label="Battery">4400mAh dual battery | 25W wired | 15W wireless | Wireless PowerShare</div><div class="d-spec" data-label="Build">Enhanced Armor Aluminum frame | IP48 water &amp; dust resistance | 239g | 12.1mm folded (5.6mm unfolded)</div><div class="d-spec" data-label="Feature">Dual-Screen Live Interpreter | Note Assist | S-Pen support | Samsung DeX | 7 years OS updates</div></div>
+<div class="d-spec" data-label="SoC">Qualcomm Snapdragon 8 Gen 3 for Galaxy (4nm) | 3.39GHz Cortex-X4 | Adreno 750</div><div class="d-spec" data-label="Memory">12GB LPDDR5X RAM (Max spec)</div><div class="d-spec" data-label="Storage">1TB UFS 4.0 (Max spec)</div><div class="d-spec" data-label="Inner Display">7.6" Dynamic AMOLED 2X (2160x1856) | 1-120Hz LTPO | 2600 nits peak | Ultra Thin Glass</div><div class="d-spec" data-label="Cover Display">6.3" Dynamic AMOLED 2X (2376x968, 22.1:9) | 1-120Hz LTPO | 2600 nits peak | Corning Gorilla Glass Victus 2</div><div class="d-spec" data-label="Camera System">[Main] 50MP (1/1.56", f/1.8, Dual Pixel AF, OIS) | [Telephoto] 10MP (3x Optical, OIS) | [Ultrawide] 12MP (123° FOV)</div><div class="d-spec" data-label="Camera Sensors">Main: Samsung ISOCELL GN3 / 1/1.56" (50MP, 1.0µm, OIS); 3× Telephoto: Samsung S5K3K1 (10MP, 3×, OIS); Ultrawide: 12MP (123°); Under-display: 4MP; Cover Front: 10MP</div><div class="d-spec" data-label="Focal Lengths">Native: 12mm / 24mm / 67mm | Sensor crop: 48mm (2× main optical crop) | Digital zoom: up to 30×</div><div class="d-spec" data-label="Battery">4400mAh dual battery | 25W wired | 15W wireless | Wireless PowerShare</div><div class="d-spec" data-label="Build">Enhanced Armor Aluminum frame | IP48 water &amp; dust resistance | 239g | 12.1mm folded (5.6mm unfolded)</div><div class="d-spec" data-label="Feature">Dual-Screen Live Interpreter | Note Assist | S-Pen support | Samsung DeX | 7 years OS updates</div></div>
 </div>
 <div class="card" data-brand="google" data-cat="mobile" data-chapter="SMARTPHONES" data-lot="009" data-name="pixel 9 pro xl" data-status="wishlist">
 <div class="lot-number">N° 009</div>
@@ -620,9 +620,9 @@
 <div class="hidden-details" style="display:none;">
 <div class="d-brand">GOOGLE // PIXEL 9 PRO XL</div>
 <div class="d-title">Pixel 9 Pro XL</div>
-<div class="d-why">On-device Gemini plus a 42MP selfie camera — Google's camera phone and AI phone in one this time.</div>
+<div class="d-why">On-device Gemini plus a 42MP selfie camera. Google's camera phone and AI phone in one this time.</div>
 <div class="d-desc">Google’s flagship hardware: Tensor G4, 16GB RAM for on-device Gemini Live, 3000-nit Super Actua display, and an upgraded 42MP selfie camera.</div>
-<div class="d-spec" data-label="SoC">Google Tensor G4 (4nm) | Titan M2 Security Coprocessor</div><div class="d-spec" data-label="Memory">16GB LPDDR5X RAM (顶配)</div><div class="d-spec" data-label="Storage">1TB UFS 3.1 SSD (顶配)</div><div class="d-spec" data-label="Display">6.8" Super Actua LTPO OLED (1344x2992) | 1-120Hz | 3000 nits peak | Corning Gorilla Glass Victus 2</div><div class="d-spec" data-label="Camera System">[Main] 50MP Octa PD (1/1.31", f/1.68, OIS) | [Periscope] 48MP Quad PD (5x Optical, 30x Super Res Zoom, OIS) | [Ultrawide] 48MP Quad PD (123° FOV, Macro) | [Front] 42MP Dual PD (103° FOV)</div><div class="d-spec" data-label="Camera Sensors">Main: Samsung GNK / 1/1.31" (50MP, 1.2µm, OIS); 5× Periscope: Sony IMX858 / 1/2.51" (48MP, 5× optical, OIS); Ultrawide: Sony IMX858 / 1/2.51" (48MP, 123°); Front: Sony IMX858 / 1/2.51" (42MP, 103°)</div><div class="d-spec" data-label="Focal Lengths">Native: 12mm / 25mm / 110mm | Sensor crop: 50mm (2× from 50MP main) | Super Res Zoom: up to 30× computational reach</div><div class="d-spec" data-label="Battery">5060mAh | 37W wired fast charging | 23W wireless with Pixel Stand 2 | Qi certified</div><div class="d-spec" data-label="Build">Polished aerospace-grade aluminum frame | Silky matte back glass | IP68 water &amp; dust | 221g | 8.5mm</div><div class="d-spec" data-label="Feature">Gemini Live multimodal AI | Add Me | Magic Editor | Pixel Screenshots | Call Notes | 7 years OS updates</div></div>
+<div class="d-spec" data-label="SoC">Google Tensor G4 (4nm) | Titan M2 Security Coprocessor</div><div class="d-spec" data-label="Memory">16GB LPDDR5X RAM (Max spec)</div><div class="d-spec" data-label="Storage">1TB UFS 3.1 SSD (Max spec)</div><div class="d-spec" data-label="Display">6.8" Super Actua LTPO OLED (1344x2992) | 1-120Hz | 3000 nits peak | Corning Gorilla Glass Victus 2</div><div class="d-spec" data-label="Camera System">[Main] 50MP Octa PD (1/1.31", f/1.68, OIS) | [Periscope] 48MP Quad PD (5x Optical, 30x Super Res Zoom, OIS) | [Ultrawide] 48MP Quad PD (123° FOV, Macro) | [Front] 42MP Dual PD (103° FOV)</div><div class="d-spec" data-label="Camera Sensors">Main: Samsung GNK / 1/1.31" (50MP, 1.2µm, OIS); 5× Periscope: Sony IMX858 / 1/2.51" (48MP, 5× optical, OIS); Ultrawide: Sony IMX858 / 1/2.51" (48MP, 123°); Front: Sony IMX858 / 1/2.51" (42MP, 103°)</div><div class="d-spec" data-label="Focal Lengths">Native: 12mm / 25mm / 110mm | Sensor crop: 50mm (2× from 50MP main) | Super Res Zoom: up to 30× computational reach</div><div class="d-spec" data-label="Battery">5060mAh | 37W wired fast charging | 23W wireless with Pixel Stand 2 | Qi certified</div><div class="d-spec" data-label="Build">Polished aerospace-grade aluminum frame | Silky matte back glass | IP68 water &amp; dust | 221g | 8.5mm</div><div class="d-spec" data-label="Feature">Gemini Live multimodal AI | Add Me | Magic Editor | Pixel Screenshots | Call Notes | 7 years OS updates</div></div>
 </div>
 <div class="card" data-brand="google" data-cat="mobile" data-chapter="SMARTPHONES" data-lot="053" data-name="pixel 9 pro fold" data-status="wishlist">
 <div class="lot-number">N° 053</div>
@@ -644,7 +644,7 @@
 <div class="d-title">Pixel 9 Pro Fold</div>
 <div class="d-why">Google's vision of the ultimate foldable: an 8.0" square canvas, fluid multi-tasking, Gemini multimodal intelligence, and genuine flagship camera tuning.</div>
 <div class="d-desc">Google’s thinnest foldable flagship: 8.0" Super Actua Flex square canvas, fluid multi-tasking, Gemini multimodal intelligence, and IPX8 water resistance.</div>
-<div class="d-spec" data-label="SoC">Google Tensor G4 (4nm) | Titan M2 Security Coprocessor</div><div class="d-spec" data-label="Memory">16GB LPDDR5X RAM (顶配)</div><div class="d-spec" data-label="Storage">512GB UFS 3.1 (顶配)</div><div class="d-spec" data-label="Inner Display">8.0" Super Actua Flex LTPO OLED (2076x2152) | 1-120Hz | 2700 nits peak | Ultra Thin Glass</div><div class="d-spec" data-label="Cover Display">6.3" Actua OLED (1080x2424) | 60-120Hz | 2700 nits peak | Corning Gorilla Glass Victus 2</div><div class="d-spec" data-label="Camera System">[Main] 48MP Quad PD (1/2", f/1.7, OIS) | [Telephoto] 10.8MP Dual PD (5x Optical, 20x Super Res Zoom, OIS) | [Ultrawide] 10.5MP (127° FOV, Macro)</div><div class="d-spec" data-label="Camera Sensors">Main: Sony IMX787 (48MP, OIS); 5× Telephoto: Samsung 3J1 (10.8MP, 5× optical, OIS); Ultrawide: Samsung 3LU (10.5MP, 127°); Front &amp; Inner: Dual 10MP Dual PD (f/2.2)</div><div class="d-spec" data-label="Focal Lengths">Native: 12mm / 25mm / 112mm | Sensor crop: 50mm (2× main) | Super Res Zoom: up to 20×</div><div class="d-spec" data-label="Battery">4650mAh | 21W wired fast charging | 7.5W wireless Qi</div><div class="d-spec" data-label="Build">Aerospace-grade high-strength aluminum alloy | Multi-gear fluid hinge | IPX8 water resistance | 257g | 10.5mm folded (5.1mm unfolded)</div><div class="d-spec" data-label="Feature">Split Screen Dual-App Multitasking | Drag and Drop | Gemini Live | 7 years of OS upgrades &amp; Pixel Drops</div></div>
+<div class="d-spec" data-label="SoC">Google Tensor G4 (4nm) | Titan M2 Security Coprocessor</div><div class="d-spec" data-label="Memory">16GB LPDDR5X RAM (Max spec)</div><div class="d-spec" data-label="Storage">512GB UFS 3.1 (Max spec)</div><div class="d-spec" data-label="Inner Display">8.0" Super Actua Flex LTPO OLED (2076x2152) | 1-120Hz | 2700 nits peak | Ultra Thin Glass</div><div class="d-spec" data-label="Cover Display">6.3" Actua OLED (1080x2424) | 60-120Hz | 2700 nits peak | Corning Gorilla Glass Victus 2</div><div class="d-spec" data-label="Camera System">[Main] 48MP Quad PD (1/2", f/1.7, OIS) | [Telephoto] 10.8MP Dual PD (5x Optical, 20x Super Res Zoom, OIS) | [Ultrawide] 10.5MP (127° FOV, Macro)</div><div class="d-spec" data-label="Camera Sensors">Main: Sony IMX787 (48MP, OIS); 5× Telephoto: Samsung 3J1 (10.8MP, 5× optical, OIS); Ultrawide: Samsung 3LU (10.5MP, 127°); Front &amp; Inner: Dual 10MP Dual PD (f/2.2)</div><div class="d-spec" data-label="Focal Lengths">Native: 12mm / 25mm / 112mm | Sensor crop: 50mm (2× main) | Super Res Zoom: up to 20×</div><div class="d-spec" data-label="Battery">4650mAh | 21W wired fast charging | 7.5W wireless Qi</div><div class="d-spec" data-label="Build">Aerospace-grade high-strength aluminum alloy | Multi-gear fluid hinge | IPX8 water resistance | 257g | 10.5mm folded (5.1mm unfolded)</div><div class="d-spec" data-label="Feature">Split Screen Dual-App Multitasking | Drag and Drop | Gemini Live | 7 years of OS upgrades &amp; Pixel Drops</div></div>
 </div>
 <div class="card" data-brand="xiaomi" data-cat="mobile" data-chapter="SMARTPHONES" data-lot="010" data-name="mi 9 xiaomi · battle angel xiaomi // battle angel xiaomi" data-status="owned">
 <div class="lot-number">N° 010</div>
@@ -706,7 +706,7 @@
 <div class="d-spec" data-label="Focal Lengths">Native: 13mm / 26mm / 77mm | Digital crop: 52mm (2× main; software crop rather than a separate telephoto sensor)</div>
 <div class="d-spec" data-label="Battery">4352mAh | The undisputed endurance champion of its era</div>
 <div class="d-spec" data-label="Build">Surgical-grade Stainless Steel | Ceramic Shield | 240g</div>
-<div class="d-spec" data-label="Memory">6GB LPDDR4X RAM</div><div class="d-spec" data-label="Storage">1TB NVMe Storage (顶配)</div></div>
+<div class="d-spec" data-label="Memory">6GB LPDDR4X RAM</div><div class="d-spec" data-label="Storage">1TB NVMe Storage (Max spec)</div></div>
 </div>
 <div class="card" data-brand="samsung" data-cat="mobile" data-chapter="SMARTPHONES" data-lot="012" data-name="galaxy s21 ultra samsung · galaxy classic design icon samsung" data-status="wishlist">
 <div class="lot-number">N° 012</div>
@@ -738,7 +738,7 @@
 <div class="d-spec" data-label="Focal Lengths">Native: 13mm / 24mm / 72mm / 240mm | Sensor crop: 48mm (2× main) | Space Zoom: up to 100× computational reach</div>
 <div class="d-spec" data-label="Feature">S-Pen Support (First for S-Series) | Phantom Black Matte Finish</div>
 <div class="d-spec" data-label="Battery">5000mAh | 25W Wired | 15W Wireless</div>
-<div class="d-spec" data-label="Build">Armor Aluminum frame | Gorilla Glass Victus | IP68 | 227g</div><div class="d-spec" data-label="Memory">16GB LPDDR5 RAM (顶配)</div><div class="d-spec" data-label="Storage">512GB UFS 3.1 (顶配)</div></div>
+<div class="d-spec" data-label="Build">Armor Aluminum frame | Gorilla Glass Victus | IP68 | 227g</div><div class="d-spec" data-label="Memory">16GB LPDDR5 RAM (Max spec)</div><div class="d-spec" data-label="Storage">512GB UFS 3.1 (Max spec)</div></div>
 </div>
 <div class="card" data-brand="samsung" data-cat="mobile" data-chapter="SMARTPHONES" data-lot="013" data-name="galaxy s25 ultra" data-status="wishlist">
 <div class="lot-number">N° 013</div>
@@ -760,7 +760,7 @@
 <div class="d-title">Galaxy S25 Ultra</div>
 <div class="d-why">Snapdragon 8 Elite in the thinnest Ultra yet. I want one.</div>
 <div class="d-desc">Flat display, Grade 5 titanium frame, Snapdragon 8 Elite for Galaxy running multimodal Galaxy AI.</div>
-<div class="d-spec" data-label="SoC">Qualcomm Snapdragon 8 Elite for Galaxy (3nm) | 2x 4.47GHz Prime + 6x 3.53GHz Performance | Adreno 830 GPU</div><div class="d-spec" data-label="Memory">16GB LPDDR5X RAM (顶配)</div><div class="d-spec" data-label="Storage">1TB UFS 4.0 (顶配)</div><div class="d-spec" data-label="Display">6.8" Flat Dynamic AMOLED 2X | QHD+ (3120x1440) | 1-120Hz LTPO | 2600 nits peak | Corning Gorilla Armor 2 (Anti-Reflective)</div><div class="d-spec" data-label="Camera System">[Main] 200MP ISOCELL HP2 (1/1.3", f/1.7, OIS) | [Periscope] 50MP Sony IMX854 (5x Optical, 100x Space Zoom, OIS) | [Telephoto] 10MP Sony IMX754 (3x Optical, OIS) | [Ultrawide] 50MP ISOCELL JN3 (120° FOV, AF Macro)</div><div class="d-spec" data-label="Camera Sensors">Main: Samsung ISOCELL HP2 / 1/1.3" (200MP, 0.6µm, OIS); 5× Periscope: Sony IMX854 / 1/2.52" (50MP, 5× optical, OIS); 3× Telephoto: Sony IMX754 / 1/3.52" (10MP, 3×, OIS); Ultrawide: Samsung ISOCELL JN3 / 1/2.76" (50MP, 120°); Front: Samsung S5K3LU / 1/3.2" (12MP)</div><div class="d-spec" data-label="Focal Lengths">Native: 13mm / 24mm / 67mm / 111mm | Sensor crop: 48mm (2× main) | Space Zoom: up to 100× computational reach</div><div class="d-spec" data-label="Battery">5000mAh | 45W Fast Charging 2.0 | 15W Fast Wireless Charging 2.0 | Wireless PowerShare | Wi-Fi 7 | Bluetooth 5.4</div><div class="d-spec" data-label="Build">Grade 5 Titanium frame | Corning Gorilla Armor 2 front | Gorilla Glass rear | IP68 water &amp; dust | 218g | 8.2mm</div><div class="d-spec" data-label="Feature">Built-in S-Pen | Galaxy AI with Gemini Nano multimodal | ProVisual Engine | 7 years OS &amp; security updates</div></div>
+<div class="d-spec" data-label="SoC">Qualcomm Snapdragon 8 Elite for Galaxy (3nm) | 2x 4.47GHz Prime + 6x 3.53GHz Performance | Adreno 830 GPU</div><div class="d-spec" data-label="Memory">16GB LPDDR5X RAM (Max spec)</div><div class="d-spec" data-label="Storage">1TB UFS 4.0 (Max spec)</div><div class="d-spec" data-label="Display">6.8" Flat Dynamic AMOLED 2X | QHD+ (3120x1440) | 1-120Hz LTPO | 2600 nits peak | Corning Gorilla Armor 2 (Anti-Reflective)</div><div class="d-spec" data-label="Camera System">[Main] 200MP ISOCELL HP2 (1/1.3", f/1.7, OIS) | [Periscope] 50MP Sony IMX854 (5x Optical, 100x Space Zoom, OIS) | [Telephoto] 10MP Sony IMX754 (3x Optical, OIS) | [Ultrawide] 50MP ISOCELL JN3 (120° FOV, AF Macro)</div><div class="d-spec" data-label="Camera Sensors">Main: Samsung ISOCELL HP2 / 1/1.3" (200MP, 0.6µm, OIS); 5× Periscope: Sony IMX854 / 1/2.52" (50MP, 5× optical, OIS); 3× Telephoto: Sony IMX754 / 1/3.52" (10MP, 3×, OIS); Ultrawide: Samsung ISOCELL JN3 / 1/2.76" (50MP, 120°); Front: Samsung S5K3LU / 1/3.2" (12MP)</div><div class="d-spec" data-label="Focal Lengths">Native: 13mm / 24mm / 67mm / 111mm | Sensor crop: 48mm (2× main) | Space Zoom: up to 100× computational reach</div><div class="d-spec" data-label="Battery">5000mAh | 45W Fast Charging 2.0 | 15W Fast Wireless Charging 2.0 | Wireless PowerShare | Wi-Fi 7 | Bluetooth 5.4</div><div class="d-spec" data-label="Build">Grade 5 Titanium frame | Corning Gorilla Armor 2 front | Gorilla Glass rear | IP68 water &amp; dust | 218g | 8.2mm</div><div class="d-spec" data-label="Feature">Built-in S-Pen | Galaxy AI with Gemini Nano multimodal | ProVisual Engine | 7 years OS &amp; security updates</div></div>
 </div>
 <div class="card" data-brand="samsung" data-cat="mobile" data-chapter="SMARTPHONES" data-lot="014" data-name="galaxy s25+" data-status="wishlist">
 <div class="lot-number">N° 014</div>
@@ -782,7 +782,7 @@
 <div class="d-title">Galaxy S25+</div>
 <div class="d-why">The sweet spot - all the performance, none of the S-Pen bulk. This is what most people actually need.</div>
 <div class="d-desc">Same WQHD+ resolution and Snapdragon 8 Elite processor as the Ultra, in a lighter 196g body with 4900mAh battery.</div>
-<div class="d-spec" data-label="SoC">Qualcomm Snapdragon 8 Elite for Galaxy (3nm) | 2x 4.47GHz Prime + 6x 3.53GHz Performance | Adreno 830 GPU</div><div class="d-spec" data-label="Memory">12GB LPDDR5X RAM (顶配)</div><div class="d-spec" data-label="Storage">512GB UFS 4.0 (顶配)</div><div class="d-spec" data-label="Display">6.7" Flat Dynamic AMOLED 2X | QHD+ (3120x1440) | 1-120Hz LTPO | 2600 nits peak | Corning Gorilla Glass Victus 2</div><div class="d-spec" data-label="Camera System">[Main] 50MP ISOCELL GN3 (1/1.57", f/1.8, Dual Pixel AF, OIS) | [Telephoto] 10MP (3x Optical, OIS) | [Ultrawide] 12MP (120° FOV, Super Steady)</div><div class="d-spec" data-label="Camera Sensors">Main: Samsung ISOCELL GN3 / 1/1.57" (50MP, 1.0µm, Dual Pixel AF, OIS); 3× Telephoto: Samsung S5K3K1 / 1/3.94" (10MP, 3×, OIS); Ultrawide: Sony IMX564 / 1/2.55" (12MP, 120°); Front: Samsung S5K3LU / 1/3.2" (12MP)</div><div class="d-spec" data-label="Focal Lengths">Native: 13mm / 24mm / 67mm | Sensor crop: 48mm (2× main; optical-quality crop)</div><div class="d-spec" data-label="Battery">4900mAh | 45W Wired Fast Charging | 15W Wireless | Wireless PowerShare | Wi-Fi 7</div><div class="d-spec" data-label="Build">Enhanced Armor Aluminum frame | Corning Gorilla Glass Victus 2 | IP68 water &amp; dust | 196g | 7.3mm thickness</div><div class="d-spec" data-label="Feature">Galaxy AI multimodal suite | Circle to Search | Generative Edit | 7 years OS &amp; security updates</div></div>
+<div class="d-spec" data-label="SoC">Qualcomm Snapdragon 8 Elite for Galaxy (3nm) | 2x 4.47GHz Prime + 6x 3.53GHz Performance | Adreno 830 GPU</div><div class="d-spec" data-label="Memory">12GB LPDDR5X RAM (Max spec)</div><div class="d-spec" data-label="Storage">512GB UFS 4.0 (Max spec)</div><div class="d-spec" data-label="Display">6.7" Flat Dynamic AMOLED 2X | QHD+ (3120x1440) | 1-120Hz LTPO | 2600 nits peak | Corning Gorilla Glass Victus 2</div><div class="d-spec" data-label="Camera System">[Main] 50MP ISOCELL GN3 (1/1.57", f/1.8, Dual Pixel AF, OIS) | [Telephoto] 10MP (3x Optical, OIS) | [Ultrawide] 12MP (120° FOV, Super Steady)</div><div class="d-spec" data-label="Camera Sensors">Main: Samsung ISOCELL GN3 / 1/1.57" (50MP, 1.0µm, Dual Pixel AF, OIS); 3× Telephoto: Samsung S5K3K1 / 1/3.94" (10MP, 3×, OIS); Ultrawide: Sony IMX564 / 1/2.55" (12MP, 120°); Front: Samsung S5K3LU / 1/3.2" (12MP)</div><div class="d-spec" data-label="Focal Lengths">Native: 13mm / 24mm / 67mm | Sensor crop: 48mm (2× main; optical-quality crop)</div><div class="d-spec" data-label="Battery">4900mAh | 45W Wired Fast Charging | 15W Wireless | Wireless PowerShare | Wi-Fi 7</div><div class="d-spec" data-label="Build">Enhanced Armor Aluminum frame | Corning Gorilla Glass Victus 2 | IP68 water &amp; dust | 196g | 7.3mm thickness</div><div class="d-spec" data-label="Feature">Galaxy AI multimodal suite | Circle to Search | Generative Edit | 7 years OS &amp; security updates</div></div>
 </div>
 <div class="card" data-brand="apple" data-cat="mobile" data-chapter="SMARTPHONES" data-lot="015" data-name="iphone 17 apple · next gen standard apple ai flagship apple" data-status="wishlist">
 <div class="lot-number">N° 015</div>
@@ -815,15 +815,15 @@
 <div class="d-spec" data-label="Build">Aerospace-grade Aluminum | Color-infused Glass</div>
 <div class="d-spec" data-label="Battery">3650mAh | 25W wired fast charge | 15W MagSafe | Qi2 wireless</div></div>
 </div>
-<div class="card" data-brand="xiaomi" data-cat="mobile" data-chapter="SMARTPHONES" data-lot="016" data-name="小米 11 ultra xiaomi · imaging pioneer xiaomi // ultra legend xiaomi" data-status="wishlist">
+<div class="card" data-brand="xiaomi" data-cat="mobile" data-chapter="SMARTPHONES" data-lot="016" data-name="xiaomi 11 ultra xiaomi · imaging pioneer xiaomi // ultra legend xiaomi" data-status="wishlist">
 <div class="lot-number">N° 016</div>
 <div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
 <div class="img-box">
-<img alt="小米 11 Ultra" decoding="async" height="1600" loading="lazy" src="assets/images/xiaomi11ultra-transparent.png" width="1600"/>
+<img alt="Xiaomi 11 Ultra" decoding="async" height="1600" loading="lazy" src="assets/images/xiaomi11ultra-transparent.png" width="1600"/>
 </div>
 <div class="card-content">
 <div class="hallmark">XIAOMI · IMAGING PIONEER</div>
-<h3 class="product-name">小米 11 Ultra</h3>
+<h3 class="product-name">Xiaomi 11 Ultra</h3>
 <div class="specs">
 <div class="spec-row"><span class="spec-label">Sensor</span><span class="spec-val">1/1.12" GN2 · Dual IMX586</span></div>
 <div class="spec-row"><span class="spec-label">Feature</span><span class="spec-val">Rear Tiny Display</span></div>
@@ -844,17 +844,17 @@
 <div class="d-spec" data-label="Focal Lengths">Native: 12mm / 24mm / 120mm | Sensor crop: 48mm (2× main) | Hybrid reach: 240mm+ toward the 120× mode</div>
 <div class="d-spec" data-label="Battery">5000mAh Silicon-Oxygen Anode | 67W Wired | 67W Wireless</div>
 <div class="d-spec" data-label="Build">Ceramic body | 234g | IP68</div>
-<div class="d-spec" data-label="Memory">12GB LPDDR5 RAM (顶配)</div><div class="d-spec" data-label="Storage">512GB UFS 3.1 (顶配)</div></div>
+<div class="d-spec" data-label="Memory">12GB LPDDR5 RAM (Max spec)</div><div class="d-spec" data-label="Storage">512GB UFS 3.1 (Max spec)</div></div>
 </div>
-<div class="card" data-brand="xiaomi" data-cat="mobile" data-chapter="SMARTPHONES" data-lot="051" data-name="小米 11 pro xiaomi · android king xiaomi // gn2 flagship xiaomi" data-status="wishlist">
+<div class="card" data-brand="xiaomi" data-cat="mobile" data-chapter="SMARTPHONES" data-lot="051" data-name="xiaomi 11 pro xiaomi · android king xiaomi // gn2 flagship xiaomi" data-status="wishlist">
 <div class="lot-number">N° 051</div>
 <div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
 <div class="img-box">
-<img alt="小米 11 Pro" decoding="async" height="1254" loading="lazy" src="assets/images/xiaomi11pro.png" width="1254"/>
+<img alt="Xiaomi 11 Pro" decoding="async" height="1254" loading="lazy" src="assets/images/xiaomi11pro.png" width="1254"/>
 </div>
 <div class="card-content">
 <div class="hallmark">XIAOMI · ANDROID KING</div>
-<h3 class="product-name">小米 11 Pro</h3>
+<h3 class="product-name">Xiaomi 11 Pro</h3>
 <div class="specs">
 <div class="spec-row"><span class="spec-label">Sensor</span><span class="spec-val">1/1.12" GN2 · 50MP</span></div>
 <div class="spec-row"><span class="spec-label">Display</span><span class="spec-val">6.81" 2K 120Hz E4</span></div>
@@ -865,7 +865,7 @@
 <div class="d-brand">XIAOMI // ANDROID KING</div>
 <div class="d-title">Xiaomi 11 Pro</div>
 <div class="d-why">The "King of Android" defined by its massive 1/1.12" Samsung GN2 sensor, 67W dual fast charge, and elegant dream purple quad-curved finish.</div>
-<div class="d-desc">Known as the "King of Android" (安卓机皇), Xiaomi 11 Pro pairs the super-large 1/1.12" GN2 main camera and 50× periscope zoom with a 2K 120Hz E4 quad-curved display and IP68 water resistance.</div>
+<div class="d-desc">Known as the "King of Android", Xiaomi 11 Pro pairs the super-large 1/1.12" GN2 main camera and 50× periscope zoom with a 2K 120Hz E4 quad-curved display and IP68 water resistance.</div>
 <div class="d-spec" data-label="SoC">Qualcomm Snapdragon 888 (5nm) | Adreno 660 | LPDDR5 6400Mbps + UFS 3.1</div>
 <div class="d-spec" data-label="Display">6.81" Quad-Curved AMOLED | 3200×1440 2K WQHD+ | 120Hz | 480Hz Touch | 1700 nits Peak | Samsung E4 | Gorilla Glass Victus</div>
 <div class="d-spec" data-label="Camera System">[Main] 50MP Samsung ISOCELL GN2 | 1/1.12" | f/1.95 | 8P | OIS | Dual Pixel Pro<br/>
@@ -874,20 +874,20 @@
                         [Front] 20MP Samsung S5K3T2 | f/2.2</div>
 <div class="d-spec" data-label="Camera Sensors">Main: Samsung ISOCELL GN2 (S5KGN2) / 1/1.12" (1.4µm native, 2.8µm 4-in-1); Periscope: OmniVision OV08A10 / 1/4.4"; Ultrawide: OmniVision OV13B10 / 1/3.06"; Front: Samsung S5K3T2 / 1/3.4"</div>
 <div class="d-spec" data-label="Focal Lengths">Native: 16mm (ultrawide) / 24mm (main) / 120mm (5× periscope) | Sensor crop: 48mm (2× main) | Hybrid zoom reach to 50×</div>
-<div class="d-spec" data-label="Design &amp; Styling">Style: AG Frosted Quad-Curved Glass | Dream Purple (幻境紫) | Stepped squircle camera DECO with CD-textured metal collar ring | Aluminum alloy middle frame | IP68 dust/water resistant | 208g | 8.53mm</div>
+<div class="d-spec" data-label="Design &amp; Styling">Style: AG Frosted Quad-Curved Glass | Dream Purple | Stepped squircle camera DECO with CD-textured metal collar ring | Aluminum alloy middle frame | IP68 dust/water resistant | 208g | 8.53mm</div>
 <div class="d-spec" data-label="Battery &amp; Charging">5000mAh MTW Silicon-Oxygen Anode single cell | 67W wired fast charge | 67W wireless fast charge (100% in 36m) | 10W reverse wireless</div>
 <div class="d-spec" data-label="Audio &amp; Haptics">Harman Kardon tuned stereo dual speakers | Hi-Res &amp; Hi-Res Wireless Audio | X-axis linear vibration motor | IR blaster</div>
 <div class="d-spec" data-label="Build">Quad-curved Corning Gorilla Glass Victus | Metal middle frame | IP68 | 208g</div></div>
 </div>
-<div class="card" data-brand="xiaomi" data-cat="mobile" data-chapter="SMARTPHONES" data-lot="017" data-name="小米 17 xiaomi · leica optics xiaomi // compact flagship xiaomi" data-status="wishlist">
+<div class="card" data-brand="xiaomi" data-cat="mobile" data-chapter="SMARTPHONES" data-lot="017" data-name="xiaomi 17 xiaomi · leica optics xiaomi // compact flagship xiaomi" data-status="wishlist">
 <div class="lot-number">N° 017</div>
 <div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
 <div class="img-box">
-<img alt="小米 17" decoding="async" height="1600" loading="lazy" src="assets/images/xiaomi17-transparent.png" width="1600"/>
+<img alt="Xiaomi 17" decoding="async" height="1600" loading="lazy" src="assets/images/xiaomi17-transparent.png" width="1600"/>
 </div>
 <div class="card-content">
 <div class="hallmark">XIAOMI · LEICA OPTICS</div>
-<h3 class="product-name">小米 17</h3>
+<h3 class="product-name">Xiaomi 17</h3>
 <div class="specs">
 <div class="spec-row"><span class="spec-label">Display</span><span class="spec-val">6.36" LTPO OLED</span></div>
 <div class="spec-row"><span class="spec-label">Sensor</span><span class="spec-val">1/1.28" Light Fusion 950</span></div>
@@ -911,15 +911,15 @@
 <div class="d-spec" data-label="Build">Ceramic Body | Dragon Crystal Glass</div>
 </div>
 </div>
-<div class="card" data-brand="xiaomi" data-cat="mobile" data-chapter="SMARTPHONES" data-lot="018" data-name="小米 17 pro max xiaomi · the current king xiaomi // 2026 apex xiaomi" data-status="wishlist">
+<div class="card" data-brand="xiaomi" data-cat="mobile" data-chapter="SMARTPHONES" data-lot="018" data-name="xiaomi 17 pro max xiaomi · the current king xiaomi // 2026 apex xiaomi" data-status="wishlist">
 <div class="lot-number">N° 018</div>
 <div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
 <div class="img-box">
-<img alt="小米 17 Pro Max" decoding="async" height="1254" loading="lazy" src="assets/images/xiaomi17promax-transparent.png" width="1254"/>
+<img alt="Xiaomi 17 Pro Max" decoding="async" height="1254" loading="lazy" src="assets/images/xiaomi17promax-transparent.png" width="1254"/>
 </div>
 <div class="card-content">
 <div class="hallmark">XIAOMI · THE CURRENT KING</div>
-<h3 class="product-name">小米 17 Pro Max</h3>
+<h3 class="product-name">Xiaomi 17 Pro Max</h3>
 <div class="specs">
 <div class="spec-row"><span class="spec-label">Chip</span><span class="spec-val">Snapdragon 8 Gen 5</span></div>
 <div class="spec-row"><span class="spec-label">Sensor</span><span class="spec-val">1.0" LYT-900 · 1/2.51" 5x</span></div>
@@ -1055,7 +1055,7 @@
 <div class="d-title">Galaxy Z Fold Special Edition</div>
 <div class="d-why">A foldable flagship with an 8-inch canvas, thin titanium hardware, and the camera system of an ultra-class phone.</div>
 <div class="d-desc">Samsung’s thinnest, widest luxury foldable: 10.6mm ultra-slim chassis, 200MP apex camera sensor, 16GB on-device AI RAM, and expansive 8.0-inch main display.</div>
-<div class="d-spec" data-label="SoC">Qualcomm Snapdragon 8 Gen 3 for Galaxy (4nm) | 3.39GHz Cortex-X4</div><div class="d-spec" data-label="Memory">16GB LPDDR5X RAM (顶配，专为 Galaxy AI 扩容)</div><div class="d-spec" data-label="Storage">512GB UFS 4.0 (顶配)</div><div class="d-spec" data-label="Inner Display">8.0" Dynamic AMOLED 2X (20:18 ratio, 2184x1968) | 1-120Hz LTPO | 2600 nits peak | UTG</div><div class="d-spec" data-label="Cover Display">6.5" Dynamic AMOLED 2X (21:9 ratio, 2520x1080) | 1-120Hz LTPO | 2600 nits peak | Gorilla Glass Ceramic</div><div class="d-spec" data-label="Camera System">[Main] 200MP ISOCELL HP2 (1/1.3", f/1.7, OIS) | [Telephoto] 10MP (3x Optical, OIS) | [Ultrawide] 12MP (AF Macro)</div><div class="d-spec" data-label="Camera Sensors">Main: Samsung ISOCELL HP2 / 1/1.3" (200MP, 0.6µm, OIS); 3× Telephoto: Samsung S5K3K1 (10MP, OIS); Ultrawide: 12MP with AF; Cover Front: 10MP</div><div class="d-spec" data-label="Focal Lengths">Native: 12mm / 24mm / 67mm | Sensor crop: 48mm (2× from 200MP) | Space Zoom: up to 30×</div><div class="d-spec" data-label="Battery">4400mAh dual battery | 25W wired fast charge | 15W wireless | Wi-Fi 7</div><div class="d-spec" data-label="Build">Striped patterned craft titanium/glass back | Armor Aluminum frame | IP48 | 236g | 10.6mm folded (4.9mm unfolded)</div><div class="d-spec" data-label="Feature">First 200MP camera in a Samsung foldable | 16GB RAM on-device AI | Wi-Fi 7 | Ultra-wide 21:9 cover screen</div></div>
+<div class="d-spec" data-label="SoC">Qualcomm Snapdragon 8 Gen 3 for Galaxy (4nm) | 3.39GHz Cortex-X4</div><div class="d-spec" data-label="Memory">16GB LPDDR5X RAM (Max spec, expanded for Galaxy AI)</div><div class="d-spec" data-label="Storage">512GB UFS 4.0 (Max spec)</div><div class="d-spec" data-label="Inner Display">8.0" Dynamic AMOLED 2X (20:18 ratio, 2184x1968) | 1-120Hz LTPO | 2600 nits peak | UTG</div><div class="d-spec" data-label="Cover Display">6.5" Dynamic AMOLED 2X (21:9 ratio, 2520x1080) | 1-120Hz LTPO | 2600 nits peak | Gorilla Glass Ceramic</div><div class="d-spec" data-label="Camera System">[Main] 200MP ISOCELL HP2 (1/1.3", f/1.7, OIS) | [Telephoto] 10MP (3x Optical, OIS) | [Ultrawide] 12MP (AF Macro)</div><div class="d-spec" data-label="Camera Sensors">Main: Samsung ISOCELL HP2 / 1/1.3" (200MP, 0.6µm, OIS); 3× Telephoto: Samsung S5K3K1 (10MP, OIS); Ultrawide: 12MP with AF; Cover Front: 10MP</div><div class="d-spec" data-label="Focal Lengths">Native: 12mm / 24mm / 67mm | Sensor crop: 48mm (2× from 200MP) | Space Zoom: up to 30×</div><div class="d-spec" data-label="Battery">4400mAh dual battery | 25W wired fast charge | 15W wireless | Wi-Fi 7</div><div class="d-spec" data-label="Build">Striped patterned craft titanium/glass back | Armor Aluminum frame | IP48 | 236g | 10.6mm folded (4.9mm unfolded)</div><div class="d-spec" data-label="Feature">First 200MP camera in a Samsung foldable | 16GB RAM on-device AI | Wi-Fi 7 | Ultra-wide 21:9 cover screen</div></div>
 </div>
 <div class="card" data-brand="huawei" data-cat="mobile" data-chapter="SMARTPHONES" data-lot="044" data-name="huawei mate 40 pro+ huawei · mate ultimate huawei // kirin 9000 camera system" data-status="wishlist">
 <div class="lot-number">N° 044</div>
@@ -1143,7 +1143,7 @@
 <div class="d-brand">XIAOMI // CC SERIES</div>
 <div class="d-title">Mi CC9 Pro / Mi Note 10 Pro</div>
 <div class="d-why">The camera-first CC-series phone that brought a 108MP, five-camera stack to Xiaomi's mainstream line.</div>
-<div class="d-desc">The China-market Mi CC9 Pro is sold globally as the Mi Note 10 Pro — curved AMOLED body, five camera focal lengths.</div>
+<div class="d-desc">The China-market Mi CC9 Pro is sold globally as the Mi Note 10 Pro: curved AMOLED body, five camera focal lengths.</div>
 <div class="d-spec" data-label="SoC">Qualcomm Snapdragon 730G (8nm) | Adreno 618 | 8GB LPDDR4X</div>
 <div class="d-spec" data-label="Display">6.47" curved AMOLED | 2340×1080 FHD+ | HDR10 | Gorilla Glass 5</div>
 <div class="d-spec" data-label="Camera System">[Main] 108MP | f/1.69 | OIS<br/>
@@ -1300,28 +1300,28 @@
 <div class="specs">
 <div class="spec-row"><span class="spec-label">Chip</span><span class="spec-val">Snapdragon 8 Gen 2</span></div>
 <div class="spec-row"><span class="spec-label">Display</span><span class="spec-val">6.73" 120Hz C7 WQHD+</span></div>
-<div class="spec-row"><span class="spec-label">Sensor</span><span class="spec-val">1" IMX989 · 可变光圈</span></div>
-<div class="spec-row"><span class="spec-label">Camera</span><span class="spec-val">50MP Quad · 全焦段徕卡</span></div>
+<div class="spec-row"><span class="spec-label">Sensor</span><span class="spec-val">1" IMX989 · Variable aperture</span></div>
+<div class="spec-row"><span class="spec-label">Camera</span><span class="spec-val">50MP Quad · All-focal Leica</span></div>
 </div>
 </div>
 <div class="hidden-details" style="display:none;">
 <div class="d-brand">XIAOMI // LEICA APEX</div>
 <div class="d-title">Xiaomi 13 Ultra</div>
-<div class="d-why">一英寸可变光圈与全焦段大底四摄，溜背蒙皮造型把小米彻底拉入了相机时代。</div>
-<div class="d-desc">小米与徕卡联合研发的专业影像旗舰，四颗5000万像素全焦段大光圈镜头，搭载一英寸IMX989物理双档可变光圈与仿相机蒙皮微凸后盖。</div>
+<div class="d-why">One-inch variable aperture paired with large-sensor quad cameras across all focal lengths. The sloped leatherette back firmly anchors Xiaomi in dedicated camera territory.</div>
+<div class="d-desc">Professional mobile imaging flagship co-engineered with Leica. Features four 50MP large-aperture cameras, a 1-inch IMX989 main sensor with two-stop physical variable aperture, and a camera-grip sloped rear cover.</div>
 <div class="d-spec" data-label="SoC">Snapdragon 8 Gen 2 (4nm) | Adreno 740 | LPDDR5X | UFS 4.0</div>
-<div class="d-spec" data-label="Memory">16GB LPDDR5X RAM 8533Mbps (顶配)</div>
-<div class="d-spec" data-label="Storage">1TB UFS 4.0 高速闪存 (顶配)</div>
-<div class="d-spec" data-label="Display">6.73" C7 AMOLED | 1-120Hz LTPO | 2600 nits peak | WQHD+ (3200×1440) | 12-bit 色深 | 1920Hz 高频 PWM + 类 DC 调光 | Gorilla Glass Victus</div>
-<div class="d-spec" data-label="Camera System">[Main] 50MP Sony IMX989 | 1" 超大底 | 8P 镜头 | f/1.9-f/4.0 物理两档可变光圈 | OIS<br/>
+<div class="d-spec" data-label="Memory">16GB LPDDR5X RAM 8533Mbps (Max spec)</div>
+<div class="d-spec" data-label="Storage">1TB UFS 4.0 high-speed flash (Max spec)</div>
+<div class="d-spec" data-label="Display">6.73" C7 AMOLED | 1-120Hz LTPO | 2600 nits peak | WQHD+ (3200×1440) | 12-bit color depth | 1920Hz high-frequency PWM + DC-like dimming | Gorilla Glass Victus</div>
+<div class="d-spec" data-label="Camera System">[Main] 50MP Sony IMX989 | 1" large sensor | 8P lens | f/1.9-f/4.0 two-stop physical variable aperture | OIS<br/>
                         [Portrait Telephoto] 50MP Sony IMX858 | 3.2× Optical (75mm) | f/1.8 | OIS<br/>
-                        [Super Telephoto] 50MP Sony IMX858 | 5× Optical (120mm) | 120× 数码变焦 | f/3.0 | OIS<br/>
-                        [Ultrawide] 50MP Sony IMX858 | 12mm 等效 | 122° FOV | f/1.8 | 5cm 超微距</div>
-<div class="d-spec" data-label="Camera Sensors">Main: Sony IMX989 / 1.0" (50MP, 1.6µm / 3.2µm 4-in-1, 8P 非球面, OIS, Octa-PD); Telephoto 3.2×: Sony IMX858 / 1/2.51" (50MP, 75mm, f/1.8, OIS); Super Telephoto 5×: Sony IMX858 / 1/2.51" (50MP, 120mm, f/3.0, OIS); Ultrawide: Sony IMX858 / 1/2.51" (50MP, 12mm, f/1.8, AF); Front: OmniVision OV32C / 1/3.14" (32MP, f/2.0)</div>
-<div class="d-spec" data-label="Focal Lengths">Native: 12mm / 23mm / 75mm / 120mm | In-sensor zoom: 46mm (2×) / 240mm (10×) | 数码裁切至 120×</div>
-<div class="d-spec" data-label="Battery &amp; Charging">5000mAh 单电芯 | 90W 有线澎湃秒充 | 50W Pro 无线秒充 | 10W 无线反向充 | 澎湃 P2 快充芯片 + G1 电源管理芯片</div>
-<div class="d-spec" data-label="Build">227g | 第二代科技纳米皮 | 一体化金属中框延伸结构 | 经典相机溜背造型 | IP68 防尘防水</div>
-<div class="d-spec" data-label="Feature">Leica 专业影像套装生态 (实体两段快门手柄/67mm滤镜转接环) | 环形冷泵散热架构 | 徕卡经典/生动双画质 | USB 3.2 Gen 1 (DP 视频输出)</div>
+                        [Super Telephoto] 50MP Sony IMX858 | 5× Optical (120mm) | 120× digital zoom | f/3.0 | OIS<br/>
+                        [Ultrawide] 50MP Sony IMX858 | 12mm equivalent | 122° FOV | f/1.8 | 5cm macro</div>
+<div class="d-spec" data-label="Camera Sensors">Main: Sony IMX989 / 1.0" (50MP, 1.6µm / 3.2µm 4-in-1, 8P aspherical, OIS, Octa-PD); Telephoto 3.2×: Sony IMX858 / 1/2.51" (50MP, 75mm, f/1.8, OIS); Super Telephoto 5×: Sony IMX858 / 1/2.51" (50MP, 120mm, f/3.0, OIS); Ultrawide: Sony IMX858 / 1/2.51" (50MP, 12mm, f/1.8, AF); Front: OmniVision OV32C / 1/3.14" (32MP, f/2.0)</div>
+<div class="d-spec" data-label="Focal Lengths">Native: 12mm / 23mm / 75mm / 120mm | In-sensor zoom: 46mm (2×) / 240mm (10×) | Digital crop up to 120×</div>
+<div class="d-spec" data-label="Battery &amp; Charging">5000mAh single-cell | 90W wired fast charging | 50W Pro wireless fast charging | 10W reverse wireless | Surge P2 charging chip + G1 power management chip</div>
+<div class="d-spec" data-label="Build">227g | Gen-2 silicone nano-leather | Integrated metal unibody frame | Classic camera sloped rear | IP68 dust &amp; water resistance</div>
+<div class="d-spec" data-label="Feature">Leica professional camera grip accessory ecosystem (two-stage physical shutter / 67mm filter adapter) | Loop LiquidCool cooling | Leica Authentic / Vibrant dual color profiles | USB 3.2 Gen 1 (DP video out)</div>
 </div>
 </div>
 <div class="card" data-brand="xiaomi" data-cat="mobile" data-chapter="SMARTPHONES" data-lot="055" data-name="xiaomi mix 4 xiaomi · unibody ceramic unibody ceramic cup xiaomi" data-status="wishlist">
@@ -1335,28 +1335,28 @@
 <h3 class="product-name">Xiaomi MIX 4</h3>
 <div class="specs">
 <div class="spec-row"><span class="spec-label">Chip</span><span class="spec-val">Snapdragon 888+</span></div>
-<div class="spec-row"><span class="spec-label">Display</span><span class="spec-val">6.67" CUP 屏下全视屏</span></div>
+<div class="spec-row"><span class="spec-label">Display</span><span class="spec-val">6.67" CUP Under-Display Full View</span></div>
 <div class="spec-row"><span class="spec-label">Sensor</span><span class="spec-val">1/1.33" HMX · 108MP OIS</span></div>
-<div class="spec-row"><span class="spec-label">Build</span><span class="spec-val">一体化汝窑温润陶瓷</span></div>
+<div class="spec-row"><span class="spec-label">Build</span><span class="spec-val">Unibody Ru Kiln Ceramic</span></div>
 </div>
 </div>
 <div class="hidden-details" style="display:none;">
 <div class="d-brand">XIAOMI // UNIBODY CERAMIC</div>
 <div class="d-title">Xiaomi MIX 4</div>
-<div class="d-why">Unibody 仿汝窑一体化轻量陶瓷，配合正面无开孔真全面屏，手感温润如玉。</div>
-<div class="d-desc">全陶瓷一体化机身工业设计，首发微钻排列 CUP 屏下相机真全面屏，搭载骁龙 888+ 与 120W 有线秒充。</div>
+<div class="d-why">Lightweight unibody ceramic inspired by ancient Ru kiln porcelain, paired with an under-display camera for an uninterrupted front display.</div>
+<div class="d-desc">Unibody all-ceramic industrial build featuring a micro-diamond CUP under-display camera for a notchless front panel, Snapdragon 888+, and 120W wired fast charging.</div>
 <div class="d-spec" data-label="SoC">Snapdragon 888+ (5nm, Cortex-X1 @ 3.0GHz) | Adreno 660 | LPDDR5 | UFS 3.1</div>
-<div class="d-spec" data-label="Memory">12GB LPDDR5 RAM 6400Mbps (顶配)</div>
-<div class="d-spec" data-label="Storage">512GB UFS 3.1 高速闪存 (顶配)</div>
-<div class="d-spec" data-label="Display">6.67" CUP 屏下微曲 AMOLED | 2400×1080 FHD+ | 120Hz | 480Hz 触控 | 400PPI 微钻排列真全视屏 | 10-bit HDR10+ | Dolby Vision | Gorilla Glass Victus</div>
-<div class="d-spec" data-label="Camera System">[Main] 108MP Samsung HMX | 1/1.33" 超大底 | 7P 镜头 | 4 轴 OIS 光学防抖<br/>
-                        [Periscope] 8MP 5× 潜望长焦 (120mm) | OIS 光学防抖 | 50× 数码变焦<br/>
-                        [Ultrawide] 13MP 自由曲面超广角 (12mm) | 120° FOV | 硬件级低畸变</div>
-<div class="d-spec" data-label="Camera Sensors">Main: Samsung ISOCELL HMX / 1/1.33" (108MP, 0.8µm / 1.6µm 4-in-1, 7P, f/1.95, 4 轴 OIS); Periscope: 8MP (5× optical / 50× digital, 120mm, f/4.1, OIS); Ultrawide: 13MP 自由曲面防畸变 (12mm, f/2.2, 120°); Front CUP: 20MP 微钻排列屏下微米相机 (1.6µm 4-in-1)</div>
-<div class="d-spec" data-label="Focal Lengths">Native: 12mm / 24mm / 120mm | Sensor crop: 48mm (2×) | 数码变焦至 50×</div>
-<div class="d-spec" data-label="Battery &amp; Charging">4500mAh 石墨烯双电芯 | 120W 有线秒充 (疾速 15 分钟满电 / 恒温 21 分钟) | 50W 无线秒充 (疾速 28 分钟满电) | 10W 无线反充</div>
-<div class="d-spec" data-label="Build">225g | 高精密轻量化一体全陶瓷 (Unibody Ceramic, 减重 30%) | 影青灰 / 陶瓷黑 / 陶瓷白 (仿汝窑釉色)</div>
-<div class="d-spec" data-label="Feature">CUP 真正零挖孔真全面屏 | 自由曲面防畸变超广角镜头 | UWB 一指连空间精准感知定位 | Harman Kardon 联合调校立体声双扬声器</div>
+<div class="d-spec" data-label="Memory">12GB LPDDR5 RAM 6400Mbps (Max spec)</div>
+<div class="d-spec" data-label="Storage">512GB UFS 3.1 high-speed flash (Max spec)</div>
+<div class="d-spec" data-label="Display">6.67" CUP under-display curved AMOLED | 2400×1080 FHD+ | 120Hz | 480Hz touch | 400PPI micro-diamond true full view | 10-bit HDR10+ | Dolby Vision | Gorilla Glass Victus</div>
+<div class="d-spec" data-label="Camera System">[Main] 108MP Samsung HMX | 1/1.33" large sensor | 7P lens | 4-axis OIS<br/>
+                        [Periscope] 8MP 5× periscope telephoto (120mm) | OIS | 50× digital zoom<br/>
+                        [Ultrawide] 13MP free-form ultrawide (12mm) | 120° FOV | Hardware-level low distortion</div>
+<div class="d-spec" data-label="Camera Sensors">Main: Samsung ISOCELL HMX / 1/1.33" (108MP, 0.8µm / 1.6µm 4-in-1, 7P, f/1.95, 4-axis OIS); Periscope: 8MP (5× optical / 50× digital, 120mm, f/4.1, OIS); Ultrawide: 13MP free-form anti-distortion (12mm, f/2.2, 120°); Front CUP: 20MP micro-diamond under-display camera (1.6µm 4-in-1)</div>
+<div class="d-spec" data-label="Focal Lengths">Native: 12mm / 24mm / 120mm | Sensor crop: 48mm (2×) | Digital zoom up to 50×</div>
+<div class="d-spec" data-label="Battery &amp; Charging">4500mAh dual-cell graphene | 120W wired fast charge (Boost 15 min / Standard 21 min to 100%) | 50W wireless fast charge (Boost 28 min to 100%) | 10W reverse wireless</div>
+<div class="d-spec" data-label="Build">225g | High-precision lightweight unibody ceramic (30% weight reduction) | Shadow Celadon / Ceramic Black / Ceramic White (Ru kiln glaze finish)</div>
+<div class="d-spec" data-label="Feature">CUP true notchless full-screen display | Free-form low-distortion ultrawide lens | UWB point-to-connect spatial precision | Harman Kardon dual stereo speakers</div>
 </div>
 </div>
 <div class="card" data-brand="sony" data-cat="mobile" data-chapter="SMARTPHONES" data-lot="056" data-name="sony xperia 1 v sony · alpha in hand zeiss t optics continuous optical zoom sony" data-status="wishlist">
@@ -1371,28 +1371,28 @@
 <div class="specs">
 <div class="spec-row"><span class="spec-label">Chip</span><span class="spec-val">Snapdragon 8 Gen 2</span></div>
 <div class="spec-row"><span class="spec-label">Display</span><span class="spec-val">6.5" 4K 120Hz 21:9 OLED</span></div>
-<div class="spec-row"><span class="spec-label">Sensor</span><span class="spec-val">双层晶体管 Exmor T</span></div>
-<div class="spec-row"><span class="spec-label">Zoom</span><span class="spec-val">85-125mm 真正连续光变</span></div>
+<div class="spec-row"><span class="spec-label">Sensor</span><span class="spec-val">Dual-Layer Transistor Exmor T</span></div>
+<div class="spec-row"><span class="spec-label">Zoom</span><span class="spec-val">85-125mm True Continuous Zoom</span></div>
 </div>
 </div>
 <div class="hidden-details" style="display:none;">
 <div class="d-brand">SONY // ALPHA IN HAND</div>
 <div class="d-title">Sony Xperia 1 V</div>
-<div class="d-why">21:9 4K 无开孔带鱼屏与日系棱线防滑微粒，保留实体两段式快门和真连续光学变焦。</div>
-<div class="d-desc">索尼日系工业美学旗舰，首发双层晶体管像素 Exmor T 传感器，具备 85-125mm 物理连续光学变焦潜望模组与实体相机快门按键。</div>
+<div class="d-why">Unnotched 21:9 4K OLED display with tactile ribbed frame, retaining a physical two-stage shutter button and true continuous optical zoom.</div>
+<div class="d-desc">Sony engineering flagship featuring the dual-layer transistor pixel Exmor T sensor, 85-125mm continuous optical zoom periscope module, and dedicated hardware shutter button.</div>
 <div class="d-spec" data-label="SoC">Snapdragon 8 Gen 2 (4nm) | Adreno 740 | LPDDR5X | UFS 4.0</div>
-<div class="d-spec" data-label="Memory">16GB LPDDR5X RAM (顶配)</div>
-<div class="d-spec" data-label="Storage">512GB UFS 4.0 (顶配) | 支持 MicroSDXC 免工具插拔扩展最高 1TB</div>
-<div class="d-spec" data-label="Display">6.5" 4K HDR OLED (3840×1644, 643 PPI) | 120Hz | 21:9 电影画幅 | 无挖孔对称上下微额头 | X1 for mobile 引擎 | Gorilla Glass Victus 2</div>
-<div class="d-spec" data-label="Camera System">[Main] 48MP (有效52MP) 双层晶体管 Exmor T | 24mm | f/1.9 | 蔡司 T* 镀膜 | OIS<br/>
-                        [Telephoto] 12MP 物理连续光学变焦 (85mm-125mm, 3.5×-5.2×) | f/2.3-f/2.8 | OIS<br/>
+<div class="d-spec" data-label="Memory">16GB LPDDR5X RAM (Max spec)</div>
+<div class="d-spec" data-label="Storage">512GB UFS 4.0 (Max spec) | Tool-free MicroSDXC expansion up to 1TB</div>
+<div class="d-spec" data-label="Display">6.5" 4K HDR OLED (3840×1644, 643 PPI) | 120Hz | 21:9 cinema aspect ratio | Unnotched symmetrical bezels | X1 for mobile engine | Gorilla Glass Victus 2</div>
+<div class="d-spec" data-label="Camera System">[Main] 48MP (52MP full) dual-layer transistor Exmor T | 24mm | f/1.9 | Zeiss T* coating | OIS<br/>
+                        [Telephoto] 12MP true continuous optical zoom (85mm-125mm, 3.5×-5.2×) | f/2.3-f/2.8 | OIS<br/>
                         [Ultrawide] 12MP Exmor RS | 16mm | f/2.2 | 123° FOV | Dual PD AF<br/>
-                        [Shutter] 侧边独立实体两段式机械快门键</div>
-<div class="d-spec" data-label="Camera Sensors">Main: Sony Exmor T for mobile / 1/1.35" (48MP 有效, 1.12µm / 2.24µm 4-in-1, 24mm, f/1.9, OIS, 蔡司 Zeiss T* 镀膜); Telephoto: Sony IMX650 / 1/3.5" (12MP, 85-125mm 物理连续光学变焦, f/2.3-f/2.8, OIS); Ultrawide: Sony IMX563 / 1/2.5" (12MP, 16mm, f/2.2); Front: Sony IMX663 / 1/2.9" (12MP, 24mm, f/2.0)</div>
-<div class="d-spec" data-label="Focal Lengths">Native: 16mm / 24mm / 85mm-125mm (全域物理连续无级光学变焦) | Sensor crop: 48mm (2× 高画质主摄裁切)</div>
-<div class="d-spec" data-label="Battery &amp; Charging">5000mAh 长寿命电池 (Xperia 电池保护技术) | 30W USB PD 快充 | Qi 无线快充与无线电量共享</div>
-<div class="d-spec" data-label="Build">187g 极致轻量化 | 71mm 黄金手感宽度 | 棱线防滑微粒金属中框 | 触感微粒磨砂玻璃 | 独立 3.5mm 镀金耳机孔 | IP65/IP68 双重防水</div>
-<div class="d-spec" data-label="Feature">实体两段式快门按键 | 85-125mm 物理连续光变 | 独立 3.5mm 无损音频孔 | 全焦段 4K 120fps HDR 录制与眼部追焦 | Alpha 微单监视屏直连</div>
+                        [Shutter] Dedicated two-stage physical mechanical shutter button</div>
+<div class="d-spec" data-label="Camera Sensors">Main: Sony Exmor T for mobile / 1/1.35" (48MP effective, 1.12µm / 2.24µm 4-in-1, 24mm, f/1.9, OIS, Zeiss T* coating); Telephoto: Sony IMX650 / 1/3.5" (12MP, 85-125mm continuous optical zoom, f/2.3-f/2.8, OIS); Ultrawide: Sony IMX563 / 1/2.5" (12MP, 16mm, f/2.2); Front: Sony IMX663 / 1/2.9" (12MP, 24mm, f/2.0)</div>
+<div class="d-spec" data-label="Focal Lengths">Native: 16mm / 24mm / 85mm-125mm (continuous optical zoom range) | Sensor crop: 48mm (2× lossless crop)</div>
+<div class="d-spec" data-label="Battery &amp; Charging">5000mAh long-life battery (Xperia Battery Care) | 30W USB PD fast charge | Qi wireless charging and battery share</div>
+<div class="d-spec" data-label="Build">187g lightweight build | 71mm narrow ergonomic width | Ribbed tactile metal frame | Tactile micro-dot frosted glass | Dedicated gold-plated 3.5mm headphone jack | IP65/IP68 dual water resistance</div>
+<div class="d-spec" data-label="Feature">Hardware two-stage shutter button | 85-125mm true continuous optical zoom | 3.5mm headphone jack | All-focal 4K 120fps HDR recording with Eye AF | Direct monitor hookup for Sony Alpha cameras</div>
 </div>
 </div>
 <div class="card" data-brand="huawei" data-cat="mobile" data-chapter="SMARTPHONES" data-lot="057" data-name="huawei p60 pro huawei · rococo pearl rococo pearl xmage optics huawei" data-status="wishlist">
@@ -1406,28 +1406,28 @@
 <h3 class="product-name">Huawei P60 Pro</h3>
 <div class="specs">
 <div class="spec-row"><span class="spec-label">Chip</span><span class="spec-val">Snapdragon 8+ Gen 1</span></div>
-<div class="spec-row"><span class="spec-label">Display</span><span class="spec-val">6.67" 玲珑四曲 120Hz LTPO</span></div>
-<div class="spec-row"><span class="spec-label">Sensor</span><span class="spec-val">48MP 十档物理可变光圈</span></div>
-<div class="spec-row"><span class="spec-label">Tele</span><span class="spec-val">超聚光夜视潜望 · 长焦微距</span></div>
+<div class="spec-row"><span class="spec-label">Display</span><span class="spec-val">6.67" Quad-Curved 120Hz LTPO</span></div>
+<div class="spec-row"><span class="spec-label">Sensor</span><span class="spec-val">48MP 10-Stop Variable Aperture</span></div>
+<div class="spec-row"><span class="spec-label">Tele</span><span class="spec-val">Ultra Lighting Periscope · Macro</span></div>
 </div>
 </div>
 <div class="hidden-details" style="display:none;">
 <div class="d-brand">HUAWEI // ROCOCO PEARL</div>
 <div class="d-title">Huawei P60 Pro</div>
-<div class="d-why">首创凝光贝母工艺让每一台花纹独一无二，超聚光长焦群把暗光长焦带到了新高度。</div>
-<div class="d-desc">华为 XMAGE 影像美学旗舰，采用独创手工凝光贝母背板与十档物理可变光圈主摄，首发聚光镜群超聚光夜视潜望长焦。</div>
+<div class="d-why">Handcrafted Rococo Pearl finish where each unit carries an individual natural pattern. The Ultra Lighting telephoto periscope sets a high standard for low-light reach.</div>
+<div class="d-desc">Huawei XMAGE imaging flagship featuring a handcrafted Rococo Pearl backplate, 10-stop physical variable aperture main camera, and Ultra Lighting periscope telephoto group.</div>
 <div class="d-spec" data-label="SoC">Snapdragon 8+ Gen 1 4G (4nm) | Adreno 730 | LPDDR5 | UFS 3.1</div>
-<div class="d-spec" data-label="Memory">12GB LPDDR5 RAM (顶配)</div>
-<div class="d-spec" data-label="Storage">512GB UFS 3.1 (顶配) | 支持最高 256GB NM 存储卡扩展</div>
-<div class="d-spec" data-label="Display">6.67" 玲珑四曲 OLED | 2700×1220 1.5K+ | 1-120Hz LTPO 自适应刷新 | 1440Hz 高频 PWM 调光 | 10.7 亿色 | 华为昆仑玻璃 (耐摔抗跌落提升 10 倍)</div>
-<div class="d-spec" data-label="Camera System">[Main] 48MP 超聚光主摄 | f/1.4-f/4.0 十档物理可变光圈 | RYYB | OIS 传感器位移防抖<br/>
-                        [Telephoto] 48MP 超聚光夜视长焦 | f/2.1 超大光圈 | 3.5× 光学 (90mm) | RYYB | 100× 数字变焦 | 三轴传感器位移防抖 | 10cm 超级长焦微距<br/>
-                        [Ultrawide] 13MP 超广角 | 13mm | f/2.2 | RYYB | 2.5cm 超微距</div>
-<div class="d-spec" data-label="Camera Sensors">Main: Sony IMX888 / 1/1.43" (48MP, RYYB 超聚光, f/1.4-f/4.0 十档可变光圈, OIS 传感器位移防抖); Telephoto: 48MP (RYYB, f/2.1 行业最大潜望光圈, 90mm, 3.5× 光学 / 100× 数字, 三轴位移 OIS); Ultrawide: 13MP RYYB (13mm, f/2.2); Front: 13MP 超广角 (f/2.4)</div>
-<div class="d-spec" data-label="Focal Lengths">Native: 13mm / 24.5mm / 90mm | Sensor crop: 49mm (2×) / 270mm (10× 混合变焦) | 数字变焦至 100×</div>
-<div class="d-spec" data-label="Battery &amp; Charging">4815mAh | 88W 有线超级快充 (Turbo 10 分钟充至 50%) | 50W 无线超级快充 | 7.5W 反向无线充</div>
-<div class="d-spec" data-label="Build">200g | 8.3mm | 天然矿物微粉手工凝光贝母 (洛可可白独一无二纹理) | 昆仑玻璃面板 | IP68 防尘防水</div>
-<div class="d-spec" data-label="Feature">十档物理可变光圈 (f/1.4-f/4.0) | 洛可可白天然手工贝母纹理 | 双向北斗卫星消息 (无地面信号联络) | 10cm 超聚光长焦微距</div>
+<div class="d-spec" data-label="Memory">12GB LPDDR5 RAM (Max spec)</div>
+<div class="d-spec" data-label="Storage">512GB UFS 3.1 (Max spec) | NM card expandable up to 256GB</div>
+<div class="d-spec" data-label="Display">6.67" Quad-Curved OLED | 2700×1220 1.5K+ | 1-120Hz LTPO adaptive refresh | 1440Hz high-frequency PWM dimming | 1.07B colors | Kunlun Glass (10× drop resistance)</div>
+<div class="d-spec" data-label="Camera System">[Main] 48MP Ultra Lighting main camera | f/1.4-f/4.0 10-stop physical variable aperture | RYYB | Sensor-shift OIS<br/>
+                        [Telephoto] 48MP Ultra Lighting night telephoto | f/2.1 large aperture | 3.5× optical (90mm) | RYYB | 100× digital zoom | Three-axis sensor-shift OIS | 10cm telephoto macro<br/>
+                        [Ultrawide] 13MP ultrawide | 13mm | f/2.2 | RYYB | 2.5cm macro</div>
+<div class="d-spec" data-label="Camera Sensors">Main: Sony IMX888 / 1/1.43" (48MP, RYYB Ultra Lighting, f/1.4-f/4.0 10-stop variable aperture, sensor-shift OIS); Telephoto: 48MP (RYYB, f/2.1 large periscope aperture, 90mm, 3.5× optical / 100× digital, 3-axis sensor-shift OIS); Ultrawide: 13MP RYYB (13mm, f/2.2); Front: 13MP ultrawide (f/2.4)</div>
+<div class="d-spec" data-label="Focal Lengths">Native: 13mm / 24.5mm / 90mm | Sensor crop: 49mm (2×) / 270mm (10× hybrid) | Digital zoom up to 100×</div>
+<div class="d-spec" data-label="Battery &amp; Charging">4815mAh | 88W wired SuperCharge (Turbo: 50% in 10 min) | 50W wireless SuperCharge | 7.5W reverse wireless</div>
+<div class="d-spec" data-label="Build">200g | 8.3mm | Handcrafted Rococo Pearl natural mineral texture (each piece unique) | Kunlun Glass | IP68 dust &amp; water resistance</div>
+<div class="d-spec" data-label="Feature">10-stop physical variable aperture (f/1.4-f/4.0) | Rococo Pearl handcrafted natural shell texture | Two-way BeiDou satellite messaging | 10cm Ultra Lighting telephoto macro</div>
 </div>
 </div>
 <div class="card" data-brand="oppo" data-cat="mobile" data-chapter="SMARTPHONES" data-lot="058" data-name="oppo find x7 ultra oppo · hasselblad dual periscope hasselblad optics oppo" data-status="wishlist">
@@ -1443,27 +1443,97 @@
 <div class="spec-row"><span class="spec-label">Chip</span><span class="spec-val">Snapdragon 8 Gen 3</span></div>
 <div class="spec-row"><span class="spec-label">Display</span><span class="spec-val">6.82" 2K 120Hz LTPO</span></div>
 <div class="spec-row"><span class="spec-label">Sensor</span><span class="spec-val">1" LYT-900 · 50MP OIS</span></div>
-<div class="spec-row"><span class="spec-label">Telephoto</span><span class="spec-val">双潜望 · 65mm + 135mm</span></div>
+<div class="spec-row"><span class="spec-label">Telephoto</span><span class="spec-val">Dual Periscope · 65mm + 135mm</span></div>
 </div>
 </div>
 <div class="hidden-details" style="display:none;">
 <div class="d-brand">OPPO // HASSELBLAD DUAL PERISCOPE</div>
 <div class="d-title">OPPO Find X7 Ultra</div>
-<div class="d-why">大漠银月双拼皮金属复古机身，全球首创双潜望长焦系统，哈苏全焦段人像标杆。</div>
-<div class="d-desc">全球首发双潜望四主摄系统，搭载第二代一英寸索尼 LYT-900 与 65mm/135mm 双潜望长焦镜头，采用经典大漠银月双拼材质与哈苏超光影画质。</div>
-<div class="d-spec" data-label="SoC">Snapdragon 8 Gen 3 (4nm) | 潮汐架构 | Adreno 750 | LPDDR5X | UFS 4.0</div>
-<div class="d-spec" data-label="Memory">16GB LPDDR5X RAM 8533Mbps (顶配)</div>
-<div class="d-spec" data-label="Storage">512GB UFS 4.0 高速闪存 (顶配)</div>
-<div class="d-spec" data-label="Display">6.82" 2K (3168×1440) 东方钻石屏 | 1-120Hz LTPO | 4500 nits 局部峰值 | ProXDR 显示 | 2160Hz 高频 PWM + 类 DC 调光 | Gorilla Glass Victus 2</div>
-<div class="d-spec" data-label="Camera System">[Main] 50MP Sony LYT-900 | 第二代 1" 超大底 | 1G+7P 混合镜头 | f/1.8 | OIS<br/>
-                        [Portrait Telephoto] 50MP Sony IMX890 | 3× (65mm) | 1/1.56" 行业超大底 | f/2.6 | 悬浮棱镜防抖 | 25cm 最近对焦<br/>
-                        [Close-up Telephoto] 50MP Sony IMX858 | 6× (135mm) | 1/2.51" | f/4.3 | 棱镜防抖 | 35cm 最近对焦<br/>
-                        [Ultrawide] 50MP Sony LYT-600 | 14mm | f/2.0 | 123° FOV | 4cm 微距</div>
-<div class="d-spec" data-label="Camera Sensors">Main: Sony LYT-900 / 1.0" (50MP, 1.6µm / 3.2µm 4-in-1, 1G+7P, f/1.8, OIS); 65mm 3× 潜望: Sony IMX890 / 1/1.56" (50MP, f/2.6, 悬浮棱镜 OIS); 135mm 6× 潜望: Sony IMX858 / 1/2.51" (50MP, f/4.3, 棱镜 OIS); Ultrawide: Sony LYT-600 / 1/1.95" (50MP, 14mm, f/2.0); Front: 32MP Sony IMX709 (RGBW, f/2.4, AF)</div>
-<div class="d-spec" data-label="Focal Lengths">Native: 14mm / 23mm / 65mm / 135mm | In-sensor zoom: 46mm (2×) / 300mm (13.3×) | 数码变焦至 120×</div>
-<div class="d-spec" data-label="Battery &amp; Charging">5000mAh 大容量电池 | 100W 有线超级闪充 (26 分钟充至 100%) | 50W 无线闪充 | 10W 无线反充 | 支持 -20°C 极寒充电</div>
-<div class="d-spec" data-label="Build">221g | 大漠银月 (荔枝纹高端素皮与冷雕金属微弧拼接) | 独立三段式物理滑块按键 | IP68 防尘防水</div>
-<div class="d-spec" data-label="Feature">全球首创双潜望四主摄系统 (65mm+135mm) | 独立三段式物理滑块 (一键 VIP 隐私模式) | 国密二级独立安全芯片 | 全焦段 4K 杜比视界 HDR 视频</div>
+<div class="d-why">Two-tone vegan leather and brushed metal finish, dual periscope telephoto system, and Hasselblad portrait tuning across all focal lengths.</div>
+<div class="d-desc">Quad-main-camera mobile imaging flagship with second-generation 1-inch Sony LYT-900 sensor and dual periscope telephoto lenses (65mm and 135mm), finished in Desert Silver Moon.</div>
+<div class="d-spec" data-label="SoC">Snapdragon 8 Gen 3 (4nm) | Tidal Architecture | Adreno 750 | LPDDR5X | UFS 4.0</div>
+<div class="d-spec" data-label="Memory">16GB LPDDR5X RAM 8533Mbps (Max spec)</div>
+<div class="d-spec" data-label="Storage">512GB UFS 4.0 high-speed flash (Max spec)</div>
+<div class="d-spec" data-label="Display">6.82" 2K (3168×1440) Diamond OLED | 1-120Hz LTPO | 4500 nits peak | ProXDR display | 2160Hz high-frequency PWM + DC-like dimming | Gorilla Glass Victus 2</div>
+<div class="d-spec" data-label="Camera System">[Main] 50MP Sony LYT-900 | Gen-2 1" large sensor | 1G+7P hybrid lens | f/1.8 | OIS<br/>
+                        [Portrait Telephoto] 50MP Sony IMX890 | 3× (65mm) | 1/1.56" large sensor | f/2.6 | Floating prism OIS | 25cm minimum focus<br/>
+                        [Close-up Telephoto] 50MP Sony IMX858 | 6× (135mm) | 1/2.51" | f/4.3 | Prism OIS | 35cm minimum focus<br/>
+                        [Ultrawide] 50MP Sony LYT-600 | 14mm | f/2.0 | 123° FOV | 4cm macro</div>
+<div class="d-spec" data-label="Camera Sensors">Main: Sony LYT-900 / 1.0" (50MP, 1.6µm / 3.2µm 4-in-1, 1G+7P, f/1.8, OIS); 65mm 3× Periscope: Sony IMX890 / 1/1.56" (50MP, f/2.6, floating prism OIS); 135mm 6× Periscope: Sony IMX858 / 1/2.51" (50MP, f/4.3, prism OIS); Ultrawide: Sony LYT-600 / 1/1.95" (50MP, 14mm, f/2.0); Front: 32MP Sony IMX709 (RGBW, f/2.4, AF)</div>
+<div class="d-spec" data-label="Focal Lengths">Native: 14mm / 23mm / 65mm / 135mm | In-sensor zoom: 46mm (2×) / 300mm (13.3×) | Digital zoom up to 120×</div>
+<div class="d-spec" data-label="Battery &amp; Charging">5000mAh high-capacity battery | 100W wired SuperVOOC (100% in 26 min) | 50W wireless AirVOOC | 10W reverse wireless | Sub-zero charging down to -20°C</div>
+<div class="d-spec" data-label="Build">221g | Desert Silver Moon (Litchi-grain vegan leather spliced with cold-carved aluminum) | Three-stage physical alert slider | IP68 dust &amp; water resistance</div>
+<div class="d-spec" data-label="Feature">Dual periscope quad-main-camera system (65mm + 135mm) | Three-stage physical alert slider (One-touch VIP privacy mode) | Dedicated hardware security chip | All-focal 4K Dolby Vision HDR video</div>
+</div>
+</div>
+<div class="card" data-brand="xiaomi" data-cat="mobile" data-chapter="SMARTPHONES" data-lot="059" data-name="xiaomi 17 ultra xiaomi · continuous optical zoom leica apo continuous zoom xiaomi" data-status="wishlist">
+<div class="lot-number">N° 059</div>
+<div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
+<div class="img-box">
+<img alt="Xiaomi 17 Ultra" decoding="async" height="800" loading="lazy" src="assets/images/xiaomi17ultra-transparent.png" width="800"/>
+</div>
+<div class="card-content">
+<div class="hallmark">XIAOMI · CONTINUOUS OPTICAL ZOOM</div>
+<h3 class="product-name">Xiaomi 17 Ultra</h3>
+<div class="specs">
+<div class="spec-row"><span class="spec-label">Zoom</span><span class="spec-val">75-100mm Continuous Optical Zoom</span></div>
+<div class="spec-row"><span class="spec-label">Tele</span><span class="spec-val">200MP 1/1.4" Leica APO</span></div>
+<div class="spec-row"><span class="spec-label">Main</span><span class="spec-val">1" LYT-900 Stepless Aperture</span></div>
+<div class="spec-row"><span class="spec-label">Chip</span><span class="spec-val">Snapdragon 8 Gen 5 / Elite</span></div>
+</div>
+</div>
+<div class="hidden-details" style="display:none;">
+<div class="d-brand">XIAOMI // LEICA CONTINUOUS OPTICAL ZOOM</div>
+<div class="d-title">Xiaomi 17 Ultra</div>
+<div class="d-why">75-100mm continuous optical zoom group paired with a 200MP large-sensor periscope, producing clean optical rendering without focal jumps across the entire range.</div>
+<div class="d-desc">Next-generation mobile imaging flagship co-developed with Leica. Features a 3G+5P dual floating mechanical group delivering 75-100mm lossless continuous optical zoom, a 1-inch LYT-900 main camera, and Leica APO optical certification.</div>
+<div class="d-spec" data-label="SoC">Snapdragon 8 Gen 5 / 8 Elite Gen 2 (3nm) | Adreno 830 | LPDDR5X | UFS 4.1</div>
+<div class="d-spec" data-label="Memory">16GB / 24GB LPDDR5X RAM 8533Mbps (Max spec)</div>
+<div class="d-spec" data-label="Storage">512GB / 1TB UFS 4.1 high-speed flash (Max spec)</div>
+<div class="d-spec" data-label="Display">6.73" 2K (3200×1440) quad-curved OLED | 1-120Hz LTPO adaptive refresh | 4500 nits peak | 2160Hz high-frequency PWM + DC-like dimming | Xiaomi Dragon Crystal Glass 3.0</div>
+<div class="d-spec" data-label="Camera System">[Continuous Optical Zoom Telephoto] 200MP 1/1.4" large sensor | 75-100mm true continuous optical zoom | 3G+5P dual floating mechanical group | Leica APO certified | Lossless optical output | OIS<br/>
+                        [Main] 50MP Sony LYT-900 | 1.0" large sensor | f/1.63-f/4.0 stepless physical variable aperture | 1G+7P lens | Sensor-shift OIS<br/>
+                        [Ultrawide] 50MP Leica ultrawide | 12mm | f/1.8 | 122° FOV | 5cm macro</div>
+<div class="d-spec" data-label="Camera Sensors">Continuous Telephoto: 200MP (1/1.4", 0.56µm / 2.24µm 16-in-1, 75-100mm continuous optical zoom, 3G+5P dual floating group, Leica APO, physical OIS); Main: Sony LYT-900 / 1.0" (50MP, 1.6µm / 3.2µm 4-in-1, f/1.63-f/4.0 stepless variable aperture, OIS); Ultrawide: 50MP (1/2.51", 12mm, f/1.8); Front: 32MP (f/2.0, 4K 60fps)</div>
+<div class="d-spec" data-label="Focal Lengths">Native: 12mm (Ultrawide) / 23mm (Main) / 75-100mm (Continuous optical zoom range) | In-sensor crop: 46mm (2×) / 200mm (8×) | Digital zoom up to 120×</div>
+<div class="d-spec" data-label="Battery &amp; Charging">6000mAh high-density silicon-carbon battery | 120W wired fast charge (100% in 20 min) | 80W wireless fast charge | 10W reverse wireless</div>
+<div class="d-spec" data-label="Build">225g | Nano-tech microcrystalline ceramic back / Aviation titanium-aluminum alloy frame | Dragon Crystal Glass 3.0 | IP68 / IP69 dust &amp; high-pressure water resistance</div>
+<div class="d-spec" data-label="Feature">75-100mm mechanical continuous optical zoom (zero quality loss / no focal jump) | Leica APO optical certification | Professional camera grip expansion kit | Two-way BeiDou satellite communication</div>
+</div>
+</div>
+<div class="card" data-brand="huawei" data-cat="mobile" data-chapter="SMARTPHONES" data-lot="060" data-name="huawei pura 80 ultra huawei · retractable mechanical pop-out lens xmage optics huawei" data-status="wishlist">
+<div class="lot-number">N° 060</div>
+<div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
+<div class="img-box">
+<img alt="Huawei Pura 80 Ultra" decoding="async" height="1024" loading="lazy" src="assets/images/huaweipura80ultra-transparent.png" width="1024"/>
+</div>
+<div class="card-content">
+<div class="hallmark">HUAWEI · RETRACTABLE POP-OUT OPTICS</div>
+<h3 class="product-name">Huawei Pura 80 Ultra</h3>
+<div class="specs">
+<div class="spec-row"><span class="spec-label">Main</span><span class="spec-val">1" Retractable Pop-Out Lens · Variable Aperture</span></div>
+<div class="spec-row"><span class="spec-label">Tele</span><span class="spec-val">200MP Ultra Lighting Telemacro · OIS</span></div>
+<div class="spec-row"><span class="spec-label">Chip</span><span class="spec-val">Kirin 9020 / 9100 · Satellite Comms</span></div>
+<div class="spec-row"><span class="spec-label">Glass</span><span class="spec-val">Basalt-Tempered Kunlun Glass · Titanium</span></div>
+</div>
+</div>
+<div class="hidden-details" style="display:none;">
+<div class="d-brand">HUAWEI // RETRACTABLE POP-OUT OPTICS</div>
+<div class="d-title">Huawei Pura 80 Ultra</div>
+<div class="d-why">Mechanical pop-out main camera combined with a 200MP Ultra Lighting telemacro periscope. Precision micro-mechanics built directly into a thin handset.</div>
+<div class="d-desc">Huawei ultra-flagship featuring a mechanical retractable pop-out lens that extends on camera launch to accommodate a 1-inch sensor and variable aperture, paired with a 200MP Ultra Lighting periscope macro lens and second-generation Basalt-Tempered Kunlun Glass.</div>
+<div class="d-spec" data-label="SoC">Kirin 9020 / 9100 octa-core high-efficiency architecture | Taishan cores | Maleoon 920 GPU | DaVinci NPU</div>
+<div class="d-spec" data-label="Memory">16GB high-speed memory (Max spec)</div>
+<div class="d-spec" data-label="Storage">512GB / 1TB high-speed flash (Max spec)</div>
+<div class="d-spec" data-label="Display">6.8" 1.5K (2844×1260) quad-curved OLED | 1-120Hz LTPO adaptive refresh | 3000 nits peak | 1440Hz high-frequency PWM dimming | Gen-2 Basalt-Tempered Kunlun Glass</div>
+<div class="d-spec" data-label="Camera System">[Retractable Main] 50MP 1" mechanical pop-out lens | f/1.6-f/4.0 10-stop physical variable aperture | Sensor-shift OIS<br/>
+                        [Telephoto Macro] 200MP Ultra Lighting macro telephoto | f/2.1 large aperture | 3.5× optical zoom / 100× digital zoom | 5cm macro | Lighting OIS<br/>
+                        [Ultrawide] 40MP ultrawide (13mm, f/2.2)</div>
+<div class="d-spec" data-label="Camera Sensors">Main: Sony/SmartSens 1.0" RYYB Ultra Lighting mechanical pop-out (50MP, f/1.6-f/4.0 physical variable aperture, rotary stepper motor, Sensor-Shift OIS); Telephoto Macro: 200MP RYYB (f/2.1, 3.5× optical zoom, 5cm macro, OIS); Ultrawide: 40MP (13mm, f/2.2); Front: 13MP ultrawide (f/2.4, 4K video)</div>
+<div class="d-spec" data-label="Focal Lengths">Native: 13mm (Ultrawide) / 24.5mm (Retractable Main) / 90mm (Ultra Lighting Telemacro) | In-sensor crop: 49mm (2×) / 180mm (7×) | Digital zoom up to 100×</div>
+<div class="d-spec" data-label="Battery &amp; Charging">5500mAh high-density silicon anode battery | 100W wired SuperCharge | 80W wireless SuperCharge | 20W reverse wireless charging</div>
+<div class="d-spec" data-label="Build">226g | Aviation-grade titanium alloy frame / Nano-microcrystalline ceramic star-pattern back | Red ring and gold emblem watchcraft finish | IP68 dust &amp; water resistance (2m depth)</div>
+<div class="d-spec" data-label="Feature">High-precision rotary mechanical pop-out lens (300,000 extension cycle durability) | Dual-way BeiDou satellite messaging + Tiantong satellite calling | NearLink wireless precision connectivity | HarmonyOS NEXT</div>
 </div>
 </div>
 </div>
@@ -1471,7 +1541,7 @@
 <div class="section-wrapper" id="sec-tablet">
 <div class="chapter-head">
 <span class="chapter-eyebrow">tablets</span>
-<h2 class="section-title"><span class="lang-pair"><span class="lang-zh" lang="zh-CN">平板与薄板设备</span><span aria-hidden="true" class="lang-divider"> / </span><span class="lang-en" lang="en">Tablets &amp; slates</span></span><span class="section-count">(6 / 6 PIECES)</span></h2>
+<h2 class="section-title"><span>Tablets &amp; Slates</span><span class="section-count">(6 / 6 PIECES)</span></h2>
 <div class="chapter-rule"></div>
 </div>
 <div class="grid">
@@ -1495,7 +1565,7 @@
 <div class="d-title">iPad Pro 13" (M4)</div>
 <div class="d-why"></div>
 <div class="d-desc">First Apple device with the M4 chip and a Tandem OLED display. 5.1mm thick.</div>
-<div class="d-spec" data-label="SoC">Apple M4 | 10-Core CPU (4P + 6E) | 10-Core GPU | Hardware Ray Tracing | 16-Core Neural Engine (38 TOPS)</div><div class="d-spec" data-label="Memory">16GB Unified Memory (顶配)</div><div class="d-spec" data-label="Storage">2TB PCIe SSD with Nano-texture display glass option (顶配)</div><div class="d-spec" data-label="Display">13" Ultra Retina XDR | Tandem OLED (2752x2064) | 120Hz ProMotion | 1000 nits full / 1600 nits peak HDR | Nano-texture option</div><div class="d-spec" data-label="Camera System">Rear: 12MP Wide (f/1.8) + LiDAR Scanner | Front: Landscape 12MP Ultra Wide (Center Stage)</div><div class="d-spec" data-label="Battery">Built-in 38.99Wh rechargeable lithium-polymer | Up to 10 hours web/video</div><div class="d-spec" data-label="Connectivity">Thunderbolt / USB 4 (up to 40Gb/s) | Wi-Fi 6E (802.11ax) | 5G Sub-6 | Bluetooth 5.3</div><div class="d-spec" data-label="Build">100% recycled aluminum unibody | 5.1mm thickness (Thinnest Apple product) | 579g (Wi-Fi) / 582g (Cellular)</div><div class="d-spec" data-label="Accessories">Apple Pencil Pro (Squeeze, Barrel Roll, Haptic Feedback) | Magic Keyboard for iPad Pro (Aluminum palm rest)</div></div>
+<div class="d-spec" data-label="SoC">Apple M4 | 10-Core CPU (4P + 6E) | 10-Core GPU | Hardware Ray Tracing | 16-Core Neural Engine (38 TOPS)</div><div class="d-spec" data-label="Memory">16GB Unified Memory (Max spec)</div><div class="d-spec" data-label="Storage">2TB PCIe SSD with Nano-texture display glass option (Max spec)</div><div class="d-spec" data-label="Display">13" Ultra Retina XDR | Tandem OLED (2752x2064) | 120Hz ProMotion | 1000 nits full / 1600 nits peak HDR | Nano-texture option</div><div class="d-spec" data-label="Camera System">Rear: 12MP Wide (f/1.8) + LiDAR Scanner | Front: Landscape 12MP Ultra Wide (Center Stage)</div><div class="d-spec" data-label="Battery">Built-in 38.99Wh rechargeable lithium-polymer | Up to 10 hours web/video</div><div class="d-spec" data-label="Connectivity">Thunderbolt / USB 4 (up to 40Gb/s) | Wi-Fi 6E (802.11ax) | 5G Sub-6 | Bluetooth 5.3</div><div class="d-spec" data-label="Build">100% recycled aluminum unibody | 5.1mm thickness (Thinnest Apple product) | 579g (Wi-Fi) / 582g (Cellular)</div><div class="d-spec" data-label="Accessories">Apple Pencil Pro (Squeeze, Barrel Roll, Haptic Feedback) | Magic Keyboard for iPad Pro (Aluminum palm rest)</div></div>
 </div>
 <div class="card" data-brand="apple" data-cat="tablet" data-chapter="TABLETS &amp; SLATES" data-lot="023" data-name="ipad mini (a17 pro) apple · gaming &amp; reading apple portable apple" data-status="wishlist">
 <div class="lot-number">N° 023</div>
@@ -1515,9 +1585,9 @@
 <div class="hidden-details" style="display:none;">
 <div class="d-brand">APPLE // GAMING &amp; READING</div>
 <div class="d-title">iPad mini (A17 Pro)</div>
-<div class="d-why">A17 Pro in the smallest form factor — fits in a jacket pocket and benchmarks close to a laptop.</div>
+<div class="d-why">A17 Pro in the smallest form factor. Fits in a jacket pocket and benchmarks close to a laptop.</div>
 <div class="d-desc">Upgraded with the A17 Pro chip, enough for console-level gaming on a device this size.</div>
-<div class="d-spec" data-label="SoC">Apple A17 Pro (3nm) | 6-Core CPU (2P + 4E) | 5-Core GPU | Hardware-accelerated Ray Tracing | 16-Core Neural Engine</div><div class="d-spec" data-label="Memory">8GB Unified Memory (顶配，支持 Apple Intelligence)</div><div class="d-spec" data-label="Storage">512GB PCIe SSD (顶配)</div><div class="d-spec" data-label="Display">8.3" Liquid Retina (2266x1488, 326 PPI) | 500 nits | P3 Wide Color | True Tone | Anti-reflective coating</div><div class="d-spec" data-label="Camera System">Rear: 12MP Wide (f/1.8, Smart HDR 4) | Front: 12MP Ultra Wide (Landscape, Center Stage)</div><div class="d-spec" data-label="Battery">Built-in 19.3Wh lithium-polymer | Up to 10 hours web/video | 20W USB-C adapter</div><div class="d-spec" data-label="Connectivity">USB-C (USB 3, up to 10Gb/s) | Wi-Fi 6E | 5G Sub-6 | Bluetooth 5.3</div><div class="d-spec" data-label="Build">100% recycled aluminum enclosure | 195.4 x 134.8 x 6.3mm | 293g (Wi-Fi) / 297g (Cellular)</div><div class="d-spec" data-label="Compatibility">Supports Apple Pencil Pro (Squeeze &amp; Barrel roll) and Apple Pencil (USB-C)</div></div>
+<div class="d-spec" data-label="SoC">Apple A17 Pro (3nm) | 6-Core CPU (2P + 4E) | 5-Core GPU | Hardware-accelerated Ray Tracing | 16-Core Neural Engine</div><div class="d-spec" data-label="Memory">8GB Unified Memory (Max spec, Apple Intelligence support)</div><div class="d-spec" data-label="Storage">512GB PCIe SSD (Max spec)</div><div class="d-spec" data-label="Display">8.3" Liquid Retina (2266x1488, 326 PPI) | 500 nits | P3 Wide Color | True Tone | Anti-reflective coating</div><div class="d-spec" data-label="Camera System">Rear: 12MP Wide (f/1.8, Smart HDR 4) | Front: 12MP Ultra Wide (Landscape, Center Stage)</div><div class="d-spec" data-label="Battery">Built-in 19.3Wh lithium-polymer | Up to 10 hours web/video | 20W USB-C adapter</div><div class="d-spec" data-label="Connectivity">USB-C (USB 3, up to 10Gb/s) | Wi-Fi 6E | 5G Sub-6 | Bluetooth 5.3</div><div class="d-spec" data-label="Build">100% recycled aluminum enclosure | 195.4 x 134.8 x 6.3mm | 293g (Wi-Fi) / 297g (Cellular)</div><div class="d-spec" data-label="Compatibility">Supports Apple Pencil Pro (Squeeze &amp; Barrel roll) and Apple Pencil (USB-C)</div></div>
 </div>
 <div class="card" data-brand="samsung" data-cat="tablet" data-chapter="TABLETS &amp; SLATES" data-lot="024" data-name="galaxy tab s10 ultra samsung · galaxy tab galaxy ultra samsung" data-status="wishlist">
 <div class="lot-number">N° 024</div>
@@ -1537,9 +1607,9 @@
 <div class="hidden-details" style="display:none;">
 <div class="d-brand">SAMSUNG // GALAXY TAB</div>
 <div class="d-title">Galaxy Tab S10 Ultra</div>
-<div class="d-why">14.6" AMOLED plus 16GB RAM — close to a desktop replacement, and the S-Pen integration is done well.</div>
+<div class="d-why">14.6" AMOLED plus 16GB RAM, close to a desktop replacement, and the S-Pen integration is done well.</div>
 <div class="d-desc">A 14.6-inch display aimed at creators. The largest Android tablet, with IP68 water resistance.</div>
-<div class="d-spec" data-label="SoC">MediaTek Dimensity 9300+ (4nm) | 1x 3.4GHz Cortex-X4 + 3x 2.85GHz Cortex-X4 + 4x 2.0GHz Cortex-A720 | Immortalis-G720 GPU</div><div class="d-spec" data-label="Memory">16GB LPDDR5X RAM (顶配)</div><div class="d-spec" data-label="Storage">1TB UFS 4.0 (MicroSD expandable up to 1.5TB) (顶配)</div><div class="d-spec" data-label="Display">14.6" Dynamic AMOLED 2X (2960x1848, 16:10) | 120Hz | 930 nits peak | Anti-Reflection Coating</div><div class="d-spec" data-label="Camera System">Rear: 13MP Wide + 8MP Ultra-wide | Front: Dual 12MP Wide + 12MP Ultra-wide</div><div class="d-spec" data-label="Battery">11,200mAh | 45W Super Fast Charging 2.0</div><div class="d-spec" data-label="Build">Enhanced Armor Aluminum unibody | IP68 water &amp; dust resistance | 326.4 x 208.6 x 5.4mm | 718g (Wi-Fi) / 723g (5G)</div><div class="d-spec" data-label="Connectivity">Wi-Fi 7 | 5G Sub-6 | USB Type-C 3.2 Gen 1 with DisplayPort Out | Pogo Pin keyboard connection</div><div class="d-spec" data-label="Features">Galaxy AI Suite (Circle to Search, Note Assist, Sketch to Image) | Included IP68 S-Pen | Samsung DeX</div></div>
+<div class="d-spec" data-label="SoC">MediaTek Dimensity 9300+ (4nm) | 1x 3.4GHz Cortex-X4 + 3x 2.85GHz Cortex-X4 + 4x 2.0GHz Cortex-A720 | Immortalis-G720 GPU</div><div class="d-spec" data-label="Memory">16GB LPDDR5X RAM (Max spec)</div><div class="d-spec" data-label="Storage">1TB UFS 4.0 (MicroSD expandable up to 1.5TB) (Max spec)</div><div class="d-spec" data-label="Display">14.6" Dynamic AMOLED 2X (2960x1848, 16:10) | 120Hz | 930 nits peak | Anti-Reflection Coating</div><div class="d-spec" data-label="Camera System">Rear: 13MP Wide + 8MP Ultra-wide | Front: Dual 12MP Wide + 12MP Ultra-wide</div><div class="d-spec" data-label="Battery">11,200mAh | 45W Super Fast Charging 2.0</div><div class="d-spec" data-label="Build">Enhanced Armor Aluminum unibody | IP68 water &amp; dust resistance | 326.4 x 208.6 x 5.4mm | 718g (Wi-Fi) / 723g (5G)</div><div class="d-spec" data-label="Connectivity">Wi-Fi 7 | 5G Sub-6 | USB Type-C 3.2 Gen 1 with DisplayPort Out | Pogo Pin keyboard connection</div><div class="d-spec" data-label="Features">Galaxy AI Suite (Circle to Search, Note Assist, Sketch to Image) | Included IP68 S-Pen | Samsung DeX</div></div>
 </div>
 <div class="card" data-brand="samsung" data-cat="tablet" data-chapter="TABLETS &amp; SLATES" data-lot="025" data-name="galaxy tab s10+ samsung · galaxy tab plus the sweet spot samsung" data-status="wishlist">
 <div class="lot-number">N° 025</div>
@@ -1560,8 +1630,8 @@
 <div class="d-brand">SAMSUNG // GALAXY TAB PLUS</div>
 <div class="d-title">Galaxy Tab S10+</div>
 <div class="d-why">The balanced one. Just enough screen, just enough power. My ideal couch + coffee setup.</div>
-<div class="d-desc">A 12.4-inch display without the bulk of the Ultra — the size I'd actually reach for.</div>
-<div class="d-spec" data-label="SoC">MediaTek Dimensity 9300+ (4nm) | 1x 3.4GHz Cortex-X4 + 3x 2.85GHz Cortex-X4 + 4x 2.0GHz Cortex-A720 | Immortalis-G720 GPU</div><div class="d-spec" data-label="Memory">12GB LPDDR5X RAM (顶配)</div><div class="d-spec" data-label="Storage">512GB UFS 4.0 (MicroSD expandable up to 1.5TB) (顶配)</div><div class="d-spec" data-label="Display">12.4" Dynamic AMOLED 2X (2800x1752, 16:10) | 120Hz | 650 nits peak | Anti-Reflection Coating</div><div class="d-spec" data-label="Camera System">Rear: 13MP Wide + 8MP Ultra-wide | Front: 12MP Ultra-wide</div><div class="d-spec" data-label="Battery">10,090mAh | 45W Super Fast Charging 2.0</div><div class="d-spec" data-label="Build">Enhanced Armor Aluminum unibody | IP68 water &amp; dust resistance | 285.4 x 185.4 x 5.6mm | 571g (Wi-Fi) / 576g (5G)</div><div class="d-spec" data-label="Connectivity">Wi-Fi 7 | 5G Sub-6 | USB Type-C 3.2 Gen 1 with DisplayPort Out | Pogo Pin</div><div class="d-spec" data-label="Features">Galaxy AI Suite | Included low-latency S-Pen (0.7mm, 4096 pressure levels) | Samsung DeX | Quad AKG Speakers</div></div>
+<div class="d-desc">A 12.4-inch display without the bulk of the Ultra, the size I'd actually reach for.</div>
+<div class="d-spec" data-label="SoC">MediaTek Dimensity 9300+ (4nm) | 1x 3.4GHz Cortex-X4 + 3x 2.85GHz Cortex-X4 + 4x 2.0GHz Cortex-A720 | Immortalis-G720 GPU</div><div class="d-spec" data-label="Memory">12GB LPDDR5X RAM (Max spec)</div><div class="d-spec" data-label="Storage">512GB UFS 4.0 (MicroSD expandable up to 1.5TB) (Max spec)</div><div class="d-spec" data-label="Display">12.4" Dynamic AMOLED 2X (2800x1752, 16:10) | 120Hz | 650 nits peak | Anti-Reflection Coating</div><div class="d-spec" data-label="Camera System">Rear: 13MP Wide + 8MP Ultra-wide | Front: 12MP Ultra-wide</div><div class="d-spec" data-label="Battery">10,090mAh | 45W Super Fast Charging 2.0</div><div class="d-spec" data-label="Build">Enhanced Armor Aluminum unibody | IP68 water &amp; dust resistance | 285.4 x 185.4 x 5.6mm | 571g (Wi-Fi) / 576g (5G)</div><div class="d-spec" data-label="Connectivity">Wi-Fi 7 | 5G Sub-6 | USB Type-C 3.2 Gen 1 with DisplayPort Out | Pogo Pin</div><div class="d-spec" data-label="Features">Galaxy AI Suite | Included low-latency S-Pen (0.7mm, 4096 pressure levels) | Samsung DeX | Quad AKG Speakers</div></div>
 </div>
 <div class="card" data-brand="apple" data-cat="tablet" data-chapter="TABLETS &amp; SLATES" data-lot="045" data-name='ipad air 11" apple · everyday slate apple portable' data-status="wishlist">
 <div class="lot-number">N° 045</div>
@@ -1591,15 +1661,15 @@
 <div class="d-spec" data-label="Accessories">Apple Pencil Pro | Apple Pencil (USB-C) | Magic Keyboard Folio</div>
 </div>
 </div>
-<div class="card" data-brand="lenovo" data-cat="tablet" data-chapter="TABLETS &amp; SLATES" data-lot="052" data-name="拯救者 y700 lenovo legion y700 联想 拯救者 y700 平板 lenovo · compact gaming slate lenovo gaming tablet" data-status="wishlist">
+<div class="card" data-brand="lenovo" data-cat="tablet" data-chapter="TABLETS &amp; SLATES" data-lot="052" data-name="legion y700 lenovo legion y700 lenovo · compact gaming slate lenovo gaming tablet" data-status="wishlist">
 <div class="lot-number">N° 052</div>
 <div class="seal wishlist"><span class="dot"></span>WISHLIST</div>
 <div class="img-box">
-<img alt="拯救者 Y700" decoding="async" height="1024" loading="lazy" src="assets/images/legion-y700.png" width="1536"/>
+<img alt="Legion Y700" decoding="async" height="1024" loading="lazy" src="assets/images/legion-y700.png" width="1536"/>
 </div>
 <div class="card-content">
 <div class="hallmark">LENOVO · COMPACT GAMING SLATE</div>
-<h3 class="product-name">拯救者 Y700</h3>
+<h3 class="product-name">Legion Y700</h3>
 <div class="specs">
 <div class="spec-row"><span class="spec-label">Display</span><span class="spec-val">8.8" 2.5K 165Hz</span></div>
 <div class="spec-row"><span class="spec-label">Chip</span><span class="spec-val">Snapdragon 8 Gen 3</span></div>
@@ -1625,7 +1695,7 @@
 <div class="section-wrapper" id="sec-laptop">
 <div class="chapter-head">
 <span class="chapter-eyebrow">laptops</span>
-<h2 class="section-title"><span class="lang-pair"><span class="lang-zh" lang="zh-CN">移动工作站</span><span aria-hidden="true" class="lang-divider"> / </span><span class="lang-en" lang="en">Mobile workstations</span></span><span class="section-count">(8 / 8 PIECES)</span></h2>
+<h2 class="section-title"><span>Mobile Workstations</span><span class="section-count">(8 / 8 PIECES)</span></h2>
 <div class="chapter-rule"></div>
 </div>
 <div class="grid">
@@ -1810,7 +1880,7 @@
 <div class="section-wrapper" id="sec-desktop">
 <div class="chapter-head">
 <span class="chapter-eyebrow">desktops</span>
-<h2 class="section-title"><span class="lang-pair"><span class="lang-zh" lang="zh-CN">终极主机</span><span aria-hidden="true" class="lang-divider"> / </span><span class="lang-en" lang="en">Ultimate rigs</span></span><span class="section-count">(2 / 2 PIECES)</span></h2>
+<h2 class="section-title"><span>Ultimate Rigs</span><span class="section-count">(2 / 2 PIECES)</span></h2>
 <div class="chapter-rule"></div>
 </div>
 <div class="grid">
@@ -1863,7 +1933,7 @@
 <div class="section-wrapper" id="sec-peripheral">
 <div class="chapter-head">
 <span class="chapter-eyebrow">peripherals</span>
-<h2 class="section-title"><span class="lang-pair"><span class="lang-zh" lang="zh-CN">装备与外设</span><span aria-hidden="true" class="lang-divider"> / </span><span class="lang-en" lang="en">Weapons &amp; peripherals</span></span><span class="section-count">(6 / 6 PIECES)</span></h2>
+<h2 class="section-title"><span>Weapons &amp; Peripherals</span><span class="section-count">(6 / 6 PIECES)</span></h2>
 <div class="chapter-rule"></div>
 </div>
 <div class="grid">
@@ -1940,7 +2010,7 @@
 <div class="d-brand">APPLE // RETRO ESSENTIAL</div>
 <div class="d-title">EarPods</div>
 <div class="d-why">Never left. No ANC, no spatial audio, just crystal clear call quality and zero latency. Underrated forever.</div>
-<div class="d-desc">Wired earphones that need no charging and add no latency — plug and play.</div>
+<div class="d-desc">Wired earphones that need no charging and add no latency, plug and play.</div>
 <div class="d-spec" data-label="Acoustics">Custom tuned drivers | Deeper, richer bass tones</div>
 <div class="d-spec" data-label="Design">Defined by the geometry of the ear for enhanced comfort</div>
 <div class="d-spec" data-label="Controls">Built-in remote | Adjust volume, control playback, answer calls</div>
@@ -2032,11 +2102,11 @@
 </div>
 </main>
 <footer class="site-footer">
-<div class="footer-line" data-en="TECH ARSENAL / Catalogue" data-zh="TECH ARSENAL / 总目录">tech arsenal / 总目录</div>
+<div class="footer-line">TECH ARSENAL / Catalogue</div>
 </footer>
 <div class="empty-state" hidden="" id="emptyState">
-<h2 data-en="No records match that search." data-zh="没有匹配记录">No records match that search.</h2>
-<p data-en="Try a different device name, brand, specification, or chapter. The catalogue will return every record when the search is cleared." data-zh="试试其他设备名称、品牌、规格或章节。清除搜索后，目录会恢复显示全部记录。">Try a different device name, brand, specification, or chapter. The catalogue will return every record when the search is cleared.</p>
+<h2>No records match that search.</h2>
+<p>Try a different device name, brand, specification, or chapter. The catalogue will return every record when the search is cleared.</p>
 </div>
 <script src="arsenal-site.js"></script>
 <script>
@@ -2097,13 +2167,13 @@
                 card.setAttribute("aria-controls", "techDossier");
                 card.setAttribute("aria-expanded", "false");
                 const productName = card.querySelector(".product-name")?.textContent.trim() || "device";
-                card.setAttribute("aria-label", "查看 " + productName + " 档案 / View " + productName + " dossier");
+                card.setAttribute("aria-label", "View " + productName + " dossier");
                 const content = card.querySelector(".card-content");
                 if (content && !content.querySelector(".record-action")) {
                     const action = document.createElement("span");
                     action.className = "record-action";
                     action.setAttribute("aria-hidden", "true");
-                    action.innerHTML = window.arsenalBilingual("查看档案", "View dossier");
+                    action.innerHTML = "View dossier";
                     content.appendChild(action);
                 }
             });
@@ -2145,11 +2215,8 @@
                 emptyState.hidden = visibleTotal !== 0;
                 controlBar.classList.toggle("has-query", Boolean(query) || activeFilter !== "all");
                 resultSummary.innerHTML = visibleTotal === 0
-                ? window.arsenalBilingual("没有匹配记录", "No matching records")
-                : window.arsenalBilingual(
-                    "显示 " + visibleTotal + " 条记录，分布于 " + visibleChapters + " 个章节",
-                    "Showing " + visibleTotal + " record" + (visibleTotal === 1 ? "" : "s") + " across " + visibleChapters + " chapter" + (visibleChapters === 1 ? "" : "s")
-                );
+                ? "No matching records"
+                : "Showing " + visibleTotal + " record" + (visibleTotal === 1 ? "" : "s") + " across " + visibleChapters + " chapter" + (visibleChapters === 1 ? "" : "s");
 
             if (scrollToResult && visibleTotal) {
                 const firstSection = sections.find((section) => !section.hidden);
@@ -2216,18 +2283,151 @@
 
             const status = card.dataset.status === "owned" ? "owned" : "wishlist";
             dossierStatus.className = "dossier-status " + status;
-            dossierStatus.innerHTML = window.arsenalBilingual(status === "owned" ? "已入藏" : "关注中", status === "owned" ? "In collection" : "Pursuing");
+            dossierStatus.innerHTML = status === "owned" ? "In collection" : "Pursuing";
+
+            function formatDossierSpecValue(label, rawHtml) {
+                if (rawHtml.toLowerCase().includes("<br")) {
+                    const lines = rawHtml.split(/<br\s*\/?>/i).map((l) => l.trim()).filter(Boolean);
+                    let out = '<div class="dossier-lens-grid">';
+                    for (const line of lines) {
+                        const m = line.match(/^\s*\[(.*?)\]\s*(.*)$/);
+                        if (m) {
+                            const tag = m[1];
+                            const desc = m[2];
+                            const subParts = desc.split("|").map((p) => p.trim()).filter(Boolean);
+                            const chips = subParts.map((p, idx) => `<span class="spec-chip ${idx === 0 ? "is-lead" : ""}">${p}</span>`).join("");
+                            out += `<div class="lens-item"><span class="lens-tag">${tag}</span><div class="lens-chips">${chips}</div></div>`;
+                        } else {
+                            const subParts = line.split("|").map((p) => p.trim()).filter(Boolean);
+                            const chips = subParts.map((p, idx) => `<span class="spec-chip ${idx === 0 ? "is-lead" : ""}">${p}</span>`).join("");
+                            out += `<div class="lens-item"><div class="lens-chips">${chips}</div></div>`;
+                        }
+                    }
+                    out += "</div>";
+                    return out;
+                }
+
+                if (label === "Camera Sensors" && rawHtml.includes(";")) {
+                    const items = rawHtml.split(";").map((i) => i.trim()).filter(Boolean);
+                    const chips = items.map((item) => {
+                        if (item.includes(":")) {
+                            const [role, model] = item.split(/:\s*(.+)/);
+                            return `<div class="sensor-chip"><span class="sensor-role">${role.trim()}:</span> <span class="sensor-model">${(model || "").trim()}</span></div>`;
+                        }
+                        return `<div class="sensor-chip">${item.trim()}</div>`;
+                    }).join("");
+                    return `<div class="dossier-chips-stack">${chips}</div>`;
+                }
+
+                if (label === "Focal Lengths") {
+                    if (rawHtml.includes("|")) {
+                        const parts = rawHtml.split("|").map((p) => p.trim()).filter(Boolean);
+                        const chips = parts.map((part, idx) => `<span class="spec-chip ${idx === 0 ? "is-lead" : ""}">${part}</span>`).join("");
+                        return `<div class="dossier-chips-wrap">${chips}</div>`;
+                    }
+                    return `<div class="dossier-chips-wrap"><span class="spec-chip is-lead">${rawHtml}</span></div>`;
+                }
+
+                if (rawHtml.includes("|")) {
+                    const parts = rawHtml.split("|").map((p) => p.trim()).filter(Boolean);
+                    const chips = parts.map((part, idx) => `<span class="spec-chip ${idx === 0 ? "is-lead" : ""}">${part}</span>`).join("");
+                    return `<div class="dossier-chips-wrap">${chips}</div>`;
+                }
+
+                return `<span class="spec-value-single">${rawHtml}</span>`;
+            }
 
             dossierSpecs.innerHTML = "";
-            details.querySelectorAll(".d-spec").forEach((spec) => {
+            const wideLabels = new Set([
+                "Camera System", "Camera Sensors", "Focal Lengths", "Display", "Inner Display", "Cover Display",
+                "Build", "Build Total", "Feature", "Features", "New Features", "Connectivity", "I/O", "Ports & Gaming Features"
+            ]);
+
+            const allSpecs = Array.from(details.querySelectorAll(".d-spec"));
+            const camLabels = new Set(["Camera System", "Camera Sensors", "Focal Lengths"]);
+            const camSpecs = allSpecs.filter((s) => camLabels.has(s.dataset.label));
+            const shouldCombineCam = camSpecs.length >= 2;
+            let camSuiteRendered = false;
+
+            allSpecs.forEach((spec) => {
+                const labelText = spec.dataset.label || "Specification";
+                const rawHtml = spec.innerHTML.trim();
+
+                if (shouldCombineCam && camLabels.has(labelText)) {
+                    if (camSuiteRendered) return;
+                    camSuiteRendered = true;
+
+                    const camSysSpec = allSpecs.find((s) => s.dataset.label === "Camera System");
+                    const camSensSpec = allSpecs.find((s) => s.dataset.label === "Camera Sensors");
+                    const camFocSpec = allSpecs.find((s) => s.dataset.label === "Focal Lengths");
+
+                    const camSuite = document.createElement("div");
+                    camSuite.className = "dossier-spec is-wide dossier-cam-suite";
+
+                    let sectionsHtml = "";
+                    if (camSysSpec) {
+                        sectionsHtml += `
+                            <div class="cam-suite-section">
+                                <div class="cam-suite-sublabel">
+                                    <span class="cam-sublabel-index">01</span>
+                                    <span class="cam-sublabel-title">Optics &amp; Modules</span>
+                                </div>
+                                <div class="cam-suite-content">
+                                    ${formatDossierSpecValue("Camera System", camSysSpec.innerHTML.trim())}
+                                </div>
+                            </div>`;
+                    }
+                    if (camSensSpec) {
+                        sectionsHtml += `
+                            <div class="cam-suite-section">
+                                <div class="cam-suite-sublabel">
+                                    <span class="cam-sublabel-index">02</span>
+                                    <span class="cam-sublabel-title">Sensor Matrix</span>
+                                </div>
+                                <div class="cam-suite-content">
+                                    ${formatDossierSpecValue("Camera Sensors", camSensSpec.innerHTML.trim())}
+                                </div>
+                            </div>`;
+                    }
+                    if (camFocSpec) {
+                        sectionsHtml += `
+                            <div class="cam-suite-section">
+                                <div class="cam-suite-sublabel">
+                                    <span class="cam-sublabel-index">03</span>
+                                    <span class="cam-sublabel-title">Focal Length Range</span>
+                                </div>
+                                <div class="cam-suite-content">
+                                    ${formatDossierSpecValue("Focal Lengths", camFocSpec.innerHTML.trim())}
+                                </div>
+                            </div>`;
+                    }
+
+                    camSuite.innerHTML = `
+                        <div class="cam-suite-header">
+                            <span class="dossier-spec-label">Camera Suite (3-in-1)</span>
+                            <span class="cam-suite-badge">Optics · Sensors · Focals</span>
+                        </div>
+                        <div class="cam-suite-body">
+                            ${sectionsHtml}
+                        </div>
+                    `;
+                    dossierSpecs.appendChild(camSuite);
+                    return;
+                }
+
                 const row = document.createElement("div");
                 row.className = "dossier-spec";
+                const isWide = wideLabels.has(labelText) || rawHtml.includes("<br") || rawHtml.length > 72;
+                if (isWide) row.classList.add("is-wide");
+
                 const label = document.createElement("span");
                 label.className = "dossier-spec-label";
-                label.textContent = spec.dataset.label || "Specification";
-                const value = document.createElement("span");
+                label.textContent = labelText;
+
+                const value = document.createElement("div");
                 value.className = "dossier-spec-value";
-                value.innerHTML = spec.innerHTML;
+                value.innerHTML = formatDossierSpecValue(labelText, rawHtml);
+
                 row.append(label, value);
                 dossierSpecs.appendChild(row);
             });
@@ -2317,7 +2517,7 @@
         addRecordActions();
         applyFilters();
 
-        // ===== 清单/图册视图切换 — 见 implementation-plan.md §3.1 =====
+        // ===== View mode switcher: Gallery and List =====
         const VIEW_KEY = "arsenal-view-mode";
         const catalogueMain = document.getElementById("catalogue-main");
         const viewButtons = [...document.querySelectorAll(".view-btn")];
