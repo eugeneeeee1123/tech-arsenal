@@ -275,6 +275,13 @@
             background: rgba(255, 255, 255, 0.08);
         }
 
+        /* ===== Hidden State Enforcement ===== */
+        [hidden],
+        .compare-empty-card[hidden],
+        .compare-table-card[hidden] {
+            display: none !important;
+        }
+
         /* ===== Empty State ===== */
         .compare-empty-card {
             background: linear-gradient(180deg, rgba(20, 27, 40, 0.8) 0%, rgba(14, 20, 30, 0.8) 100%);
@@ -526,141 +533,248 @@
         }
 
         @media (max-width: 640px) {
+            html, body {
+                overflow-x: hidden !important;
+                max-width: 100% !important;
+            }
+
+            /* Container sizing */
+            .collection {
+                width: 100% !important;
+                max-width: 100% !important;
+                padding: 0 10px !important;
+                box-sizing: border-box !important;
+            }
+
+            .top-row {
+                flex-direction: column !important;
+                align-items: stretch !important;
+                gap: 10px !important;
+            }
+
+            .top-row .page-nav {
+                display: grid !important;
+                grid-template-columns: repeat(4, 1fr) !important;
+                width: 100% !important;
+                gap: 4px !important;
+            }
+
+            .top-row .page-nav .page-link {
+                padding: 7px 3px !important;
+                text-align: center !important;
+                font-size: 0.65rem !important;
+                min-width: 0 !important;
+            }
+
+            .masthead {
+                padding: 10px 0 6px !important;
+            }
+
+            .main-title {
+                font-size: clamp(1.6rem, 7vw, 2.2rem) !important;
+            }
+
             /* Hide Slot 3 entirely on mobile (max 2 devices compare) */
             #slotCardC {
                 display: none !important;
             }
 
             .compare-deck {
-                grid-template-columns: 1fr 1fr;
-                gap: 10px;
-                margin: 16px 0 12px;
+                display: grid !important;
+                grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important;
+                gap: 8px !important;
+                margin: 12px 0 10px !important;
+                width: 100% !important;
+                box-sizing: border-box !important;
             }
 
             .compare-slot {
-                padding: 10px;
-                gap: 8px;
+                padding: 8px !important;
+                gap: 6px !important;
+                min-width: 0 !important;
+                width: 100% !important;
+                box-sizing: border-box !important;
+                overflow: hidden !important;
+            }
+
+            .slot-header {
+                gap: 4px !important;
             }
 
             .slot-header .slot-tag {
-                font-size: 0.60rem;
-                padding: 2px 5px;
-                letter-spacing: 0.04em;
+                font-size: 0.55rem !important;
+                padding: 2px 4px !important;
+                letter-spacing: 0.03em !important;
+                white-space: nowrap !important;
+                overflow: hidden !important;
+                text-overflow: ellipsis !important;
+                max-width: 95px !important;
             }
 
             .slot-clear-btn {
-                font-size: 0.70rem;
-                padding: 2px 4px;
+                font-size: 0.65rem !important;
+                padding: 2px 4px !important;
+                flex-shrink: 0 !important;
             }
 
             .slot-preview {
-                padding: 6px 8px;
-                gap: 8px;
+                padding: 4px 6px !important;
+                gap: 6px !important;
+                min-width: 0 !important;
             }
 
             .slot-thumb {
-                width: 32px;
-                height: 32px;
-                flex: 0 0 32px;
+                width: 28px !important;
+                height: 28px !important;
+                flex: 0 0 28px !important;
+            }
+
+            .slot-info {
+                min-width: 0 !important;
+                overflow: hidden !important;
             }
 
             .slot-lot {
-                font-size: 0.58rem;
+                font-size: 0.54rem !important;
             }
 
             .slot-title {
-                font-size: 0.78rem;
+                font-size: 0.72rem !important;
+                white-space: nowrap !important;
+                overflow: hidden !important;
+                text-overflow: ellipsis !important;
+                min-width: 0 !important;
             }
 
             .lab-select {
-                font-size: 0.72rem;
-                padding: 7px 20px 7px 8px;
-                background-position: right 6px center;
+                font-size: 0.68rem !important;
+                padding: 6px 20px 6px 6px !important;
+                background-position: right 6px center !important;
+                min-width: 0 !important;
+                width: 100% !important;
+                box-sizing: border-box !important;
             }
 
             /* Toolbar on mobile */
             .compare-toolbar {
-                flex-direction: column;
-                align-items: stretch;
-                gap: 10px;
-                padding: 8px 10px;
-                margin-bottom: 16px;
+                flex-direction: column !important;
+                align-items: stretch !important;
+                gap: 8px !important;
+                padding: 8px !important;
+                margin-bottom: 12px !important;
+                width: 100% !important;
+                max-width: 100% !important;
+                box-sizing: border-box !important;
+                overflow: hidden !important;
             }
 
             .preset-group {
-                display: flex;
-                flex-wrap: nowrap;
-                overflow-x: auto;
-                -webkit-overflow-scrolling: touch;
-                gap: 6px;
-                padding-bottom: 4px;
-                scrollbar-width: none;
+                display: flex !important;
+                flex-wrap: nowrap !important;
+                overflow-x: auto !important;
+                -webkit-overflow-scrolling: touch !important;
+                gap: 6px !important;
+                padding-bottom: 3px !important;
+                scrollbar-width: none !important;
+                width: 100% !important;
+                max-width: 100% !important;
+                box-sizing: border-box !important;
             }
 
             .preset-group::-webkit-scrollbar {
-                display: none;
+                display: none !important;
             }
 
             .preset-chip {
-                flex: 0 0 auto;
-                white-space: nowrap;
-                padding: 4px 8px;
-                font-size: 0.64rem;
+                flex: 0 0 auto !important;
+                white-space: nowrap !important;
+                padding: 4px 8px !important;
+                font-size: 0.62rem !important;
             }
 
             .toolbar-actions {
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                width: 100%;
-                margin-left: 0;
-                gap: 8px;
+                display: flex !important;
+                align-items: center !important;
+                justify-content: space-between !important;
+                width: 100% !important;
+                gap: 6px !important;
             }
 
             .diff-toggle-label {
-                font-size: 0.72rem;
+                font-size: 0.68rem !important;
             }
 
             .toolbar-btn {
-                font-size: 0.70rem;
-                padding: 5px 8px;
+                font-size: 0.66rem !important;
+                padding: 5px 8px !important;
+            }
+
+            /* Empty state on mobile */
+            .compare-empty-card {
+                padding: 28px 16px !important;
+                gap: 10px !important;
+                margin-bottom: 24px !important;
+            }
+
+            .empty-presets {
+                flex-direction: column !important;
+                width: 100% !important;
+            }
+
+            .empty-preset-card {
+                width: 100% !important;
+                box-sizing: border-box !important;
+                justify-content: space-between !important;
+                font-size: 0.76rem !important;
+                padding: 8px 12px !important;
             }
 
             /* GSMArena-Style 2-Device Mobile Compare Table */
             .compare-table-card {
-                border-radius: 8px;
-                overflow: hidden;
-                margin-bottom: 32px;
+                border-radius: 8px !important;
+                overflow: hidden !important;
+                margin-bottom: 28px !important;
+                width: 100% !important;
+                max-width: 100% !important;
+                box-sizing: border-box !important;
             }
 
             .compare-table-scroller {
-                width: 100%;
-                overflow-x: visible;
+                width: 100% !important;
+                max-width: 100% !important;
+                overflow: hidden !important;
+                box-sizing: border-box !important;
             }
 
+            table.compare-table,
             .compare-table {
-                display: block;
-                width: 100%;
-                border-collapse: collapse;
+                display: block !important;
+                width: 100% !important;
+                max-width: 100% !important;
+                min-width: 0 !important;
+                border-collapse: collapse !important;
+                box-sizing: border-box !important;
             }
 
             .compare-table thead,
             .compare-table tbody {
-                display: block;
-                width: 100%;
+                display: block !important;
+                width: 100% !important;
+                box-sizing: border-box !important;
             }
 
             /* Sticky 2-Column Device Header */
             .compare-table thead tr {
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-                width: 100%;
-                position: sticky;
-                top: 0;
-                z-index: 25;
-                background: #111723;
-                border-bottom: 1px solid var(--line-strong, rgba(160, 176, 204, 0.25));
-                box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45);
+                display: grid !important;
+                grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important;
+                width: 100% !important;
+                position: sticky !important;
+                top: 0 !important;
+                z-index: 25 !important;
+                background: #111723 !important;
+                border-bottom: 2px solid var(--accent, #6f86ff) !important;
+                box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45) !important;
+                box-sizing: border-box !important;
             }
 
             /* Hide 'SPECIFICATION' label in sticky header */
@@ -669,104 +783,113 @@
             }
 
             .compare-table thead th {
-                display: flex;
-                align-items: center;
-                padding: 8px 10px;
-                border: none;
-                background: transparent;
-                min-width: 0;
+                display: flex !important;
+                align-items: center !important;
+                padding: 8px 6px !important;
+                border: none !important;
+                background: transparent !important;
+                min-width: 0 !important;
+                width: 100% !important;
+                box-sizing: border-box !important;
+                overflow: hidden !important;
             }
 
-            .compare-table thead th:first-of-type {
-                border-right: 1px solid var(--line, rgba(160, 176, 204, 0.15));
+            .compare-table thead th:nth-child(2) {
+                border-right: 1px solid var(--line, rgba(160, 176, 204, 0.15)) !important;
             }
 
             .compare-head-cell {
-                display: flex;
-                align-items: center;
-                gap: 8px;
-                min-width: 0;
-                width: 100%;
+                display: flex !important;
+                align-items: center !important;
+                gap: 6px !important;
+                min-width: 0 !important;
+                width: 100% !important;
+                overflow: hidden !important;
             }
 
             .compare-head-thumb {
-                width: 32px;
-                height: 32px;
-                flex: 0 0 32px;
-                padding: 2px;
+                width: 28px !important;
+                height: 28px !important;
+                flex: 0 0 28px !important;
+                padding: 1px !important;
             }
 
             .compare-head-meta {
-                min-width: 0;
-                flex: 1;
+                min-width: 0 !important;
+                flex: 1 !important;
+                overflow: hidden !important;
             }
 
             .compare-head-lot {
-                font-size: 0.58rem;
-                color: var(--accent-2, #91a5ff);
+                font-size: 0.55rem !important;
+                color: var(--accent-2, #91a5ff) !important;
+                display: block !important;
             }
 
             .compare-head-title {
-                font-size: 0.78rem;
-                white-space: nowrap;
-                overflow: hidden;
-                text-overflow: ellipsis;
+                font-size: 0.72rem !important;
+                white-space: nowrap !important;
+                overflow: hidden !important;
+                text-overflow: ellipsis !important;
+                min-width: 0 !important;
             }
 
             /* Each spec row on mobile */
             .compare-table tbody tr {
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-                width: 100%;
-                border-bottom: 1px solid var(--line, rgba(160, 176, 204, 0.12));
+                display: grid !important;
+                grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important;
+                width: 100% !important;
+                border-bottom: 1px solid var(--line, rgba(160, 176, 204, 0.12)) !important;
+                box-sizing: border-box !important;
             }
 
             /* Full-width Specification Category Bar (GSMArena style) */
             .compare-table tbody tr th {
-                grid-column: 1 / -1;
-                display: flex;
-                align-items: center;
-                width: 100%;
-                box-sizing: border-box;
-                background: rgba(14, 21, 33, 0.95);
-                border-right: none;
-                border-bottom: 1px solid var(--line, rgba(160, 176, 204, 0.1));
-                border-left: 3px solid transparent;
-                padding: 7px 10px;
-                font-family: var(--mono);
-                font-size: 0.65rem;
-                font-weight: 700;
-                letter-spacing: 0.08em;
-                text-transform: uppercase;
-                color: var(--accent-2, #91a5ff);
+                grid-column: 1 / -1 !important;
+                display: block !important;
+                width: 100% !important;
+                box-sizing: border-box !important;
+                background: rgba(14, 21, 33, 0.95) !important;
+                border-right: none !important;
+                border-bottom: 1px solid var(--line, rgba(160, 176, 204, 0.1)) !important;
+                border-left: 3px solid transparent !important;
+                padding: 6px 8px !important;
+                font-family: var(--mono) !important;
+                font-size: 0.62rem !important;
+                font-weight: 700 !important;
+                letter-spacing: 0.08em !important;
+                text-transform: uppercase !important;
+                color: var(--accent-2, #91a5ff) !important;
+                text-align: left !important;
             }
 
-            /* Value cells side by side */
+            /* Value cells side by side (strictly 50% each) */
             .compare-table tbody tr td {
-                display: block;
-                width: 100%;
-                box-sizing: border-box;
-                padding: 8px 10px;
-                font-size: 0.76rem;
-                line-height: 1.45;
-                border-bottom: none;
-                min-width: 0;
-                word-break: break-word;
+                display: block !important;
+                width: 100% !important;
+                box-sizing: border-box !important;
+                padding: 8px 8px !important;
+                font-size: 0.72rem !important;
+                line-height: 1.45 !important;
+                border-bottom: none !important;
+                min-width: 0 !important;
+                overflow-wrap: anywhere !important;
+                word-break: break-word !important;
             }
 
             .compare-table tbody tr td:first-of-type {
-                border-right: 1px solid var(--line, rgba(160, 176, 204, 0.12));
+                border-right: 1px solid var(--line, rgba(160, 176, 204, 0.12)) !important;
             }
 
             /* Difference Highlighting */
             .compare-table.highlight-diff tbody tr.row-diff th {
-                border-left: 3px solid var(--accent, #6f86ff);
-                color: #ffffff;
-                background: rgba(111, 134, 255, 0.14);
+                border-left: 3px solid var(--accent, #6f86ff) !important;
+                color: #ffffff !important;
+                background: rgba(111, 134, 255, 0.14) !important;
             }
 
             .compare-table.highlight-diff tbody tr.row-diff td {
-                background: rgba(111, 134, 255, 0.035);
+                background: rgba(111, 134, 255, 0.035) !important;
             }
         }
     </style>
