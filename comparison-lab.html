@@ -499,7 +499,33 @@
             outline-offset: 2px;
         }
 
-        @media (max-width: 900px) {
+        @media (min-width: 641px) and (max-width: 1024px) {
+            .compare-deck {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+                gap: 12px;
+                margin: 18px 0 14px;
+            }
+            .compare-slot {
+                padding: 12px 14px;
+                gap: 10px;
+            }
+            .lab-select {
+                font-size: 0.8rem;
+                padding: 8px 28px 8px 10px;
+            }
+            .slot-thumb {
+                width: 36px;
+                height: 36px;
+            }
+            .slot-title {
+                font-size: 0.85rem;
+            }
+            .compare-toolbar {
+                gap: 12px;
+            }
+        }
+
+        @media (max-width: 640px) {
             .compare-deck {
                 grid-template-columns: 1fr;
             }
@@ -511,9 +537,6 @@
                 margin-left: 0;
                 justify-content: space-between;
             }
-        }
-
-        @media (max-width: 600px) {
             .compare-slot {
                 padding: 12px 14px;
             }

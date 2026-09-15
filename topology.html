@@ -370,13 +370,42 @@
             outline-offset: 3px;
         }
 
-        /* Responsive layout */
-        @media (max-width: 1024px) {
+        /* iPad / Tablet Responsive Layout (641px - 1024px) */
+        @media (min-width: 641px) and (max-width: 1024px) {
             .zone-grid {
-                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 16px;
             }
             .desk-core-card {
-                grid-column: span 1;
+                padding: 22px 24px;
+            }
+            .duo-container {
+                grid-template-columns: 1fr auto 1.25fr;
+                gap: 10px;
+                align-items: center;
+            }
+            .duo-bridge {
+                flex-direction: column;
+                align-items: center;
+                gap: 5px;
+            }
+            .ring-card {
+                padding: 18px;
+            }
+            .setup-intro {
+                font-size: 0.92rem;
+                margin: 14px 0 36px;
+            }
+        }
+
+        /* Mobile Responsive Layout (<= 640px) */
+        @media (max-width: 640px) {
+            .zone-grid {
+                grid-template-columns: 1fr;
+            }
+            .desk-core-card,
+            .ring-card {
+                padding: 16px 14px;
             }
             .duo-container {
                 grid-template-columns: 1fr;
@@ -389,16 +418,6 @@
             }
             .duo-bridge-line {
                 width: 32px;
-            }
-        }
-
-        @media (max-width: 640px) {
-            .zone-grid {
-                grid-template-columns: 1fr;
-            }
-            .desk-core-card,
-            .ring-card {
-                padding: 16px 14px;
             }
             .setup-intro {
                 font-size: 0.85rem;

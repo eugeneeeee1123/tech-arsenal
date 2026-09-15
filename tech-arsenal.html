@@ -245,7 +245,7 @@
             color: var(--accent-2);
             opacity: 1;
         }
-        @media (max-width: 768px) {
+        @media (max-width: 640px) {
             #catalogue-main.is-list .grid {
                 display: flex !important;
                 flex-direction: column !important;
@@ -408,6 +408,103 @@
                 color: var(--text, #edf2fb) !important;
                 opacity: 0.95 !important;
                 word-break: break-word !important;
+            }
+        }
+        /* ===== iPad / Tablet Responsive List View (768px - 1024px) ===== */
+        @media (min-width: 641px) and (max-width: 1024px) {
+            #catalogue-main.is-list .grid {
+                display: flex !important;
+                flex-direction: column !important;
+                gap: 1px !important;
+                background: var(--line, rgba(255,255,255,.12)) !important;
+                border: 1px solid var(--line, rgba(255,255,255,.12)) !important;
+                padding: 0 !important;
+            }
+            #catalogue-main.is-list .card,
+            #catalogue-main.is-list .card:not(.is-lead),
+            #catalogue-main.is-list .card.is-lead {
+                display: grid !important;
+                grid-template-columns: 50px 44px minmax(150px, 1.1fr) minmax(260px, 1.8fr) auto !important;
+                grid-column: 1 / -1 !important;
+                align-items: center !important;
+                column-gap: 12px !important;
+                padding: 10px 14px !important;
+                min-height: 0 !important;
+                height: auto !important;
+                border: 0 !important;
+                border-bottom: 1px solid var(--line, rgba(255,255,255,.08)) !important;
+                border-radius: 0 !important;
+                background: var(--panel-solid, #14171f) !important;
+                box-shadow: none !important;
+            }
+            #catalogue-main.is-list .lot-number {
+                font-size: 11px !important;
+                opacity: 0.7 !important;
+            }
+            #catalogue-main.is-list .img-box,
+            #catalogue-main.is-list .card.is-lead .img-box,
+            #catalogue-main.is-list .card:not(.is-lead) .img-box {
+                width: 44px !important;
+                height: 44px !important;
+                min-height: 44px !important;
+                max-height: 44px !important;
+                flex: 0 0 44px !important;
+                padding: 3px !important;
+            }
+            #catalogue-main.is-list .product-name,
+            #catalogue-main.is-list .card.is-lead .product-name,
+            #catalogue-main.is-list .card:not(.is-lead) .product-name {
+                font-size: 14px !important;
+                white-space: nowrap !important;
+                overflow: hidden !important;
+                text-overflow: ellipsis !important;
+            }
+            #catalogue-main.is-list .hallmark,
+            #catalogue-main.is-list .card.is-lead .hallmark,
+            #catalogue-main.is-list .card:not(.is-lead) .hallmark {
+                font-size: 10px !important;
+                white-space: nowrap !important;
+                overflow: hidden !important;
+                text-overflow: ellipsis !important;
+            }
+            #catalogue-main.is-list .specs,
+            #catalogue-main.is-list .card.is-lead .specs,
+            #catalogue-main.is-list .card:not(.is-lead) .specs {
+                display: flex !important;
+                flex-direction: row !important;
+                flex-wrap: wrap !important;
+                gap: 4px 8px !important;
+                overflow: visible !important;
+                max-width: 100% !important;
+                padding: 0 !important;
+                border: 0 !important;
+            }
+            #catalogue-main.is-list .spec-row {
+                display: inline-flex !important;
+                flex-direction: row !important;
+                align-items: baseline !important;
+                gap: 4px !important;
+                padding: 2px 7px !important;
+                background: rgba(255, 255, 255, 0.04) !important;
+                border: 1px solid rgba(255, 255, 255, 0.08) !important;
+                border-radius: 4px !important;
+                white-space: nowrap !important;
+                min-width: 0 !important;
+            }
+            #catalogue-main.is-list .spec-label {
+                font-size: 9px !important;
+                opacity: 0.55 !important;
+                color: var(--muted-2, #7f8ca2) !important;
+                text-transform: uppercase !important;
+            }
+            #catalogue-main.is-list .spec-val {
+                font-size: 11px !important;
+                opacity: 0.95 !important;
+                color: var(--text, #edf2fb) !important;
+            }
+            #catalogue-main.is-list .seal {
+                font-size: 10px !important;
+                padding: 3px 8px !important;
             }
         }
         @media (max-width: 640px) {
@@ -2701,7 +2798,7 @@
             btn.addEventListener("click", () => applyView(btn.dataset.view));
         });
 
-        let initialView = window.innerWidth <= 768 ? "gallery" : "list";
+        let initialView = window.innerWidth <= 1024 ? "gallery" : "list";
         try {
             const saved = localStorage.getItem(VIEW_KEY);
             if (saved === "gallery" || saved === "list") initialView = saved;
