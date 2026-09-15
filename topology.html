@@ -392,6 +392,21 @@
             }
         }
 
+        @media (max-width: 640px) {
+            .zone-grid {
+                grid-template-columns: 1fr;
+            }
+            .desk-core-card,
+            .ring-card {
+                padding: 16px 14px;
+            }
+            .setup-intro {
+                font-size: 0.85rem;
+                padding-left: 10px;
+                margin: 12px 0 32px;
+            }
+        }
+
         /* Reduced motion preference */
         @media (prefers-reduced-motion: reduce) {
             .ring-card, .desk-core-card {

@@ -3018,6 +3018,77 @@ body.dossier-open {
     }
 }
 
+@media (max-width: 780px) {
+    .dossier {
+        padding: 10px;
+    }
+
+    .dossier-panel {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 1fr;
+        width: 100%;
+        height: calc(100dvh - 20px);
+        max-height: calc(100dvh - 20px);
+        border-radius: 10px;
+    }
+
+    .dossier-visual {
+        height: 180px;
+        min-height: 150px;
+        max-height: 200px;
+        padding: 16px;
+        border-right: none;
+        border-bottom: 1px solid var(--line);
+    }
+
+    .dossier-visual::before {
+        inset: 10px;
+    }
+
+    .dossier-visual img {
+        max-height: 140px;
+    }
+
+    .dossier-image-note {
+        right: 14px;
+        bottom: 8px;
+        left: 14px;
+        font-size: 0.52rem;
+    }
+
+    .dossier-body {
+        padding: 18px 16px 24px;
+    }
+
+    .dossier-title {
+        font-size: clamp(1.8rem, 6vw, 2.6rem);
+        max-width: 100%;
+        margin: 16px 0 6px;
+    }
+
+    .dossier-why {
+        margin: 16px 0 0;
+        padding-top: 12px;
+        font-size: 0.92rem;
+    }
+
+    .dossier-desc {
+        margin: 10px 0 0;
+        font-size: 0.82rem;
+    }
+
+    .dossier-specs {
+        grid-template-columns: 1fr;
+        gap: 8px;
+        margin-top: 18px;
+        padding-top: 14px;
+    }
+
+    .dossier-spec {
+        padding: 8px 10px;
+    }
+}
+
 .collection {
     width: 100%;
     max-width: var(--shell);
@@ -4538,6 +4609,14 @@ body.dossier-open {
     }
 }
 
+@media (max-width: 640px) {
+    .catalogue-page .card,
+    .catalogue-page .card:not(.is-lead),
+    .catalogue-page .card.is-lead {
+        grid-column: span 12 !important;
+    }
+}
+
 @media (max-width: 760px) {
     .catalogue-page {
         overflow-x: hidden;
@@ -4555,12 +4634,14 @@ body.dossier-open {
     .catalogue-page .top-row .page-link {
         min-width: 0;
         width: 100%;
-        justify-content: flex-start;
-        padding-inline: 6px;
+        justify-content: center;
+        text-align: center;
+        padding-inline: 8px;
+        min-height: 36px;
         white-space: normal;
         overflow-wrap: anywhere;
         line-height: 1.25;
-        font-size: 0.56rem;
+        font-size: 0.62rem;
     }
 
     .catalogue-page .control-bar,
@@ -4571,18 +4652,31 @@ body.dossier-open {
 
     .catalogue-page .filter-bar {
         justify-content: flex-start;
-        display: grid;
+        display: flex;
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        -webkit-overflow-scrolling: touch;
+        gap: 8px;
+        padding-bottom: 6px;
         width: 100%;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 6px;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+
+    .catalogue-page .filter-bar::-webkit-scrollbar {
+        display: none;
     }
 
     .catalogue-page .filter-btn {
-        width: 100%;
+        flex: 0 0 auto;
+        width: auto;
         min-width: 0;
-        padding-inline: 4px;
-        white-space: normal;
-        line-height: 1.2;
+        min-height: 36px;
+        padding: 8px 14px;
+        white-space: nowrap;
+        line-height: 1;
+        font-size: 0.64rem;
+        border-radius: 20px;
     }
 
     .catalogue-page .collection-ledger {
