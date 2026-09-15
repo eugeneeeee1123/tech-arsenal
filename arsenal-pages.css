@@ -1799,83 +1799,234 @@ body {
     }
 }
 
-/* Home is a mark in the shared chrome, not a second active navigation item. */
+/* ==========================================================================
+   Precision Navigation Rail System (Desktop / Tablet / Mobile)
+   Unified across all pages: Home, Catalogue, Compare, Setup.
+   ========================================================================== */
+
+.site-header {
+    width: 100%;
+    padding: 28px 0 20px;
+    box-sizing: border-box;
+}
+
+.top-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Home brand anchor mark */
 .home-mark-link {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    flex: 0 0 46px;
-    width: 46px;
-    height: 46px;
-    min-height: 46px;
+    width: 44px;
+    height: 44px;
+    min-height: 44px;
+    flex: 0 0 44px;
     padding: 0;
-    border: 0 !important;
-    background: transparent !important;
-    color: inherit;
-    transform: none !important;
+    border-radius: 10px;
+    background: rgba(14, 20, 32, 0.65);
+    border: 1px solid var(--line-strong, rgba(160, 176, 204, 0.2));
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+                border-color 0.2s ease,
+                background-color 0.2s ease,
+                box-shadow 0.2s ease;
+    text-decoration: none;
 }
 
 .home-mark-link img {
-    width: 34px;
-    height: 34px;
+    width: 28px;
+    height: 28px;
     object-fit: contain;
-    filter: drop-shadow(0 0 16px rgba(111, 134, 255, .18));
-    transition: transform .2s ease, opacity .2s ease;
+    filter: drop-shadow(0 0 12px rgba(111, 134, 255, 0.25));
+    transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.home-mark-link:hover,
+.home-mark-link:focus-visible {
+    border-color: var(--accent, #6f86ff);
+    background: rgba(111, 134, 255, 0.1);
+    box-shadow: 0 0 16px rgba(111, 134, 255, 0.28), 0 2px 8px rgba(0, 0, 0, 0.3);
+    transform: translateY(-1px);
+    outline: none;
 }
 
 .home-mark-link:hover img,
 .home-mark-link:focus-visible img {
-    opacity: 1;
-    transform: scale(1.06);
+    transform: scale(1.08);
+    filter: drop-shadow(0 0 16px rgba(111, 134, 255, 0.45));
 }
 
-/* Keep the shared chrome on one predictable rail before it becomes a second row. */
-.top-row {
-    flex-wrap: nowrap;
+/* Nav segmented capsule track */
+.page-nav {
+    display: inline-flex;
     align-items: center;
-    gap: 16px;
+    gap: 4px;
+    padding: 4px;
+    border-radius: 10px;
+    background: rgba(10, 14, 24, 0.82);
+    border: 1px solid var(--line-strong, rgba(160, 176, 204, 0.2));
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.45), 0 4px 12px rgba(0, 0, 0, 0.25);
 }
 
-.top-row .page-nav {
-    flex: 1 1 auto;
+.page-nav .page-link {
+    display: inline-flex;
+    align-items: center;
     justify-content: center;
-    gap: 6px 12px;
+    min-height: 40px;
+    height: 40px;
+    padding: 0 18px;
+    border-radius: 7px;
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-decoration: none;
+    white-space: nowrap;
+    color: var(--muted, rgba(160, 176, 204, 0.75));
+    background: transparent;
+    border: 1px solid transparent;
+    transition: color 0.18s ease,
+                background-color 0.18s ease,
+                border-color 0.18s ease,
+                box-shadow 0.18s ease,
+                transform 0.18s ease;
 }
 
-.top-row .page-nav .page-link {
-    flex: 0 0 auto;
+.page-nav .page-link:hover {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.05);
 }
 
-@media (max-width: 1100px) {
+.page-nav .page-link:focus-visible {
+    outline: 2px solid var(--accent, #6f86ff);
+    outline-offset: 1px;
+}
+
+.page-nav .page-link.active {
+    color: #ffffff;
+    font-weight: 600;
+    background: linear-gradient(180deg, rgba(38, 50, 74, 0.95) 0%, rgba(20, 28, 42, 0.95) 100%);
+    border-color: rgba(145, 165, 255, 0.42);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35),
+                inset 0 1px 0 rgba(255, 255, 255, 0.15),
+                0 0 12px rgba(111, 134, 255, 0.2);
+}
+
+/* Tablet / iPad responsive refinement (641px - 1024px) */
+@media (min-width: 641px) and (max-width: 1024px) {
+    .site-header {
+        padding-top: max(20px, env(safe-area-inset-top));
+        padding-bottom: 16px;
+    }
+
     .top-row {
-        flex-wrap: wrap;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        gap: 16px;
     }
 
-    .top-row .language-note {
-        order: 2;
-        margin-left: auto;
+    .home-mark-link {
+        width: 44px;
+        height: 44px;
+        min-height: 44px;
+        flex: 0 0 44px;
     }
 
-    .top-row .page-nav {
-        order: 3;
-        width: 100%;
-        flex: 0 0 100%;
-        justify-content: flex-start;
-        padding-top: 14px;
-        border-top: 1px solid var(--annual-rule);
+    .page-nav {
+        display: inline-flex;
+        gap: 4px;
+        padding: 4px;
+    }
+
+    .page-nav .page-link {
+        min-height: 40px;
+        height: 40px;
+        padding: 0 14px;
+        font-size: 0.70rem;
     }
 }
 
-@media (max-width: 780px) {
+/* Mobile responsive refinement (<= 640px) */
+@media (max-width: 640px) {
+    .site-header {
+        padding-top: max(14px, env(safe-area-inset-top));
+        padding-bottom: 12px;
+    }
+
     .top-row {
-        align-items: flex-start;
+        display: flex;
         flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+        width: 100%;
     }
 
-    .top-row .page-nav {
-        width: 100%;
+    /* Branded Pill Anchor */
+    .home-mark-link {
+        align-self: flex-start;
+        width: auto;
+        height: 38px;
+        min-height: 38px;
         flex: 0 0 auto;
-        flex-wrap: wrap;
+        padding: 0 14px 0 8px;
+        gap: 8px;
+        border-radius: 9999px;
+        background: rgba(14, 20, 32, 0.75);
+    }
+
+    .home-mark-link img {
+        width: 22px;
+        height: 22px;
+    }
+
+    .home-mark-link::after {
+        content: "TECH ARSENAL";
+        font-family: var(--mono);
+        font-size: 0.65rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        color: var(--text-dim, rgba(235, 240, 255, 0.85));
+    }
+
+    /* Segmented Navigation Capsule */
+    .page-nav {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 2px;
+        width: 100%;
+        padding: 3px;
+        border-radius: 9px;
+        box-sizing: border-box;
+    }
+
+    .page-nav .page-link {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 42px;
+        height: 42px;
+        padding: 0 2px;
+        border-radius: 6px;
+        font-size: clamp(0.58rem, 2.6vw, 0.68rem);
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        text-align: center;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 }
 
@@ -4725,28 +4876,6 @@ body.dossier-open {
         overflow-x: hidden;
     }
 
-    .catalogue-page .top-row .page-nav {
-        display: grid;
-        width: auto;
-        flex: 1 1 auto;
-        min-width: 0;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 6px;
-    }
-
-    .catalogue-page .top-row .page-link {
-        min-width: 0;
-        width: 100%;
-        justify-content: center;
-        text-align: center;
-        padding-inline: 8px;
-        min-height: 36px;
-        white-space: normal;
-        overflow-wrap: anywhere;
-        line-height: 1.25;
-        font-size: 0.62rem;
-    }
-
     .catalogue-page .control-bar,
     .catalogue-page .search-wrap,
     .catalogue-page .filter-bar {
@@ -4852,26 +4981,6 @@ body.dossier-open {
 }
 
 @media (max-width: 760px) {
-    .catalogue-page .site-header {
-        padding-top: 16px;
-        padding-bottom: 8px;
-    }
-
-    .catalogue-page .top-row {
-        gap: 8px;
-    }
-
-    .catalogue-page .home-mark-link,
-    .catalogue-page .home-mark-link img {
-        width: 30px;
-        height: 30px;
-    }
-
-    .catalogue-page .top-row .page-link {
-        min-height: 32px;
-        padding-inline: 6px;
-    }
-
     .catalogue-page .masthead {
         gap: 12px;
         padding-top: 16px;
