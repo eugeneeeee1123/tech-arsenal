@@ -126,17 +126,19 @@
         #catalogue-main.is-list .card:not(.is-lead) .specs {
             order: 4 !important;
             display: flex !important;
+            flex-direction: row !important;
             align-items: center !important;
-            gap: 14px !important;
+            gap: 12px !important;
             margin: 0 !important;
             padding: 0 !important;
             border: 0 !important;
             overflow: hidden !important;
-            flex-wrap: nowrap !important;
+            flex-wrap: wrap !important;
             max-width: 100% !important;
         }
         #catalogue-main.is-list .spec-row {
             display: inline-flex !important;
+            flex-direction: row !important;
             align-items: baseline !important;
             gap: 5px !important;
             padding: 0 !important;
@@ -148,11 +150,13 @@
             font-size: 10px !important;
             opacity: .45 !important;
             text-transform: uppercase !important;
+            display: inline !important;
         }
         #catalogue-main.is-list .spec-val {
             font-size: 12px !important;
             opacity: .85 !important;
             color: var(--text) !important;
+            display: inline !important;
         }
         #catalogue-main.is-list .seal {
             order: 5 !important;
@@ -563,13 +567,13 @@
 <div class="control-subbar">
 <p aria-live="polite" class="result-summary" id="resultSummary" role="status">Showing 60 records across 5 chapters</p>
 <div aria-label="Switch view" class="view-toggle" role="group">
-<button aria-pressed="false" class="view-btn" data-view="gallery" type="button">
+<button aria-pressed="true" class="view-btn active" data-view="gallery" type="button">
 <svg aria-hidden="true" class="view-icon" fill="currentColor" viewbox="0 0 16 16">
 <path d="M1.5 2A1.5 1.5 0 0 0 0 3.5v3A1.5 1.5 0 0 0 1.5 8h3A1.5 1.5 0 0 0 6 6.5v-3A1.5 1.5 0 0 0 4.5 2h-3zm8 0A1.5 1.5 0 0 0 8 3.5v3A1.5 1.5 0 0 0 9.5 8h3A1.5 1.5 0 0 0 14 6.5v-3A1.5 1.5 0 0 0 12.5 2h-3zm-8 8A1.5 1.5 0 0 0 0 11.5v3A1.5 1.5 0 0 0 1.5 16h3A1.5 1.5 0 0 0 6 14.5v-3A1.5 1.5 0 0 0 4.5 10h-3zm8 0a1.5 1.5 0 0 0-1.5 1.5v3a1.5 1.5 0 0 0 1.5 1.5h3a1.5 1.5 0 0 0 1.5-1.5v-3a1.5 1.5 0 0 0-1.5-1.5h-3z"></path>
 </svg>
 <span>Gallery</span>
 </button>
-<button aria-pressed="true" class="view-btn active" data-view="list" type="button">
+<button aria-pressed="false" class="view-btn" data-view="list" type="button">
 <svg aria-hidden="true" class="view-icon" fill="currentColor" viewbox="0 0 16 16">
 <path d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" fill-rule="evenodd"></path>
 </svg>
@@ -607,7 +611,7 @@
 </div>
 </div>
 </aside>
-<main class="collection is-list" id="catalogue-main">
+<main class="collection" id="catalogue-main">
 <div class="section-wrapper" id="sec-mobile">
 <div class="chapter-head">
 <span class="chapter-eyebrow">phones</span>
@@ -2780,7 +2784,7 @@
         applyFilters();
 
         // ===== View mode switcher: Gallery and List =====
-        const VIEW_KEY = "arsenal-view-mode";
+        const VIEW_KEY = "arsenal-view-mode-v2";
         const catalogueMain = document.getElementById("catalogue-main");
         const viewButtons = [...document.querySelectorAll(".view-btn")];
 
@@ -2798,7 +2802,8 @@
             btn.addEventListener("click", () => applyView(btn.dataset.view));
         });
 
-        let initialView = window.innerWidth <= 1024 ? "gallery" : "list";
+        // Default view is gallery across all devices
+        let initialView = "gallery";
         try {
             const saved = localStorage.getItem(VIEW_KEY);
             if (saved === "gallery" || saved === "list") initialView = saved;
