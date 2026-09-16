@@ -623,26 +623,6 @@
                 box-sizing: border-box !important;
             }
 
-            .top-row {
-                flex-direction: column !important;
-                align-items: stretch !important;
-                gap: 10px !important;
-            }
-
-            .top-row .page-nav {
-                display: grid !important;
-                grid-template-columns: repeat(4, 1fr) !important;
-                width: 100% !important;
-                gap: 4px !important;
-            }
-
-            .top-row .page-nav .page-link {
-                padding: 7px 3px !important;
-                text-align: center !important;
-                font-size: 0.65rem !important;
-                min-width: 0 !important;
-            }
-
             .masthead {
                 padding: 10px 0 6px !important;
             }
@@ -980,7 +960,12 @@
 <body class="catalogue-page">
     <header class="header site-header">
         <div class="header-top top-row">
-            <a href="index.html" class="back-link home-mark-link" aria-label="Back to home" title="Back to home"><img src="assets/images/arsenal-spark.png" alt="" width="1000" height="1000" loading="eager" decoding="async"></a>
+            <a href="index.html" class="back-link home-mark-link" aria-label="Back to home" title="Back to home"><img src="assets/images/arsenal-spark.png" alt="" width="1000" height="1000" loading="eager" decoding="async"><span class="mark-label">TECH ARSENAL</span></a>
+            <button class="hamburger-btn" aria-label="Toggle navigation" aria-expanded="false" type="button">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
             <nav class="page-nav" aria-label="Site navigation">
                 <a class="page-link" href="index.html">Home</a>
                 <a class="page-link" href="tech-arsenal.html">Catalogue</a>

@@ -64,7 +64,45 @@
         link.setAttribute("title", "Back to home");
     });
 
+    /* ── Mobile Hamburger Navigation ── */
+    const hamburgerBtn = document.querySelector('.hamburger-btn');
+    const pageNav = document.querySelector('.page-nav');
+    if (hamburgerBtn && pageNav) {
+        hamburgerBtn.addEventListener('click', function (e) {
+            e.stopPropagation();
+            const isOpen = pageNav.classList.toggle('is-open');
+            hamburgerBtn.setAttribute('aria-expanded', String(isOpen));
+            hamburgerBtn.classList.toggle('is-active', isOpen);
+        });
 
+        // Close when clicking outside
+        document.addEventListener('click', function (e) {
+            if (!pageNav.contains(e.target) && !hamburgerBtn.contains(e.target)) {
+                pageNav.classList.remove('is-open');
+                hamburgerBtn.setAttribute('aria-expanded', 'false');
+                hamburgerBtn.classList.remove('is-active');
+            }
+        });
+
+        // Close when pressing Escape key
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape' && pageNav.classList.contains('is-open')) {
+                pageNav.classList.remove('is-open');
+                hamburgerBtn.setAttribute('aria-expanded', 'false');
+                hamburgerBtn.classList.remove('is-active');
+                hamburgerBtn.focus();
+            }
+        });
+
+        // Close menu on resize back to desktop/tablet
+        window.addEventListener('resize', function () {
+            if (window.innerWidth > 640 && pageNav.classList.contains('is-open')) {
+                pageNav.classList.remove('is-open');
+                hamburgerBtn.setAttribute('aria-expanded', 'false');
+                hamburgerBtn.classList.remove('is-active');
+            }
+        });
+    }
 
     document.documentElement.dataset.sitePage = current.key;
 })();
