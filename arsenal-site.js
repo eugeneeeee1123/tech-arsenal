@@ -1,108 +1,38 @@
 (function () {
-    const pages = [
-        { file: "index.html", en: "Home", key: "home" },
-        { file: "tech-arsenal.html", en: "Catalogue", key: "catalogue" },
-        { file: "comparison-lab.html", en: "Compare", key: "compare" },
-        { file: "topology.html", en: "Setup", key: "topology" }
-    ];
-
-    const currentFile = (window.location.pathname.split("/").pop() || "index.html").toLowerCase();
-    const current = pages.find((page) => page.file === currentFile) || pages[0];
-
-    function bilingual(zh, en) {
-        return en;
-    }
-
-    window.arsenalBilingual = bilingual;
-
-    document.querySelectorAll("[data-zh][data-en]").forEach((node) => {
-        node.textContent = node.dataset.en;
-    });
-
-    document.querySelectorAll("[data-placeholder-zh][data-placeholder-en]").forEach((input) => {
-        input.placeholder = input.dataset.placeholderEn;
-    });
-
-    const textPairs = {
-        "phones": "Phones",
-        "Legion Y700": "Legion Y700",
-        "Xiaomi 13 Ultra": "Xiaomi 13 Ultra",
-        "Xiaomi MIX 4": "Xiaomi MIX 4",
-        "Sony Xperia 1 V": "Sony Xperia 1 V",
-        "Huawei P60 Pro": "Huawei P60 Pro",
-        "OPPO Find X7 Ultra": "OPPO Find X7 Ultra"
-    };
-
-    document.querySelectorAll("body *:not(script):not(style)").forEach((node) => {
-        if (node.children.length || node.closest(".lang-pair") || node.dataset.zh) return;
-        const key = node.textContent.trim();
-        const en = textPairs[key];
-        if (en) node.textContent = en;
-    });
-
     document.querySelectorAll(".seal").forEach((seal) => {
         const dot = seal.querySelector(".dot");
         if (!dot) return;
-        const owned = seal.classList.contains("owned");
-        seal.innerHTML = `${dot.outerHTML}${owned ? "In collection" : "Wishlist"}`;
+        seal.innerHTML = `${dot.outerHTML}${seal.classList.contains("owned") ? "In collection" : "Wishlist"}`;
     });
 
-    document.querySelectorAll(".page-nav").forEach((nav) => {
-        nav.setAttribute("aria-label", "Site navigation");
-        nav.innerHTML = pages.map((page) => {
-            const active = page.file === current.file;
-            return `<a class="page-link${active ? " active" : ""}" href="${page.file}"${active ? ' aria-current="page"' : ""}>${page.en}</a>`;
-        }).join("");
-    });
+    const hamburgerBtn = document.querySelector(".hamburger-btn");
+    const pageNav = document.querySelector(".page-nav");
+    if (!hamburgerBtn || !pageNav) return;
 
-    document.querySelectorAll(".back-link, .back-btn").forEach((link) => {
-        link.classList.add("home-mark-link");
-        if (!link.querySelector("img")) {
-            link.innerHTML = '<img src="assets/images/arsenal-spark.png" alt="">';
-        }
-        link.setAttribute("aria-label", "Back to home");
-        link.setAttribute("title", "Back to home");
-    });
-
-    /* ── Mobile Hamburger Navigation ── */
-    const hamburgerBtn = document.querySelector('.hamburger-btn');
-    const pageNav = document.querySelector('.page-nav');
-    if (hamburgerBtn && pageNav) {
-        hamburgerBtn.addEventListener('click', function (e) {
-            e.stopPropagation();
-            const isOpen = pageNav.classList.toggle('is-open');
-            hamburgerBtn.setAttribute('aria-expanded', String(isOpen));
-            hamburgerBtn.classList.toggle('is-active', isOpen);
-        });
-
-        // Close when clicking outside
-        document.addEventListener('click', function (e) {
-            if (!pageNav.contains(e.target) && !hamburgerBtn.contains(e.target)) {
-                pageNav.classList.remove('is-open');
-                hamburgerBtn.setAttribute('aria-expanded', 'false');
-                hamburgerBtn.classList.remove('is-active');
-            }
-        });
-
-        // Close when pressing Escape key
-        document.addEventListener('keydown', function (e) {
-            if (e.key === 'Escape' && pageNav.classList.contains('is-open')) {
-                pageNav.classList.remove('is-open');
-                hamburgerBtn.setAttribute('aria-expanded', 'false');
-                hamburgerBtn.classList.remove('is-active');
-                hamburgerBtn.focus();
-            }
-        });
-
-        // Close menu on resize back to desktop/tablet
-        window.addEventListener('resize', function () {
-            if (window.innerWidth > 640 && pageNav.classList.contains('is-open')) {
-                pageNav.classList.remove('is-open');
-                hamburgerBtn.setAttribute('aria-expanded', 'false');
-                hamburgerBtn.classList.remove('is-active');
-            }
-        });
+    function setOpen(open) {
+        pageNav.classList.toggle("is-open", open);
+        hamburgerBtn.classList.toggle("is-active", open);
+        hamburgerBtn.setAttribute("aria-expanded", String(open));
     }
 
-    document.documentElement.dataset.sitePage = current.key;
+    hamburgerBtn.addEventListener("click", (event) => {
+        event.stopPropagation();
+        setOpen(!pageNav.classList.contains("is-open"));
+    });
+
+    document.addEventListener("click", (event) => {
+        if (!pageNav.contains(event.target) && !hamburgerBtn.contains(event.target)) {
+            setOpen(false);
+        }
+    });
+
+    document.addEventListener("keydown", (event) => {
+        if (event.key !== "Escape" || !pageNav.classList.contains("is-open")) return;
+        setOpen(false);
+        hamburgerBtn.focus();
+    });
+
+    window.addEventListener("resize", () => {
+        if (window.innerWidth > 640) setOpen(false);
+    });
 })();
