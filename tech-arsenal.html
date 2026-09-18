@@ -2522,6 +2522,261 @@
             });
         });
 
+        function specPlainText(html) {
+            const box = document.createElement("div");
+            box.innerHTML = String(html || "").replace(/<br\s*\/?>/gi, "\n");
+            return (box.textContent || "").replace(/\u00a0/g, " ").trim();
+        }
+
+        function escSpec(value) {
+            return String(value)
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;");
+        }
+
+        function splitPipes(text) {
+            return String(text || "").split("|").map((part) => part.trim()).filter(Boolean);
+        }
+
+        function chipKey(chip) {
+            return String(chip).toLowerCase().replace(/×/g, "x").replace(/[.,;:()"'′]/g, "").replace(/\s+/g, " ").trim();
+        }
+
+        function mergeChips(first, second) {
+            const out = [];
+            const keys = [];
+            function add(chip) {
+                const key = chipKey(chip);
+                if (!key) return;
+                const matches = [];
+                for (let i = 0; i < keys.length; i += 1) {
+                    if (keys[i] === key || keys[i].includes(key) || key.includes(keys[i])) matches.push(i);
+                }
+                if (!matches.length) {
+                    out.push(chip);
+                    keys.push(key);
+                    return;
+                }
+                let bestChip = chip;
+                let bestKey = key;
+                matches.forEach((i) => {
+                    if (keys[i].length > bestKey.length) {
+                        bestChip = out[i];
+                        bestKey = keys[i];
+                    }
+                });
+                const keep = matches[0];
+                out[keep] = bestChip;
+                keys[keep] = bestKey;
+                for (let i = matches.length - 1; i >= 1; i -= 1) {
+                    out.splice(matches[i], 1);
+                    keys.splice(matches[i], 1);
+                }
+            }
+            first.forEach(add);
+            second.forEach(add);
+            return out;
+        }
+
+        function roleFamily(role) {
+            const key = String(role || "").toLowerCase().replace(/×/g, "x").replace(/&/g, "and");
+            if (/front|selfie|under-?display|cover front/.test(key)) return "front";
+            if (/ultra-?wide/.test(key)) return "ultrawide";
+            if (/periscope|super tele/.test(key)) return "periscope";
+            if (/b\s*and\s*w|mono/.test(key)) return "mono";
+            if (/macro/.test(key)) return "macro";
+            if (/tof|depth/.test(key)) return "depth";
+            if (/spectrum/.test(key)) return "spectrum";
+            if (/tele|portrait/.test(key)) return "tele";
+            if (/main|wide|retract|documentary/.test(key)) return "main";
+            return key.replace(/[^a-z0-9]+/g, "") || "other";
+        }
+
+        function moduleZoom(mod) {
+            const blob = (mod.role + " " + mod.chips.join(" ")).toLowerCase().replace(/×/g, "x");
+            const match = blob.match(/(\d+(?:\.\d+)?)\s*x\b/);
+            return match ? match[1] : "";
+        }
+
+        function mmValues(text) {
+            return [...String(text).matchAll(/(\d+(?:\.\d+)?)\s*mm/gi)].map((match) => match[1]);
+        }
+
+        function expandSensorDetail(detail) {
+            const text = String(detail).trim();
+            const wrapped = text.match(/^(.*)\s*\((.*)\)\s*$/);
+            const chips = [];
+            (wrapped ? wrapped[1] : text).split(/\s\/\s/).map((part) => part.trim()).filter(Boolean).forEach((part) => chips.push(part));
+            if (wrapped) {
+                wrapped[2].split(",").map((part) => part.trim()).filter(Boolean).forEach((part) => chips.push(part));
+            }
+            return chips;
+        }
+
+        function parseBracketModules(text) {
+            const modules = [];
+            const re = /\[([^\]]+)\]\s*/g;
+            const hits = [];
+            let match;
+            while ((match = re.exec(text))) hits.push({ role: match[1].trim(), end: re.lastIndex, start: match.index });
+            for (let i = 0; i < hits.length; i += 1) {
+                const chunk = text.slice(hits[i].end, i + 1 < hits.length ? hits[i + 1].start : text.length);
+                modules.push({ role: hits[i].role, chips: splitPipes(chunk.replace(/\n/g, " ")) });
+            }
+            return modules;
+        }
+
+        function parseSensorModules(text) {
+            return text.split(";").map((item) => item.trim()).filter(Boolean).map((item) => {
+                const colon = item.match(/^([^:]{1,48}):\s*(.+)$/);
+                if (colon) return { role: colon[1].trim(), chips: expandSensorDetail(colon[2].trim()) };
+                if (/tof|depth/i.test(item)) return { role: "Depth", chips: expandSensorDetail(item) };
+                return { role: "", chips: expandSensorDetail(item) };
+            });
+        }
+
+        function parseSystemModules(text) {
+            const bracketed = parseBracketModules(text);
+            if (bracketed.length) return bracketed;
+            const chunks = text.split(/\||\n/).map((part) => part.trim()).filter(Boolean);
+            const modules = [];
+            chunks.forEach((chunk) => {
+                const colon = chunk.match(/^([^:]{1,48}):\s*(.+)$/);
+                if (colon) modules.push({ role: colon[1].trim(), chips: splitPipes(colon[2]) });
+                else if (modules.length) modules[modules.length - 1].chips.push(...splitPipes(chunk));
+                else modules.push({ role: "", chips: splitPipes(chunk) });
+            });
+            return modules.filter((mod) => mod.role || mod.chips.length);
+        }
+
+        function modulesMatch(a, b) {
+            const familyA = roleFamily(a.role);
+            const familyB = roleFamily(b.role);
+            const zoomA = moduleZoom(a);
+            const zoomB = moduleZoom(b);
+            if (zoomA && zoomB && zoomA === zoomB) {
+                const locked = new Set(["main", "ultrawide", "front", "mono"]);
+                if (!locked.has(familyA) && !locked.has(familyB)) return true;
+                if (familyA === familyB) return true;
+            }
+            if (familyA !== familyB) return false;
+            if (familyA === "depth") return true;
+            if (familyA === "front") {
+                const nameA = a.role.toLowerCase();
+                const nameB = b.role.toLowerCase();
+                return nameA.includes(nameB) || nameB.includes(nameA);
+            }
+            if (zoomA && zoomB) return zoomA === zoomB;
+            return true;
+        }
+
+        function mergeModuleLists(primary, secondary) {
+            const list = primary.map((mod) => ({ role: mod.role, chips: mod.chips.slice() }));
+            const used = new Set();
+            secondary.forEach((src) => {
+                const hitIndex = list.findIndex((mod, index) => !used.has(index) && modulesMatch(mod, src));
+                if (hitIndex >= 0) {
+                    used.add(hitIndex);
+                    const hit = list[hitIndex];
+                    if (src.role.length > hit.role.length) hit.role = src.role;
+                    hit.chips = mergeChips(hit.chips, src.chips);
+                    return;
+                }
+                list.push({ role: src.role, chips: src.chips.slice() });
+            });
+            return list;
+        }
+
+        function parseFocalParts(text) {
+            const native = [];
+            const notes = [];
+            String(text || "").split("|").map((part) => part.trim()).filter(Boolean).forEach((part) => {
+                if (/^native:/i.test(part)) {
+                    native.push(...part.replace(/^native:\s*/i, "").split("/").map((item) => item.trim()).filter(Boolean));
+                    return;
+                }
+                notes.push(part);
+            });
+            return { native, notes };
+        }
+
+        function familyOrder(family) {
+            const order = { ultrawide: 10, main: 20, mono: 25, tele: 40, periscope: 50, macro: 70, spectrum: 75, depth: 80, front: 90 };
+            return order[family] || 60;
+        }
+
+        function sortCameraModules(mods) {
+            return mods.slice().sort((a, b) => {
+                const familyA = roleFamily(a.role);
+                const familyB = roleFamily(b.role);
+                if (familyA === "front" && familyB !== "front") return 1;
+                if (familyB === "front" && familyA !== "front") return -1;
+                const mmA = mmValues(a.chips.join(" "))[0];
+                const mmB = mmValues(b.chips.join(" "))[0];
+                if (mmA && mmB && mmA !== mmB) return parseFloat(mmA) - parseFloat(mmB);
+                return familyOrder(familyA) - familyOrder(familyB);
+            });
+        }
+
+        function assignNativeFocals(modules, native) {
+            const used = new Set(modules.flatMap((mod) => mmValues(mod.chips.join(" "))));
+            const leftover = native.filter((item) => {
+                const mm = mmValues(item)[0];
+                return !mm || !used.has(mm);
+            });
+            const isSimple = (item) => /^\d+(?:\.\d+)?\s*mm$/i.test(item);
+            const simple = leftover.filter(isSimple);
+            const extra = leftover.filter((item) => !isSimple(item));
+            const need = modules.filter((mod) => {
+                const family = roleFamily(mod.role);
+                return !["front", "depth", "macro", "spectrum", "mono"].includes(family) && !mmValues(mod.chips.join(" ")).length;
+            });
+            if (simple.length && simple.length === need.length) {
+                need.forEach((mod, index) => mod.chips.push(simple[index]));
+                return extra;
+            }
+            return leftover;
+        }
+
+        function buildUnifiedCamera(sysHtml, sensHtml, focHtml) {
+            const sensors = parseSensorModules(specPlainText(sensHtml || ""));
+            const system = parseSystemModules(specPlainText(sysHtml || ""));
+            let modules = sensors.length ? mergeModuleLists(sensors, system) : system;
+            if (!modules.length) return { modules: [], notes: [] };
+            const focals = parseFocalParts(specPlainText(focHtml || ""));
+            modules = sortCameraModules(modules);
+            const leftoverNative = assignNativeFocals(modules, focals.native);
+            const notes = leftoverNative.length
+                ? ["Native: " + leftoverNative.join(" / "), ...focals.notes]
+                : focals.notes.slice();
+            return { modules, notes };
+        }
+
+        function renderCameraChips(items, leadFirst) {
+            return items.map((item, index) => `<span class="spec-chip${leadFirst && index === 0 ? " is-lead" : ""}">${escSpec(item)}</span>`).join("");
+        }
+
+        function renderUnifiedCamera(modules, notes) {
+            const rows = modules.map((mod) => {
+                const tag = mod.role ? `<span class="lens-tag">${escSpec(mod.role)}</span>` : "";
+                return `<div class="lens-item">${tag}<div class="lens-chips">${renderCameraChips(mod.chips, true)}</div></div>`;
+            }).join("");
+            const noteRow = notes.length
+                ? `<div class="cam-suite-notes">${renderCameraChips(notes, false)}</div>`
+                : "";
+            return `
+                <div class="cam-suite-header">
+                    <span class="dossier-spec-label">Camera</span>
+                </div>
+                <div class="cam-suite-body">
+                    <div class="dossier-lens-grid cam-module-grid">${rows}</div>
+                    ${noteRow}
+                </div>
+            `;
+        }
+
         function openDossier(card) {
             const details = card.querySelector(".hidden-details");
             if (!details) return;
@@ -2636,54 +2891,23 @@
 
                     const camSuite = document.createElement("div");
                     camSuite.className = "dossier-spec is-wide dossier-cam-suite";
-
-                    let sectionsHtml = "";
-                    if (camSysSpec) {
-                        sectionsHtml += `
-                            <div class="cam-suite-section">
-                                <div class="cam-suite-sublabel">
-                                    <span class="cam-sublabel-index">01</span>
-                                    <span class="cam-sublabel-title">Optics &amp; Modules</span>
-                                </div>
-                                <div class="cam-suite-content">
-                                    ${formatDossierSpecValue("Camera System", camSysSpec.innerHTML.trim())}
-                                </div>
-                            </div>`;
+                    const unified = buildUnifiedCamera(
+                        camSysSpec ? camSysSpec.innerHTML.trim() : "",
+                        camSensSpec ? camSensSpec.innerHTML.trim() : "",
+                        camFocSpec ? camFocSpec.innerHTML.trim() : ""
+                    );
+                    if (unified.modules.length) {
+                        camSuite.innerHTML = renderUnifiedCamera(unified.modules, unified.notes);
+                    } else {
+                        camSuite.innerHTML = `
+                            <div class="cam-suite-header">
+                                <span class="dossier-spec-label">Camera</span>
+                            </div>
+                            <div class="cam-suite-body">
+                                ${formatDossierSpecValue("Camera System", (camSysSpec || camSensSpec || camFocSpec).innerHTML.trim())}
+                            </div>
+                        `;
                     }
-                    if (camSensSpec) {
-                        sectionsHtml += `
-                            <div class="cam-suite-section">
-                                <div class="cam-suite-sublabel">
-                                    <span class="cam-sublabel-index">02</span>
-                                    <span class="cam-sublabel-title">Sensor Matrix</span>
-                                </div>
-                                <div class="cam-suite-content">
-                                    ${formatDossierSpecValue("Camera Sensors", camSensSpec.innerHTML.trim())}
-                                </div>
-                            </div>`;
-                    }
-                    if (camFocSpec) {
-                        sectionsHtml += `
-                            <div class="cam-suite-section">
-                                <div class="cam-suite-sublabel">
-                                    <span class="cam-sublabel-index">03</span>
-                                    <span class="cam-sublabel-title">Focal Length Range</span>
-                                </div>
-                                <div class="cam-suite-content">
-                                    ${formatDossierSpecValue("Focal Lengths", camFocSpec.innerHTML.trim())}
-                                </div>
-                            </div>`;
-                    }
-
-                    camSuite.innerHTML = `
-                        <div class="cam-suite-header">
-                            <span class="dossier-spec-label">Camera Suite (3-in-1)</span>
-                            <span class="cam-suite-badge">Optics · Sensors · Focals</span>
-                        </div>
-                        <div class="cam-suite-body">
-                            ${sectionsHtml}
-                        </div>
-                    `;
                     dossierSpecs.appendChild(camSuite);
                     return;
                 }

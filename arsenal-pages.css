@@ -2644,7 +2644,7 @@ body.dossier-open {
 }
 
 /* ==========================================================================
-   DOSSIER 3-IN-1 CAMERA SUITE (OPTICS · SENSORS · FOCAL LENGTHS)
+   DOSSIER CAMERA — one row per lens (sensor + focal + module)
    ========================================================================== */
 
 .dossier-spec.dossier-cam-suite {
@@ -2654,7 +2654,7 @@ body.dossier-open {
     padding: 13px 15px;
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 10px;
 }
 
 .dossier-spec.dossier-cam-suite:hover {
@@ -2665,69 +2665,41 @@ body.dossier-open {
 .cam-suite-header {
     display: flex;
     align-items: center;
-    justify-content: space-between;
     gap: 10px;
-    padding-bottom: 9px;
+    padding-bottom: 8px;
     border-bottom: 1px solid var(--line);
-}
-
-.cam-suite-badge {
-    font-family: var(--mono);
-    font-size: 0.58rem;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    color: var(--accent);
-    background: rgba(111, 134, 255, 0.08);
-    border: 1px solid rgba(111, 134, 255, 0.2);
-    padding: 2px 7px;
-    border-radius: 2px;
-    text-transform: uppercase;
-    user-select: none;
 }
 
 .cam-suite-body {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 8px;
 }
 
-.cam-suite-section {
-    display: flex;
-    flex-direction: column;
-    gap: 7px;
-}
-
-.cam-suite-section + .cam-suite-section {
-    padding-top: 11px;
-    border-top: 1px dashed rgba(255, 255, 255, 0.07);
-}
-
-.cam-suite-sublabel {
-    display: flex;
-    align-items: center;
+.dossier-cam-suite .cam-module-grid {
+    grid-template-columns: 1fr;
     gap: 6px;
-    user-select: none;
 }
 
-.cam-sublabel-index {
-    font-family: var(--mono);
-    font-size: 0.58rem;
-    font-weight: 700;
-    color: var(--accent);
-    background: rgba(111, 134, 255, 0.12);
-    border: 1px solid rgba(111, 134, 255, 0.24);
-    padding: 0 4px;
-    border-radius: 2px;
-    line-height: 1.4;
+.dossier-cam-suite .lens-item {
+    display: grid;
+    grid-template-columns: minmax(6.8rem, 9.4rem) minmax(0, 1fr);
+    align-items: start;
+    gap: 6px 12px;
+    padding: 8px 10px;
 }
 
-.cam-sublabel-title {
-    font-family: var(--mono);
-    font-size: 0.65rem;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    color: var(--accent-2);
-    text-transform: uppercase;
+.dossier-cam-suite .lens-tag {
+    white-space: normal;
+    line-height: 1.35;
+}
+
+.cam-suite-notes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    padding-top: 8px;
+    border-top: 1px dashed rgba(255, 255, 255, 0.07);
 }
 
 .dossier-actions {
@@ -4321,6 +4293,9 @@ body.dossier-open {
         align-items: flex-start;
         gap: 6px;
     }
+    .dossier-cam-suite .lens-item {
+        grid-template-columns: 1fr;
+    }
     .dossier-actions {
         display: block;
     }
@@ -4687,4 +4662,152 @@ body.dossier-open {
 .card.is-lead .img-box.is-missing-image::before {
     width: 92px;
     height: 92px;
+}
+
+/* ===== Mobile Overflow Safety Net (≤640px) =====
+   Appended last to win final-cascade conflicts on narrow viewports.
+   Uses body.catalogue-page for higher specificity (0,3,1) vs
+   the no-media-query final cascade (0,3,0) and (0,4,0).
+   All !important declarations guard against final-cascade overrides. */
+@media (max-width: 640px) {
+
+    /* ── Grid container containment & box model ── */
+    body.catalogue-page .grid {
+        box-sizing: border-box !important;
+        max-width: 100% !important;
+    }
+
+    /* ── Card column span: override erroneous span 12 on 1-column grid ──
+       1 / -1 spans first to last explicit line without creating implicit columns. */
+    body.catalogue-page .card,
+    body.catalogue-page .card:not(.is-lead),
+    body.catalogue-page .card.is-lead {
+        grid-column: 1 / -1 !important;
+        width: 100% !important;
+        min-width: 0 !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+        overflow: hidden !important;
+    }
+
+    /* ── Lead card: force flex-column layout ── */
+    body.catalogue-page .card.is-lead {
+        display: flex !important;
+        flex-direction: column !important;
+    }
+
+    /* ── Lead card img-box: contain within card width ── */
+    body.catalogue-page .card.is-lead .img-box {
+        width: 100% !important;
+        min-width: 0 !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+        height: 280px !important;
+        min-height: 280px !important;
+        flex: 0 0 280px !important;
+        padding: 20px !important;
+        overflow: hidden !important;
+    }
+
+    /* ── All img-box images: fully contained within box, no cropping or overflow ── */
+    body.catalogue-page .img-box img,
+    body.catalogue-page .card.is-lead .img-box img,
+    body.catalogue-page .card:hover .img-box img,
+    body.catalogue-page .card.is-lead:hover .img-box img {
+        max-width: 100% !important;
+        max-height: 100% !important;
+        width: auto !important;
+        height: auto !important;
+        object-fit: contain !important;
+        transform: none !important;
+    }
+
+    /* ── Lead card content: override the final-cascade 42px/46px padding ── */
+    body.catalogue-page .card.is-lead .card-content {
+        width: 100% !important;
+        min-width: 0 !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+        padding: 20px 18px 22px !important;
+        flex: 1 1 auto !important;
+    }
+
+    /* ── Product name: override final-cascade 12ch / clamp(2.6rem…) ── */
+    body.catalogue-page .card.is-lead .product-name {
+        max-width: 100% !important;
+        font-size: clamp(1.8rem, 9vw, 3rem) !important;
+        line-height: 1.05 !important;
+        overflow-wrap: break-word !important;
+        word-break: break-word !important;
+    }
+
+    /* ── Lead card specs: override final-cascade repeat(3,…) → single column ── */
+    body.catalogue-page .card.is-lead .specs {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        max-width: 100% !important;
+        width: 100% !important;
+    }
+
+    /* ── Non-lead card specs: also single column ── */
+    body.catalogue-page .card:not(.is-lead) .specs {
+        grid-template-columns: 1fr !important;
+    }
+
+    /* ── spec-val text: break-word for long sensor strings ── */
+    body.catalogue-page .spec-val {
+        overflow-wrap: break-word !important;
+        word-break: break-word !important;
+    }
+
+    /* ── Non-lead card: tighten padding ── */
+    body.catalogue-page .card:not(.is-lead) .card-content {
+        padding: 16px 16px 18px !important;
+        min-width: 0 !important;
+        box-sizing: border-box !important;
+    }
+
+    body.catalogue-page .card:not(.is-lead) .img-box {
+        overflow: hidden !important;
+    }
+
+    /* ── Record action button: no overflow ── */
+    body.catalogue-page .record-action {
+        max-width: 100% !important;
+        width: auto !important;
+    }
+
+    /* ── Chapter head: single column so count doesn't push into gutter ── */
+    body.catalogue-page .chapter-head {
+        grid-template-columns: 1fr !important;
+        gap: 4px !important;
+    }
+
+    body.catalogue-page .section-count {
+        white-space: normal !important;
+        word-break: break-word !important;
+    }
+}
+
+/* ===== Very narrow phones (≤375px) ===== */
+@media (max-width: 375px) {
+    :root {
+        --catalogue-gutter: 12px;
+    }
+
+    body.catalogue-page .card.is-lead .img-box {
+        height: 240px !important;
+        min-height: 240px !important;
+        flex: 0 0 240px !important;
+        padding: 14px !important;
+    }
+
+    body.catalogue-page .card.is-lead .card-content {
+        padding: 16px 14px 16px !important;
+    }
+
+    body.catalogue-page .card:not(.is-lead) .img-box {
+        min-height: 180px !important;
+        padding: 14px !important;
+    }
 }
