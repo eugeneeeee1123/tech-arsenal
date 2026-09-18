@@ -3460,311 +3460,311 @@ body.dossier-open {
 }
 
 /* Tall phone cutouts stay contained instead of being enlarged past the rail. */
-.img-box img:not([src^="http"])[src$="mi10ultra-transparent.png"],
-.img-box img:not([src^="http"])[src$="huaweimate40proplus-transparent.png"],
-.img-box img:not([src^="http"])[src$="huaweip50pro-transparent-v2.png"],
-.img-box img:not([src^="http"])[src$="honormagic4ultimate-transparent.png"] {
+.img-box img:not([src^="http"])[src*="mi10ultra-transparent."],
+.img-box img:not([src^="http"])[src*="huaweimate40proplus-transparent."],
+.img-box img:not([src^="http"])[src*="huaweip50pro-transparent-v2."],
+.img-box img:not([src^="http"])[src*="honormagic4ultimate-transparent."] {
     transform: scale(1.08);
 }
 
-.card.is-lead .img-box img:not([src^="http"])[src$="mi10ultra-transparent.png"],
-.card.is-lead .img-box img:not([src^="http"])[src$="huaweimate40proplus-transparent.png"],
-.card.is-lead .img-box img:not([src^="http"])[src$="huaweip50pro-transparent-v2.png"],
-.card.is-lead .img-box img:not([src^="http"])[src$="honormagic4ultimate-transparent.png"] {
+.card.is-lead .img-box img:not([src^="http"])[src*="mi10ultra-transparent."],
+.card.is-lead .img-box img:not([src^="http"])[src*="huaweimate40proplus-transparent."],
+.card.is-lead .img-box img:not([src^="http"])[src*="huaweip50pro-transparent-v2."],
+.card.is-lead .img-box img:not([src^="http"])[src*="honormagic4ultimate-transparent."] {
     transform: scale(1.1);
 }
 
-.card:hover .img-box img:not([src^="http"])[src$="mi10ultra-transparent.png"],
-.card:hover .img-box img:not([src^="http"])[src$="huaweimate40proplus-transparent.png"],
-.card:hover .img-box img:not([src^="http"])[src$="huaweip50pro-transparent-v2.png"],
-.card:hover .img-box img:not([src^="http"])[src$="honormagic4ultimate-transparent.png"] {
+.card:hover .img-box img:not([src^="http"])[src*="mi10ultra-transparent."],
+.card:hover .img-box img:not([src^="http"])[src*="huaweimate40proplus-transparent."],
+.card:hover .img-box img:not([src^="http"])[src*="huaweip50pro-transparent-v2."],
+.card:hover .img-box img:not([src^="http"])[src*="honormagic4ultimate-transparent."] {
     transform: scale(1.1);
 }
 
-.card.is-lead:hover .img-box img:not([src^="http"])[src$="mi10ultra-transparent.png"],
-.card.is-lead:hover .img-box img:not([src^="http"])[src$="huaweimate40proplus-transparent.png"],
-.card.is-lead:hover .img-box img:not([src^="http"])[src$="huaweip50pro-transparent-v2.png"],
-.card.is-lead:hover .img-box img:not([src^="http"])[src$="honormagic4ultimate-transparent.png"] {
+.card.is-lead:hover .img-box img:not([src^="http"])[src*="mi10ultra-transparent."],
+.card.is-lead:hover .img-box img:not([src^="http"])[src*="huaweimate40proplus-transparent."],
+.card.is-lead:hover .img-box img:not([src^="http"])[src*="huaweip50pro-transparent-v2."],
+.card.is-lead:hover .img-box img:not([src^="http"])[src*="honormagic4ultimate-transparent."] {
     transform: scale(1.14);
 }
 
 /* iPhone 17's portrait render fills its canvas; keep the complete phone inside the rail. */
-.img-box img:not([src^="http"])[src$="iphone17-transparent.png"] {
+.img-box img:not([src^="http"])[src*="iphone17-transparent."] {
     transform: scale(1);
 }
 
-.card.is-lead .img-box img:not([src^="http"])[src$="iphone17-transparent.png"] {
+.card.is-lead .img-box img:not([src^="http"])[src*="iphone17-transparent."] {
     transform: scale(1.02);
 }
 
-.card:hover .img-box img:not([src^="http"])[src$="iphone17-transparent.png"] {
+.card:hover .img-box img:not([src^="http"])[src*="iphone17-transparent."] {
     transform: scale(1.02);
 }
 
-.card.is-lead:hover .img-box img:not([src^="http"])[src$="iphone17-transparent.png"] {
+.card.is-lead:hover .img-box img:not([src^="http"])[src*="iphone17-transparent."] {
     transform: scale(1.04);
 }
 
 /* Edge-to-edge square cutouts stay fully inside the image rail. */
-.img-box img:not([src^="http"])[src$="mi9-transparent.png"],
-.img-box img:not([src^="http"])[src$="pixel11proxl-transparent.png"],
-.img-box img:not([src^="http"])[src$="iphone13promax-transparent.png"],
-.img-box img:not([src^="http"])[src$="macstudio-m4-ultra-transparent.png"],
-.img-box img:not([src^="http"])[src$="s21ultra-transparent.png"],
-.img-box img:not([src^="http"])[src$="samsungzfold8-transparent.png"],
-.img-box img:not([src^="http"])[src$="samsungzfold8ultra-square-transparent.png"] {
+.img-box img:not([src^="http"])[src*="mi9-transparent."],
+.img-box img:not([src^="http"])[src*="pixel11proxl-transparent."],
+.img-box img:not([src^="http"])[src*="iphone13promax-transparent."],
+.img-box img:not([src^="http"])[src*="macstudio-m4-ultra-transparent."],
+.img-box img:not([src^="http"])[src*="s21ultra-transparent."],
+.img-box img:not([src^="http"])[src*="samsungzfold8-transparent."],
+.img-box img:not([src^="http"])[src*="samsungzfold8ultra-square-transparent."] {
     transform: scale(1);
 }
 
-.card.is-lead .img-box img:not([src^="http"])[src$="mi9-transparent.png"],
-.card.is-lead .img-box img:not([src^="http"])[src$="pixel11proxl-transparent.png"],
-.card.is-lead .img-box img:not([src^="http"])[src$="iphone13promax-transparent.png"],
-.card.is-lead .img-box img:not([src^="http"])[src$="macstudio-m4-ultra-transparent.png"],
-.card.is-lead .img-box img:not([src^="http"])[src$="s21ultra-transparent.png"],
-.card.is-lead .img-box img:not([src^="http"])[src$="samsungzfold8-transparent.png"],
-.card.is-lead .img-box img:not([src^="http"])[src$="samsungzfold8ultra-square-transparent.png"] {
+.card.is-lead .img-box img:not([src^="http"])[src*="mi9-transparent."],
+.card.is-lead .img-box img:not([src^="http"])[src*="pixel11proxl-transparent."],
+.card.is-lead .img-box img:not([src^="http"])[src*="iphone13promax-transparent."],
+.card.is-lead .img-box img:not([src^="http"])[src*="macstudio-m4-ultra-transparent."],
+.card.is-lead .img-box img:not([src^="http"])[src*="s21ultra-transparent."],
+.card.is-lead .img-box img:not([src^="http"])[src*="samsungzfold8-transparent."],
+.card.is-lead .img-box img:not([src^="http"])[src*="samsungzfold8ultra-square-transparent."] {
     transform: scale(1.02);
 }
 
-.card:hover .img-box img:not([src^="http"])[src$="mi9-transparent.png"],
-.card:hover .img-box img:not([src^="http"])[src$="pixel11proxl-transparent.png"],
-.card:hover .img-box img:not([src^="http"])[src$="iphone13promax-transparent.png"],
-.card:hover .img-box img:not([src^="http"])[src$="macstudio-m4-ultra-transparent.png"],
-.card:hover .img-box img:not([src^="http"])[src$="s21ultra-transparent.png"],
-.card:hover .img-box img:not([src^="http"])[src$="samsungzfold8-transparent.png"],
-.card:hover .img-box img:not([src^="http"])[src$="samsungzfold8ultra-square-transparent.png"] {
+.card:hover .img-box img:not([src^="http"])[src*="mi9-transparent."],
+.card:hover .img-box img:not([src^="http"])[src*="pixel11proxl-transparent."],
+.card:hover .img-box img:not([src^="http"])[src*="iphone13promax-transparent."],
+.card:hover .img-box img:not([src^="http"])[src*="macstudio-m4-ultra-transparent."],
+.card:hover .img-box img:not([src^="http"])[src*="s21ultra-transparent."],
+.card:hover .img-box img:not([src^="http"])[src*="samsungzfold8-transparent."],
+.card:hover .img-box img:not([src^="http"])[src*="samsungzfold8ultra-square-transparent."] {
     transform: scale(1.02);
 }
 
-.card.is-lead:hover .img-box img:not([src^="http"])[src$="mi9-transparent.png"],
-.card.is-lead:hover .img-box img:not([src^="http"])[src$="pixel11proxl-transparent.png"],
-.card.is-lead:hover .img-box img:not([src^="http"])[src$="iphone13promax-transparent.png"],
-.card.is-lead:hover .img-box img:not([src^="http"])[src$="macstudio-m4-ultra-transparent.png"],
-.card.is-lead:hover .img-box img:not([src^="http"])[src$="s21ultra-transparent.png"],
-.card.is-lead:hover .img-box img:not([src^="http"])[src$="samsungzfold8-transparent.png"],
-.card.is-lead:hover .img-box img:not([src^="http"])[src$="samsungzfold8ultra-square-transparent.png"] {
+.card.is-lead:hover .img-box img:not([src^="http"])[src*="mi9-transparent."],
+.card.is-lead:hover .img-box img:not([src^="http"])[src*="pixel11proxl-transparent."],
+.card.is-lead:hover .img-box img:not([src^="http"])[src*="iphone13promax-transparent."],
+.card.is-lead:hover .img-box img:not([src^="http"])[src*="macstudio-m4-ultra-transparent."],
+.card.is-lead:hover .img-box img:not([src^="http"])[src*="s21ultra-transparent."],
+.card.is-lead:hover .img-box img:not([src^="http"])[src*="samsungzfold8-transparent."],
+.card.is-lead:hover .img-box img:not([src^="http"])[src*="samsungzfold8ultra-square-transparent."] {
     transform: scale(1.04);
 }
 
 /* These newly catalogued Xiaomi and Samsung cutouts already use tight transparent canvases. */
-.img-box img:not([src^="http"])[src$="mi10-pro-transparent.png"],
-.img-box img:not([src^="http"])[src$="mi-note-10-pro-transparent.png"],
-.img-box img:not([src^="http"])[src$="samsung-galaxy-a72-transparent.png"],
-.img-box img:not([src^="http"])[src$="samsung-galaxy-a72-gpt-image-2.png"],
-.img-box img:not([src^="http"])[src$="samsung-galaxy-a72-gpt-image-2-transparent.png"],
-.img-box img:not([src^="http"])[src$="oneplus-9-pro-gpt-image-2-transparent.png"],
-.img-box img:not([src^="http"])[src$="vivo-x70-pro-gpt-image-2-transparent.png"],
-.img-box img:not([src^="http"])[src$="oppo-find-x9-ultra-gpt-image-2-transparent.png"] {
+.img-box img:not([src^="http"])[src*="mi10-pro-transparent."],
+.img-box img:not([src^="http"])[src*="mi-note-10-pro-transparent."],
+.img-box img:not([src^="http"])[src*="samsung-galaxy-a72-transparent."],
+.img-box img:not([src^="http"])[src*="samsung-galaxy-a72-gpt-image-2."],
+.img-box img:not([src^="http"])[src*="samsung-galaxy-a72-gpt-image-2-transparent."],
+.img-box img:not([src^="http"])[src*="oneplus-9-pro-gpt-image-2-transparent."],
+.img-box img:not([src^="http"])[src*="vivo-x70-pro-gpt-image-2-transparent."],
+.img-box img:not([src^="http"])[src*="oppo-find-x9-ultra-gpt-image-2-transparent."] {
     transform: scale(1);
 }
 
-.card.is-lead .img-box img:not([src^="http"])[src$="mi10-pro-transparent.png"],
-.card.is-lead .img-box img:not([src^="http"])[src$="mi-note-10-pro-transparent.png"],
-.card.is-lead .img-box img:not([src^="http"])[src$="samsung-galaxy-a72-transparent.png"],
-.card.is-lead .img-box img:not([src^="http"])[src$="samsung-galaxy-a72-gpt-image-2.png"],
-.card.is-lead .img-box img:not([src^="http"])[src$="samsung-galaxy-a72-gpt-image-2-transparent.png"],
-.card.is-lead .img-box img:not([src^="http"])[src$="oneplus-9-pro-gpt-image-2-transparent.png"],
-.card.is-lead .img-box img:not([src^="http"])[src$="vivo-x70-pro-gpt-image-2-transparent.png"],
-.card.is-lead .img-box img:not([src^="http"])[src$="oppo-find-x9-ultra-gpt-image-2-transparent.png"] {
+.card.is-lead .img-box img:not([src^="http"])[src*="mi10-pro-transparent."],
+.card.is-lead .img-box img:not([src^="http"])[src*="mi-note-10-pro-transparent."],
+.card.is-lead .img-box img:not([src^="http"])[src*="samsung-galaxy-a72-transparent."],
+.card.is-lead .img-box img:not([src^="http"])[src*="samsung-galaxy-a72-gpt-image-2."],
+.card.is-lead .img-box img:not([src^="http"])[src*="samsung-galaxy-a72-gpt-image-2-transparent."],
+.card.is-lead .img-box img:not([src^="http"])[src*="oneplus-9-pro-gpt-image-2-transparent."],
+.card.is-lead .img-box img:not([src^="http"])[src*="vivo-x70-pro-gpt-image-2-transparent."],
+.card.is-lead .img-box img:not([src^="http"])[src*="oppo-find-x9-ultra-gpt-image-2-transparent."] {
     transform: scale(1.02);
 }
 
-.card:hover .img-box img:not([src^="http"])[src$="mi10-pro-transparent.png"],
-.card:hover .img-box img:not([src^="http"])[src$="mi-note-10-pro-transparent.png"],
-.card:hover .img-box img:not([src^="http"])[src$="samsung-galaxy-a72-transparent.png"],
-.card:hover .img-box img:not([src^="http"])[src$="samsung-galaxy-a72-gpt-image-2.png"],
-.card:hover .img-box img:not([src^="http"])[src$="samsung-galaxy-a72-gpt-image-2-transparent.png"],
-.card:hover .img-box img:not([src^="http"])[src$="oneplus-9-pro-gpt-image-2-transparent.png"],
-.card:hover .img-box img:not([src^="http"])[src$="vivo-x70-pro-gpt-image-2-transparent.png"],
-.card:hover .img-box img:not([src^="http"])[src$="oppo-find-x9-ultra-gpt-image-2-transparent.png"] {
+.card:hover .img-box img:not([src^="http"])[src*="mi10-pro-transparent."],
+.card:hover .img-box img:not([src^="http"])[src*="mi-note-10-pro-transparent."],
+.card:hover .img-box img:not([src^="http"])[src*="samsung-galaxy-a72-transparent."],
+.card:hover .img-box img:not([src^="http"])[src*="samsung-galaxy-a72-gpt-image-2."],
+.card:hover .img-box img:not([src^="http"])[src*="samsung-galaxy-a72-gpt-image-2-transparent."],
+.card:hover .img-box img:not([src^="http"])[src*="oneplus-9-pro-gpt-image-2-transparent."],
+.card:hover .img-box img:not([src^="http"])[src*="vivo-x70-pro-gpt-image-2-transparent."],
+.card:hover .img-box img:not([src^="http"])[src*="oppo-find-x9-ultra-gpt-image-2-transparent."] {
     transform: scale(1.02);
 }
 
-.card.is-lead:hover .img-box img:not([src^="http"])[src$="mi10-pro-transparent.png"],
-.card.is-lead:hover .img-box img:not([src^="http"])[src$="mi-note-10-pro-transparent.png"],
-.card.is-lead:hover .img-box img:not([src^="http"])[src$="samsung-galaxy-a72-transparent.png"],
-.card.is-lead:hover .img-box img:not([src^="http"])[src$="samsung-galaxy-a72-gpt-image-2.png"],
-.card.is-lead:hover .img-box img:not([src^="http"])[src$="samsung-galaxy-a72-gpt-image-2-transparent.png"],
-.card.is-lead:hover .img-box img:not([src^="http"])[src$="oneplus-9-pro-gpt-image-2-transparent.png"],
-.card.is-lead:hover .img-box img:not([src^="http"])[src$="vivo-x70-pro-gpt-image-2-transparent.png"],
-.card.is-lead:hover .img-box img:not([src^="http"])[src$="oppo-find-x9-ultra-gpt-image-2-transparent.png"] {
+.card.is-lead:hover .img-box img:not([src^="http"])[src*="mi10-pro-transparent."],
+.card.is-lead:hover .img-box img:not([src^="http"])[src*="mi-note-10-pro-transparent."],
+.card.is-lead:hover .img-box img:not([src^="http"])[src*="samsung-galaxy-a72-transparent."],
+.card.is-lead:hover .img-box img:not([src^="http"])[src*="samsung-galaxy-a72-gpt-image-2."],
+.card.is-lead:hover .img-box img:not([src^="http"])[src*="samsung-galaxy-a72-gpt-image-2-transparent."],
+.card.is-lead:hover .img-box img:not([src^="http"])[src*="oneplus-9-pro-gpt-image-2-transparent."],
+.card.is-lead:hover .img-box img:not([src^="http"])[src*="vivo-x70-pro-gpt-image-2-transparent."],
+.card.is-lead:hover .img-box img:not([src^="http"])[src*="oppo-find-x9-ultra-gpt-image-2-transparent."] {
     transform: scale(1.04);
 }
 
 /* Xiaomi 11 Pro is scaled up generously to be prominent while keeping safe margins without overflowing */
-.img-box img:not([src^="http"])[src$="xiaomi11pro.png"] {
+.img-box img:not([src^="http"])[src*="xiaomi11pro."] {
     transform: scale(1.22);
 }
 
-.card.is-lead .img-box img:not([src^="http"])[src$="xiaomi11pro.png"] {
+.card.is-lead .img-box img:not([src^="http"])[src*="xiaomi11pro."] {
     transform: scale(1.26);
 }
 
-.card:hover .img-box img:not([src^="http"])[src$="xiaomi11pro.png"] {
+.card:hover .img-box img:not([src^="http"])[src*="xiaomi11pro."] {
     transform: scale(1.25);
 }
 
-.card.is-lead:hover .img-box img:not([src^="http"])[src$="xiaomi11pro.png"] {
+.card.is-lead:hover .img-box img:not([src^="http"])[src*="xiaomi11pro."] {
     transform: scale(1.29);
 }
 
 /* Xiaomi's restored cutout has a wider canvas; keep the hardware large but contained. */
-.img-box img:not([src^="http"])[src$="xiaomi17promax-transparent.png"] {
+.img-box img:not([src^="http"])[src*="xiaomi17promax-transparent."] {
     transform: scale(1.4);
 }
 
-.card.is-lead .img-box img:not([src^="http"])[src$="xiaomi17promax-transparent.png"] {
+.card.is-lead .img-box img:not([src^="http"])[src*="xiaomi17promax-transparent."] {
     transform: scale(1.48);
 }
 
-.card:hover .img-box img:not([src^="http"])[src$="xiaomi17promax-transparent.png"] {
+.card:hover .img-box img:not([src^="http"])[src*="xiaomi17promax-transparent."] {
     transform: scale(1.45);
 }
 
-.card.is-lead:hover .img-box img:not([src^="http"])[src$="xiaomi17promax-transparent.png"] {
+.card.is-lead:hover .img-box img:not([src^="http"])[src*="xiaomi17promax-transparent."] {
     transform: scale(1.52);
 }
 
-.img-box img:not([src^="http"])[src$="xiaomi17-transparent.png"] {
+.img-box img:not([src^="http"])[src*="xiaomi17-transparent."] {
     transform: scale(1.4);
 }
 
-.card.is-lead .img-box img:not([src^="http"])[src$="xiaomi17-transparent.png"] {
+.card.is-lead .img-box img:not([src^="http"])[src*="xiaomi17-transparent."] {
     transform: scale(1.48);
 }
 
-.card:hover .img-box img:not([src^="http"])[src$="xiaomi17-transparent.png"] {
+.card:hover .img-box img:not([src^="http"])[src*="xiaomi17-transparent."] {
     transform: scale(1.45);
 }
 
-.card.is-lead:hover .img-box img:not([src^="http"])[src$="xiaomi17-transparent.png"] {
+.card.is-lead:hover .img-box img:not([src^="http"])[src*="xiaomi17-transparent."] {
     transform: scale(1.52);
 }
 
 /* Honor's tall cutout fills its canvas; leave a safe edge around the hardware. */
-.img-box img:not([src^="http"])[src$="honormagic4ultimate-transparent.png"] {
+.img-box img:not([src^="http"])[src*="honormagic4ultimate-transparent."] {
     transform: scale(.96);
 }
 
-.card.is-lead .img-box img:not([src^="http"])[src$="honormagic4ultimate-transparent.png"] {
+.card.is-lead .img-box img:not([src^="http"])[src*="honormagic4ultimate-transparent."] {
     transform: scale(.98);
 }
 
-.card:hover .img-box img:not([src^="http"])[src$="honormagic4ultimate-transparent.png"] {
+.card:hover .img-box img:not([src^="http"])[src*="honormagic4ultimate-transparent."] {
     transform: scale(.98);
 }
 
-.card.is-lead:hover .img-box img:not([src^="http"])[src$="honormagic4ultimate-transparent.png"] {
+.card.is-lead:hover .img-box img:not([src^="http"])[src*="honormagic4ultimate-transparent."] {
     transform: scale(1);
 }
 
 /* iPhone 11's restored portrait cutout needs a smaller scale to stay inside the image rail. */
-.img-box img:not([src^="http"])[src$="iphone11-transparent.png"] {
+.img-box img:not([src^="http"])[src*="iphone11-transparent."] {
     transform: scale(1.08);
 }
 
-.card.is-lead .img-box img:not([src^="http"])[src$="iphone11-transparent.png"] {
+.card.is-lead .img-box img:not([src^="http"])[src*="iphone11-transparent."] {
     transform: scale(1.1);
 }
 
-.card:hover .img-box img:not([src^="http"])[src$="iphone11-transparent.png"] {
+.card:hover .img-box img:not([src^="http"])[src*="iphone11-transparent."] {
     transform: scale(1.1);
 }
 
-.card.is-lead:hover .img-box img:not([src^="http"])[src$="iphone11-transparent.png"] {
+.card.is-lead:hover .img-box img:not([src^="http"])[src*="iphone11-transparent."] {
     transform: scale(1.14);
 }
 
 /* Galaxy A51's restored portrait cutout needs a smaller scale to stay inside the image rail. */
-.img-box img:not([src^="http"])[src$="samsung-a51-transparent.png"] {
+.img-box img:not([src^="http"])[src*="samsung-a51-transparent."] {
     transform: scale(1.08);
 }
 
-.card.is-lead .img-box img:not([src^="http"])[src$="samsung-a51-transparent.png"] {
+.card.is-lead .img-box img:not([src^="http"])[src*="samsung-a51-transparent."] {
     transform: scale(1.1);
 }
 
-.card:hover .img-box img:not([src^="http"])[src$="samsung-a51-transparent.png"] {
+.card:hover .img-box img:not([src^="http"])[src*="samsung-a51-transparent."] {
     transform: scale(1.1);
 }
 
-.card.is-lead:hover .img-box img:not([src^="http"])[src$="samsung-a51-transparent.png"] {
+.card.is-lead:hover .img-box img:not([src^="http"])[src*="samsung-a51-transparent."] {
     transform: scale(1.14);
 }
 
 /* Realme 11 Pro+'s restored portrait cutout needs a smaller scale to stay inside the image rail. */
-.img-box img:not([src^="http"])[src$="realme11proplus-transparent.png"] {
+.img-box img:not([src^="http"])[src*="realme11proplus-transparent."] {
     transform: scale(1.08);
 }
 
-.card.is-lead .img-box img:not([src^="http"])[src$="realme11proplus-transparent.png"] {
+.card.is-lead .img-box img:not([src^="http"])[src*="realme11proplus-transparent."] {
     transform: scale(1.1);
 }
 
-.card:hover .img-box img:not([src^="http"])[src$="realme11proplus-transparent.png"] {
+.card:hover .img-box img:not([src^="http"])[src*="realme11proplus-transparent."] {
     transform: scale(1.1);
 }
 
-.card.is-lead:hover .img-box img:not([src^="http"])[src$="realme11proplus-transparent.png"] {
+.card.is-lead:hover .img-box img:not([src^="http"])[src*="realme11proplus-transparent."] {
     transform: scale(1.14);
 }
 
 /* Nothing Ear (a)'s restored horizontal case uses a contained scale to keep the full shell visible. */
-.img-box img:not([src^="http"])[src$="nothing-ear-a-transparent.png"] {
+.img-box img:not([src^="http"])[src*="nothing-ear-a-transparent."] {
     transform: scale(.96);
 }
 
-.card.is-lead .img-box img:not([src^="http"])[src$="nothing-ear-a-transparent.png"] {
+.card.is-lead .img-box img:not([src^="http"])[src*="nothing-ear-a-transparent."] {
     transform: scale(.98);
 }
 
-.card:hover .img-box img:not([src^="http"])[src$="nothing-ear-a-transparent.png"] {
+.card:hover .img-box img:not([src^="http"])[src*="nothing-ear-a-transparent."] {
     transform: scale(.98);
 }
 
-.card.is-lead:hover .img-box img:not([src^="http"])[src$="nothing-ear-a-transparent.png"] {
+.card.is-lead:hover .img-box img:not([src^="http"])[src*="nothing-ear-a-transparent."] {
     transform: scale(1);
 }
 
 /* Laptop renders already fill their source canvas; the shared local-image zoom crops them on narrow cards. */
-.img-box img:not([src^="http"])[src$="macbook-air-15-m5.png"],
-.img-box img:not([src^="http"])[src$="prestige-16-ai-plus-c3m.png"],
-.img-box img:not([src^="http"])[src$="macbook-neo-13-clean.png"] {
+.img-box img:not([src^="http"])[src*="macbook-air-15-m5."],
+.img-box img:not([src^="http"])[src*="prestige-16-ai-plus-c3m."],
+.img-box img:not([src^="http"])[src*="macbook-neo-13-clean."] {
     transform: scale(1);
 }
 
-.card.is-lead .img-box img:not([src^="http"])[src$="macbook-air-15-m5.png"],
-.card.is-lead .img-box img:not([src^="http"])[src$="prestige-16-ai-plus-c3m.png"],
-.card.is-lead .img-box img:not([src^="http"])[src$="macbook-neo-13-clean.png"] {
+.card.is-lead .img-box img:not([src^="http"])[src*="macbook-air-15-m5."],
+.card.is-lead .img-box img:not([src^="http"])[src*="prestige-16-ai-plus-c3m."],
+.card.is-lead .img-box img:not([src^="http"])[src*="macbook-neo-13-clean."] {
     transform: scale(1.02);
 }
 
-.card:hover .img-box img:not([src^="http"])[src$="macbook-air-15-m5.png"],
-.card:hover .img-box img:not([src^="http"])[src$="prestige-16-ai-plus-c3m.png"],
-.card:hover .img-box img:not([src^="http"])[src$="macbook-neo-13-clean.png"] {
+.card:hover .img-box img:not([src^="http"])[src*="macbook-air-15-m5."],
+.card:hover .img-box img:not([src^="http"])[src*="prestige-16-ai-plus-c3m."],
+.card:hover .img-box img:not([src^="http"])[src*="macbook-neo-13-clean."] {
     transform: scale(1.02);
 }
 
-.card.is-lead:hover .img-box img:not([src^="http"])[src$="macbook-air-15-m5.png"],
-.card.is-lead:hover .img-box img:not([src^="http"])[src$="prestige-16-ai-plus-c3m.png"],
-.card.is-lead:hover .img-box img:not([src^="http"])[src$="macbook-neo-13-clean.png"] {
+.card.is-lead:hover .img-box img:not([src^="http"])[src*="macbook-air-15-m5."],
+.card.is-lead:hover .img-box img:not([src^="http"])[src*="prestige-16-ai-plus-c3m."],
+.card.is-lead:hover .img-box img:not([src^="http"])[src*="macbook-neo-13-clean."] {
     transform: scale(1.04);
 }
 
 /* iPad Air 11's restored square cutout already fills its canvas; keep the full tablet visible. */
-.img-box img:not([src^="http"])[src$="ipad-air-11-transparent.png"] {
+.img-box img:not([src^="http"])[src*="ipad-air-11-transparent."] {
     transform: scale(.98);
 }
 
-.card.is-lead .img-box img:not([src^="http"])[src$="ipad-air-11-transparent.png"] {
+.card.is-lead .img-box img:not([src^="http"])[src*="ipad-air-11-transparent."] {
     transform: scale(1);
 }
 
-.card:hover .img-box img:not([src^="http"])[src$="ipad-air-11-transparent.png"] {
+.card:hover .img-box img:not([src^="http"])[src*="ipad-air-11-transparent."] {
     transform: scale(1);
 }
 
-.card.is-lead:hover .img-box img:not([src^="http"])[src$="ipad-air-11-transparent.png"] {
+.card.is-lead:hover .img-box img:not([src^="http"])[src*="ipad-air-11-transparent."] {
     transform: scale(1.02);
 }
 
@@ -3786,65 +3786,65 @@ body.dossier-open {
 }
 
 /* These PNGs are also full-frame renders, not transparent cut-outs. */
-.img-box img[src$="ipad-pro-13-enhanced.png"],
-.img-box img[src$="galaxy-tab-s11-ultra.png"],
-.img-box img[src$="galaxy-tab-s10-plus.png"],
-.img-box img[src$="legion-y700.png"] {
+.img-box img[src*="ipad-pro-13-enhanced."],
+.img-box img[src*="galaxy-tab-s11-ultra."],
+.img-box img[src*="galaxy-tab-s10-plus."],
+.img-box img[src*="legion-y700."] {
     transform: scale(1.02);
 }
 
-.card.is-lead .img-box img[src$="ipad-pro-13-enhanced.png"],
-.card.is-lead .img-box img[src$="galaxy-tab-s11-ultra.png"],
-.card.is-lead .img-box img[src$="galaxy-tab-s10-plus.png"],
-.card.is-lead .img-box img[src$="legion-y700.png"] {
+.card.is-lead .img-box img[src*="ipad-pro-13-enhanced."],
+.card.is-lead .img-box img[src*="galaxy-tab-s11-ultra."],
+.card.is-lead .img-box img[src*="galaxy-tab-s10-plus."],
+.card.is-lead .img-box img[src*="legion-y700."] {
     transform: scale(1.06);
 }
 
-.card:hover .img-box img[src$="ipad-pro-13-enhanced.png"],
-.card:hover .img-box img[src$="galaxy-tab-s11-ultra.png"],
-.card:hover .img-box img[src$="galaxy-tab-s10-plus.png"],
-.card:hover .img-box img[src$="legion-y700.png"] {
+.card:hover .img-box img[src*="ipad-pro-13-enhanced."],
+.card:hover .img-box img[src*="galaxy-tab-s11-ultra."],
+.card:hover .img-box img[src*="galaxy-tab-s10-plus."],
+.card:hover .img-box img[src*="legion-y700."] {
     transform: scale(1.06);
 }
 
-.card.is-lead:hover .img-box img[src$="ipad-pro-13-enhanced.png"],
-.card.is-lead:hover .img-box img[src$="galaxy-tab-s11-ultra.png"],
-.card.is-lead:hover .img-box img[src$="galaxy-tab-s10-plus.png"],
-.card.is-lead:hover .img-box img[src$="legion-y700.png"] {
+.card.is-lead:hover .img-box img[src*="ipad-pro-13-enhanced."],
+.card.is-lead:hover .img-box img[src*="galaxy-tab-s11-ultra."],
+.card.is-lead:hover .img-box img[src*="galaxy-tab-s10-plus."],
+.card.is-lead:hover .img-box img[src*="legion-y700."] {
     transform: scale(1.1);
 }
 
 /* Galaxy Buds 2's restored square cutout already fills its canvas; keep the complete case visible. */
-.img-box img:not([src^="http"])[src$="galaxy-buds-2-transparent.png"] {
+.img-box img:not([src^="http"])[src*="galaxy-buds-2-transparent."] {
     transform: scale(.98);
 }
 
-.card.is-lead .img-box img:not([src^="http"])[src$="galaxy-buds-2-transparent.png"] {
+.card.is-lead .img-box img:not([src^="http"])[src*="galaxy-buds-2-transparent."] {
     transform: scale(1);
 }
 
-.card:hover .img-box img:not([src^="http"])[src$="galaxy-buds-2-transparent.png"] {
+.card:hover .img-box img:not([src^="http"])[src*="galaxy-buds-2-transparent."] {
     transform: scale(1);
 }
 
-.card.is-lead:hover .img-box img:not([src^="http"])[src$="galaxy-buds-2-transparent.png"] {
+.card.is-lead:hover .img-box img:not([src^="http"])[src*="galaxy-buds-2-transparent."] {
     transform: scale(1.02);
 }
 
 /* BuildCores is a complete desk scene rather than a transparent single-object render. */
-.img-box img[src$="buildcores-platform6-setup-v2.png"] {
+.img-box img[src*="buildcores-platform6-setup-v2."] {
     transform: scale(1);
 }
 
-.card.is-lead .img-box img[src$="buildcores-platform6-setup-v2.png"] {
+.card.is-lead .img-box img[src*="buildcores-platform6-setup-v2."] {
     transform: scale(1.02);
 }
 
-.card:hover .img-box img[src$="buildcores-platform6-setup-v2.png"] {
+.card:hover .img-box img[src*="buildcores-platform6-setup-v2."] {
     transform: scale(1.02);
 }
 
-.card.is-lead:hover .img-box img[src$="buildcores-platform6-setup-v2.png"] {
+.card.is-lead:hover .img-box img[src*="buildcores-platform6-setup-v2."] {
     transform: scale(1.04);
 }
 
@@ -4641,7 +4641,7 @@ body.dossier-open {
     width: 64px;
     height: 64px;
     flex: 0 0 auto;
-    background: url("assets/images/arsenal-spark.png") center / contain no-repeat;
+    background: url("assets/images/arsenal-spark.webp") center / contain no-repeat;
     opacity: 0.72;
     filter: drop-shadow(0 0 18px rgba(111, 134, 255, 0.22));
 }
