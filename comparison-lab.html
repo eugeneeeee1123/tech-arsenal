@@ -1107,8 +1107,9 @@
         <div class="footer-line">TECH ARSENAL / COMPARE</div>
     </footer>
 
+    <script src="assets/data/devices.js"></script>
     <script>
-        // Reads specs directly from tech-arsenal.html to ensure a single source of truth.
+        // Reads specs directly from the unified data layer (assets/data/devices.js)
         let devices = [];
 
         const escapeHtml = (str) => String(str ?? "").replace(/[&<>"']/g, (s) => ({
@@ -1120,28 +1121,37 @@
         }[s]));
 
         async function loadDevices() {
+            if (window.TECH_ARSENAL_DEVICES && Array.isArray(window.TECH_ARSENAL_DEVICES)) {
+                devices = window.TECH_ARSENAL_DEVICES.map((d) => ({
+                    lot: d.lot,
+                    cat: d.category || "mobile",
+                    chapter: d.chapter || "SMARTPHONES",
+                    title: d.name,
+                    img: d.image?.src || "",
+                    specs: (d.specs || []).map((s) => ({
+                        label: s.label || "",
+                        value: s.value || ""
+                    }))
+                })).filter((d) => d.title);
+                return;
+            }
             try {
-                const res = await fetch("tech-arsenal.html");
+                const res = await fetch("assets/data/devices.json");
                 if (!res.ok) throw new Error(`HTTP ${res.status}`);
-                const html = await res.text();
-                const doc = new DOMParser().parseFromString(html, "text/html");
-                devices = [...doc.querySelectorAll(".card")].map((card) => {
-                    const details = card.querySelector(".hidden-details");
-                    const img = card.querySelector(".img-box img");
-                    return {
-                        lot: card.dataset.lot,
-                        cat: card.dataset.cat || "",
-                        chapter: card.dataset.chapter || "SMARTPHONES",
-                        title: details?.querySelector(".d-title")?.textContent.trim() || "",
-                        img: img?.getAttribute("src") || "",
-                        specs: [...(details?.querySelectorAll(".d-spec") || [])].map((s) => ({
-                            label: s.dataset.label || "",
-                            value: s.innerHTML,
-                        })),
-                    };
-                }).filter((d) => d.title);
+                const data = await res.json();
+                devices = data.map((d) => ({
+                    lot: d.lot,
+                    cat: d.category || "mobile",
+                    chapter: d.chapter || "SMARTPHONES",
+                    title: d.name,
+                    img: d.image?.src || "",
+                    specs: (d.specs || []).map((s) => ({
+                        label: s.label || "",
+                        value: s.value || ""
+                    }))
+                })).filter((d) => d.title);
             } catch (err) {
-                console.warn("Unable to fetch tech-arsenal.html via file:// protocol:", err);
+                console.warn("Unable to load device catalogue data:", err);
                 showLoadError();
             }
         }
@@ -1152,7 +1162,7 @@
                 const notice = document.createElement("div");
                 notice.className = "compare-notice-banner";
                 notice.style.cssText = "margin-top: 18px; padding: 14px 18px; background: rgba(255, 123, 123, 0.08); border: 1px solid rgba(255, 123, 123, 0.28); border-radius: 6px; text-align: left; font-size: 0.85rem; line-height: 1.6; color: #ffb4b4;";
-                notice.innerHTML = '<strong>Notice:</strong> Direct <code>file://</code> browsing prevents loading catalog data due to browser CORS policies. Please view via a local server (e.g., Live Server or <code>npx serve</code> in the project folder).';
+                notice.innerHTML = '<strong>Notice:</strong> Unable to load catalog dataset. Please verify <code>assets/data/devices.js</code> exists.';
                 emptyNotice.appendChild(notice);
             }
         }
@@ -1292,18 +1302,19 @@
             const CANONICAL_TAXONOMY = [
                 { label: "PROCESSOR / SOC", aliases: ["soc", "processor", "platform", "cpu"] },
                 { label: "GRAPHICS / GPU", aliases: ["graphics", "gpu"] },
-                { label: "MEMORY", aliases: ["memory", "ram", "memory & storage"] },
-                { label: "STORAGE", aliases: ["storage", "ssd", "rom", "memory & storage"] },
+                { label: "MEMORY", aliases: ["memory", "ram"] },
+                { label: "STORAGE", aliases: ["storage", "ssd", "rom"] },
+                { label: "MEMORY & STORAGE", aliases: ["memory & storage"] },
                 { label: "DISPLAY", aliases: ["display", "screen", "display panel"] },
                 { label: "INNER DISPLAY", aliases: ["inner display"] },
                 { label: "COVER DISPLAY", aliases: ["cover display"] },
                 { label: "CAMERA SYSTEM", aliases: ["camera system", "imaging tech"] },
                 { label: "CAMERA SENSORS", aliases: ["camera sensors"] },
                 { label: "FOCAL LENGTHS", aliases: ["focal lengths"] },
-                { label: "BATTERY & POWER", aliases: ["battery", "battery & charging", "battery & power", "battery life", "battery & i/o"] },
+                { label: "BATTERY & POWER", aliases: ["battery", "battery & charging", "battery & power", "battery life"] },
                 { label: "CONNECTIVITY & I/O", aliases: ["connectivity", "i/o", "i/o & connectivity", "i/o & wireless", "ports & gaming features", "battery & i/o"] },
                 { label: "BUILD & DESIGN", aliases: ["build", "build / battery", "build & weight", "build & durability", "build & audio", "design", "design & styling", "form factor"] },
-                { label: "AUDIO & SOUND", aliases: ["audio", "acoustics", "audio architecture", "camera & audio", "build & audio", "audio & haptics"] },
+                { label: "AUDIO & SOUND", aliases: ["audio", "acoustics", "audio architecture", "camera & audio", "audio & haptics"] },
                 { label: "NOISE CANCELLATION (ANC)", aliases: ["anc", "noise cancellation"] },
                 { label: "FEATURES & AI", aliases: ["feature", "features", "ai features", "new features", "smart features", "multitasking", "ai performance"] },
                 { label: "THERMAL & COOLING", aliases: ["cooling", "thermal architecture"] },
@@ -1352,9 +1363,10 @@
 
             const body = document.getElementById("compareBody");
             body.innerHTML = renderedRows.map(({ label, values }) => {
-                // Check if values differ across chosen devices (only when at least two devices have a non-empty value)
-                const validValues = values.filter(v => v && v.trim() !== "");
-                const isDiffering = validValues.length >= 2 && new Set(validValues.map(v => v.trim().toLowerCase())).size > 1;
+                // Normalize text by removing HTML tags and trimming extra spaces before comparing
+                const normalizeVal = (str) => String(str || "").replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim().toLowerCase();
+                const validValues = values.map(normalizeVal).filter(v => v !== "");
+                const isDiffering = validValues.length >= 2 && new Set(validValues).size > 1;
 
                 const cells = values.map((val) => {
                     return `<td>${val ? val : '<span class="spec-val-empty">—</span>'}</td>`;

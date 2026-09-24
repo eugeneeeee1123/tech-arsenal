@@ -3088,7 +3088,8 @@ body.dossier-open {
 }
 
 .catalogue-page .card:nth-child(4n + 3):not(.is-lead),
-.catalogue-page .card:nth-child(4n + 4):not(.is-lead) {
+.catalogue-page .card:nth-child(4n + 4):not(.is-lead),
+.catalogue-page #sec-desktop .card:not(.is-lead) {
     grid-column: span 6;
 }
 
@@ -3275,7 +3276,8 @@ body.dossier-open {
     .catalogue-page .card.is-lead,
     .catalogue-page .card:not(.is-lead),
     .catalogue-page .card:nth-child(4n + 3):not(.is-lead),
-    .catalogue-page .card:nth-child(4n + 4):not(.is-lead) {
+    .catalogue-page .card:nth-child(4n + 4):not(.is-lead),
+    .catalogue-page #sec-desktop .card:not(.is-lead) {
         grid-column: 1;
     }
 

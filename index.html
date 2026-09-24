@@ -244,6 +244,20 @@
     <footer class="site-footer">
         <div class="footer-line">TECH ARSENAL / HOME</div>
     </footer>
+    <script src="assets/data/devices.js"></script>
     <script src="arsenal-site.js"></script>
+    <script>
+        if (window.TECH_ARSENAL_DEVICES && Array.isArray(window.TECH_ARSENAL_DEVICES)) {
+            const total = window.TECH_ARSENAL_DEVICES.length;
+            const owned = window.TECH_ARSENAL_DEVICES.filter(d => d.status === "owned").length;
+            const pursuing = total - owned;
+            const statNums = document.querySelectorAll(".hero-stats-inline .stat-num");
+            if (statNums.length >= 3) {
+                statNums[0].textContent = String(total).padStart(3, "0");
+                statNums[1].textContent = String(owned).padStart(3, "0");
+                statNums[2].textContent = String(pursuing).padStart(3, "0");
+            }
+        }
+    </script>
 </body>
 </html>
