@@ -2981,6 +2981,130 @@
         "why": "The 14-inch Swift Go is the portable counterpoint to the big workstations: light enough to carry every day, smart enough to keep up."
     },
     {
+        "lot": "061",
+        "name": "MacBook Pro 14-inch (Touch)",
+        "status": "wishlist",
+        "category": "laptop",
+        "chapter": "MOBILE WORKSTATIONS",
+        "brand": "apple",
+        "isLead": false,
+        "inSetup": false,
+        "setupRole": null,
+        "isDeskCore": false,
+        "image": {
+            "src": "assets/images/macbook-pro-14-touch.png",
+            "alt": "MacBook Pro 14-inch (Touch) Silver",
+            "width": 1024,
+            "height": 980
+        },
+        "searchKeys": "macbook pro 14-inch touch touchscreen proled xdr m5 pro tandem oled apple dynamic island creator laptop",
+        "specs": [
+            {
+                "label": "Processor",
+                "value": "Apple M5 Pro | 16-Core CPU (10P + 6E) | 32-Core GPU | 16-Core Neural Engine"
+            },
+            {
+                "label": "Graphics",
+                "value": "Apple M5 Pro 32-Core GPU | Hardware-accelerated Ray Tracing | Dynamic Caching"
+            },
+            {
+                "label": "Memory",
+                "value": "48GB Unified Memory | 400GB/s Memory Bandwidth (configurable to 128GB)"
+            },
+            {
+                "label": "Storage",
+                "value": "2TB PCIe NVMe SSD (up to 7.4GB/s read, configurable to 8TB)"
+            },
+            {
+                "label": "Display",
+                "value": "14.2\" PROLED XDR Tandem OLED (3024x1964) | 10-point Multi-Touch | 120Hz ProMotion | 2,000 nits peak HDR | Dynamic Island"
+            },
+            {
+                "label": "Battery",
+                "value": "72.4Wh Lithium-Polymer | 96W USB-C GaN Power Adapter | Up to 22 hours"
+            },
+            {
+                "label": "Camera & Audio",
+                "value": "12MP Center Stage camera in Dynamic Island | Studio-quality three-mic array | Six-speaker system with Spatial Audio"
+            },
+            {
+                "label": "I/O",
+                "value": "3x Thunderbolt 5 (up to 120Gb/s) | HDMI 2.1 | MagSafe 3 | SDXC | 3.5mm Headphone Jack | Wi-Fi 7"
+            },
+            {
+                "label": "Form Factor",
+                "value": "Silver CNC aluminum unibody | Glowing Apple Logo | 1.55kg | 15.5mm thickness"
+            },
+            {
+                "label": "Interaction",
+                "value": "Native Multi-Touch macOS Gestures | Apple Pencil & Finger touch support | Tandem OLED"
+            }
+        ],
+        "why": "Apple\'s historic first touchscreen MacBook Pro in a compact 14-inch chassis, pairing M5 Pro silicon with a 2,000-nit Tandem OLED PROLED XDR display, Dynamic Island, and the return of the glowing Apple logo."
+    },
+    {
+        "lot": "062",
+        "name": "MacBook Pro 16-inch (Touch)",
+        "status": "wishlist",
+        "category": "laptop",
+        "chapter": "MOBILE WORKSTATIONS",
+        "brand": "apple",
+        "isLead": false,
+        "inSetup": false,
+        "setupRole": null,
+        "isDeskCore": false,
+        "image": {
+            "src": "assets/images/macbook-pro-16-touch.png",
+            "alt": "MacBook Pro 16-inch (Touch) Space Black",
+            "width": 1024,
+            "height": 690
+        },
+        "searchKeys": "macbook pro 16-inch touch touchscreen proled xdr m5 max tandem oled apple dynamic island creator workstation",
+        "specs": [
+            {
+                "label": "Processor",
+                "value": "Apple M5 Max | 18-Core CPU (12P + 6E) | 40-Core GPU | 16-Core Neural Engine"
+            },
+            {
+                "label": "Graphics",
+                "value": "Apple M5 Max 40-Core GPU | Hardware-accelerated Ray Tracing | Dynamic Caching"
+            },
+            {
+                "label": "Memory",
+                "value": "128GB Unified Memory | 800GB/s Memory Bandwidth"
+            },
+            {
+                "label": "Storage",
+                "value": "4TB PCIe NVMe SSD (up to 7.4GB/s read, configurable to 16TB)"
+            },
+            {
+                "label": "Display",
+                "value": "16.2\" PROLED XDR Tandem OLED (3456x2234) | 10-point Multi-Touch | 120Hz ProMotion | 2,000 nits peak HDR | Dynamic Island"
+            },
+            {
+                "label": "Battery",
+                "value": "100Wh Lithium-Polymer | 140W USB-C GaN Power Adapter | Up to 24 hours"
+            },
+            {
+                "label": "Camera & Audio",
+                "value": "12MP Center Stage camera in Dynamic Island | Studio-quality three-mic array | Six-speaker system with Spatial Audio"
+            },
+            {
+                "label": "I/O",
+                "value": "3x Thunderbolt 5 (up to 120Gb/s) | HDMI 2.1 (8K) | MagSafe 3 | SDXC (UHS-II) | 3.5mm Headphone Jack | Wi-Fi 7"
+            },
+            {
+                "label": "Form Factor",
+                "value": "Space Black CNC aluminum unibody | Glowing Apple Logo | 2.14kg | 16.8mm thickness"
+            },
+            {
+                "label": "Interaction",
+                "value": "Native Multi-Touch macOS Gestures | Apple Pencil & Finger touch support | Tandem OLED"
+            }
+        ],
+        "why": "The flagship 16-inch Touchscreen MacBook Pro combines M5 Max performance with a 16.2-inch Tandem OLED PROLED XDR touch canvas, Dynamic Island, and the revived glowing Apple logo."
+    },
+    {
         "lot": "028",
         "name": "Platform:6 Gaming Setup",
         "status": "wishlist",

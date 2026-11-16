@@ -371,6 +371,18 @@
             -webkit-overflow-scrolling: touch;
         }
 
+        .compare-table-caption {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip-path: inset(50%);
+            white-space: nowrap;
+            border: 0;
+        }
+
         .compare-table {
             width: 100%;
             border-collapse: separate;
@@ -661,7 +673,7 @@
             }
 
             .slot-header .slot-tag {
-                font-size: 0.55rem !important;
+                font-size: 0.75rem !important;
                 padding: 2px 4px !important;
                 letter-spacing: 0.03em !important;
                 white-space: nowrap !important;
@@ -671,7 +683,8 @@
             }
 
             .slot-clear-btn {
-                font-size: 0.65rem !important;
+                min-height: 44px !important;
+                font-size: 0.75rem !important;
                 padding: 2px 4px !important;
                 flex-shrink: 0 !important;
             }
@@ -694,11 +707,11 @@
             }
 
             .slot-lot {
-                font-size: 0.54rem !important;
+                font-size: 0.75rem !important;
             }
 
             .slot-title {
-                font-size: 0.72rem !important;
+                font-size: 0.75rem !important;
                 white-space: nowrap !important;
                 overflow: hidden !important;
                 text-overflow: ellipsis !important;
@@ -706,7 +719,8 @@
             }
 
             .lab-select {
-                font-size: 0.68rem !important;
+                min-height: 44px !important;
+                font-size: 0.75rem !important;
                 padding: 6px 20px 6px 6px !important;
                 background-position: right 6px center !important;
                 min-width: 0 !important;
@@ -744,15 +758,21 @@
                 display: none !important;
             }
 
+            .preset-label {
+                font-size: 0.75rem !important;
+            }
+
             .preset-chip {
                 flex: 0 0 auto !important;
                 white-space: nowrap !important;
                 padding: 4px 8px !important;
-                font-size: 0.62rem !important;
+                min-height: 44px !important;
+                font-size: 0.75rem !important;
             }
 
             .toolbar-actions {
                 display: flex !important;
+                flex-wrap: wrap !important;
                 align-items: center !important;
                 justify-content: space-between !important;
                 width: 100% !important;
@@ -760,11 +780,13 @@
             }
 
             .diff-toggle-label {
-                font-size: 0.68rem !important;
+                min-height: 44px !important;
+                font-size: 0.75rem !important;
             }
 
             .toolbar-btn {
-                font-size: 0.66rem !important;
+                min-height: 44px !important;
+                font-size: 0.75rem !important;
                 padding: 5px 8px !important;
             }
 
@@ -784,6 +806,7 @@
                 width: 100% !important;
                 box-sizing: border-box !important;
                 justify-content: space-between !important;
+                min-height: 44px !important;
                 font-size: 0.76rem !important;
                 padding: 8px 12px !important;
             }
@@ -880,13 +903,13 @@
             }
 
             .compare-head-lot {
-                font-size: 0.55rem !important;
+                font-size: 0.75rem !important;
                 color: var(--accent-2, #91a5ff) !important;
                 display: block !important;
             }
 
             .compare-head-title {
-                font-size: 0.72rem !important;
+                font-size: 0.75rem !important;
                 white-space: nowrap !important;
                 overflow: hidden !important;
                 text-overflow: ellipsis !important;
@@ -914,7 +937,7 @@
                 border-left: 3px solid transparent !important;
                 padding: 6px 8px !important;
                 font-family: var(--mono) !important;
-                font-size: 0.62rem !important;
+                font-size: 0.75rem !important;
                 font-weight: 700 !important;
                 letter-spacing: 0.08em !important;
                 text-transform: uppercase !important;
@@ -928,7 +951,7 @@
                 width: 100% !important;
                 box-sizing: border-box !important;
                 padding: 8px 8px !important;
-                font-size: 0.72rem !important;
+                font-size: 0.75rem !important;
                 line-height: 1.45 !important;
                 border-bottom: none !important;
                 min-width: 0 !important;
@@ -1096,6 +1119,7 @@
         <div id="compareCard" class="compare-table-card" hidden>
             <div class="compare-table-scroller">
                 <table id="compareTable" class="compare-table">
+                    <caption class="compare-table-caption">Specifications for the selected devices</caption>
                     <thead><tr id="compareHeadRow"></tr></thead>
                     <tbody id="compareBody"></tbody>
                 </table>
@@ -1246,6 +1270,22 @@
             return window.matchMedia("(max-width: 640px)").matches;
         }
 
+        function syncDuplicateOptions() {
+            const slots = isMobileView() ? [pickA, pickB] : [pickA, pickB, pickC];
+            const selectedLots = new Set();
+            slots.forEach((select) => {
+                if (select.value && selectedLots.has(select.value)) select.value = "";
+                if (select.value) selectedLots.add(select.value);
+            });
+
+            slots.forEach((select) => {
+                const unavailable = new Set(slots.filter((other) => other !== select).map((other) => other.value));
+                Array.from(select.options).forEach((option) => {
+                    option.disabled = Boolean(option.value && unavailable.has(option.value));
+                });
+            });
+        }
+
         function currentSelection() {
             const slots = isMobileView() ? [pickA.value, pickB.value] : [pickA.value, pickB.value, pickC.value];
             return slots
@@ -1255,6 +1295,7 @@
         }
 
         function render() {
+            syncDuplicateOptions();
             updateSlotVisual("A", pickA);
             updateSlotVisual("B", pickB);
             if (!isMobileView()) {
@@ -1286,8 +1327,8 @@
             }
 
             const headRow = document.getElementById("compareHeadRow");
-            headRow.innerHTML = "<th>SPECIFICATION</th>" + chosen.map((d) =>
-                `<th>
+            headRow.innerHTML = '<th scope="col">SPECIFICATION</th>' + chosen.map((d) =>
+                `<th scope="col">
                     <div class="compare-head-cell">
                         <div class="compare-head-thumb"><img src="${escapeHtml(d.img)}" alt="${escapeHtml(d.title)}" width="46" height="46" loading="lazy" decoding="async"></div>
                         <div class="compare-head-meta">
@@ -1372,7 +1413,7 @@
                     return `<td>${val ? val : '<span class="spec-val-empty">—</span>'}</td>`;
                 }).join("");
 
-                return `<tr class="${isDiffering ? 'row-diff' : ''}"><th>${escapeHtml(label)}</th>${cells}</tr>`;
+                return `<tr class="${isDiffering ? 'row-diff' : ''}"><th scope="row">${escapeHtml(label)}</th>${cells}</tr>`;
             }).join("");
         }
 
